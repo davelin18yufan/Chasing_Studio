@@ -20,7 +20,7 @@ export const {
           process.env.ADMIN_EMAIL && process.env.ADMIN_EMAIL === email &&
           process.env.ADMIN_PASSWORD && process.env.ADMIN_PASSWORD === password
         ) {
-          const user: User = { email, name: 'Admin User' };
+          const user: User = { email, name: 'Chasing Studio' };
           return user;
         } else {
           return null;
@@ -43,8 +43,3 @@ export const {
     signIn: '/sign-in',
   },
 });
-
-export const generateAuthSecret = () => fetch(
-  'https://generate-secret.vercel.app/32',
-  { cache: 'no-cache' },
-).then(res => res.text());

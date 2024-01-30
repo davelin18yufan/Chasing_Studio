@@ -43,6 +43,7 @@ const KEY_COUNT             = 'count';
 const KEY_HIDDEN            = 'hidden';
 const KEY_DATE_RANGE        = 'date-range';
 
+//* Extract key out of options
 const getPhotosCacheKeyForOption = (
   options: GetPhotosOptions,
   option: keyof GetPhotosOptions,
@@ -65,6 +66,7 @@ const getPhotosCacheKeyForOption = (
   }
 };
 
+//* Reformat into array
 const getPhotosCacheKeys = (options: GetPhotosOptions = {}) => {
   const tags: string[] = [];
 
@@ -79,6 +81,7 @@ const getPhotosCacheKeys = (options: GetPhotosOptions = {}) => {
   return tags;
 };
 
+//* Revalidate by keys
 export const revalidatePhotosKey = () =>
   revalidateTag(KEY_PHOTOS);
 
@@ -211,8 +214,7 @@ export const getUniqueFilmSimulationsCached =
 
 export const authCached = cache(auth);
 
-// No Store
-
+//* No Store
 export const getPhotoNoStore = (...args: Parameters<typeof getPhoto>) => {
   unstable_noStore();
   return getPhoto(...args);
@@ -230,6 +232,7 @@ export const getStoragePhotoUrlsNoStore: typeof getStoragePhotoUrls =
     return getStoragePhotoUrls(...args);
   };
 
+//* generate header by session
 export const getImageCacheHeadersForAuth = (session: Session | null) => {
   return {
     'Cache-Control': !session?.user

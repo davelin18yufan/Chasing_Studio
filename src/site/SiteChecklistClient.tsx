@@ -11,10 +11,8 @@ import {
   BiData,
   BiLockAlt,
   BiPencil,
-  BiRefresh,
 } from 'react-icons/bi';
 import IconButton from '@/components/IconButton';
-import InfoBlock from '@/components/InfoBlock';
 import Checklist from '@/components/Checklist';
 import { toastSuccess } from '@/toast';
 import { ConfigChecklistStatus } from './config';
@@ -29,7 +27,6 @@ export default function SiteChecklistClient({
   hasAwsS3Storage,
   hasMultipleStorageProviders,
   currentStorage,
-  hasAuth,
   hasAdminUser,
   hasTitle,
   hasDomain,
@@ -44,21 +41,15 @@ export default function SiteChecklistClient({
   isOgTextBottomAligned,
   gridAspectRatio,
   showRefreshButton,
-  secret,
 }: ConfigChecklistStatus & {
   showRefreshButton?: boolean
-  secret: string
 }) {
   const router = useRouter();
 
   const [isPendingPage, startTransitionPage] = useTransition();
-  const [isPendingSecret, startTransitionSecret] = useTransition();
 
   const refreshPage = () => {
     startTransitionPage(router.refresh);
-  };
-  const refreshSecret = () => {
-    startTransitionSecret(router.refresh);
   };
 
   const renderLink = (href: string, text: string, external = true) =>
@@ -196,30 +187,6 @@ export default function SiteChecklistClient({
         title="Authentication"
         icon={<BiLockAlt size={16} />}
       >
-        <ChecklistRow
-          title="Setup auth"
-          status={hasAuth}
-          isPending={isPendingPage}
-        >
-          Store auth secret in environment variable:
-          <div className="overflow-x-auto">
-            <InfoBlock className="my-1.5 inline-flex" padding="tight">
-              <div className="flex flex-nowrap items-center gap-4">
-                <span>{secret}</span>
-                <div className="flex items-center gap-0.5">
-                  {renderCopyButton('Secret', secret)}
-                  <IconButton
-                    icon={<BiRefresh size={18} />}
-                    onClick={refreshSecret}
-                    isLoading={isPendingSecret}
-                    spinnerColor="text"
-                  />
-                </div>
-              </div>
-            </InfoBlock>
-          </div>
-          {renderEnvVars(['AUTH_SECRET'])}
-        </ChecklistRow>
         <ChecklistRow
           title="Setup admin user"
           status={hasAdminUser}

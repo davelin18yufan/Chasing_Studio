@@ -15,12 +15,12 @@ export default function SiteGrid({
 }) {
   return (
     <div className={clsx(
-      className,
       'grid',
       'grid-cols-1 md:grid-cols-12',
       'gap-x-4 lg:gap-x-6',
       'gap-y-4',
       'max-w-7xl',
+      className,
     )}>
       <div className={clsx(
         'col-span-1 md:col-span-9',

@@ -8,7 +8,7 @@
     @apply
       text-main
       font-mono text-sm md:text-base
-      bg-white dark:bg-black
+      bg-gray-100 dark:bg-slate-900
   }
   /* Forms */
   label {
@@ -151,4 +151,12 @@
     @apply
       bg-gray-900 dark:bg-gray-100
   }
+}
+
+
+@layer utilities{
+   .invert-colors {
+    @apply invert dark:invert-0;
+  }
+
 }

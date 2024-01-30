@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const MEDIA_QUERY_SELECTOR = '(prefers-reduced-motion: reduce)';
-const MEDIA_QUERY_EVENT = 'change';
+const MEDIA_QUERY_SELECTOR = '(prefers-reduced-motion: reduce)'; // check user preference
+const MEDIA_QUERY_EVENT = 'change'; // change event of animation
 
 const safelyGetMediaQuery = () => typeof window !== 'undefined'
   ? window.matchMedia(MEDIA_QUERY_SELECTOR)
@@ -15,12 +15,12 @@ const usePrefersReducedMotion = () => {
   useEffect(() => {
     const mediaQuery = safelyGetMediaQuery();
 
-    const listener = () => {
+    const changeHandler = () => {
       setPrefersReducedMotion(mediaQuery?.matches ?? false);
     };
 
-    mediaQuery?.addEventListener(MEDIA_QUERY_EVENT, listener);
-    return () => mediaQuery?.removeEventListener(MEDIA_QUERY_EVENT, listener);
+    mediaQuery?.addEventListener(MEDIA_QUERY_EVENT, changeHandler);
+    return () => mediaQuery?.removeEventListener(MEDIA_QUERY_EVENT, changeHandler);
   }, []);
 
   return prefersReducedMotion;
