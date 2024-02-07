@@ -11,6 +11,13 @@ module.exports = {
       'xs': '390px',
       ...defaultTheme.screens,
     },
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     fontSize: {
       'xs': '0.75rem',
       'sm': ['0.825rem', '1.15rem'],
@@ -27,12 +34,22 @@ module.exports = {
       animation: {
         'rotate-pulse':
           'rotate-pulse 0.75s linear infinite normal both running',
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
         'rotate-pulse': {
           '0%': { transform: 'rotate(0deg) scale(1)' },
           '50%': { transform: 'rotate(180deg) scale(0.8)' },
           '100%': { transform: 'rotate(360deg) scale(1)' },
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
     },

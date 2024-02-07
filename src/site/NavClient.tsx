@@ -1,29 +1,31 @@
 "use client"
 
 import { clsx } from "clsx/lite"
-import { usePathname, useRouter } from "next/navigation"
-import Link from "next/link"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
-import SiteGrid from "../components/SiteGrid"
-import { SITE_DOMAIN_OR_TITLE } from "@/site/config"
 import ViewSwitcher, { SwitcherSelection } from "@/site/ViewSwitcher"
 import {
   PATH_ROOT,
-  isPathAdmin,
+  isPathGallery,
   isPathGrid,
   isPathProtected,
   isPathSets,
-  isPathSignIn,
 } from "@/site/paths"
-import AnimateItems from "../components/AnimateItems"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { navbarLinks } from "@/constants"
+import { FaEarthEurope } from "react-icons/fa6"
+import {
+  Menubar,
+  MenubarContent,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+import ThemeSwitcher from "./ThemeSwitcher"
+import NavMobile from "./NavMobile"
 
 export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
   const pathname = usePathname()
-  const router = useRouter()
-
-  const showNav = !isPathSignIn(pathname)
-
-  const shouldAnimate = !isPathAdmin(pathname)
 
   const switcherSelectionForPath = (): SwitcherSelection | undefined => {
     if (pathname === PATH_ROOT) {
@@ -38,51 +40,53 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
   }
 
   return (
-    <nav className='relative'>
-      <SiteGrid
-        contentMain={
-          <AnimateItems
-            animateOnFirstLoadOnly
-            type={!shouldAnimate ? "none" : "bottom"}
-            distanceOffset={10}
-            items={
-              showNav
-                ? [
-                    <div
-                      key="nav"
-                      className={clsx(
-                        "flex items-center",
-                        "w-full min-h-[4rem]",
-                        "leading-none",
-                        ""
-                      )}
-                    >
-                      <div className="hidden xs:block cursor-pointer">
-                        <Image
-                          src="/logo_horizontal.png"
-                          alt="logo"
-                          width={250}
-                          height={230}
-                          className="invert-colors "
-                          onClick={() => router.push("/")}
-                        />
-                      </div>
-                      <div className="flex flex-grow items-center justify-end gap-4">
-                        <ViewSwitcher
-                          currentSelection={switcherSelectionForPath()}
-                          showAdmin={showAdmin}
-                        />
-                      </div>
-                    </div>,
-                  ]
-                : []
-            }
-          />
-        }
+    <header className="flex items-center justify-end sm:justify-between p-2">
+      <Link className="hidden sm:block cursor-pointer" href="/">
+        <Image
+          src="/logo_horizontal.png"
+          alt="logo"
+          width={250}
+          height={130}
+          className="invert-colors hidden xs:block"
+        />
+      </Link>
+      <nav className="hidden sm:flex gap-4 p-2 text-sm font-medium rounded-md  text-gray-700">
+        {isPathGallery(pathname) && (
+          <div
+            className={clsx(
+              "flex flex-grow",
+              "items-center justify-end",
+              "gap-4"
+            )}
+          >
+            <ViewSwitcher
+              currentSelection={switcherSelectionForPath()}
+              showAdmin={showAdmin}
+            />
+          </div>
+        )}
+        {navbarLinks.map((item) => (
+          <Link href={item.route} key={item.label}>
+            <Button className="navItem">{item.label}</Button>
+          </Link>
+        ))}
+        <Menubar className="relative border-none bg-transparent shadow-none">
+          <MenubarMenu>
+            <MenubarTrigger className="navItem cursor-pointer">
+              <FaEarthEurope />
+            </MenubarTrigger>
+            <MenubarContent className="bg-content min-w-[120px] mr-1.5">
+              <ThemeSwitcher />
+            </MenubarContent>
+          </MenubarMenu>
+        </Menubar>
+      </nav>
+
+      <NavMobile
+        isPathGallery={isPathGallery(pathname)}
+        currentSelection={switcherSelectionForPath()}
+        showAdmin={showAdmin}
       />
-      <div className='absolute right-10 top-1'>
-        導覽列
-      </div>
-    </nav>
+    </header>
   )
 }
