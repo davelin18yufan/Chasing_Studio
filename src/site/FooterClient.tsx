@@ -2,7 +2,6 @@
 
 import { clsx } from 'clsx/lite';
 import SiteGrid from '../components/SiteGrid';
-import ThemeSwitcher from '@/site/ThemeSwitcher';
 import Link from 'next/link';
 import { SHOW_REPO_LINK } from '@/site/config';
 import RepoLink from '../components/RepoLink';
@@ -59,9 +58,6 @@ export default function FooterClient({
                     {SHOW_REPO_LINK &&
                       <RepoLink />}
                   </>}
-              </div>
-              <div className="flex items-center h-4">
-                <ThemeSwitcher />
               </div>
             </div>]
             : []}
