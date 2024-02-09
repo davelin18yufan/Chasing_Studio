@@ -50,7 +50,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
           className="invert-colors hidden xs:block"
         />
       </Link>
-      <nav className="hidden sm:flex gap-4 p-2 text-sm font-medium rounded-md  text-gray-700">
+      <nav className="hidden sm:flex gap-1 p-2 text-sm font-medium rounded-md  text-gray-700">
         {isPathGallery(pathname) && (
           <div
             className={clsx(

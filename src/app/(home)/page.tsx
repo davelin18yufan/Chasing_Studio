@@ -1,6 +1,6 @@
-import { getPhotosCached, getPhotosCountCached } from '@/cache';
-import { generateOgImageMetaForPhotos } from '@/photo';
-import { Metadata } from 'next';
+import { getPhotosCached, getPhotosCountCached } from "@/cache"
+import { generateOgImageMetaForPhotos } from "@/photo"
+import { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 // import { Label } from "@/components/ui/label"
@@ -8,7 +8,7 @@ import Image from "next/image"
 // import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 
-export const runtime = 'edge';
+export const runtime = "edge"
 
 // export async function generateMetadata(): Promise<Metadata> {
 //   // Make homepage queries resilient to error on first time setup
@@ -17,20 +17,18 @@ export const runtime = 'edge';
 //   return generateOgImageMetaForPhotos(photos);
 // }
 
-
-
 export default function HomePage() {
   return (
     <>
-    {/* Hero section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+      {/* Hero section */}
+      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-home-hero bg-no-repeat bg-cover opacity-0.5">
         <div className="relative overflow-hidden -top-2">
-          <div className="container flex flex-col items-center px-4 space-y-2 md:px-6 lg:space-y-4">
-            <div className="space-y-2 text-center">
+          <div className="container flex flex-col items-center px-4 space-y-2 md:px-6 lg:space-y-4 animate-fadeIn">
+            <div className="space-y-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-violet-600">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Welcome to Chasing Studio
               </h1>
-              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
+              <p className="mx-auto max-w-[600px] ">
                 Where your memories come to life. Capture your moments with our
                 professional photography services.
               </p>
@@ -47,9 +45,13 @@ export default function HomePage() {
               Overview
             </h2>
             <p className="max-w-3xl mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Protograph Studio offers a range of design services, from
-              user-friendly interfaces to stunning visual identities. Let us
-              bring your vision to life.
+              我們是Chasing
+              Studio，致力於以創意和精準捕捉生活中最珍貴的時刻。我們相信每張照片都蘊含著獨特的故事，專業服務涵蓋肖像、活動、婚禮和商業項目等廣泛範疇。
+              在 Chasing
+              Studio，我們深知創造永恆記憶的重要性，這些記憶將被世代傳承。我們的團隊由經驗豐富的攝影師組成，將技術專業與藝術視野相結合，提供令人驚嘆的影像作品，超出客戶的期望。
+              我們堅持追求卓越和客戶滿意度，為每位客戶提供無縫和愉快的體驗。從初次諮詢到最終交付影像，我們始終重視清晰溝通、細心呵護和個性化服務。
+              無論您是慶祝特殊的里程碑、推出新產品還是保存珍貴的回憶，Chasing
+              Studio都會幫助您實現您的願景。立即與我們聯繫，討論您的攝影需求，讓我們捕捉您生活中最重要的時刻。
             </p>
           </div>
         </div>
@@ -57,12 +59,10 @@ export default function HomePage() {
 
       {/* Gallery */}
       <div className="py-12 lg:py-24">
-        <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
-          <div className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Gallery
-            </h2>
-          </div>
+        <div className="container grid items-center justify-center gap-4 px-4 text-center mb-4 md:px-6">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            Gallery
+          </h2>
         </div>
         <div className="mx-auto grid max-w-5xl items-start gap-4 px-4 md:gap-8 md:px-6 lg:gap-10">
           <div className="grid grid-cols-2 items-stretch justify-center gap-4 md:grid-cols-3">
@@ -197,49 +197,87 @@ export default function HomePage() {
       </div>
 
       {/* Blog */}
-      <div className="py-12 lg:py-24">
-        <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
-          <div className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Blog
-            </h2>
-            <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Keep up with the latest trends in design and technology.
-            </p>
-          </div>
-        </div>
-        <div className="mx-auto grid max-w-5xl items-start gap-6 px-4 md:gap-8 md:px-6">
-          <div className="space-y-4">
+      <div className="bg-gray-50 dark:bg-gray-950 py-12 lg:py-16">
+        <div className="container grid gap-4 px-4 md:gap-8 md:px-6">
+          <div className="mx-auto grid max-w-3xl gap-2 lg:max-w-5xl">
             <div className="space-y-2">
-              <Link
-                className="text-2xl font-bold leading-tighter text-gray-900 hover:underline dark:text-gray-100"
-                href="#"
-              >
-                The Art of Typography in Web Design
-              </Link>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Posted on August 23, 2023
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                From the Blog
+              </h2>
+              <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed dark:text-gray-400">
+                Stories and ideas from the team behind the platform. Get
+                insights into the latest trends in web development, cloud
+                computing, and more.
               </p>
             </div>
-            <p className="text-lg leading-loose text-gray-900 md:text-xl/relaxed dark:text-gray-100">
-              Typography is an essential part of web design. It not only
-              communicates the content of a website but also reflects the
-              personality and style of the brand. In this article, we will
-              explore the art of typography in web design and discuss how
-              designers can use fonts to create beautiful and effective
-              websites.
-            </p>
-            <div className="mt-6">
-              <Link
-                className="inline-flex items-center font-semibold underline hover:underline"
-                href="#"
-              >
-                Read More
-                <span className="inline-block ml-1.5">
-                  <ChevronRightIcon className="w-4 h-4" />
-                </span>
-              </Link>
-            </div>
+            {/* <div className="grid gap-4 md:gap-6">
+                <Card>
+                  <CardContent className="flex items-start p-4 md:p-6">
+                    <img
+                      alt="Image"
+                      className="rounded aspect-square overflow-hidden object-cover"
+                      height="120"
+                      src="/placeholder.svg"
+                      width="120"
+                    />
+                    <div className="grid gap-1 ml-4 md:ml-6 lg:gap-2">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Article
+                      </p>
+                      <h3 className="font-bold leading-none">
+                        Introducing the New Platform Experience
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        The Vercel Team · August 24, 2023
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="flex items-start p-4 md:p-6">
+                    <img
+                      alt="Image"
+                      className="rounded aspect-square overflow-hidden object-cover"
+                      height="120"
+                      src="/placeholder.svg"
+                      width="120"
+                    />
+                    <div className="grid gap-1 ml-4 md:ml-6 lg:gap-2">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Article
+                      </p>
+                      <h3 className="font-bold leading-none">
+                        Building Jamstack Applications with Next.js
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Sarah Johnson · August 24, 2023
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="flex items-start p-4 md:p-6">
+                    <img
+                      alt="Image"
+                      className="rounded aspect-square overflow-hidden object-cover"
+                      height="120"
+                      src="/placeholder.svg"
+                      width="120"
+                    />
+                    <div className="grid gap-1 ml-4 md:ml-6 lg:gap-2">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Article
+                      </p>
+                      <h3 className="font-bold leading-none">
+                        The Future of Web Development: Innovations and Trends
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Alex Chen · August 24, 2023
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div> */}
           </div>
         </div>
       </div>
@@ -295,23 +333,3 @@ export default function HomePage() {
     </>
   )
 }
-
-function ChevronRightIcon(props:any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m9 18 6-6-6-6" />
-    </svg>
-  )
-}
-
