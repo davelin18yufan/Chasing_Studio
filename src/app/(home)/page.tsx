@@ -296,7 +296,7 @@ export default function HomePage() {
               Contact Us
             </h2>
             <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Ready to get started? Send us a message and we'll be in touch.
+              Ready to get started? Send us a message and we will be in touch.
             </p>
           </div>
           <div className="mx-auto max-w-sm space-y-4">
