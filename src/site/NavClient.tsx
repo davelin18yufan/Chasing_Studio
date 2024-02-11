@@ -40,7 +40,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
   }
 
   return (
-    <header className="flex items-center justify-end sm:justify-between p-2">
+    <header className="flex items-center justify-end bg-content sm:justify-between p-2 fixed top-0 w-full opacity-80">
       <Link className="hidden sm:block cursor-pointer" href="/">
         <Image
           src="/logo_horizontal.png"
