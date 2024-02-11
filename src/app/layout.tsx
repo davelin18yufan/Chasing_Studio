@@ -65,12 +65,12 @@ export default function RootLayout({
       <body className={ibmPlexMono.variable}>
         <StateProvider>
           <ThemeProviderClient>
-            <main className={clsx("px-3 pb-3", "lg:px-6 lg:pb-6", "w-full")}>
+            <main className={clsx("px-3 pb-3", "lg:px-6 lg:pb-6", "w-full", "relative")}>
               {/* fallback to client nav */}
               <Suspense fallback={<NavClient />}>
                 <Nav />
               </Suspense>
-              <div className={clsx("min-h-[16rem] sm:min-h-[30rem]", "mb-12")}>
+              <div className={clsx("min-h-[16rem] sm:min-h-[30rem]", "mb-12 pt-20")}>
                 {children}
               </div>
               <Suspense fallback={<FooterClient />}>
