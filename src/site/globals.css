@@ -137,20 +137,21 @@
   }
   /* Common Utilities: Background */
   .bg-content {
-    @apply bg-gray-100 dark:bg-slate-900
-       dark:border-gray-800;
+    @apply bg-gray-100 dark:bg-slate-900;
   }
   .bg-primary {
     @apply bg-gray-900 dark:bg-gray-100;
   }
 }
 
+@layer components {
+  .navItem {
+    @apply transition-colors bg-content dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:text-gray-900 rounded-md border-none shadow-none cursor-pointer;
+  }
+}
+
 @layer utilities {
   .invert-colors {
     @apply invert dark:invert-0;
-  }
-
-  .navItem {
-    @apply transition-colors bg-content dark:text-white hover:bg-gray-200 hover:text-gray-900 rounded-md dark:hover:text-gray-900 border-none shadow-none cursor-pointer;
   }
 }

@@ -15,6 +15,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { navbarLinks } from "@/constants"
 import { Button } from "@/components/ui/button"
+import { usePathname } from "next/navigation"
 
 export default function NavMobile({
   isPathGallery,
@@ -25,12 +26,13 @@ export default function NavMobile({
   showAdmin?: boolean
   currentSelection: SwitcherSelection | undefined
 }) {
+  const pathname = usePathname()
   return (
     <Sheet>
       <SheetTrigger asChild>
         <IoCarSport className="sm:hidden cursor-pointer w-10 h-10 p-2" />
       </SheetTrigger>
-      <SheetContent className="bg-content border-none">
+      <SheetContent className="bg-content">
         <SheetHeader>
           <Link className="hidden xs:block cursor-pointer" href="/">
             <Image
@@ -46,23 +48,29 @@ export default function NavMobile({
         <SheetClose asChild>
           <section className="flex h-full flex-col gap-6 pt-16">
             {isPathGallery && (
-              <div
-                className={clsx(
-                  "flex",
-                  "items-center justify-center",
-                )}
-              >
+              <div className={clsx("flex", "items-center justify-center")}>
                 <ViewSwitcher
                   showAdmin={showAdmin}
                   currentSelection={currentSelection}
                 />
               </div>
             )}
-            {navbarLinks.map((item) => (
-              <Link href={item.route} key={item.label}>
-                <Button className="navItem w-full">{item.label}</Button>
-              </Link>
-            ))}
+            {navbarLinks.map((item) => {
+              const isActive =
+                (pathname.includes(item.route) && item.route.length > 1) ||
+                pathname === item.route
+              return (
+                <Link href={item.route} key={item.label}>
+                  <Button
+                    className={`navItem w-full ${
+                      isActive && "text-gray-900 bg-gray-200"
+                    }`}
+                  >
+                    {item.label}
+                  </Button>
+                </Link>
+              )
+            })}
           </section>
         </SheetClose>
       </SheetContent>

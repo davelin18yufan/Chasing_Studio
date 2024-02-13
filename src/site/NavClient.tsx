@@ -70,14 +70,23 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
             />
           </div>
         )}
-        {navbarLinks.map((item) => (
-          <Link href={item.route} key={item.label}>
-            <Button className="navItem">{item.label}</Button>
-          </Link>
-        ))}
+        {navbarLinks.map((item) => {
+          const isActive =
+            (pathname.includes(item.route) && item.route.length > 1) ||
+            pathname === item.route
+          return (
+            <Link href={item.route} key={item.label}>
+              <Button
+                className={`navItem ${isActive && "text-gray-900 bg-gray-200"}`}
+              >
+                {item.label}
+              </Button>
+            </Link>
+          )
+        })}
         <Menubar className="relative border-none bg-transparent shadow-none">
           <MenubarMenu>
-            <MenubarTrigger className="navItem cursor-pointer">
+            <MenubarTrigger className="navItem">
               <FaEarthEurope />
             </MenubarTrigger>
             <MenubarContent className="bg-content min-w-[120px] mr-1.5">
