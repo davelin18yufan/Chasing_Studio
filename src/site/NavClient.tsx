@@ -53,6 +53,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
           width={250}
           height={130}
           className="invert-colors hidden xs:block"
+          priority
         />
       </Link>
       <nav className="hidden sm:flex gap-1 p-2 text-sm font-medium rounded-md  text-gray-700">
@@ -77,7 +78,10 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
           return (
             <Link href={item.route} key={item.label}>
               <Button
-                className={`navItem ${isActive && "text-gray-900 bg-gray-200"}`}
+                className={`navItem ${
+                  isActive &&
+                  "text-gray-900 bg-gray-200 dark:bg-gray-200 dark:text-gray-900"
+                }`}
               >
                 {item.label}
               </Button>
@@ -86,7 +90,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
         })}
         <Menubar className="relative border-none bg-transparent shadow-none">
           <MenubarMenu>
-            <MenubarTrigger className="navItem">
+            <MenubarTrigger className="navItem cursor-pointer">
               <FaEarthEurope />
             </MenubarTrigger>
             <MenubarContent className="bg-content min-w-[120px] mr-1.5">

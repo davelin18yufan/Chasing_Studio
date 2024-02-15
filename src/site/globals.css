@@ -148,10 +148,15 @@
   .navItem {
     @apply transition-colors bg-content dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:text-gray-900 rounded-md border-none shadow-none cursor-pointer;
   }
+
+  .galleryCardImg {
+    @apply object-cover object-center w-full transition-transform group-hover:scale-105 aspect-square opacity-70 group-hover:opacity-100;
+  }
 }
 
 @layer utilities {
   .invert-colors {
     @apply invert dark:invert-0;
   }
+
 }

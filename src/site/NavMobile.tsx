@@ -41,6 +41,7 @@ export default function NavMobile({
               width={250}
               height={230}
               className="invert-colors "
+              priority
             />
           </Link>
         </SheetHeader>

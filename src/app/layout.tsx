@@ -13,6 +13,7 @@ import Footer from "@/site/Footer"
 import { Suspense } from "react"
 import FooterClient from "@/site/FooterClient"
 import NavClient from "@/site/NavClient"
+import Script from "next/script"
 
 import "../site/globals.css"
 
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   ...(BASE_URL && { metadataBase: new URL(BASE_URL) }),
+  keywords: ["Chasing Studio", "photography", "Car photo", "moments"],
   openGraph: {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
@@ -36,18 +38,27 @@ export const metadata: Metadata = {
   },
   icons: [
     {
-      url: "/favicon.ico",
+      url: "/favicons/favicon.ico",
       rel: "icon",
       type: "image/png",
       sizes: "180x180",
     },
     {
       url: "/favicons/apple-touch-icon.png",
-      rel: "icon",
+      rel: "apple-touch-icon",
       type: "image/png",
       sizes: "180x180",
     },
   ],
+}
+
+// METADATA: SchemaMarkup
+export const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Photographer",
+  name: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  url: BASE_URL,
 }
 
 export default function RootLayout({
@@ -65,12 +76,24 @@ export default function RootLayout({
       <body className={ibmPlexMono.variable}>
         <StateProvider>
           <ThemeProviderClient>
-            <main className={clsx("px-3 pb-3", "lg:px-6 lg:pb-6", "w-full", "relative")}>
+            <main
+              className={clsx(
+                "px-3 pb-3",
+                "lg:px-6 lg:pb-6",
+                "w-full",
+                "relative"
+              )}
+            >
               {/* fallback to client nav */}
               <Suspense fallback={<NavClient />}>
                 <Nav />
               </Suspense>
-              <div className={clsx("min-h-[16rem] sm:min-h-[30rem]", "mb-12 pt-20")}>
+              <div
+                className={clsx(
+                  "min-h-[16rem] sm:min-h-[30rem]",
+                  "mb-12 pt-20"
+                )}
+              >
                 {children}
               </div>
               <Suspense fallback={<FooterClient />}>
@@ -83,6 +106,10 @@ export default function RootLayout({
         <SpeedInsights />
         <PhotoEscapeHandler />
         <ToasterWithThemes />
+        <Script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   )
