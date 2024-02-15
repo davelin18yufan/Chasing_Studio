@@ -40,7 +40,12 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
   }
 
   return (
-    <header className="flex items-center justify-end sm:justify-between p-2">
+    <header
+      className={clsx(
+        "flex items-center justify-end bg-content sm:justify-between py-2 pr-8",
+        "fixed top-0 w-full opacity-80"
+      )}
+    >
       <Link className="hidden sm:block cursor-pointer" href="/">
         <Image
           src="/logo_horizontal.png"
@@ -48,6 +53,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
           width={250}
           height={130}
           className="invert-colors hidden xs:block"
+          priority
         />
       </Link>
       <nav className="hidden sm:flex gap-1 p-2 text-sm font-medium rounded-md  text-gray-700">
@@ -65,11 +71,23 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
             />
           </div>
         )}
-        {navbarLinks.map((item) => (
-          <Link href={item.route} key={item.label}>
-            <Button className="navItem">{item.label}</Button>
-          </Link>
-        ))}
+        {navbarLinks.map((item) => {
+          const isActive =
+            (pathname.includes(item.route) && item.route.length > 1) ||
+            pathname === item.route
+          return (
+            <Link href={item.route} key={item.label}>
+              <Button
+                className={`navItem ${
+                  isActive &&
+                  "text-gray-900 bg-gray-200 dark:bg-gray-200 dark:text-gray-900"
+                }`}
+              >
+                {item.label}
+              </Button>
+            </Link>
+          )
+        })}
         <Menubar className="relative border-none bg-transparent shadow-none">
           <MenubarMenu>
             <MenubarTrigger className="navItem cursor-pointer">

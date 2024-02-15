@@ -44,6 +44,7 @@ const KEY_HIDDEN            = 'hidden';
 const KEY_DATE_RANGE        = 'date-range';
 
 //* Extract key out of options
+// Reformat into (key)-{value}
 const getPhotosCacheKeyForOption = (
   options: GetPhotosOptions,
   option: keyof GetPhotosOptions,
@@ -112,6 +113,8 @@ export const revalidateAdminPaths = () => {
 
 // Cache
 
+// Get the photos cache key-value pairs and using unstable-cache
+// const data = unstable_cache(fetchData, keyParts, options)()
 export const getPhotosCached = (
   ...args: Parameters<typeof getPhotos>
 ) => unstable_cache(

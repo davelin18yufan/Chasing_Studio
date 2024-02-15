@@ -21,7 +21,8 @@
   input[type="text"],
   input[type="email"],
   input[type="password"],
-  select {
+  select,
+  textarea {
     @apply px-2.5 py-2
       border rounded-md
       bg-white dark:bg-black
@@ -32,9 +33,10 @@
   input[type="text"],
   input[type="email"],
   input[type="password"],
-  select {
+  select,
+  textarea {
     @apply text-[1rem] /* Prevent iOS auto-zoom behavior */
-      min-w-[20rem] read-only:cursor-default;
+      min-w-[10rem] read-only:cursor-default;
   }
   input[type="text"],
   input[type="email"],
@@ -137,11 +139,20 @@
   }
   /* Common Utilities: Background */
   .bg-content {
-    @apply bg-gray-100 dark:bg-slate-900
-       dark:border-gray-800;
+    @apply bg-gray-100 dark:bg-slate-900;
   }
   .bg-primary {
     @apply bg-gray-900 dark:bg-gray-100;
+  }
+}
+
+@layer components {
+  .navItem {
+    @apply transition-colors bg-content dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:text-gray-900 rounded-md border-none shadow-none cursor-pointer;
+  }
+
+  .galleryCardImg {
+    @apply object-cover object-center w-full transition-transform group-hover:scale-105 aspect-square opacity-70 group-hover:opacity-100;
   }
 }
 
@@ -150,7 +161,11 @@
     @apply invert dark:invert-0;
   }
 
-  .navItem {
-    @apply transition-colors bg-content dark:text-white hover:bg-gray-200 hover:text-gray-900 rounded-md dark:hover:text-gray-900 border-none shadow-none cursor-pointer;
+  .title {
+    @apply text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl;
+  }
+
+  .subTitle {
+    @apply max-w-3xl mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400;
   }
 }
