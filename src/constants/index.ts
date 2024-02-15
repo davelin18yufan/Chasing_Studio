@@ -14,3 +14,4 @@ export const navbarLinks = [
   },
 ]
 
+export const genders = ["Male", "Female", "Non-binary", "Other"]

@@ -13,7 +13,7 @@ export default function HeroSection({title, subTitle}: {title: string, subTitle:
       <div className="relative overflow-hidden -top-2">
         <div className="container flex flex-col items-center px-4 space-y-2 md:px-6 lg:space-y-4">
           <div className="space-y-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-violet-600">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+            <h1 className="title">
               {title}
             </h1>
             <p className="mx-auto max-w-[600px] ">

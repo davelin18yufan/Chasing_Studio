@@ -1,14 +1,11 @@
 import { getPhotosCached, getPhotosCountCached } from "@/cache"
 import { generateOgImageMetaForPhotos } from "@/photo"
 import { Metadata } from "next"
-// import { Label } from "@/components/ui/label"
-// import { Input } from "@/components/ui/input"
-// import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { clsx } from "clsx/lite"
-import HeroSection from "./HeroSection"
-import Intro from "./Intro"
-import GallerySection from "./components/GallerySection"
+import HeroSection from "./components/HeroSection"
+import Intro from "./components/Intro"
+import Gallery from "./components/Gallery"
+import Blogs from "./components/Blogs"
+import Contact from "./components/Contact"
 
 export const runtime = "edge"
 
@@ -34,147 +31,11 @@ export default function HomePage() {
             無論您是慶祝特殊的里程碑、推出新產品還是保存珍貴的回憶，Chasing
             Studio都會幫助您實現您的願景。立即與我們聯繫，討論您的攝影需求，讓我們捕捉您生活中最重要的時刻。"
       />
-      <GallerySection />
-
-      {/* Blog */}
-      <section className="py-12 lg:py-16">
-        <div className="container grid gap-4 px-4 md:gap-8 md:px-6">
-          <div className="mx-auto grid max-w-3xl gap-2 lg:max-w-5xl">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                From the Blog
-              </h2>
-              <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed dark:text-gray-400">
-                Stories and ideas from the team behind the platform. Get
-                insights into the latest trends in web development, cloud
-                computing, and more.
-              </p>
-            </div>
-            {/* <div className="grid gap-4 md:gap-6">
-                <Card>
-                  <CardContent className="flex items-start p-4 md:p-6">
-                    <img
-                      alt="Image"
-                      className="rounded aspect-square overflow-hidden object-cover"
-                      height="120"
-                      src="/placeholder.svg"
-                      width="120"
-                    />
-                    <div className="grid gap-1 ml-4 md:ml-6 lg:gap-2">
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Article
-                      </p>
-                      <h3 className="font-bold leading-none">
-                        Introducing the New Platform Experience
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        The Vercel Team · August 24, 2023
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="flex items-start p-4 md:p-6">
-                    <img
-                      alt="Image"
-                      className="rounded aspect-square overflow-hidden object-cover"
-                      height="120"
-                      src="/placeholder.svg"
-                      width="120"
-                    />
-                    <div className="grid gap-1 ml-4 md:ml-6 lg:gap-2">
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Article
-                      </p>
-                      <h3 className="font-bold leading-none">
-                        Building Jamstack Applications with Next.js
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Sarah Johnson · August 24, 2023
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="flex items-start p-4 md:p-6">
-                    <img
-                      alt="Image"
-                      className="rounded aspect-square overflow-hidden object-cover"
-                      height="120"
-                      src="/placeholder.svg"
-                      width="120"
-                    />
-                    <div className="grid gap-1 ml-4 md:ml-6 lg:gap-2">
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Article
-                      </p>
-                      <h3 className="font-bold leading-none">
-                        The Future of Web Development: Innovations and Trends
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Alex Chen · August 24, 2023
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div> */}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section className="py-12 lg:py-24">
-        <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
-          <div className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Contact Us
-            </h2>
-            <p
-              className={clsx(
-                "max-w-3xl mx-auto",
-                "text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
-              )}
-            >
-              Ready to get started? Send us a message and we will be in touch.
-            </p>
-          </div>
-          <div className="mx-auto max-w-sm space-y-4">
-            {/* <form className="space-y-4">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label className="text-sm" htmlFor="name">
-                    Name
-                  </Label>
-                  <Input id="name" placeholder="Enter your name" required />
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-sm" htmlFor="email">
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    placeholder="Enter your email"
-                    required
-                    type="email"
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label className="text-sm" htmlFor="message">
-                  Message
-                </Label>
-                <Textarea
-                  id="message"
-                  placeholder="Enter your message"
-                  required
-                  rows="4"
-                />
-              </div>
-              <Button type="submit">Submit</Button>
-            </form> */}
-          </div>
-        </div>
-      </section>
+      
+      {/* Sections */}
+      <Gallery />
+      <Blogs />
+      <Contact />
     </>
   )
 }

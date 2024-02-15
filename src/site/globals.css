@@ -21,7 +21,8 @@
   input[type="text"],
   input[type="email"],
   input[type="password"],
-  select {
+  select,
+  textarea {
     @apply px-2.5 py-2
       border rounded-md
       bg-white dark:bg-black
@@ -32,9 +33,10 @@
   input[type="text"],
   input[type="email"],
   input[type="password"],
-  select {
+  select,
+  textarea {
     @apply text-[1rem] /* Prevent iOS auto-zoom behavior */
-      min-w-[20rem] read-only:cursor-default;
+      min-w-[10rem] read-only:cursor-default;
   }
   input[type="text"],
   input[type="email"],
@@ -159,4 +161,11 @@
     @apply invert dark:invert-0;
   }
 
+  .title {
+    @apply text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl;
+  }
+
+  .subTitle {
+    @apply max-w-3xl mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400;
+  }
 }

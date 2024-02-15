@@ -26,6 +26,8 @@ module.exports = {
       'xl': '1rem',
       '2xl': '1.1rem',
       '3xl': ['1.3rem', '1.7rem'],
+      '4xl': '1.6rem',
+      '5xl': '2rem',
     },
     extend: {
       fontFamily: {

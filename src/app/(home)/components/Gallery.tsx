@@ -6,7 +6,7 @@ export default async function GallerySection(){
   return (
     <section className="py-12 lg:py-24">
       <div className="container grid items-center justify-center gap-4 px-4 text-center mb-4 md:px-6">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+        <h2 className="title">
           Gallery
         </h2>
       </div>
