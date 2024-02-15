@@ -24,12 +24,12 @@
     ],
     "quotes": [
         "warn",
-        "single"
+        "quotes"
     ],
-    "semi": [
-        "warn",
-        "always"
-    ],
+    // "semi": [
+    //     "warn",
+    //     "always"
+    // ],
     "max-len": [
       "warn",
       { "code": 80 }
