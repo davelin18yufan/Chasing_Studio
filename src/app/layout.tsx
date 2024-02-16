@@ -106,10 +106,6 @@ export default function RootLayout({
         <SpeedInsights />
         <PhotoEscapeHandler />
         <ToasterWithThemes />
-        <Script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </body>
     </html>
   )
