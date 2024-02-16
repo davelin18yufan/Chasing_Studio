@@ -44,7 +44,7 @@ export default function HeroSection({
             key={item}
           >
             <Image
-              src={`/assets/${heroSectionImgs[item]}`}
+              src={`/assets/${heroSectionImgs[item+1]}`}
               alt={`hero picture ${index}`}
               fill
               className="rounded-md object-cover"
