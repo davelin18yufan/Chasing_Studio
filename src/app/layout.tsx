@@ -13,7 +13,6 @@ import Footer from "@/site/Footer"
 import { Suspense } from "react"
 import FooterClient from "@/site/FooterClient"
 import NavClient from "@/site/NavClient"
-import Script from "next/script"
 
 import "../site/globals.css"
 
@@ -53,13 +52,13 @@ export const metadata: Metadata = {
 }
 
 // METADATA: SchemaMarkup
-export const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Photographer",
-  name: SITE_TITLE,
-  description: SITE_DESCRIPTION,
-  url: BASE_URL,
-}
+// export const jsonLd = {
+//   "@context": "https://schema.org",
+//   "@type": "Photographer",
+//   name: SITE_TITLE,
+//   description: SITE_DESCRIPTION,
+//   url: BASE_URL,
+// }
 
 export default function RootLayout({
   children,

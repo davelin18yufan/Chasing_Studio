@@ -24,7 +24,7 @@
     ],
     "quotes": [
         "warn",
-        "quotes"
+        "double"
     ],
     // "semi": [
     //     "warn",
