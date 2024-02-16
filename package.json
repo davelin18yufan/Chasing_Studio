@@ -1,5 +1,5 @@
 {
-  "name": "exif-photo-blog",
+  "name": "chasing_studio",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

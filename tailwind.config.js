@@ -41,7 +41,7 @@ module.exports = {
           'rotate-pulse 0.75s linear infinite normal both running',
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fadeIn": "fadeIn 1.5s ease-out forwards"
+        "fadeIn": "fadeIn 2s ease-out forwards"
       },
       keyframes: {
         'rotate-pulse': {
@@ -58,9 +58,9 @@ module.exports = {
           to: { height: "0" },
         },
         "fadeIn" : {
-          from: { opacity: 0 },
-          to: { opacity : 1 }
-        }
+          from: {opacity: 0},
+          to: {opacity : 1}
+        },
       },
     },
   },
