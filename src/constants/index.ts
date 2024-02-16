@@ -17,12 +17,12 @@ export const navbarLinks = [
 export const genders = ["Male", "Female", "Non-binary", "Other"]
 
 export const heroSectionImgs = [
-  "hero1.webp",
-  "hero2.webp",
-  "hero3.webp",
-  "hero4.webp",
-  "hero5.webp",
-  "hero6.webp",
-  "hero7.webp",
-  "hero8.webp",
+  "4b7cA5it",
+  "8fMDIHZy",
+  "CAohU68d",
+  "CKEPnVjd",
+  "KDbFZpos",
+  "SXuk7yJk",
+  "iQctKAqm",
+  "wZoy4EmQ",
 ]
