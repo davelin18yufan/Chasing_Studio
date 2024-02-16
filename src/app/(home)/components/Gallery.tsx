@@ -4,7 +4,7 @@ import GalleryCard from "./GalleryCard";
 export default async function GallerySection(){
   const photos = await getPhotosCached({limit: 6})
   return (
-    <section className="py-12 lg:py-24">
+    <section className="py-12 lg:py-20">
       <div className="container grid items-center justify-center gap-4 px-4 text-center mb-4 md:px-6">
         <h2 className="title">
           Gallery
