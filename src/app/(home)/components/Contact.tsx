@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { QRCodeSVG } from "qrcode.react"
+import Link from "next/link"
 
 export default function Contact() {
   // 1. Define your form.
@@ -34,7 +35,6 @@ export default function Contact() {
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof contactSchema>) {
     // TODO: directly passing messages to line -> webhook  
-    // ✅ This will be type-safe and validated.
     console.log(values)
   }
   return (
@@ -162,14 +162,17 @@ export default function Contact() {
             {/* QR Code */}
           </div>
           <div className="flex flex-col items-center justify-center gap-4">
-            <h3 className="text-lg text-slate-900 dark:text-slate-200 bg-gray-400 w-full text-center py-2 rounded-md shadow-sm">
+            <Link
+              href="https://liff.line.me/1645278921-kWRPP32q/?accountId=157lrzya"
+              className="text-lg text-slate-900 dark:text-slate-200 bg-gray-400 w-full text-center py-2 rounded-md shadow-sm"
+            >
               Join Our Line
-            </h3>
+            </Link>
             <QRCodeSVG
-              value="https://chasing-studio.vercel.app/"
+              value="https://liff.line.me/1645278921-kWRPP32q/?accountId=157lrzya"
               size={200}
-              fgColor='green'
-              bgColor='transparent'
+              fgColor="green"
+              bgColor="transparent"
             />
           </div>
         </div>
