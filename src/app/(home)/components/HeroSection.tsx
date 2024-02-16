@@ -9,16 +9,18 @@ import Image from "next/image"
 export default function HeroSection({
   title,
   subTitle,
+  photos
 }: {
   title: string
   subTitle: string
+  photos: {id:string, url:string}[]
 }) {
   const [index, setIndex] = useState(0)
 
   // switch pictures every 3 secs.
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % heroSectionImgs.length)
+      setIndex((prev) => (prev + 1) % photos.length)
     }, 5000)
 
     return () => clearInterval(interval)
@@ -35,17 +37,17 @@ export default function HeroSection({
     >
       <div className="absolute top-0 left-0 w-full min-h-[380px] md:min-h-[480px] xl:min-h-[580px] grid xs:grid-cols-2">
         {/* take two pictures */}
-        {[index, (index + 1) % heroSectionImgs.length].map((item) => (
+        {[index, (index + 1) % photos.length].map((item) => (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ ease: "easeIn", duration: 0.5 }}
+            transition={{ ease: "easeIn", duration: 0.75 }}
             className="relative"
-            key={item}
+            key={photos[item].id}
           >
             <Image
-              src={`/assets/${heroSectionImgs[item]}`}
-              alt={`hero picture ${index}`}
+              src={photos[item].url}
+              alt={`hero picture ${item + 1}`}
               fill
               className="rounded-md object-cover"
               priority

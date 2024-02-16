@@ -1,5 +1,4 @@
-
-// import { getPhotosCached, getPhotosCountCached } from "@/cache"
+import { getCoverPhotosCached, getPhotosCached, getPhotosCountCached } from "@/cache"
 // import { generateOgImageMetaForPhotos } from "@/photo"
 // import { Metadata } from "next"
 import HeroSection from "./components/HeroSection"
@@ -17,13 +16,16 @@ export const runtime = "edge"
 //   return generateOgImageMetaForPhotos(photos);
 // }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const photos = await getCoverPhotosCached()
+  const urls = photos.map(({id, url} :{id:string, url:string}) => ({id, url}))
   return (
     <>
 
       <HeroSection
         title="Welcome to Chasing Studio"
         subTitle="Where your memories come to life. Capture your moments with our professional photography services."
+        photos={urls}
       />
       <Intro
         description="我們是Chasing
