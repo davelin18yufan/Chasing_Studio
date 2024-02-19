@@ -83,7 +83,7 @@ export default function RootLayout({
                 "relative"
               )}
             >
-              {/* fallback to client nav */}
+              {/* Stream pair the nav and footer out of order */}
               <Suspense fallback={<NavClient />}>
                 <Nav />
               </Suspense>

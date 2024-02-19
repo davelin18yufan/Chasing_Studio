@@ -68,7 +68,7 @@ const getPhotosCacheKeyForOption = (
   }
 }
 
-//* Reformat into array
+//* Reformat to array
 const getPhotosCacheKeys = (options: GetPhotosOptions = {}) => {
   const tags: string[] = []
 

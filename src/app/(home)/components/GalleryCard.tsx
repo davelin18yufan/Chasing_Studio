@@ -1,9 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import clsx from "clsx/lite"
+import { dataUrl } from "@/lib/utils"
 
 interface Props {
-  id:string,
+  id: string
   alt: string
   src: string
   title?: string
@@ -32,6 +33,8 @@ export default function GalleryCard({
         height={size}
         src={src}
         width={size}
+        placeholder="blur"
+        blurDataURL={dataUrl}
       />
       <div
         className={clsx(
