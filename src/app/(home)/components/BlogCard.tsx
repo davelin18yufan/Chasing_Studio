@@ -1,16 +1,35 @@
+"use client"
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardTitle,
 } from "@/components/ui/card"
+import EditAndDeleteBtn from "@/site/EditAndDeleteBtn"
+
+import { isPathAdmin } from "@/site/paths"
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-export default function BlogCard() {
+interface Props {
+  showButton: boolean
+}
+
+
+export default function BlogCard({ showButton }: Props) {
+  const pathname = usePathname()
+  const allowEdit = showButton && isPathAdmin(pathname)
+
   return (
-    <Link href="/">
-      <Card className="border-transparent hover:bg-gray-300 hover:shadow-lg dark:hover:bg-slate-700 dark:border-gray-200/50 rounded-md outline-none">
+    <Link href="/article/id">
+      <Card className="border-transparent hover:bg-gray-300 hover:shadow-lg dark:hover:bg-slate-700 dark:border-gray-200/50 rounded-md outline-none relative">
+        {allowEdit && (
+          <div className='absolute top-0 right-0 px-4 py-2'>
+            <EditAndDeleteBtn/>
+          </div>
+        )}
         <CardContent className="flex items-start p-4 md:p-6">
           <Image
             alt="Image"

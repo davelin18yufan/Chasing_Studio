@@ -1,3 +1,4 @@
+import { dataUrl } from "@/lib/utils"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -14,6 +15,8 @@ function BlogCard({ height }: { height?: string }) {
         width={500}
         height={400}
         className="w-full md:h-full object-cover"
+        placeholder="blur"
+        blurDataURL={dataUrl}
       />
 
       {/* title/description */}

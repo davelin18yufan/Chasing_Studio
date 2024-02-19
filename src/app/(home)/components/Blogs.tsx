@@ -14,8 +14,8 @@ export default function Blogs() {
             </p>
           </div>
           <div className="grid gap-4 md:gap-6">
-            <BlogCard />
-            <BlogCard />
+            <BlogCard showButton={false} />
+            <BlogCard showButton={false} />
           </div>
         </div>
       </div>
