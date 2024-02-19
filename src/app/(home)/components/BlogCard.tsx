@@ -10,7 +10,7 @@ import Link from "next/link"
 export default function BlogCard() {
   return (
     <Link href="/">
-      <Card className="hover:bg-gray-300 hover:shadow-lg dark:hover:bg-slate-700 dark:border-gray-100/50  outline-none">
+      <Card className="border-transparent hover:bg-gray-300 hover:shadow-lg dark:hover:bg-slate-700 dark:border-gray-200/50 rounded-md outline-none">
         <CardContent className="flex items-start p-4 md:p-6">
           <Image
             alt="Image"
@@ -23,7 +23,7 @@ export default function BlogCard() {
             <CardTitle className="text-lg font-bold leading-none">
               Introducing the New Platform Experience
             </CardTitle>
-            <CardDescription className="text-sm text-main">
+            <CardDescription className="text-sm text-main line-clamp-2">
               Stories and ideas from the team behind the platform. Get insights
               into the latest trends in web development, cloud computing, and
               more.

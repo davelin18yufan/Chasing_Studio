@@ -43,7 +43,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
     <header
       className={clsx(
         "flex items-center justify-end bg-content sm:justify-between py-2 pr-8",
-        "fixed top-0 w-full opacity-80"
+        "fixed top-0 w-full opacity-80 z-20"
       )}
     >
       <Link className="hidden sm:block cursor-pointer" href="/">

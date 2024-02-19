@@ -29,7 +29,12 @@ const createRemotePattern = (hostname) => hostname
 const nextConfig = {
   images: {
     imageSizes: [200],
-    remotePatterns: []
+    remotePatterns: [{
+        protocol: 'https',
+        hostname: 'source.unsplash.com',
+        port: '',
+        pathname: '/random/**',
+      },]
       .concat(createRemotePattern(VERCEL_BLOB_HOSTNAME))
       .concat(createRemotePattern(CLOUDFLARE_R2_HOSTNAME))
       .concat(createRemotePattern(AWS_S3_HOSTNAME)),
