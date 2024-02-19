@@ -21,7 +21,6 @@ export default async function HomePage() {
   const urls = photos.map(({id, url} :{id:string, url:string}) => ({id, url}))
   return (
     <>
-
       <HeroSection
         title="Welcome to Chasing Studio"
         subTitle="Where your memories come to life. Capture your moments with our professional photography services."

@@ -45,10 +45,13 @@ export default function HeroSection({
             className="relative"
             key={photos[item].id}
           >
+            {/* sizes is used to optimize image size pre-download by the browser */}
             <Image
               src={photos[item].url}
               alt={`hero picture ${item + 1}`}
               fill
+              // 2 break points
+              sizes="100vw, (min-width: 390px) 50vw"
               className="rounded-md object-cover"
               priority
             />
