@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+  }
   /* Core */
   body {
     @apply text-main
@@ -138,7 +142,7 @@
     @apply text-red-500 dark:text-red-400;
   }
   /* Common Utilities: Background */
-  .bg-content {
+  .bg-content, .bg-popover {
     @apply bg-gray-100 dark:bg-slate-900;
   }
   .bg-primary {

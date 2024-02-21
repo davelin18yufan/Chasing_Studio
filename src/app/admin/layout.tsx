@@ -1,62 +1,71 @@
-import AdminNav from '@/admin/AdminNav';
+import AdminNav from "@/admin/AdminNav"
 import {
   getStorageUploadUrlsNoStore,
   getPhotosCountIncludingHiddenCached,
   getUniqueTagsCached,
-} from '@/cache';
+} from "@/cache"
 import {
+  PATH_ADMIN_BLOGS,
   PATH_ADMIN_PHOTOS,
   PATH_ADMIN_TAGS,
   PATH_ADMIN_UPLOADS,
-} from '@/site/paths';
+} from "@/site/paths"
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [
-    countPhotos,
-    countUploads,
-    countTags,
-  ] = await Promise.all([
+  const [countPhotos, countUploads, countTags] = await Promise.all([
     getPhotosCountIncludingHiddenCached(),
     getStorageUploadUrlsNoStore()
-      .then(urls => urls.length)
-      .catch(e => {
-        console.error(`Error getting blob upload urls: ${e}`);
-        return 0;
+      .then((urls) => urls.length)
+      .catch((e) => {
+        console.error(`Error getting blob upload urls: ${e}`)
+        return 0
       }),
-    getUniqueTagsCached().then(tags => tags.length),
-  ]);
+    getUniqueTagsCached().then((tags) => tags.length),
+  ])
+
+  //* dummy
+  const countBlogs = 1
 
   const navItemPhotos = {
-    label: 'Photos',
+    label: "Photos",
     href: PATH_ADMIN_PHOTOS,
     count: countPhotos,
-  };
+  }
 
   const navItemUploads = {
-    label: 'Uploads',
+    label: "Uploads",
     href: PATH_ADMIN_UPLOADS,
     count: countUploads,
-  };
+  }
 
   const navItemTags = {
-    label: 'Tags',
+    label: "Tags",
     href: PATH_ADMIN_TAGS,
     count: countTags,
-  };
+  }
 
-  const navItems = [navItemPhotos];
+  const navItemBlogs = {
+    label: "Blogs",
+    href: PATH_ADMIN_BLOGS,
+    count: countBlogs, // count blogs
+  }
 
-  if (countUploads > 0) { navItems.push(navItemUploads); }
-  if (countTags > 0) { navItems.push(navItemTags); }
+  const navItems = [navItemPhotos]
+
+  if (countUploads > 0) navItems.push(navItemUploads)
+
+  if (countTags > 0) navItems.push(navItemTags)
+
+  if (countBlogs > 0) navItems.push(navItemBlogs)
 
   return (
     <div className="mt-4 space-y-5">
       <AdminNav items={navItems} />
       {children}
     </div>
-  );
+  )
 }
