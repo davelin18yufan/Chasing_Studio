@@ -46,7 +46,7 @@ export default function PlateEditor() {
   const [content, setContent] = useState<Value>(initialValue)
   const [titleAndAuthor, setTitleAndAuthor] = useState(initialTitleValue)
   const [errMsg, setErrMsg] = useState<ErrorItem[]>([])
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  // const [isSubmitting, setIsSubmitting] = useState(false)
   
   const displayErrorMessage = (
     errors: ErrorItem[],
@@ -105,33 +105,33 @@ export default function PlateEditor() {
   }
 
   // TODO: submit
-  const formSubmit = async () => {
-    // 1. 提交编辑的文章
-    // const submitArticle = async (articleContent) => {
-    // 将文章内容保存到数据库中
-    //   await saveArticleToDatabase(articleContent)
-    // 解析文章内容并选择封面图
-    //   const images = parseImagesFromContent(articleContent)
-    //   const coverImage = selectCoverImage(images)
-    // 将封面图链接与文章关联
-    //   await saveCoverImageToArticle(coverImage)
-    // }
-    // 2. 解析文章内容中的图片链接
-    // const parseImagesFromContent = (content) => {
-    // 使用正则表达式或其他方法解析文章内容中的图片链接
-    // 返回一个图片链接数组
-    // }
-    // 3. 选择封面图
-    // const selectCoverImage = (images) => {
-    // 根据需求选择一张图片作为封面图，比如选择第一张图片
-    //   return images[0]
-    // }
-    // 4. 将封面图与文章关联并保存到数据库中
-    // const saveCoverImageToArticle = async (coverImage) => {
-    // 将封面图链接保存到文章的数据库记录中
-    //   await updateArticleWithCoverImage(coverImage)
-    // }
-  }
+  // const formSubmit = async () => {
+  //   // 1. 提交编辑的文章
+  //   // const submitArticle = async (articleContent) => {
+  //   // 将文章内容保存到数据库中
+  //   //   await saveArticleToDatabase(articleContent)
+  //   // 解析文章内容并选择封面图
+  //   //   const images = parseImagesFromContent(articleContent)
+  //   //   const coverImage = selectCoverImage(images)
+  //   // 将封面图链接与文章关联
+  //   //   await saveCoverImageToArticle(coverImage)
+  //   // }
+  //   // 2. 解析文章内容中的图片链接
+  //   // const parseImagesFromContent = (content) => {
+  //   // 使用正则表达式或其他方法解析文章内容中的图片链接
+  //   // 返回一个图片链接数组
+  //   // }
+  //   // 3. 选择封面图
+  //   // const selectCoverImage = (images) => {
+  //   // 根据需求选择一张图片作为封面图，比如选择第一张图片
+  //   //   return images[0]
+  //   // }
+  //   // 4. 将封面图与文章关联并保存到数据库中
+  //   // const saveCoverImageToArticle = async (coverImage) => {
+  //   // 将封面图链接保存到文章的数据库记录中
+  //   //   await updateArticleWithCoverImage(coverImage)
+  //   // }
+  // }
 
   return (
     <DndProvider backend={HTML5Backend}>
