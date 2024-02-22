@@ -28,3 +28,26 @@ const toBase64 = (str: string) =>
 export const dataUrl = `data:image/svg+xml;base64,${toBase64(
   shimmer(1000, 1000)
 )}`
+
+// transform flatten form value into nested
+// Ex. {title: '', author.name: '', author.url: ''} 
+//  -> {title: '', author: { name: '', url: ''}}
+export const transformKey = (obj: { [key: string]: any }, initialValue:any) => {
+  const output = {...initialValue}
+  for (const key in obj) {
+    const keys = key.split(".")
+    const value = obj[key]
+    let temp = output
+    for (let i = 0; i < keys.length; i++) {
+      const nestedKey = keys[i]
+      if (i === keys.length - 1) {
+        // last key -> assign value
+        temp[nestedKey] = value
+      } else {
+        temp[nestedKey] = temp[nestedKey] || {} // in case it's empty
+        temp = temp[nestedKey] // assign nested obj and keep looping
+      }
+    }
+  }
+  return output
+}

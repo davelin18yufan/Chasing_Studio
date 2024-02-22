@@ -13,3 +13,11 @@ export const contactSchema = z.object({
     message: "Exceed limitation, leave contact and we will reply ASAP",
   }),
 })
+
+export const articleSchema = z.object({
+  title: z.string().min(5).max(50),
+  author: z.object({
+    name: z.string().min(2),
+    url: z.string().url()
+  })
+})

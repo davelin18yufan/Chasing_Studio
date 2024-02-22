@@ -9,8 +9,8 @@ export const navbarLinks = [
     route: "/gallery",
   },
   {
-    label: "Article",
-    route: "/article",
+    label: "Blogs",
+    route: "/blogs",
   },
 ]
 

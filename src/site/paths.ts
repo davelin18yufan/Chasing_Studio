@@ -6,6 +6,7 @@ import { FilmSimulation } from "@/simulation"
 // Core paths
 export const PATH_ROOT = "/"
 export const PATH_GALLERY = "/gallery"
+export const PATH_BLOGS = "/blogs"
 export const PATH_GRID = "/grid"
 export const PATH_SETS = "/sets"
 export const PATH_ADMIN = "/admin"
@@ -41,6 +42,7 @@ export const PATH_API_PRESIGNED_URL = `${PATH_API_STORAGE}/presigned-url`
 const SHARE = "share"
 const NEXT = "next"
 const EDIT = "edit"
+const CREATE = "create"
 
 export const PATHS_ADMIN = [
   PATH_ADMIN,
@@ -48,10 +50,13 @@ export const PATHS_ADMIN = [
   PATH_ADMIN_UPLOADS,
   PATH_ADMIN_TAGS,
   PATH_ADMIN_CONFIGURATION,
+  PATH_ADMIN_BLOGS,
 ]
 
 export const PATHS_TO_CACHE = [
   PATH_ROOT,
+  PATH_GALLERY,
+  PATH_BLOGS,
   PATH_GRID,
   PATH_SETS,
   PATH_OG,
@@ -72,14 +77,28 @@ export const pathForRoot = (next?: number) => pathWithNext(PATH_ROOT, next)
 
 export const pathForGrid = (next?: number) => pathWithNext(PATH_GRID, next)
 
+export const pathForGallery = (next?: number) =>
+  pathWithNext(PATH_GALLERY, next)
+
+export const pathForBlogs = (next?: number) => pathWithNext(PATH_BLOGS, next)
+
 export const pathForAdminPhotos = (next?: number) =>
   pathWithNext(PATH_ADMIN_PHOTOS, next)
+
+export const pathForAdminBlogs = (next?: number) =>
+  pathWithNext(PATH_ADMIN_BLOGS, next)
 
 export const pathForAdminUploadUrl = (url: string) =>
   `${PATH_ADMIN_UPLOADS}/${encodeURIComponent(url)}`
 
 export const pathForAdminPhotoEdit = (photo: PhotoOrPhotoId) =>
   `${PATH_ADMIN_PHOTOS}/${getPhotoId(photo)}/${EDIT}`
+
+export const pathForAdminPhotoCreate = (blogId: string) =>
+  `${PATH_ADMIN_BLOGS}/${blogId}/${CREATE}`
+
+export const pathForAdminBlogEdit = (blogId: string) =>
+  `${PATH_ADMIN_BLOGS}/${blogId}/${EDIT}`
 
 export const pathForAdminTagEdit = (tag: string) =>
   `${PATH_ADMIN_TAGS}/${tag}/${EDIT}`
@@ -221,7 +240,8 @@ export const isPathFilmSimulationPhotoShare = (pathname = "") =>
 export const checkPathPrefix = (pathname = "", prefix: string) =>
   pathname.toLowerCase().startsWith(prefix)
 
-export const isPathGallery = (pathname?: string) => checkPathPrefix(pathname, PATH_GALLERY)
+export const isPathGallery = (pathname?: string) =>
+  checkPathPrefix(pathname, PATH_GALLERY)
 
 export const isPathGrid = (pathname?: string) =>
   checkPathPrefix(pathname, PATH_GRID)

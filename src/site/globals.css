@@ -142,7 +142,8 @@
     @apply text-red-500 dark:text-red-400;
   }
   /* Common Utilities: Background */
-  .bg-content, .bg-popover {
+  .bg-content,
+  .bg-popover {
     @apply bg-gray-100 dark:bg-slate-900;
   }
   .bg-primary {
@@ -176,11 +177,16 @@
 
   /* background filter */
   .bg-filter {
-    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.7) 50%, rgb(0, 0, 0) 75%, rgb(0, 0, 0));
-    @apply transition-opacity duration-300 ease-in bg-no-repeat hover:opacity-80 
+    background-image: linear-gradient(
+      transparent,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgb(0, 0, 0) 75%,
+      rgb(0, 0, 0)
+    );
+    @apply transition-opacity duration-300 ease-in bg-no-repeat hover:opacity-80;
   }
 
   .icon-hover {
-    @apply transition-transform duration-200 hover:rotate-180
+    @apply transition-transform duration-200 hover:rotate-180;
   }
 }

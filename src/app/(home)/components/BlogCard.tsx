@@ -23,7 +23,7 @@ export default function BlogCard({ showButton }: Props) {
   const allowEdit = showButton && isPathAdmin(pathname)
 
   return (
-    <Link href="/article/id">
+    <Link href="/blogs/id">
       <Card className="border-transparent hover:bg-gray-300 hover:shadow-lg dark:hover:bg-slate-700 dark:border-gray-200/50 rounded-md outline-none relative">
         {allowEdit && (
           <div className='absolute top-0 right-0 px-4 py-2'>
