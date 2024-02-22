@@ -25,15 +25,10 @@ import { Label } from "@/components/ui/label"
 import { articleSchema } from "@/lib/validation"
 import { ZodError } from "zod"
 import { transformKey } from "@/lib/utils"
-import { Descendant } from "slate"
 
 interface ErrorItem {
   field: string | number
   message: string
-}
-
-type Node = {
-  node: Element | Text
 }
 
 const initialValue = [
@@ -142,7 +137,7 @@ export default function PlateEditor() {
     <DndProvider backend={HTML5Backend}>
       <TooltipProvider>
         <CommentsProvider users={commentsUsers} myUserId={myUserId}>
-          <div className="lg:max-w-[60vw]">
+          <div className="lg:max-w-[70vw]">
             <Label htmlFor="title">Title</Label>
             <Input
               id="title"
@@ -159,7 +154,7 @@ export default function PlateEditor() {
             )}
           </div>
 
-          <div className="flex gap-2 w-full lg:max-w-[60vw] justify-between items-center">
+          <div className="flex gap-2 w-full lg:max-w-[70vw] justify-between items-center">
             <div className="max-lg:flex-1">
               <Label htmlFor="author">Author</Label>
               <Input

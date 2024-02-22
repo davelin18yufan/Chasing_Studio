@@ -30,7 +30,9 @@ export default function NavMobile({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <IoCarSport className="sm:hidden cursor-pointer w-10 h-10 p-2" />
+        <div className="sm:hidden cursor-pointer icon-hover">
+          <IoCarSport className="w-10 h-10" />
+        </div>
       </SheetTrigger>
       <SheetContent className="bg-content">
         <SheetHeader>
