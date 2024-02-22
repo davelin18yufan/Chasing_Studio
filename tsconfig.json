@@ -37,5 +37,5 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ]
+, "tailwind.config.js"  ]
 }
