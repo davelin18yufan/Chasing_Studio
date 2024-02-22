@@ -1,17 +1,14 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import { TooltipProvider } from "@/components/plate-ui/tooltip"
 import { cn } from "@udecode/cn"
 import { CommentsProvider } from "@udecode/plate-comments"
-import { TooltipProvider } from "@/components/plate-ui/tooltip"
 import { Plate, Value } from "@udecode/plate-common"
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph"
+import React, { useRef, useState } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 
-import { commentsUsers, myUserId } from "@/lib/plate/comments"
-import { MENTIONABLES } from "@/lib/plate/mentionables"
-import { plugins } from "@/lib/plate/plate-plugins"
 import { CommentsPopover } from "@/components/plate-ui/comments-popover"
 import { CursorOverlay } from "@/components/plate-ui/cursor-overlay"
 import { Editor } from "@/components/plate-ui/editor"
@@ -22,9 +19,12 @@ import { FloatingToolbarButtons } from "@/components/plate-ui/floating-toolbar-b
 import { MentionCombobox } from "@/components/plate-ui/mention-combobox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { commentsUsers, myUserId } from "@/lib/plate/comments"
+import { MENTIONABLES } from "@/lib/plate/mentionables"
+import { plugins } from "@/lib/plate/plate-plugins"
+import { transformKey } from "@/lib/utils"
 import { articleSchema } from "@/lib/validation"
 import { ZodError } from "zod"
-import { transformKey } from "@/lib/utils"
 
 interface ErrorItem {
   field: string | number
