@@ -34,7 +34,7 @@ export default function NavMobile({
           <IoCarSport className="w-10 h-10" />
         </div>
       </SheetTrigger>
-      <SheetContent className="bg-content">
+      <SheetContent className="bg-content" side="right">
         <SheetHeader>
           <Link className="hidden xs:block cursor-pointer" href="/">
             <Image

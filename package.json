@@ -55,6 +55,7 @@
     "@udecode/plate-highlight": "^30.5.3",
     "@udecode/plate-horizontal-rule": "^30.5.3",
     "@udecode/plate-indent": "^30.5.3",
+    "@udecode/plate-indent-list": "^30.5.3",
     "@udecode/plate-juice": "^30.5.3",
     "@udecode/plate-kbd": "^30.5.3",
     "@udecode/plate-line-height": "^30.5.3",
