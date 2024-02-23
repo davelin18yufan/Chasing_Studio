@@ -160,6 +160,10 @@
     @apply object-cover object-center w-full transition-transform group-hover:scale-105 aspect-square opacity-70 group-hover:opacity-100;
   }
 
+  .formErrorMsg {
+    @apply text-error absolute top-[100%] left-1
+  }
+
 }
 
 @layer utilities {
@@ -188,5 +192,9 @@
 
   .icon-hover {
     @apply transition-transform duration-200 hover:rotate-180;
+  }
+
+  .button-hover {
+    @apply hover:shadow-md hover:shadow-sky-800 dark:hover:shadow-sky-200;
   }
 }

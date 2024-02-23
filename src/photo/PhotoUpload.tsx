@@ -25,22 +25,19 @@ export default function PhotoUpload({
   const router = useRouter();
 
   return (
-    <div className={clsx(
-      'space-y-4',
-      isUploading && 'cursor-not-allowed',
-    )}>
+    <div className={clsx("space-y-4", isUploading && "cursor-not-allowed")}>
       <div className="flex items-center gap-8">
-        <form className="flex items-center min-w-0">
+        <form className="flex items-center min-w-0 button-hover rounded-md">
           <ImageInput
             maxSize={shouldResize ? MAX_IMAGE_SIZE : undefined}
             loading={isUploading}
             onStart={() => {
-              setIsUploading(true);
-              setUploadError('');
+              setIsUploading(true)
+              setUploadError("")
             }}
             onBlobReady={async ({
               blob,
-              extension, 
+              extension,
               hasMultipleUploads,
               isLastBlob,
             }) => {
@@ -48,50 +45,45 @@ export default function PhotoUpload({
                 setDebugDownload({
                   href: URL.createObjectURL(blob),
                   fileName: `debug.${extension}`,
-                });
-                setIsUploading(false);
-                setUploadError('');
+                })
+                setIsUploading(false)
+                setUploadError("")
               } else {
-                return uploadPhotoFromClient(
-                  blob,
-                  extension,
-                )
-                  .then(url => {
+                return uploadPhotoFromClient(blob, extension)
+                  .then((url) => {
                     if (isLastBlob) {
                       // Refresh page to update upload list,
                       // relevant to upload count in nav
-                      router.refresh();
+                      router.refresh()
                       if (hasMultipleUploads) {
                         // Redirect to view multiple uploads
-                        router.push(PATH_ADMIN_UPLOADS);
+                        router.push(PATH_ADMIN_UPLOADS)
                       } else {
                         // Redirect to photo detail page
-                        router.push(pathForAdminUploadUrl(url));
+                        router.push(pathForAdminUploadUrl(url))
                       }
                     }
                   })
-                  .catch(error => {
-                    setIsUploading(false);
-                    setUploadError(`Upload Error: ${error.message}`);
-                  });
+                  .catch((error) => {
+                    setIsUploading(false)
+                    setUploadError(`Upload Error: ${error.message}`)
+                  })
               }
             }}
             debug={debug}
           />
         </form>
       </div>
-      {debug && debugDownload &&
+      {debug && debugDownload && (
         <a
           className="block"
           href={debugDownload.href}
           download={debugDownload.fileName}
         >
           Download
-        </a>}
-      {uploadError &&
-        <div className="text-error">
-          {uploadError}
-        </div>}
+        </a>
+      )}
+      {uploadError && <div className="text-error">{uploadError}</div>}
     </div>
-  );
+  )
 };
