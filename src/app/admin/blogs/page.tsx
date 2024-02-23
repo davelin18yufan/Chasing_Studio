@@ -38,16 +38,18 @@ const dummyblogs = [
   },
 ]
 
-interface Blog {
+export interface Blog {
   id: string
-  coverPhotoSrc: string
-  coverPhotoAspectRatio: number
-  coverPhotoBlurData?: string
+  coverPhoto?: {
+    src: string
+    aspectRatio?: number
+    blurData?: string
+  }
   author: { name: string; url?: string }
   title: string
   content: string
   tags?: string[]
-  hidden: boolean
+  hidden: boolean // low opacity for lists display
   updatedAt: Date | string
   createdAt: Date | string
 }
@@ -67,9 +69,9 @@ function PhotoTiny({
       className={clsx(className, "active:brightness-75", "min-w-[50px]")}
     >
       <ImageTiny
-        src={blog.coverPhotoSrc}
-        aspectRatio={blog.coverPhotoAspectRatio}
-        blurData={blog.coverPhotoBlurData}
+        src={blog.coverPhoto?.src || ''}
+        aspectRatio={blog.coverPhoto?.aspectRatio || (2.0 / 1.0)}
+        blurData={blog?.coverPhoto?.blurData}
         alt={blog.title}
       />
     </Link>

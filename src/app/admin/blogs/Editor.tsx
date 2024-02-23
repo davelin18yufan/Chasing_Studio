@@ -24,6 +24,7 @@ import { ZodError } from "zod"
 
 interface EditorProps {
   type: string
+  // replace with Blog type
   blog?: {
     title: string
     author: { name: string; url: string }
