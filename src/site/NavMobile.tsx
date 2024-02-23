@@ -30,19 +30,29 @@ export default function NavMobile({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <div className="sm:hidden cursor-pointer icon-hover">
+        <div
+          className={clsx(
+            "sm:hidden cursor-pointer",
+            "transition-all duration-200",
+            "hover:-rotate-12 hover:-translate-x-2"
+          )}
+        >
           <IoCarSport className="w-10 h-10" />
         </div>
       </SheetTrigger>
       <SheetContent className="bg-content" side="right">
         <SheetHeader>
-          <Link className="hidden xs:block cursor-pointer" href="/">
+          <Link
+            className="hidden xs:block cursor-pointer relative w-auto h-[150px] p-2"
+            href="/"
+            as="image"
+          >
             <Image
               src="/logo_horizontal.png"
               alt="logo"
-              width={250}
-              height={230}
-              className="invert-colors "
+              fill
+              sizes="250px"
+              className="invert-colors aspect-square"
               priority
             />
           </Link>

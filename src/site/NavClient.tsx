@@ -46,13 +46,13 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
         "fixed top-0 w-full opacity-80 z-20"
       )}
     >
-      <Link className="hidden sm:block cursor-pointer" href="/">
+      <Link className="hidden sm:block cursor-pointer w-[220px] h-[70px] relative" href="/" as="image">
         <Image
           src="/logo_horizontal.png"
           alt="logo"
-          width={250}
-          height={130}
-          className="invert-colors hidden xs:block"
+          fill
+          sizes="250px"
+          className="invert-colors hidden xs:block object-fill"
           priority
         />
       </Link>

@@ -76,7 +76,7 @@ function PhotoTiny({
   )
 }
 
-export default function AdminArticlePage({ searchParams }: PaginationParams) {
+export default async function AdminArticlePage({ searchParams }: PaginationParams) {
   const { offset, limit } = getPaginationForSearchParams(searchParams)
 
   // TODO: calculate length
@@ -87,16 +87,16 @@ export default function AdminArticlePage({ searchParams }: PaginationParams) {
     <SiteGrid
       contentMain={
         <div className="space-y-8">
-          <Button className="bg-primary text-invert p-4">
+          <Button className="bg-primary text-invert p-4 button-hover">
             <Link
               href={`${PATH_ADMIN_BLOGS}/create`}
-              className="flex justify-center items-center gap-2 text-lg"
+              className="flex justify-center items-center gap-2 text-lg hover:text-invert"
             >
               <LuPencil />
               Write a new article
             </Link>
           </Button>
-          
+
           <div className="space-y-4">
             <AdminGrid>
               {dummyblogs.map((blog) => (
