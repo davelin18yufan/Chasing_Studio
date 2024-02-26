@@ -19,5 +19,9 @@ export const articleSchema = z.object({
   author: z.object({
     name: z.string().min(2),
     url: z.string().url()
+  }),
+  coverPhoto: z.object({
+    src: z.string().url().optional(),
+    aspectRatio: z.number().optional()
   })
 })

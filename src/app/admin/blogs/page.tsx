@@ -25,9 +25,11 @@ import { LuPencil } from "react-icons/lu"
 const dummyblogs = [
   {
     id: "yJwzOFdB",
-    coverPhotoSrc: "https://source.unsplash.com/random/600x400",
-    coverPhotoAspectRatio: 1.499414,
-    coverPhotoBlurData: dataUrl,
+    coverPhoto:{
+      src: "https://source.unsplash.com/random/600x400",
+      aspectRatio: 1.499414,
+      blurData: dataUrl,
+    },
     title: "Blog title",
     content: "Hello world!!!",
     author: { name: "Dave", url: "http://localhost:3000" },
@@ -70,7 +72,7 @@ function PhotoTiny({
     >
       <ImageTiny
         src={blog.coverPhoto?.src || ''}
-        aspectRatio={blog.coverPhoto?.aspectRatio || (2.0 / 1.0)}
+        aspectRatio={blog.coverPhoto?.aspectRatio || (16.0 / 9.0)}
         blurData={blog?.coverPhoto?.blurData}
         alt={blog.title}
       />
@@ -175,7 +177,7 @@ export default async function AdminArticlePage({ searchParams }: PaginationParam
                       <input
                         type="hidden"
                         name="url"
-                        value={blog.coverPhotoSrc}
+                        value={blog.coverPhoto.src}
                       />
                       <DeleteButton />
                     </FormWithConfirm>

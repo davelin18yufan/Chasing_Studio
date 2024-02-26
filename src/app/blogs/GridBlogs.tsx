@@ -6,7 +6,7 @@ function BlogCard({ height }: { height?: string }) {
   return (
     <Link
       className={`rounded-lg shadow overflow-hidden relative ${height}`}
-      href={`/article/id`} // id
+      href={`/blogs/id`} // id
     >
       <Image
         src="https://source.unsplash.com/random/600x400"

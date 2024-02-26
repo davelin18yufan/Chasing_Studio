@@ -149,6 +149,10 @@
   .bg-primary {
     @apply bg-gray-900 dark:bg-gray-100;
   }
+
+  .bg-highlight {
+    @apply bg-gray-200 dark:bg-slate-800
+  }
 }
 
 @layer components {

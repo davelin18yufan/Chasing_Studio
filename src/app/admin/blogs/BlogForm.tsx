@@ -1,35 +1,21 @@
 "use client"
 
-import { cn } from "@udecode/cn"
-import { Plate, Value, usePlateStates } from "@udecode/plate-common"
+import { Value } from "@udecode/plate-common"
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph"
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 
-import { CommentsPopover } from "@/components/plate-ui/comments-popover"
-import { CursorOverlay } from "@/components/plate-ui/cursor-overlay"
-import { Editor } from "@/components/plate-ui/editor"
-import { FixedToolbar } from "@/components/plate-ui/fixed-toolbar"
-import { FixedToolbarButtons } from "@/components/plate-ui/fixed-toolbar-buttons"
-import { FloatingToolbar } from "@/components/plate-ui/floating-toolbar"
-import { FloatingToolbarButtons } from "@/components/plate-ui/floating-toolbar-buttons"
-import { MentionCombobox } from "@/components/plate-ui/mention-combobox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { MENTIONABLES } from "@/lib/plate/mentionables"
-import { plugins } from "@/lib/plate/plate-plugins"
 import { transformKey } from "@/lib/utils"
 import { articleSchema } from "@/lib/validation"
 import { ZodError } from "zod"
+import { Blog } from "./page"
+import PlateEditor from "./PlateEditor"
 
-interface EditorProps {
+interface BlogFormProps {
   type: string
-  // replace with Blog type
-  blog?: {
-    title: string
-    author: { name: string; url: string }
-    content: string
-  }
+  blog?: Blog
 }
 
 interface ErrorItem {
@@ -37,7 +23,66 @@ interface ErrorItem {
   message: string
 }
 
-export default function PlateEditor({ type, blog }: EditorProps) {
+interface FormFieldProps {
+  label: string
+  id: string
+  type: string
+  name: string
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  errMsg?: ErrorItem[]
+  otherClasses?: string
+  placeholder?: string
+  required: boolean
+}
+
+export const FormField = ({
+  label,
+  id,
+  type,
+  name,
+  value,
+  onChange,
+  errMsg, // if provided means required field, will check at every input
+  otherClasses,
+  placeholder,
+  required,
+}: FormFieldProps) => {
+  // destructure name on formData
+  const displayErrorMessage = (
+    errors: ErrorItem[],
+    path: string
+  ): string | undefined => {
+    const error = errors?.find((err) => err.field === path)
+    return error?.message
+  }
+
+  return (
+    <>
+      <Label htmlFor={id}>
+        {label}
+        {required && <span className="text-sky-500 dark:text-sky-400 ml-1">*</span>}
+      </Label>
+      <Input
+        id={id}
+        type={type}
+        name={name}
+        className={`focus:border-none mt-2 ${otherClasses}`}
+        onChange={onChange}
+        value={value}
+        placeholder={placeholder}
+        required={required}
+      />
+      {errMsg && (
+        <p className="formErrorMsg">
+          {errMsg && displayErrorMessage(errMsg, name)}
+        </p>
+      )}
+    </>
+  )
+}
+
+export default function BlogForm({ type, blog }: BlogFormProps) {
   const initialValue: Value = blog
     ? JSON.parse(blog.content)
     : [
@@ -51,41 +96,16 @@ export default function PlateEditor({ type, blog }: EditorProps) {
   const initialTitleValue = {
     title: blog?.title || "",
     author: { name: blog?.author.name || "", url: blog?.author.url || "" },
+    coverPhoto: {
+      src: blog?.coverPhoto?.src || "",
+      aspectRatio: blog?.coverPhoto?.aspectRatio || 16 / 9,
+    },
   }
 
-  const containerRef = useRef(null)
   const [content, setContent] = useState<Value>(initialValue)
   const [titleAndAuthor, setTitleAndAuthor] = useState(initialTitleValue)
   const [errMsg, setErrMsg] = useState<ErrorItem[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const displayErrorMessage = (
-    errors: ErrorItem[],
-    path: string
-  ): string | undefined => {
-    const error = errors?.find((err) => err.field === path)
-    return error?.message
-  }
-
-  // extract image for cover
-  const getSerializeImgFromSlate = (
-    node: any,
-    output: {
-      id: string
-      type: string
-      url: string
-    }[] = []
-  ) => {
-    if (Array.isArray(node)) {
-      node.forEach((n) => getSerializeImgFromSlate(n, output))
-    }
-
-    if (node.type === "img" && node.url) {
-      output.push({ id: node.id || "", type: "img", url: node.url })
-    }
-
-    return output
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -117,7 +137,7 @@ export default function PlateEditor({ type, blog }: EditorProps) {
 
   // TODO: submit
   const formSubmit = async () => {
-    // 1. 提交编辑的文章
+    // 1. 提交编辑的文章,檢查格式
     // const submitArticle = async (articleContent) => {
     // 将文章内容保存到数据库中
     //   await saveArticleToDatabase(articleContent)
@@ -146,104 +166,92 @@ export default function PlateEditor({ type, blog }: EditorProps) {
 
   return (
     <>
+      {/* Form */}
       <div className="flex flex-col justify-center items-start gap-4">
         <div className="lg:max-w-[70vw] relative w-full py-2">
           <Button className="bg-primary text-invert px-4 py-2 button-hover absolute -top-10 right-0">
             {type === "create" ? "Submit" : "Edit Done"}
           </Button>
 
-          <Label htmlFor="title">Title</Label>
-          <Input
+          <FormField
             id="title"
             type="text"
             name="title"
-            className="focus:border-none mt-2"
-            onChange={handleChange}
-            autoFocus
+            label="Title"
             value={titleAndAuthor.title}
+            onChange={handleChange}
+            errMsg={errMsg}
+            required={true}
           />
-          {errMsg && (
-            <p className="formErrorMsg">
-              {displayErrorMessage(errMsg, "title")}
-            </p>
-          )}
         </div>
 
+        {/* Author */}
         <div className="flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2 mb-4">
           <div className="max-lg:flex-1 relative">
-            <Label htmlFor="author">Author</Label>
-            <Input
-              id="author"
+            <FormField
+              id="author.name"
+              label="Author"
               type="text"
               name="author.name"
-              className="focus:border-none mt-2"
               onChange={handleChange}
               value={titleAndAuthor.author.name}
+              errMsg={errMsg}
+              required={true}
             />
-            {errMsg && (
-              <p className="formErrorMsg">
-                {displayErrorMessage(errMsg, "author.name")}
-              </p>
-            )}
           </div>
 
           <div className="flex-1 relative">
-            <Label htmlFor="portfolio_url">Portfolio</Label>
-            <Input
-              id="portfolio_url"
+            <FormField
+              id="author.url"
+              label="Portfolio"
               type="text"
               name="author.url"
-              className="focus:border-none mt-2 w-full"
+              otherClasses="w-full"
               onChange={handleChange}
               value={titleAndAuthor.author.url}
+              errMsg={errMsg}
+              placeholder="url for reader to connect"
+              required={true}
             />
-            {errMsg && (
-              <p className="formErrorMsg">
-                {displayErrorMessage(errMsg, "author.url")}
-              </p>
-            )}
+          </div>
+        </div>
+
+        {/* Cover photo */}
+        <div className="flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2 mb-4">
+          <div className="flex-1 relative">
+            <FormField
+              id="coverPhoto.src"
+              label="CoverPhoto URL"
+              type="text"
+              otherClasses="w-full"
+              name="coverPhoto.src"
+              onChange={handleChange}
+              value={titleAndAuthor.coverPhoto.src}
+              required={false}
+            />
+          </div>
+
+          <div className="relative">
+            <FormField
+              id="coverPhoto.aspectRatio"
+              label="AspectRatio"
+              type="text"
+              name="coverPhoto.aspectRatio"
+              onChange={handleChange}
+              value={titleAndAuthor.author.url}
+              placeholder="default is 16:9"
+              required={false}
+            />
           </div>
         </div>
       </div>
 
       {/* Editor */}
-      <Plate
-        id="content"
-        plugins={plugins}
-        initialValue={initialValue}
-        onChange={(value) => {
-          setContent(value)
-        }}
-      >
-        <div
-          ref={containerRef}
-          className={cn(
-            // Block selection
-            "[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4"
-          )}
-        >
-          <FixedToolbar>
-            <FixedToolbarButtons />
-          </FixedToolbar>
-
-          <Editor
-            className="px-16 py-8"
-            focusRing={false}
-            variant="ghost"
-            size="md"
-          />
-
-          <FloatingToolbar>
-            <FloatingToolbarButtons />
-          </FloatingToolbar>
-
-          <MentionCombobox items={MENTIONABLES} />
-
-          <CommentsPopover />
-
-          <CursorOverlay containerRef={containerRef} />
-        </div>
-      </Plate>
+      <PlateEditor
+        readOnly={false}
+        setContent={setContent}
+        blog={blog || undefined}
+      />
     </>
   )
 }

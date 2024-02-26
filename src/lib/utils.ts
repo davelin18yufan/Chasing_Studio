@@ -30,10 +30,13 @@ export const dataUrl = `data:image/svg+xml;base64,${toBase64(
 )}`
 
 // transform flatten form value into nested
-// Ex. {title: '', author.name: '', author.url: ''} 
+// Ex. {title: '', author.name: '', author.url: ''}
 //  -> {title: '', author: { name: '', url: ''}}
-export const transformKey = (obj: { [key: string]: any }, initialValue:any) => {
-  const output = {...initialValue}
+export const transformKey = (
+  obj: { [key: string]: any },
+  initialValue: any
+) => {
+  const output = { ...initialValue }
   for (const key in obj) {
     const keys = key.split(".")
     const value = obj[key]
@@ -49,5 +52,25 @@ export const transformKey = (obj: { [key: string]: any }, initialValue:any) => {
       }
     }
   }
+  return output
+}
+
+// extract images from content
+export const getSerializeImgFromSlate = (
+  node: any,
+  output: {
+    id: string
+    type: string
+    url: string
+  }[] = []
+) => {
+  if (Array.isArray(node)) {
+    node.forEach((n) => getSerializeImgFromSlate(n, output))
+  }
+
+  if (node.type === "img" && node.url) {
+    output.push({ id: node.id || "", type: "img", url: node.url })
+  }
+
   return output
 }
