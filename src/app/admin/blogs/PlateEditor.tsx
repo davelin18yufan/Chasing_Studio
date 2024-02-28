@@ -3,7 +3,6 @@
 import { cn } from "@udecode/cn"
 import clsx from "clsx/lite"
 import { Plate, Value } from "@udecode/plate-common"
-import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph"
 import { useRef } from "react"
 
 import { CommentsPopover } from "@/components/plate-ui/comments-popover"
@@ -19,26 +18,16 @@ import { plugins } from "@/lib/plate/plate-plugins"
 import { Blog } from "./page"
 
 interface EditorProps {
-  blog?: Blog
   readOnly: boolean
   setContent?: React.Dispatch<React.SetStateAction<Value>>
+  initialValue: Value
 }
 
 export default function PlateEditor({
-  blog,
   readOnly,
   setContent,
+  initialValue
 }: EditorProps) {
-  const initialValue: Value = blog
-    ? JSON.parse(blog.content)
-    : [
-        {
-          id: "content",
-          type: ELEMENT_PARAGRAPH,
-          children: [{ text: "Cover image will appear at top of title" }],
-        },
-      ]
-
   const containerRef = useRef(null)
 
   return (

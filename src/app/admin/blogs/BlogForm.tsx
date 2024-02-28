@@ -12,6 +12,8 @@ import { articleSchema } from "@/lib/validation"
 import { ZodError } from "zod"
 import { Blog } from "./page"
 import PlateEditor from "./PlateEditor"
+import ImageInput from "@/components/ImageInput"
+import { uploadPhotoFromClient } from "@/services/storage"
 
 interface BlogFormProps {
   type: string
@@ -36,6 +38,15 @@ interface FormFieldProps {
   required: boolean
 }
 
+// destructure name on formData
+const displayErrorMessage = (
+  errors: ErrorItem[],
+  path: string
+): string | undefined => {
+  const error = errors?.find((err) => err.field === path)
+  return error?.message
+}
+
 export const FormField = ({
   label,
   id,
@@ -48,20 +59,13 @@ export const FormField = ({
   placeholder,
   required,
 }: FormFieldProps) => {
-  // destructure name on formData
-  const displayErrorMessage = (
-    errors: ErrorItem[],
-    path: string
-  ): string | undefined => {
-    const error = errors?.find((err) => err.field === path)
-    return error?.message
-  }
-
   return (
     <>
       <Label htmlFor={id}>
         {label}
-        {required && <span className="text-sky-500 dark:text-sky-400 ml-1">*</span>}
+        {required && (
+          <span className="text-sky-500 dark:text-sky-400 ml-1">*</span>
+        )}
       </Label>
       <Input
         id={id}
@@ -89,7 +93,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
         {
           id: "content",
           type: ELEMENT_PARAGRAPH,
-          children: [{ text: "First image will be cover photo" }],
+          children: [{ text: "Cover image will appear at top of title" }],
         },
       ]
 
@@ -100,12 +104,14 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
       src: blog?.coverPhoto?.src || "",
       aspectRatio: blog?.coverPhoto?.aspectRatio || 16 / 9,
     },
+    tags: blog?.tags?.join(',') || ''
   }
 
   const [content, setContent] = useState<Value>(initialValue)
   const [titleAndAuthor, setTitleAndAuthor] = useState(initialTitleValue)
   const [errMsg, setErrMsg] = useState<ErrorItem[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -163,7 +169,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
     //   await updateArticleWithCoverImage(coverImage)
     // }
   }
-
+  
   return (
     <>
       {/* Form */}
@@ -216,19 +222,47 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           </div>
         </div>
 
-        {/* Cover photo */}
         <div className="flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2 mb-4">
+          {/* Cover photo */}
           <div className="flex-1 relative">
-            <FormField
-              id="coverPhoto.src"
-              label="CoverPhoto URL"
-              type="text"
-              otherClasses="w-full"
-              name="coverPhoto.src"
-              onChange={handleChange}
-              value={titleAndAuthor.coverPhoto.src}
-              required={false}
+            <Label className="mb-2">Cover Photo</Label>
+            <ImageInput
+              loading={isUploading}
+              onStart={() => {
+                setIsUploading(true)
+                setErrMsg([])
+              }}
+              multiple={false}
+              debug={true}
+              onBlobReady={async ({ blob, extension }) => {
+                try {
+                  const url = await uploadPhotoFromClient(blob, extension)
+                  setTitleAndAuthor((prev) => ({
+                    ...prev,
+                    coverPhoto: {
+                      ...prev.coverPhoto,
+                      src: url,
+                    },
+                  }))
+                  setErrMsg([])
+                } catch (error: any) {
+                  setErrMsg((prev) => [
+                    ...prev,
+                    { field: "coverPhoto.src", message: error.message },
+                  ])
+                } finally {
+                  setIsUploading(false)
+                }
+              }}
             />
+            {blog?.coverPhoto?.src && (
+              <p className="subTitle">{blog?.coverPhoto?.src}</p>
+            )}
+            {errMsg && (
+              <p className="formErrorMsg">
+                {errMsg && displayErrorMessage(errMsg, "coverPhoto.src")}
+              </p>
+            )}
           </div>
 
           <div className="relative">
@@ -243,6 +277,20 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               required={false}
             />
           </div>
+          
+          {/* tags */}
+          <div className="flex-1 relative">
+            <FormField
+              id="tags"
+              label="Tags"
+              type="text"
+              name="tags"
+              onChange={handleChange}
+              value={titleAndAuthor.tags}
+              placeholder="use , to split"
+              required={false}
+            />
+          </div>
         </div>
       </div>
 
@@ -250,7 +298,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
       <PlateEditor
         readOnly={false}
         setContent={setContent}
-        blog={blog || undefined}
+        initialValue={initialValue}
       />
     </>
   )
