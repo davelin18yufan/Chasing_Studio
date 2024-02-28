@@ -18,10 +18,11 @@ export const articleSchema = z.object({
   title: z.string().min(5).max(50),
   author: z.object({
     name: z.string().min(2),
-    url: z.string().url()
+    url: z.string().url(),
   }),
   coverPhoto: z.object({
     src: z.string().url().optional(),
-    aspectRatio: z.number().optional()
-  })
+    aspectRatio: z.number().optional(),
+  }),
+  tags: z.string().regex(/^[a-zA-Z0-9]+(,[a-zA-Z0-9]+)*$/, "please using comma to split tag").optional()
 })
