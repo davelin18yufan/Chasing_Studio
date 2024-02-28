@@ -14,6 +14,7 @@ export const isUrlFromVercelBlob = (url?: string) =>
   VERCEL_BLOB_BASE_URL &&
   url?.startsWith(VERCEL_BLOB_BASE_URL);
 
+// client upload -> larger than 4.5MB
 export const vercelBlobUploadFromClient = async (
   file: File | Blob,
   fileName: string,
