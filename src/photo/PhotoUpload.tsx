@@ -11,9 +11,11 @@ import { clsx } from 'clsx/lite';
 export default function PhotoUpload({
   shouldResize,
   debug,
+  path = 'photo'
 }: {
   shouldResize?: boolean
   debug?: boolean
+  path?: "photo" | 'blog'
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string>();
@@ -60,7 +62,7 @@ export default function PhotoUpload({
                         router.push(PATH_ADMIN_UPLOADS)
                       } else {
                         // Redirect to photo detail page
-                        router.push(pathForAdminUploadUrl(url))
+                        if(path === 'photo') router.push(pathForAdminUploadUrl(url))
                       }
                     }
                   })
