@@ -95,7 +95,7 @@ export default async function AdminArticlePage({
                   <div className="flex flex-col lg:flex-row">
                     <Link
                       key={blog.id}
-                      href={`/blogs/${blog.id}`}
+                      href={`/admin/blogs/${blog.id}/edit`}
                       className="lg:w-[50%] flex items-center gap-2"
                     >
                       <span
