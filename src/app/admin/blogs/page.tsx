@@ -25,9 +25,11 @@ import { LuPencil } from "react-icons/lu"
 const dummyblogs = [
   {
     id: "yJwzOFdB",
-    coverPhotoSrc: "https://source.unsplash.com/random/600x400",
-    coverPhotoAspectRatio: 1.499414,
-    coverPhotoBlurData: dataUrl,
+    coverPhoto:{
+      src: "https://source.unsplash.com/random/600x400",
+      aspectRatio: 1.499414,
+      blurData: dataUrl,
+    },
     title: "Blog title",
     content: "Hello world!!!",
     author: { name: "Dave", url: "http://localhost:3000" },
@@ -38,16 +40,18 @@ const dummyblogs = [
   },
 ]
 
-interface Blog {
+export interface Blog {
   id: string
-  coverPhotoSrc: string
-  coverPhotoAspectRatio: number
-  coverPhotoBlurData?: string
+  coverPhoto?: {
+    src: string
+    aspectRatio?: number
+    blurData?: string
+  }
   author: { name: string; url?: string }
   title: string
   content: string
   tags?: string[]
-  hidden: boolean
+  hidden: boolean // low opacity for lists display
   updatedAt: Date | string
   createdAt: Date | string
 }
@@ -67,9 +71,9 @@ function PhotoTiny({
       className={clsx(className, "active:brightness-75", "min-w-[50px]")}
     >
       <ImageTiny
-        src={blog.coverPhotoSrc}
-        aspectRatio={blog.coverPhotoAspectRatio}
-        blurData={blog.coverPhotoBlurData}
+        src={blog.coverPhoto?.src || ''}
+        aspectRatio={blog.coverPhoto?.aspectRatio || (16.0 / 9.0)}
+        blurData={blog?.coverPhoto?.blurData}
         alt={blog.title}
       />
     </Link>
@@ -173,7 +177,7 @@ export default async function AdminArticlePage({ searchParams }: PaginationParam
                       <input
                         type="hidden"
                         name="url"
-                        value={blog.coverPhotoSrc}
+                        value={blog.coverPhoto.src}
                       />
                       <DeleteButton />
                     </FormWithConfirm>

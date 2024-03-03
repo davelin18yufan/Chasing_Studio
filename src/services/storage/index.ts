@@ -129,6 +129,7 @@ export const uploadPhotoFromClient = async (
   ? uploadFromClientViaPresignedUrl(file, PREFIX_UPLOAD, extension, true)
   : vercelBlobUploadFromClient(file, `${PREFIX_UPLOAD}.${extension}`);
 
+// reformat url path with id
 export const convertUploadToPhoto = async (
   uploadUrl: string,
   photoId?: string,

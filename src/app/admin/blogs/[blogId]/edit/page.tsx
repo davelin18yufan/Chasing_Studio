@@ -1,4 +1,6 @@
-import Editor from "../../Editor"
+import { dataUrl } from "@/lib/utils"
+import BlogForm from "../../BlogForm"
+import { Blog } from "../../page"
 
 const content = [
   {
@@ -43,14 +45,22 @@ const content = [
   },
 ]
 
-const dummyBlog = {
-  id: '1',
+export const dummyBlog: Blog = {
+  id: "1",
   title: "dummy title",
   author: {
     name: "Ruei",
     url: "https://www.instagram.com/r_uei1_23?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
   },
   content: JSON.stringify(content),
+  hidden: false,
+  coverPhoto: {
+    src: "https://source.unsplash.com/random/600x400",
+    aspectRatio: 2,
+    blurData: dataUrl,
+  },
+  createdAt: new Date(),
+  updatedAt: new Date(),
 }
 
 export default function AdminEditBlogPage({
@@ -58,11 +68,10 @@ export default function AdminEditBlogPage({
 }: {
   params: { blogId: string }
 }) {
-  
   return (
     <>
       <h2 className="text-2xl font-bold">Writing</h2>
-      <Editor type="edit" blog={dummyBlog} />
+      <BlogForm type="edit" blog={dummyBlog} />
     </>
   )
 }

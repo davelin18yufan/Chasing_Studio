@@ -32,8 +32,9 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
       // This argument is required, but doesn't seem to fire
       onUploadCompleted: async () => {
-        revalidatePhotosKey();
-        revalidateAdminPaths();
+        // ⚠️ This will not work on `localhost` websites,
+        revalidatePhotosKey()
+        revalidateAdminPaths()
       },
     });
     revalidatePhotosKey();
@@ -42,7 +43,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   } catch (error) {
     return NextResponse.json(
       { error: (error as Error).message },
-      { status: 400 },
-    );
+      { status: 400 } // The webhook will retry 5 times waiting for a 200
+    )
   }
 }
