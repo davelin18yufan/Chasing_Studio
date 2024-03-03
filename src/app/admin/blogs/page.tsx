@@ -12,49 +12,21 @@ import {
 } from "@/site/pagination"
 import { syncPhotoExifDataAction, deletePhotoAction } from "@/photo/actions"
 import IconGrSync from "@/site/IconGrSync"
-import { pathForAdminBlogEdit, pathForAdminBlogs, PATH_ADMIN_BLOGS } from "@/site/paths"
+import {
+  pathForAdminBlogEdit,
+  pathForAdminBlogs,
+  PATH_ADMIN_BLOGS,
+} from "@/site/paths"
 import clsx from "clsx"
 import Link from "next/link"
 import ImageTiny from "@/components/ImageTiny"
-import { formatDateFromPostgresString } from "@/utility/date"
-import { dataUrl } from "@/lib/utils"
+import { formatDBDate } from "@/utility/date"
+import { dataUrl as blurData } from "@/lib/utils"
 import { AiOutlineEyeInvisible } from "react-icons/ai"
 import { Button } from "@/components/ui/button"
 import { LuPencil } from "react-icons/lu"
-
-const dummyblogs = [
-  {
-    id: "yJwzOFdB",
-    coverPhoto:{
-      src: "https://source.unsplash.com/random/600x400",
-      aspectRatio: 1.499414,
-      blurData: dataUrl,
-    },
-    title: "Blog title",
-    content: "Hello world!!!",
-    author: { name: "Dave", url: "http://localhost:3000" },
-    tags: ["q50"],
-    hidden: false,
-    updatedAt: "2024-01-30 3:44:01",
-    createdAt: "2024-01-30 3:44:01",
-  },
-]
-
-export interface Blog {
-  id: string
-  coverPhoto?: {
-    src: string
-    aspectRatio?: number
-    blurData?: string
-  }
-  author: { name: string; url?: string }
-  title: string
-  content: string
-  tags?: string[]
-  hidden: boolean // low opacity for lists display
-  updatedAt: Date | string
-  createdAt: Date | string
-}
+import { getBlogsCached, getBlogsCountIncludingHiddenCached } from "@/cache"
+import { Blog } from "@/blog"
 
 function PhotoTiny({
   className,
@@ -71,21 +43,25 @@ function PhotoTiny({
       className={clsx(className, "active:brightness-75", "min-w-[50px]")}
     >
       <ImageTiny
-        src={blog.coverPhoto?.src || ''}
-        aspectRatio={blog.coverPhoto?.aspectRatio || (16.0 / 9.0)}
-        blurData={blog?.coverPhoto?.blurData}
+        src={blog.coverPhoto?.src || ""}
+        aspectRatio={blog.coverPhoto?.aspectRatio || 16.0 / 9.0}
+        blurData={blurData}
         alt={blog.title}
       />
     </Link>
   )
 }
 
-export default async function AdminArticlePage({ searchParams }: PaginationParams) {
+export default async function AdminArticlePage({
+  searchParams,
+}: PaginationParams) {
   const { offset, limit } = getPaginationForSearchParams(searchParams)
-
-  // TODO: calculate length
-  const count = 1 //getPhotosCountIncludingHiddenCached
-  const showMoreBlogs = count > dummyblogs.length
+  const [blogs, count] = await Promise.all([
+    getBlogsCached({ includeHidden: true, limit }),
+    getBlogsCountIncludingHiddenCached(),
+  ])
+  
+  const showMoreBlogs = count > blogs.length
 
   return (
     <SiteGrid
@@ -103,7 +79,7 @@ export default async function AdminArticlePage({ searchParams }: PaginationParam
 
           <div className="space-y-4">
             <AdminGrid>
-              {dummyblogs.map((blog) => (
+              {blogs.map((blog) => (
                 <Fragment key={blog.id}>
                   {/* cover photo */}
                   <PhotoTiny
@@ -138,7 +114,7 @@ export default async function AdminArticlePage({ searchParams }: PaginationParam
                       </span>
                     </Link>
                     <div className={clsx("lg:w-[50%] uppercase", "text-dim")}>
-                      {formatDateFromPostgresString(blog.updatedAt)}
+                      {formatDBDate(blog.updatedAt)}
                     </div>
                   </div>
 
@@ -177,7 +153,7 @@ export default async function AdminArticlePage({ searchParams }: PaginationParam
                       <input
                         type="hidden"
                         name="url"
-                        value={blog.coverPhoto.src}
+                        value={blog.coverPhoto?.src}
                       />
                       <DeleteButton />
                     </FormWithConfirm>

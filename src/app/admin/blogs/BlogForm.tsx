@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { transformKey } from "@/lib/utils"
 import { articleSchema } from "@/lib/validation"
 import { ZodError } from "zod"
-import { Blog } from "./page"
+import { Blog } from "@/blog"
 import PlateEditor from "./PlateEditor"
 import ImageInput from "@/components/ImageInput"
 import { uploadPhotoFromClient } from "@/services/storage"
@@ -104,7 +104,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
       src: blog?.coverPhoto?.src || "",
       aspectRatio: blog?.coverPhoto?.aspectRatio || 16 / 9,
     },
-    tags: blog?.tags?.join(',') || ''
+    tags: blog?.tags?.join(",") || "",
   }
 
   const [content, setContent] = useState<Value>(initialValue)
@@ -169,7 +169,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
     //   await updateArticleWithCoverImage(coverImage)
     // }
   }
-  
+
   return (
     <>
       {/* Form */}
@@ -225,7 +225,10 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
         <div className="flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2 mb-4">
           {/* Cover photo */}
           <div className="flex-1 relative">
-            <Label className="mb-2">Cover Photo</Label>
+            <Label className="mb-2">
+              Cover Photo
+              <span className="text-sky-500 dark:text-sky-400 ml-1">*</span>
+            </Label>
             <ImageInput
               loading={isUploading}
               onStart={() => {
@@ -277,7 +280,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               required={false}
             />
           </div>
-          
+
           {/* tags */}
           <div className="flex-1 relative">
             <FormField

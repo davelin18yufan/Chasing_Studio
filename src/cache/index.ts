@@ -31,9 +31,12 @@ import { createCameraKey } from "@/camera"
 import { PATHS_ADMIN } from "@/site/paths"
 import { cache } from "react"
 import { auth } from "@/auth"
+import { GetBlogsOptions, getBlogs, getBlogsCount } from "@/services/blog"
+import { parseBlogFromDB } from "@/blog"
 
 // Table key
 const KEY_PHOTOS = "photos"
+const KEY_BLOGS = "blogs"
 const KEY_PHOTO = "photo"
 // Field keys
 const KEY_TAGS = "tags"
@@ -85,8 +88,20 @@ const getPhotosCacheKeys = (options: GetPhotosOptions = {}) => {
   return tags
 }
 
+const getBlogsCacheKeys = (options: GetBlogsOptions = {}) => {
+  const keys: string[] = []
+  Object.keys(options).forEach((key) => {
+    if (key) {
+      keys.push(key)
+    }
+  })
+  return keys
+}
+
 //* Revalidate by keys
 export const revalidatePhotosKey = () => revalidateTag(KEY_PHOTOS)
+
+export const revalidateBlogsKey = () => revalidateTag(KEY_BLOGS)
 
 export const revalidateTagsKey = () => revalidateTag(KEY_TAGS)
 
@@ -97,6 +112,7 @@ export const revalidateFilmSimulationsKey = () =>
 
 export const revalidateAllKeys = () => {
   revalidatePhotosKey()
+  revalidateBlogsKey()
   revalidateTagsKey()
   revalidateCamerasKey()
   revalidateFilmSimulationsKey()
@@ -111,7 +127,7 @@ export const revalidateAdminPaths = () => {
   PATHS_ADMIN.forEach((path) => revalidatePath(path))
 }
 
-// Cache
+//* Cache
 
 // Get the photos cache key-value pairs and using unstable-cache
 // const data = unstable_cache(fetchData, keyParts, options)()
@@ -120,7 +136,18 @@ export const getPhotosCached = (...args: Parameters<typeof getPhotos>) =>
     ...args
   ).then(parseCachedPhotosDates)
 
-export const getCoverPhotosCached = (...args: Parameters<typeof getCoverPhotos>) =>
+export const getBlogsCached = async (...args: Parameters<typeof getBlogs>) => {
+  const blogs = await unstable_cache(getBlogs, [
+    KEY_BLOGS,
+    ...getBlogsCacheKeys(...args),
+  ])(...args)
+  // db date to new Date()
+  return blogs.map(parseBlogFromDB)
+}
+
+export const getCoverPhotosCached = (
+  ...args: Parameters<typeof getCoverPhotos>
+) =>
   unstable_cache(getCoverPhotos, [KEY_PHOTOS, ...getPhotosCacheKeys(...args)])(
     ...args
   ).then(parseCachedPhotosDates)
@@ -137,6 +164,7 @@ export const getPhotosDateRangeCached = unstable_cache(getPhotosDateRange, [
   KEY_DATE_RANGE,
 ])
 
+//* Count
 export const getPhotosCountCached = unstable_cache(getPhotosCount, [
   KEY_PHOTOS,
   KEY_COUNT,
@@ -146,6 +174,15 @@ export const getPhotosCountIncludingHiddenCached = unstable_cache(
   getPhotosCountIncludingHidden,
   [KEY_PHOTOS, KEY_COUNT, KEY_HIDDEN]
 )
+
+export const getBlogsCountCached = unstable_cache(getBlogsCount, [
+  KEY_BLOGS,
+  KEY_COUNT,
+])
+
+export const getBlogsCountIncludingHiddenCached = (
+  ...args: Parameters<typeof getBlogsCount>
+) => unstable_cache(getBlogsCount, [KEY_BLOGS, KEY_COUNT, KEY_HIDDEN])(...args)
 
 export const getPhotosTagCountCached = unstable_cache(getPhotosTagCount, [
   KEY_PHOTOS,

@@ -50,24 +50,6 @@ const sqlCreatePhotosTable = () =>
     )
   `
 
-export const sqlCreateBlogsTable = () =>
-  sql`
-    CREATE TABLE blogs (
-      id VARCHAR(8) PRIMARY KEY,
-      cover_photo_id VARCHAR(8),
-      cover_photo_src VARCHAR(255),
-      cover_photo_aspect_ratio DECIMAL(10,2) DEFAULT 1.777777777777778,
-      hidden BOOLEAN DEFAULT FALSE,
-      title VARCHAR(255) NOT NULL,
-      content TEXT NOT NULL,
-      tags VARCHAR(255),
-      author_name VARCHAR(255) NOT NULL,
-      author_portfolio TEXT,
-      view_number INT DEFAULT 0,
-      created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-      updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-    )`
-
 // Must provide id as 8-character nanoid
 export const sqlInsertPhoto = (photo: PhotoDbInsert) => {
   return sql`

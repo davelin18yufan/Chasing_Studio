@@ -1,6 +1,6 @@
 import { dataUrl } from "@/lib/utils"
 import BlogForm from "../../BlogForm"
-import { Blog } from "../../page"
+import { Blog } from "@/blog"
 
 const content = [
   {
@@ -55,10 +55,12 @@ export const dummyBlog: Blog = {
   content: JSON.stringify(content),
   hidden: false,
   coverPhoto: {
+    id:'xxxyyyyy',
     src: "https://source.unsplash.com/random/600x400",
     aspectRatio: 2,
     blurData: dataUrl,
   },
+  views:34,
   createdAt: new Date(),
   updatedAt: new Date(),
 }
