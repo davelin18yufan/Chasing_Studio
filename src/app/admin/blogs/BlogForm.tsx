@@ -14,6 +14,9 @@ import { Blog } from "@/blog"
 import PlateEditor from "./PlateEditor"
 import ImageInput from "@/components/ImageInput"
 import { uploadPhotoFromClient } from "@/services/storage"
+import DeleteButton from "@/admin/DeleteButton"
+import FormWithConfirm from "@/components/FormWithConfirm"
+import { deleteBlobPhotoAction } from "@/photo/actions"
 
 interface BlogFormProps {
   type: string
@@ -30,12 +33,14 @@ interface FormFieldProps {
   id: string
   type: string
   name: string
-  value: string
+  value?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   errMsg?: ErrorItem[]
   otherClasses?: string
   placeholder?: string
   required: boolean
+  checked?: boolean
+  disabled?: boolean
 }
 
 // destructure name on formData
@@ -58,9 +63,11 @@ export const FormField = ({
   otherClasses,
   placeholder,
   required,
+  checked,
+  disabled,
 }: FormFieldProps) => {
   return (
-    <>
+    <div>
       <Label htmlFor={id}>
         {label}
         {required && (
@@ -76,13 +83,15 @@ export const FormField = ({
         value={value}
         placeholder={placeholder}
         required={required}
+        disabled={disabled}
+        checked={checked}
       />
       {errMsg && (
         <p className="formErrorMsg">
           {errMsg && displayErrorMessage(errMsg, name)}
         </p>
       )}
-    </>
+    </div>
   )
 }
 
@@ -105,6 +114,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
       aspectRatio: blog?.coverPhoto?.aspectRatio || 16 / 9,
     },
     tags: blog?.tags?.join(",") || "",
+    hidden: blog?.hidden || false,
   }
 
   const [content, setContent] = useState<Value>(initialValue)
@@ -115,10 +125,11 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
+    const updateValue = name === "hidden" ? e.target.checked : value
 
     // reform value to match zod validation
     setTitleAndAuthor((prev) => {
-      const flattenObj = { ...prev, [name]: value }
+      const flattenObj = { ...prev, [name]: updateValue }
       return transformKey(flattenObj, initialTitleValue)
     })
 
@@ -150,21 +161,36 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
     <>
       {/* Form */}
       <div className="flex flex-col justify-center items-start gap-4">
-        <div className="lg:max-w-[70vw] relative w-full py-2">
-          <Button className="bg-primary text-invert px-4 py-2 button-hover absolute -top-10 right-0">
+        <div className="flex items-center justify-between gap-2 lg:max-w-[70vw] relative w-full py-2">
+          <Button className="bg-primary text-invert px-4 py-2 button-hover absolute -top-12 right-0">
             {type === "create" ? "Submit" : "Edit Done"}
           </Button>
 
-          <FormField
-            id="title"
-            type="text"
-            name="title"
-            label="Title"
-            value={titleAndAuthor.title}
-            onChange={handleChange}
-            errMsg={errMsg}
-            required={true}
-          />
+          <div className="flex-1">
+            <FormField
+              id="title"
+              type="text"
+              name="title"
+              label="Title"
+              value={titleAndAuthor.title}
+              onChange={handleChange}
+              errMsg={errMsg}
+              required={true}
+            />
+          </div>
+
+          {/* hidden */}
+          <div className="relative">
+            <FormField
+              id="hidden"
+              label="Hidden?"
+              type="checkbox"
+              name="hidden"
+              checked={titleAndAuthor.hidden}
+              onChange={handleChange}
+              required={false}
+            />
+          </div>
         </div>
 
         {/* Author */}
@@ -200,7 +226,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
 
         <div className="flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2 mb-4">
           {/* Cover photo */}
-          <div className="flex-1 relative">
+          <div className="relative">
             <Label className="mb-2">
               Cover Photo
               <span className="text-sky-500 dark:text-sky-400 ml-1">*</span>
@@ -236,8 +262,35 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
             />
             {/* //TODO: add preview image */}
             {blog?.coverPhoto?.src && (
-              <p className="subTitle">{blog?.coverPhoto?.src}</p>
+              <div className="">
+                <p className="subTitle">{blog?.coverPhoto?.src}</p>
+
+                {/* delete blob */}
+                <FormWithConfirm
+                  action={deleteBlobPhotoAction}
+                  confirmText="Are you sure you want to delete this upload?"
+                >
+                  <input
+                    type="hidden"
+                    name="redirectToPhotos"
+                    value={
+                      titleAndAuthor.coverPhoto.src.length < 2
+                        ? "true"
+                        : "false"
+                    }
+                    readOnly
+                  />
+                  <input
+                    type="hidden"
+                    name="url"
+                    value={titleAndAuthor.coverPhoto.src}
+                    readOnly
+                  />
+                  <DeleteButton />
+                </FormWithConfirm>
+              </div>
             )}
+
             {errMsg && (
               <p className="formErrorMsg">
                 {errMsg && displayErrorMessage(errMsg, "coverPhoto.src")}
@@ -245,7 +298,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
             )}
           </div>
 
-          <div className="relative">
+          <div className="flex relative">
             <FormField
               id="coverPhoto.aspectRatio"
               label="AspectRatio"
@@ -253,13 +306,14 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               name="coverPhoto.aspectRatio"
               onChange={handleChange}
               value={titleAndAuthor.author.url}
-              placeholder="default is 16:9"
+              placeholder="default 16:9"
               required={false}
+              otherClasses="!min-w-fit"
             />
           </div>
 
           {/* tags */}
-          <div className="flex-1 relative">
+          <div className="sm:flex-1 relative">
             <FormField
               id="tags"
               label="Tags"
@@ -269,6 +323,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               value={titleAndAuthor.tags}
               placeholder="use , to split"
               required={false}
+              otherClasses="!min-w-fit"
             />
           </div>
         </div>
