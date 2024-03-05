@@ -3,6 +3,7 @@
 import { Value } from "@udecode/plate-common"
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph"
 import React, { useState } from "react"
+import clsx from "clsx/lite"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -17,6 +18,8 @@ import { uploadPhotoFromClient } from "@/services/storage"
 import DeleteButton from "@/admin/DeleteButton"
 import FormWithConfirm from "@/components/FormWithConfirm"
 import { deleteBlobPhotoAction } from "@/photo/actions"
+import Image from "next/image"
+import { createBlogAction, updateBlogAction } from "@/blog/action"
 
 interface BlogFormProps {
   type: string
@@ -33,7 +36,7 @@ interface FormFieldProps {
   id: string
   type: string
   name: string
-  value?: string
+  value?: string | number
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   errMsg?: ErrorItem[]
   otherClasses?: string
@@ -110,7 +113,8 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
     title: blog?.title || "",
     author: { name: blog?.author.name || "", url: blog?.author.url || "" },
     coverPhoto: {
-      src: blog?.coverPhoto?.src || "",
+      src:
+        blog?.coverPhoto?.src || "https://source.unsplash.com/random/600x400",
       aspectRatio: blog?.coverPhoto?.aspectRatio || 16 / 9,
     },
     tags: blog?.tags?.join(",") || "",
@@ -152,9 +156,50 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
     }
   }
 
-  // TODO: submit
   const formSubmit = async () => {
+    setIsSubmitting(true)
     // 1. 提交编辑的文章,檢查格式
+    try {
+      articleSchema.parse(titleAndAuthor)
+
+      if (type === "create") {
+        await createBlogAction({
+          ...titleAndAuthor,
+          content: JSON.stringify(content),
+        })
+      } else {
+        if (!blog) throw Error("Blog Does not exist")
+        await updateBlogAction({
+          id: blog?.id,
+          ...titleAndAuthor,
+          content: JSON.stringify(content),
+        })
+      }
+    } catch (error) {
+      // form examination
+      if (error instanceof ZodError) {
+        const errors = error.issues.map((issue) => {
+          return {
+            field: issue.path.join("."),
+            message: issue.message,
+          }
+        })
+        setErrMsg(errors)
+      } else {
+        // submit error
+        console.error(error)
+        throw error
+      }
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const clearUpload = () => {
+    setTitleAndAuthor((prev) => ({
+      ...prev,
+      coverPhoto: { ...prev.coverPhoto, src: "" },
+    }))
   }
 
   return (
@@ -162,8 +207,20 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
       {/* Form */}
       <div className="flex flex-col justify-center items-start gap-4">
         <div className="flex items-center justify-between gap-2 lg:max-w-[70vw] relative w-full py-2">
-          <Button className="bg-primary text-invert px-4 py-2 button-hover absolute -top-12 right-0">
-            {type === "create" ? "Submit" : "Edit Done"}
+          <Button
+            className={clsx(
+              "bg-primary text-invert",
+              "px-4 py-2 button-hover",
+              "absolute -top-12 right-0",
+              { "disabled:text-dim": isSubmitting }
+            )}
+            onClick={formSubmit}
+            disabled={isSubmitting}
+          >
+            <div className="flex items-center gap-3">
+              {isSubmitting && <div className="loading h-5 w-5" />}
+              <p>{type === "create" ? "Submit" : "Edit Done"}</p>
+            </div>
           </Button>
 
           <div className="flex-1">
@@ -176,6 +233,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               onChange={handleChange}
               errMsg={errMsg}
               required={true}
+              disabled={isSubmitting}
             />
           </div>
 
@@ -189,12 +247,13 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               checked={titleAndAuthor.hidden}
               onChange={handleChange}
               required={false}
+              disabled={isSubmitting}
             />
           </div>
         </div>
 
         {/* Author */}
-        <div className="flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2 mb-4">
+        <div className="form-container mb-4">
           <div className="max-lg:flex-1 relative">
             <FormField
               id="author.name"
@@ -205,6 +264,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               value={titleAndAuthor.author.name}
               errMsg={errMsg}
               required={true}
+              disabled={isSubmitting}
             />
           </div>
 
@@ -218,76 +278,86 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               onChange={handleChange}
               value={titleAndAuthor.author.url}
               errMsg={errMsg}
-              placeholder="url for reader to connect"
+              placeholder="potfolio url"
               required={true}
+              disabled={isSubmitting}
             />
           </div>
         </div>
 
-        <div className="flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2 mb-4">
+        <div className="form-container mb-4">
           {/* Cover photo */}
           <div className="relative">
             <Label className="mb-2">
               Cover Photo
               <span className="text-sky-500 dark:text-sky-400 ml-1">*</span>
             </Label>
-            <ImageInput
-              loading={isUploading}
-              onStart={() => {
-                setIsUploading(true)
-                setErrMsg([])
-              }}
-              multiple={false}
-              debug={true}
-              onBlobReady={async ({ blob, extension }) => {
-                try {
-                  const url = await uploadPhotoFromClient(blob, extension)
-                  setTitleAndAuthor((prev) => ({
-                    ...prev,
-                    coverPhoto: {
-                      ...prev.coverPhoto,
-                      src: url,
-                    },
-                  }))
-                  setErrMsg([])
-                } catch (error: any) {
-                  setErrMsg((prev) => [
-                    ...prev,
-                    { field: "coverPhoto.src", message: error.message },
-                  ])
-                } finally {
-                  setIsUploading(false)
-                }
-              }}
-            />
-            {/* //TODO: add preview image */}
-            {blog?.coverPhoto?.src && (
-              <div className="">
-                <p className="subTitle">{blog?.coverPhoto?.src}</p>
 
-                {/* delete blob */}
-                <FormWithConfirm
-                  action={deleteBlobPhotoAction}
-                  confirmText="Are you sure you want to delete this upload?"
-                >
-                  <input
-                    type="hidden"
-                    name="redirectToPhotos"
-                    value={
-                      titleAndAuthor.coverPhoto.src.length < 2
-                        ? "true"
-                        : "false"
-                    }
-                    readOnly
-                  />
-                  <input
-                    type="hidden"
-                    name="url"
-                    value={titleAndAuthor.coverPhoto.src}
-                    readOnly
-                  />
-                  <DeleteButton />
-                </FormWithConfirm>
+            <div className="flex items-center mb-2">
+              <ImageInput
+                loading={isUploading}
+                onStart={() => {
+                  setIsUploading(true)
+                  setErrMsg([])
+                }}
+                multiple={false}
+                debug={true}
+                onBlobReady={async ({ blob, extension }) => {
+                  try {
+                    const url = await uploadPhotoFromClient(blob, extension)
+                    setTitleAndAuthor((prev) => ({
+                      ...prev,
+                      coverPhoto: {
+                        ...prev.coverPhoto,
+                        src: url,
+                      },
+                    }))
+                    setErrMsg([])
+                  } catch (error: any) {
+                    setErrMsg((prev) => [
+                      ...prev,
+                      { field: "coverPhoto.src", message: error.message },
+                    ])
+                  } finally {
+                    setIsUploading(false)
+                  }
+                }}
+              />
+
+              {/* delete blob */}
+              {titleAndAuthor?.coverPhoto?.src && (
+                <div className="ml-2">
+                  <FormWithConfirm
+                    action={deleteBlobPhotoAction}
+                    confirmText="Are you sure you want to delete this upload?"
+                    onClearForm={clearUpload}
+                  >
+                    <input
+                      type="hidden"
+                      name="url"
+                      value={titleAndAuthor.coverPhoto.src}
+                      readOnly
+                    />
+                    <DeleteButton />
+                  </FormWithConfirm>
+                </div>
+              )}
+            </div>
+
+            {titleAndAuthor?.coverPhoto.src && (
+              <div
+                className="relative"
+                style={{
+                  aspectRatio: `${titleAndAuthor.coverPhoto.aspectRatio}`,
+                }}
+              >
+                <Image
+                  src={titleAndAuthor.coverPhoto.src}
+                  alt="preview"
+                  className="object-cover rounded-md"
+                  fill
+                  sizes="70vw"
+                />
               </div>
             )}
 
@@ -297,18 +367,22 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               </p>
             )}
           </div>
+        </div>
 
+        <div className="form-container mb-4">
           <div className="flex relative">
             <FormField
               id="coverPhoto.aspectRatio"
               label="AspectRatio"
-              type="text"
+              type="number"
               name="coverPhoto.aspectRatio"
               onChange={handleChange}
-              value={titleAndAuthor.author.url}
-              placeholder="default 16:9"
+              value={titleAndAuthor.coverPhoto.aspectRatio}
+              placeholder="default 16/9"
               required={false}
               otherClasses="!min-w-fit"
+              errMsg={errMsg}
+              disabled={isSubmitting}
             />
           </div>
 
@@ -321,9 +395,10 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               name="tags"
               onChange={handleChange}
               value={titleAndAuthor.tags}
-              placeholder="use , to split"
+              placeholder="tag1,tag2,tag3"
               required={false}
               otherClasses="!min-w-fit"
+              disabled={isSubmitting}
             />
           </div>
         </div>

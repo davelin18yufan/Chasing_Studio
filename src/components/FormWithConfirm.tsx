@@ -6,10 +6,12 @@ export default function FormWithConfirm({
   action,
   confirmText,
   children,
+  onClearForm
 }: {
   action: (data: FormData) => Promise<void>
   confirmText: string
-  children: ReactNode
+  children: ReactNode,
+  onClearForm?:() => void
 }) {
   return (
     <form
@@ -17,8 +19,12 @@ export default function FormWithConfirm({
       onSubmit={e => {
         if (!confirm(confirmText)) {
           e.preventDefault();
+          return
         } else {
           e.currentTarget.requestSubmit();
+          if(onClearForm){
+            onClearForm()
+          }
         }
       }}
     >

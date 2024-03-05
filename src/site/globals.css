@@ -164,6 +164,14 @@
     @apply object-cover object-center w-full transition-transform group-hover:scale-105 aspect-square opacity-70 group-hover:opacity-100;
   }
 
+  .loading {
+    @apply motion-safe:animate-spin border-2 border-x-white border-y-gray-800 rounded-full
+  }
+  
+  .form-container {
+    @apply flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2
+  }
+
   .formErrorMsg {
     @apply text-error absolute top-[100%] left-1
   }

@@ -15,7 +15,6 @@ import { FloatingToolbarButtons } from "@/components/plate-ui/floating-toolbar-b
 import { MentionCombobox } from "@/components/plate-ui/mention-combobox"
 import { MENTIONABLES } from "@/lib/plate/mentionables"
 import { plugins } from "@/lib/plate/plate-plugins"
-import { Blog } from "@/blog"
 
 interface EditorProps {
   readOnly: boolean

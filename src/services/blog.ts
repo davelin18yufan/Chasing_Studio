@@ -213,7 +213,9 @@ export const getUniqueTagsCount = (includeHidden: boolean) =>
   safelyQueryBlogs(() => sqlGetUniqueTagsCount(includeHidden))
 
 //* INSERT
-export const sqlInsertBlog = async (blog: Blog) =>
+export const sqlInsertBlog = async (
+  blog: Omit<Blog, "createdAt" | "updatedAt">
+) =>
   sql`INSERT INTO blogs (
     id,
     cover_photo_id,
@@ -225,7 +227,7 @@ export const sqlInsertBlog = async (blog: Blog) =>
     tags,
     author_name,
     author_portfolio,
-    view_number,
+    view_number
   ) 
   VALUES (
     ${blog.id},
@@ -238,14 +240,13 @@ export const sqlInsertBlog = async (blog: Blog) =>
     ${convertArrayToPostgresString(blog.tags)},
     ${blog.author.name},
     ${blog.author.url},
-    ${blog.views},
+    ${blog.views}
   )`
 
 //* UPDATE
-export const sqlUpdateBlog = async (blog: Blog) =>
+export const sqlUpdateBlog = async (blog: Omit<Blog, "createdAt" >) =>
   sql`
     UPDATE blogs SET
-    cover_photo_id=${blog.coverPhoto?.id},
     cover_photo_src=${blog.coverPhoto?.src},
     cover_photo_aspect_ratio=${blog.coverPhoto?.aspectRatio},
     hidden=${blog.hidden},

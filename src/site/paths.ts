@@ -31,6 +31,7 @@ export const PATH_ADMIN_PHOTOS = `${PATH_ADMIN}/photos`
 export const PATH_ADMIN_UPLOADS = `${PATH_ADMIN}/uploads`
 export const PATH_ADMIN_TAGS = `${PATH_ADMIN}/tags`
 export const PATH_ADMIN_BLOGS = `${PATH_ADMIN}/blogs`
+export const PATH_ADMIN_BLOGS_CREATE = `${PATH_ADMIN}/blogs/create`
 export const PATH_ADMIN_CONFIGURATION = `${PATH_ADMIN}/configuration`
 
 // API paths
@@ -51,6 +52,7 @@ export const PATHS_ADMIN = [
   PATH_ADMIN_TAGS,
   PATH_ADMIN_CONFIGURATION,
   PATH_ADMIN_BLOGS,
+  PATH_ADMIN_BLOGS_CREATE
 ]
 
 export const PATHS_TO_CACHE = [

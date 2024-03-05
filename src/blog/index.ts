@@ -1,5 +1,3 @@
-import { dataUrl } from "@/lib/utils"
-
 export interface BlogDB {
   id: string
   cover_photo_id?: string | undefined
@@ -16,25 +14,31 @@ export interface BlogDB {
   updated_at: Date
 }
 
-export interface Blog {
-  id: string
-  coverPhoto?: {
-    id: string
-    src: string
-    aspectRatio?: number
-    blurData?: string
-  }
-  author: {
-    name: string
-    url?: string
-  }
+interface Author {
+  name: string
+  url?: string
+}
+
+interface CoverPhoto {
+  id?: string
+  src: string
+  aspectRatio?: number
+}
+
+export interface BlogBase {
   title: string
+  author: Author
+  coverPhoto: CoverPhoto
   content: string
   tags?: string[]
-  hidden: boolean // for more loading
+  hidden: boolean
+}
+
+export interface Blog extends BlogBase {
+  id: string
   views: number
-  updatedAt: Date
   createdAt: Date
+  updatedAt: Date
 }
 
 export const parseBlogFromDB = (blog: BlogDB): Blog =>
@@ -48,7 +52,6 @@ export const parseBlogFromDB = (blog: BlogDB): Blog =>
       id: blog.cover_photo_id || "",
       src: blog.cover_photo_src || "",
       aspectRatio: Number(blog.cover_photo_aspect_ratio) || 16 / 9,
-      blurData: dataUrl,
     },
     title: blog.title,
     tags: blog.tags || [],
