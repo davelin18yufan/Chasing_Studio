@@ -234,6 +234,7 @@ const sqlGetUniqueTags = async () =>
 `.then(
     ({ rows }): Tags =>
       rows.map(({ tag, count }) => ({
+        type: "photo",
         tag: tag as string,
         count: parseInt(count, 10),
       }))
@@ -248,6 +249,7 @@ const sqlGetUniqueTagsHidden = async () =>
 `.then(
     ({ rows }): Tags =>
       rows.map(({ tag, count }) => ({
+        type: "photo",
         tag: tag as string,
         count: parseInt(count, 10),
       }))

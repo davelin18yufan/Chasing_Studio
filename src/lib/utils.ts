@@ -1,3 +1,4 @@
+import { MergeTags, Tags } from "@/tag"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -73,4 +74,34 @@ export const getSerializeImgFromSlate = (
   }
 
   return output
+}
+
+// Merge different types of Tags and reformat
+export const mergeTags = (photoTags: Tags, blogTags: Tags): MergeTags => {
+  // merge into hashmap
+  const mergeTagsMap = new Map<string, MergeTags[0]>()
+
+  for (let { tag, count } of photoTags) {
+    tag = tag.toLowerCase()
+    const existingTag = mergeTagsMap.get(tag)
+
+    if (!existingTag) {
+      mergeTagsMap.set(tag, { tag, photoCount: count, blogCount: 0 })
+    } else {
+      existingTag.photoCount += count
+    }
+  }
+
+  for (let { tag, count } of blogTags) {
+    tag = tag.toLowerCase()
+    const existingTag = mergeTagsMap.get(tag)
+
+    if (!existingTag) {
+      mergeTagsMap.set(tag, { tag, photoCount: 0, blogCount: count })
+    } else {
+      existingTag.blogCount += count
+    }
+  }
+
+  return Array.from(mergeTagsMap.values())
 }

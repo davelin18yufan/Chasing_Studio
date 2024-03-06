@@ -41,23 +41,34 @@ export interface Blog extends BlogBase {
   updatedAt: Date
 }
 
-export const parseBlogFromDB = (blog: BlogDB): Blog =>
-  ({
-    id: blog.id,
-    author: {
-      name: blog.author_name,
-      url: blog.author_portfolio,
-    },
-    coverPhoto: {
-      id: blog.cover_photo_id || "",
-      src: blog.cover_photo_src || "",
-      aspectRatio: Number(blog.cover_photo_aspect_ratio) || 16 / 9,
-    },
-    title: blog.title,
-    tags: blog.tags || [],
-    content: blog.content,
-    hidden: blog.hidden,
-    views: blog.view_number,
-    createdAt: new Date(blog.created_at),
-    updatedAt: new Date(blog.updated_at),
-  })
+export const parseBlogFromDB = (blog: BlogDB): Blog => ({
+  id: blog.id,
+  author: {
+    name: blog.author_name,
+    url: blog.author_portfolio,
+  },
+  coverPhoto: {
+    id: blog.cover_photo_id || "",
+    src: blog.cover_photo_src || "",
+    aspectRatio: Number(blog.cover_photo_aspect_ratio) || 16 / 9,
+  },
+  title: blog.title,
+  tags: blog.tags || [],
+  content: blog.content,
+  hidden: blog.hidden,
+  views: blog.view_number,
+  createdAt: new Date(blog.created_at),
+  updatedAt: new Date(blog.updated_at),
+})
+
+export const getItemLabelForCount = (
+  count: number,
+  singularLabel: string,
+  pluralLabel: string
+) => (count === 1 ? singularLabel : pluralLabel)
+
+export const getItemQuantityText = (
+  count: number,
+  label: string,
+  includeParentheses = true
+) => (includeParentheses ? `(${count} ${label})` : `${count} ${label}`)

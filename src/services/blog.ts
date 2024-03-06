@@ -146,6 +146,39 @@ export const getBlog = async (id: string) => {
   return blogs.length > 0 ? blogs[0] : undefined
 }
 
+const sqlGetUniqueTags = async (includeHidden: boolean) => {
+  if (includeHidden) {
+    return sql`
+    SELECT DISTINCT unnest(tags) as tag, COUNT(*) FROM blogs
+    GROUP BY tag
+    ORDER BY tag ASC
+  `.then(
+      ({ rows }): Tags =>
+        rows.map(({ tag, count }) => ({
+          type: 'blog',
+          tag: tag as string,
+          count: parseInt(count, 10),
+        }))
+    )
+  } else {
+    return sql`
+      SELECT DISTINCT unnest(tags) as tag, COUNT(*) FROM blogs
+      WHERE hidden IS NOT TRUE
+      GROUP BY tag
+      ORDER BY tag ASC
+    `.then(
+      ({ rows }): Tags =>
+        rows.map(({ tag, count }) => ({
+          type: 'blog',
+          tag: tag as string,
+          count: parseInt(count, 10),
+        }))
+    )
+  }
+}
+export const getUniqueBlogTags = (includeHidden: boolean) =>
+  safelyQueryBlogs(() => sqlGetUniqueTags(includeHidden))
+
 // *** Full-Text Search
 // CREATE INDEX idx_search_globally ON blogs USING GIN (to_tsvector('english', title || ' ' || content || ' ' || author_name));
 const sqlSearchGlobally = async (query: string) =>
@@ -181,37 +214,6 @@ const sqlGetBlogsTagCount = async (tag: string) =>
 export const getBlogTagsCount = (tag: string) =>
   safelyQueryBlogs(() => sqlGetBlogsTagCount(tag))
 
-const sqlGetUniqueTagsCount = async (includeHidden: boolean) => {
-  if (includeHidden) {
-    return sql`
-    SELECT DISTINCT unnest(tags) as tag, COUNT(*) FROM blogs
-    GROUP BY tag
-    ORDER BY tag ASC
-  `.then(
-      ({ rows }): Tags =>
-        rows.map(({ tag, count }) => ({
-          tag: tag as string,
-          count: parseInt(count, 10),
-        }))
-    )
-  } else {
-    return sql`
-      SELECT DISTINCT unnest(tags) as tag, COUNT(*) FROM blogs
-      WHERE hidden IS NOT TRUE
-      GROUP BY tag
-      ORDER BY tag ASC
-    `.then(
-      ({ rows }): Tags =>
-        rows.map(({ tag, count }) => ({
-          tag: tag as string,
-          count: parseInt(count, 10),
-        }))
-    )
-  }
-}
-export const getUniqueTagsCount = (includeHidden: boolean) =>
-  safelyQueryBlogs(() => sqlGetUniqueTagsCount(includeHidden))
-
 //* INSERT
 export const sqlInsertBlog = async (
   blog: Omit<Blog, "createdAt" | "updatedAt">
@@ -244,7 +246,7 @@ export const sqlInsertBlog = async (
   )`
 
 //* UPDATE
-export const sqlUpdateBlog = async (blog: Omit<Blog, "createdAt" >) =>
+export const sqlUpdateBlog = async (blog: Omit<Blog, "createdAt">) =>
   sql`
     UPDATE blogs SET
     cover_photo_src=${blog.coverPhoto?.src},
@@ -277,7 +279,7 @@ export const sqlRenameBlogTagGlobally = async (tag: string, newTag: string) =>
 export const sqlDeleteBlog = async (id: string) =>
   sql`DELETE FROM blogs WHERE id=${id}`
 
-export const sqlDeletePhotoTagGlobally = async (tag: string) =>
+export const sqlDeleteBlogTagGlobally = async (tag: string) =>
   sql`
     UPDATE blogs SET tags=ARRAY_REMOVE(tags, ${tag}) 
     WHERE ${tag}=ANY(tags)`

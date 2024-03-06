@@ -31,7 +31,13 @@ import { createCameraKey } from "@/camera"
 import { PATHS_ADMIN } from "@/site/paths"
 import { cache } from "react"
 import { auth } from "@/auth"
-import { GetBlogsOptions, getBlog, getBlogs, getBlogsCount } from "@/services/blog"
+import {
+  GetBlogsOptions,
+  getBlog,
+  getBlogs,
+  getBlogsCount,
+  getUniqueBlogTags,
+} from "@/services/blog"
 import { parseBlogFromDB } from "@/blog"
 
 // Table key
@@ -224,8 +230,12 @@ export const getPhotoCached = (...args: Parameters<typeof getPhoto>) =>
     photo ? parseCachedPhotoDates(photo) : undefined
   )
 
-export const getBlogCached = (...args: Parameters<typeof getBlog>) => 
+export const getBlogCached = (...args: Parameters<typeof getBlog>) =>
   unstable_cache(getBlog, [KEY_BLOGS, KEY_BLOG])(...args)
+
+export const getUniqueBlogTagsCached = (
+  ...args: Parameters<typeof getUniqueBlogTags>
+) => unstable_cache(getUniqueBlogTags, [KEY_BLOGS, KEY_TAGS])(...args)
 
 export const getUniqueTagsCached = unstable_cache(getUniqueTags, [
   KEY_PHOTOS,
