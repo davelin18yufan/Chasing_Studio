@@ -107,6 +107,8 @@ export const pathForAdminTagEdit = (tag: string) =>
 
 export const pathForOg = (next?: number) => pathWithNext(PATH_OG, next)
 
+export const pathForBlog = (id: string) => `${PATH_BLOGS}/${id}`
+
 type PhotoOrPhotoId = Photo | string
 
 const getPhotoId = (photoOrPhotoId: PhotoOrPhotoId) =>

@@ -1,32 +1,32 @@
-import React, { Fragment } from "react"
-import SiteGrid from "@/components/SiteGrid"
 import AdminGrid from "@/admin/AdminGrid"
 import DeleteButton from "@/admin/DeleteButton"
 import EditButton from "@/admin/EditButton"
+import PopoutButton from "@/admin/PopoutButton"
+import { Blog } from "@/blog"
+import { deleteBlogAction, toggleBlogHidden } from "@/blog/action"
+import { getBlogsCached, getBlogsCountIncludingHiddenCached } from "@/cache"
 import FormWithConfirm from "@/components/FormWithConfirm"
-import SubmitButtonWithStatus from "@/components/SubmitButtonWithStatus"
+import ImageTiny from "@/components/ImageTiny"
+import SiteGrid from "@/components/SiteGrid"
+import { Button } from "@/components/ui/button"
+import { dataUrl as blurData } from "@/lib/utils"
 import MorePhotos from "@/photo/MorePhotos"
 import {
   PaginationParams,
   getPaginationForSearchParams,
 } from "@/site/pagination"
-import { syncPhotoExifDataAction, deletePhotoAction } from "@/photo/actions"
-import IconGrSync from "@/site/IconGrSync"
 import {
+  PATH_ADMIN_BLOGS,
   pathForAdminBlogEdit,
   pathForAdminBlogs,
-  PATH_ADMIN_BLOGS,
+  pathForBlog,
 } from "@/site/paths"
+import { formatDBDate } from "@/utility/date"
 import clsx from "clsx"
 import Link from "next/link"
-import ImageTiny from "@/components/ImageTiny"
-import { formatDBDate } from "@/utility/date"
-import { dataUrl as blurData } from "@/lib/utils"
-import { AiOutlineEyeInvisible } from "react-icons/ai"
-import { Button } from "@/components/ui/button"
+import React, { Fragment } from "react"
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai"
 import { LuPencil } from "react-icons/lu"
-import { getBlogsCached, getBlogsCountIncludingHiddenCached } from "@/cache"
-import { Blog } from "@/blog"
 
 function PhotoTiny({
   className,
@@ -60,7 +60,7 @@ export default async function AdminArticlePage({
     getBlogsCached({ includeHidden: true, limit }),
     getBlogsCountIncludingHiddenCached(),
   ])
-  
+
   const showMoreBlogs = count > blogs.length
 
   return (
@@ -93,26 +93,48 @@ export default async function AdminArticlePage({
 
                   {/* title/author/date */}
                   <div className="flex flex-col lg:flex-row">
-                    <Link
-                      key={blog.id}
-                      href={`/admin/blogs/${blog.id}/edit`}
-                      className="lg:w-[50%] flex items-center gap-2"
-                    >
-                      <span
-                        className={clsx(
-                          "inline-flex items-center gap-2",
-                          blog.hidden && "text-dim"
-                        )}
+                    <div className="flex flex-1 justify-start items-center">
+                      <Link
+                        key={blog.id}
+                        href={pathForAdminBlogEdit(blog.id)}
+                        className="flex items-center gap-2 w-fit mr-2"
                       >
-                        {`${blog.title} - ${blog.author.name}`}
-                        {blog.hidden && (
-                          <AiOutlineEyeInvisible
-                            className="translate-y-[0.25px]"
-                            size={16}
-                          />
-                        )}
-                      </span>
-                    </Link>
+                        <span
+                          className={clsx(
+                            "inline-flex items-center",
+                            blog.hidden && "text-dim"
+                          )}
+                        >
+                          {`${blog.title} - ${blog.author.name}`}
+                        </span>
+                      </Link>
+                      <FormWithConfirm
+                        action={toggleBlogHidden}
+                        confirmText={`Are you sure you want to ${
+                          blog.hidden ? "show" : "hid"
+                        } this blog?"`}
+                      >
+                        <button
+                          className={clsx(
+                            "icon-hover cursor-pointer link bg-transparent",
+                            blog.hidden && "text-dim"
+                          )}
+                        >
+                          <input type="hidden" name="id" value={blog.id} />
+                          {blog.hidden ? (
+                            <AiOutlineEye
+                              className="translate-y-[0.25px]"
+                              size={16}
+                            />
+                          ) : (
+                            <AiOutlineEyeInvisible
+                              className="translate-y-[0.25px]"
+                              size={16}
+                            />
+                          )}
+                        </button>
+                      </FormWithConfirm>
+                    </div>
                     <div className={clsx("lg:w-[50%] uppercase", "text-dim")}>
                       {formatDBDate(blog.updatedAt)}
                     </div>
@@ -126,24 +148,9 @@ export default async function AdminArticlePage({
                     )}
                   >
                     <EditButton href={pathForAdminBlogEdit(blog.id)} />
+                    <PopoutButton href={pathForBlog(blog.id)} />
                     <FormWithConfirm
-                      action={syncPhotoExifDataAction} //TODO: edit action
-                      confirmText={
-                        "Are you sure you want to overwrite article " +
-                        `for "${blog.title}" from source file? ` +
-                        "This action cannot be undone."
-                      }
-                    >
-                      <input type="hidden" name="id" value={blog.id} />
-                      <SubmitButtonWithStatus
-                        icon={<IconGrSync className="translate-y-[-0.5px]" />}
-                        onFormSubmitToastMessage={`
-                          "${blog.title}" article synced
-                        `}
-                      />
-                    </FormWithConfirm>
-                    <FormWithConfirm
-                      action={deletePhotoAction} //TODO: delete action
+                      action={deleteBlogAction}
                       confirmText={
                         // eslint-disable-next-line max-len
                         `Are you sure you want to delete "${blog.title}?"`
@@ -161,6 +168,7 @@ export default async function AdminArticlePage({
                 </Fragment>
               ))}
             </AdminGrid>
+
             {showMoreBlogs && (
               <MorePhotos path={pathForAdminBlogs(offset + 1)} />
             )}

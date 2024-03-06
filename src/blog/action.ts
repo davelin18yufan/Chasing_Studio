@@ -1,21 +1,32 @@
 "use server"
 
-import { revalidateAdminPaths, revalidateAllKeysAndPaths } from "@/cache"
-import { sqlInsertBlog, sqlUpdateBlog } from "@/services/blog"
-import { convertUploadToPhoto } from "@/services/storage"
+import {
+  revalidateAdminPaths,
+  revalidateAllKeysAndPaths,
+  revalidateBlogsKey,
+} from "@/cache"
+import {
+  sqlDeleteBlog,
+  sqlInsertBlog,
+  sqlToggleHidden,
+  sqlUpdateBlog,
+} from "@/services/blog"
+import { convertUploadToPhoto, deleteStorageUrl } from "@/services/storage"
 import { PATH_ADMIN_BLOGS } from "@/site/paths"
 import { generateNanoid } from "@/utility/nanoid"
 import { redirect } from "next/navigation"
-import { BlogBase } from "."
+import { BlogBase, Blog } from "."
 
-interface CreateBlogAction extends Omit<BlogBase, 'tags'>{
+interface CreateBlogAction extends Omit<BlogBase, "tags"> {
   tags: string
 }
 
 interface UpdateBlogAction extends Omit<BlogBase, "tags"> {
   id: string
-  tags:string
+  tags: string
 }
+
+interface DeleteBlogAction extends Pick<Blog, "id" | "coverPhoto"> {}
 
 export async function createBlogAction(formData: CreateBlogAction) {
   const { title, author, coverPhoto, content, tags, hidden } = formData
@@ -41,7 +52,7 @@ export async function createBlogAction(formData: CreateBlogAction) {
     content,
     hidden,
     views: 0,
-    tags: tags.split(','),
+    tags: tags.split(","),
   })
 
   revalidateAllKeysAndPaths()
@@ -65,10 +76,30 @@ export async function updateBlogAction(formData: UpdateBlogAction) {
     content,
     hidden,
     views: 0,
-    tags: tags.split(','),
+    tags: tags.split(","),
     updatedAt: new Date(),
   })
 
   revalidateAllKeysAndPaths()
   redirect(PATH_ADMIN_BLOGS)
+}
+
+export async function toggleBlogHidden(formData: FormData) {
+  const id = formData.get("id") as string
+
+  await sqlToggleHidden(id)
+
+  revalidateAllKeysAndPaths()
+}
+
+export async function deleteBlogAction(formData: FormData) {
+  const id = formData.get("id") as string
+  const url = formData.get("url") as string
+
+  // delete storage
+  deleteStorageUrl(url)
+  // delete database
+  sqlDeleteBlog(id)
+
+  revalidateAllKeysAndPaths()
 }

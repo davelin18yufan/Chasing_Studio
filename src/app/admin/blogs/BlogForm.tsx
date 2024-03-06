@@ -158,7 +158,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
 
   const formSubmit = async () => {
     setIsSubmitting(true)
-    // 1. 提交编辑的文章,檢查格式
+    // check format
     try {
       articleSchema.parse(titleAndAuthor)
 
@@ -278,7 +278,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               onChange={handleChange}
               value={titleAndAuthor.author.url}
               errMsg={errMsg}
-              placeholder="potfolio url"
+              placeholder="portfolio url"
               required={true}
               disabled={isSubmitting}
             />
