@@ -1,3 +1,6 @@
+export const MAX_BLOGS_TO_SHOW_OG = 6
+export const MAX_BLOGS_TO_SHOW_PER_TAG = 6
+
 export interface BlogDB {
   id: string
   cover_photo_id?: string | undefined
@@ -72,3 +75,24 @@ export const getTagQuantityText = (
   label: string,
   includeParentheses = true
 ) => (includeParentheses ? `(${count} ${label})` : `${count} ${label}`)
+
+// extract text from content
+export const getSerializeTextFromSlate = (
+  node: any,
+  output: {
+    id: string
+    type: string
+    text: string
+  }[] = []
+) => {
+  if (Array.isArray(node)) {
+    node.forEach((n) => getSerializeTextFromSlate(n, output))
+  }
+
+  if (node.type === "p" && !node.url) {
+    const text = node.children.map((child: any) => child.text).join("")
+    output.push({ id: node.id || "", type: "p", text })
+  }
+
+  return output
+}

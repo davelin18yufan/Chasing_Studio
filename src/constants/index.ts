@@ -26,3 +26,19 @@ export const heroSectionImgs = [
   "iQctKAqm",
   "wZoy4EmQ",
 ]
+
+export const months = [
+  "Jan.",
+  "Feb.",
+  "Mar.",
+  "Apr.",
+  "May",
+  "Jun.",
+  "Jul.",
+  "Aug.",
+  "Sep.",
+  "Oct.",
+  "Nov.",
+  "Dec.",
+]
+export const daySuffix = ["st", "nd", "rd", "th"]

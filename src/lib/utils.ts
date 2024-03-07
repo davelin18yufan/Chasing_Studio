@@ -56,26 +56,6 @@ export const transformKey = (
   return output
 }
 
-// extract images from content
-export const getSerializeImgFromSlate = (
-  node: any,
-  output: {
-    id: string
-    type: string
-    url: string
-  }[] = []
-) => {
-  if (Array.isArray(node)) {
-    node.forEach((n) => getSerializeImgFromSlate(n, output))
-  }
-
-  if (node.type === "img" && node.url) {
-    output.push({ id: node.id || "", type: "img", url: node.url })
-  }
-
-  return output
-}
-
 // Merge different types of Tags and reformat
 export const mergeTags = (photoTags: Tags, blogTags: Tags): MergeTags => {
   // merge into hashmap

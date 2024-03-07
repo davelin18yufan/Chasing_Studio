@@ -1,4 +1,5 @@
 import { format, parseISO, parse } from "date-fns"
+import { months, daySuffix } from "@/constants"
 
 const DATE_STRING_FORMAT_SHORT = "dd MMM yyyy"
 const DATE_STRING_FORMAT = "d MMM yyyy h:mma"
@@ -72,3 +73,15 @@ export const generateLocalPostgresString = () =>
 
 export const generateLocalNaivePostgresString = () =>
   format(new Date(), DATE_STRING_FORMAT_POSTGRES)
+
+// month. date year
+export const formatBlogDate = (date: Date): string => {
+  const year = date.getFullYear()
+  const month = date.getMonth()
+  const day = date.getDate()
+
+  // add suffix for date
+  const suffix = day < 4 ? daySuffix[day - 1] : daySuffix[3]
+
+  return `${months[month]} ${day}${suffix} ${year}`
+}

@@ -9,7 +9,7 @@ import {
   PaginationParams,
   getPaginationForSearchParams,
 } from '@/site/pagination';
-import { pathForRoot } from '@/site/paths';
+import { pathForGallery } from '@/site/paths';
 import { Metadata } from 'next';
 import { MAX_PHOTOS_TO_SHOW_OG } from '@/photo/image-response';
 
@@ -54,7 +54,7 @@ export default async function Page({ searchParams }: PaginationParams) {
         />
         {showMorePhotos &&
           <SiteGrid
-            contentMain={<MorePhotos path={pathForRoot(offset + 1)} />}
+            contentMain={<MorePhotos path={pathForGallery(offset + 1)} />}
           />}
       </div>
       : <PhotosEmptyState />

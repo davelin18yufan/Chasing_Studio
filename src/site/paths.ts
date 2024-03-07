@@ -72,6 +72,8 @@ export const PATHS_TO_CACHE = [
 // Absolute paths
 export const ABSOLUTE_PATH_FOR_HOME_IMAGE = `${BASE_URL}/home-image`
 
+export const ABSOLUTE_PATH_FOR_BLOGS = `${BASE_URL}/blogs-og`
+
 const pathWithNext = (path: string, next?: number) =>
   next !== undefined ? `${path}?${NEXT}=${next}` : path
 
