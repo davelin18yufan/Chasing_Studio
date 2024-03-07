@@ -61,13 +61,13 @@ export const parseBlogFromDB = (blog: BlogDB): Blog => ({
   updatedAt: new Date(blog.updated_at),
 })
 
-export const getItemLabelForCount = (
+export const getTagLabelForCount = (
   count: number,
   singularLabel: string,
   pluralLabel: string
 ) => (count === 1 ? singularLabel : pluralLabel)
 
-export const getItemQuantityText = (
+export const getTagQuantityText = (
   count: number,
   label: string,
   includeParentheses = true

@@ -36,6 +36,7 @@ import {
   getBlog,
   getBlogs,
   getBlogsCount,
+  getBlogsTagsCount,
   getUniqueBlogTags,
 } from "@/services/blog"
 import { parseBlogFromDB } from "@/blog"
@@ -195,6 +196,8 @@ export const getPhotosTagCountCached = unstable_cache(getPhotosTagCount, [
   KEY_PHOTOS,
   KEY_TAGS,
 ])
+
+export const getBlogsTagCountCached = unstable_cache(getBlogsTagsCount, [KEY_BLOGS, KEY_TAGS])
 
 export const getPhotosCameraCountCached = (
   ...args: Parameters<typeof getPhotosCameraCount>

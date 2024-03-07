@@ -57,7 +57,7 @@ export type GetBlogsOptions = {
   sortBy?: "newest" | "oldest" | "popular" | undefined
   limit?: number | undefined
   offset?: number | undefined
-  tags?: string | undefined
+  tag?: string | undefined
   includeHidden?: boolean | undefined
   authorName?: string | undefined
   query?: string | undefined // searching content or title
@@ -70,7 +70,7 @@ export const getBlogs = async (options: GetBlogsOptions = {}) => {
   const {
     sortBy = "createdBy",
     limit = BLOG_DEFAULT_LIMIT,
-    tags,
+    tag,
     includeHidden,
     authorName,
     query,
@@ -87,13 +87,13 @@ export const getBlogs = async (options: GetBlogsOptions = {}) => {
     where.push("hidden IS NOT TRUE")
   }
   // tags
-  if (tags) {
-    where.push(`tags LIKE %||$${valueIndex++}||%`)
-    values.push(tags)
+  if (tag) {
+    where.push(`$${valueIndex++}=ANY(tags)`)
+    values.push(tag)
   }
   // author name
   if (authorName) {
-    where.push(`author_name LIKE %$${valueIndex++}%`)
+    where.push(`author_name ILIKE %$${valueIndex++}%`)
     values.push(authorName)
   }
   // title + content
@@ -211,7 +211,7 @@ const sqlGetBlogsTagCount = async (tag: string) =>
     WHERE ${tag}=ANY(tags) AND
     hidden IS NOT TRUE
   `.then(({ rows }) => parseInt(rows[0].count, 10))
-export const getBlogTagsCount = (tag: string) =>
+export const getBlogsTagsCount = (tag: string) =>
   safelyQueryBlogs(() => sqlGetBlogsTagCount(tag))
 
 //* INSERT

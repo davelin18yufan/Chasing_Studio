@@ -1,4 +1,4 @@
-'use server';
+"use server"
 
 import {
   sqlDeletePhoto,
@@ -7,133 +7,143 @@ import {
   sqlUpdatePhoto,
   sqlRenamePhotoTagGlobally,
   getPhoto,
-} from '@/services/vercel-postgres';
+} from "@/services/vercel-postgres"
 import {
   PhotoFormData,
   convertFormDataToPhotoDbInsert,
   convertPhotoToFormData,
-} from './form';
-import { redirect } from 'next/navigation';
-import {
-  convertUploadToPhoto,
-  deleteStorageUrl,
-} from '@/services/storage';
+} from "./form"
+import { redirect } from "next/navigation"
+import { convertUploadToPhoto, deleteStorageUrl } from "@/services/storage"
 import {
   revalidateAdminPaths,
   revalidateAllKeysAndPaths,
+  revalidateBlogsKey,
   revalidatePhotosKey,
-} from '@/cache';
-import { PATH_ADMIN_PHOTOS, PATH_ADMIN_TAGS } from '@/site/paths';
-import { extractExifDataFromBlobPath } from './server';
-import { TAG_FAVS, isTagFavs } from '@/tag';
-import { convertPhotoToPhotoDbInsert } from '.';
+} from "@/cache"
+import { PATH_ADMIN_PHOTOS, PATH_ADMIN_TAGS } from "@/site/paths"
+import { extractExifDataFromBlobPath } from "./server"
+import { TAG_FAVS, isTagFavs } from "@/tag"
+import { convertPhotoToPhotoDbInsert } from "."
+import {
+  sqlDeleteBlogTagGlobally,
+  sqlRenameBlogTagGlobally,
+} from "@/services/blog"
 
 export async function createPhotoAction(formData: FormData) {
-  const photo = convertFormDataToPhotoDbInsert(formData, true);
+  const photo = convertFormDataToPhotoDbInsert(formData, true)
 
-  const updatedUrl = await convertUploadToPhoto(photo.url, photo.id);
+  const updatedUrl = await convertUploadToPhoto(photo.url, photo.id)
 
-  if (updatedUrl) { photo.url = updatedUrl; }
+  if (updatedUrl) {
+    photo.url = updatedUrl
+  }
 
-  await sqlInsertPhoto(photo);
+  await sqlInsertPhoto(photo)
 
-  revalidateAllKeysAndPaths();
+  revalidateAllKeysAndPaths()
 
-  redirect(PATH_ADMIN_PHOTOS);
+  redirect(PATH_ADMIN_PHOTOS)
 }
 
 export async function updatePhotoAction(formData: FormData) {
-  const photo = convertFormDataToPhotoDbInsert(formData);
+  const photo = convertFormDataToPhotoDbInsert(formData)
 
-  await sqlUpdatePhoto(photo);
+  await sqlUpdatePhoto(photo)
 
-  revalidateAllKeysAndPaths();
+  revalidateAllKeysAndPaths()
 
-  redirect(PATH_ADMIN_PHOTOS);
+  redirect(PATH_ADMIN_PHOTOS)
 }
 
 export async function toggleFavoritePhoto(photoId: string) {
-  const photo = await getPhoto(photoId);
+  const photo = await getPhoto(photoId)
   if (photo) {
-    const { tags } = photo;
-    photo.tags = tags.some(tag => tag === TAG_FAVS)
-      ? tags.filter(tag => !isTagFavs(tag))
-      : [...tags, TAG_FAVS];
-    await sqlUpdatePhoto(convertPhotoToPhotoDbInsert(photo));
-    revalidateAllKeysAndPaths();
+    const { tags } = photo
+    photo.tags = tags.some((tag) => tag === TAG_FAVS)
+      ? tags.filter((tag) => !isTagFavs(tag))
+      : [...tags, TAG_FAVS]
+    await sqlUpdatePhoto(convertPhotoToPhotoDbInsert(photo))
+    revalidateAllKeysAndPaths()
   }
 }
 
 export async function deletePhotoAction(formData: FormData) {
   await Promise.all([
-    deleteStorageUrl(formData.get('url') as string),
-    sqlDeletePhoto(formData.get('id') as string),
-  ]);
+    deleteStorageUrl(formData.get("url") as string),
+    sqlDeletePhoto(formData.get("id") as string),
+  ])
 
-  revalidateAllKeysAndPaths();
-};
-
-export async function deletePhotoTagGloballyAction(formData: FormData) {
-  const tag = formData.get('tag') as string;
-
-  await sqlDeletePhotoTagGlobally(tag);
-
-  revalidatePhotosKey();
-  revalidateAdminPaths();
+  revalidateAllKeysAndPaths()
 }
 
-export async function renamePhotoTagGloballyAction(formData: FormData) {
-  const tag = formData.get('tag') as string;
-  const updatedTag = formData.get('updatedTag') as string;
+export async function deleteTagGloballyAction(formData: FormData) {
+  const tag = formData.get("tag") as string
+
+  await sqlDeletePhotoTagGlobally(tag.toLowerCase())
+  await sqlDeleteBlogTagGlobally(tag.toLowerCase())
+
+  revalidatePhotosKey()
+  revalidateBlogsKey()
+  revalidateAdminPaths()
+}
+
+export async function renameTagGloballyAction(formData: FormData) {
+  const tag = formData.get("tag") as string
+  const updatedTag = formData.get("updatedTag") as string
 
   if (tag && updatedTag && tag !== updatedTag) {
-    await sqlRenamePhotoTagGlobally(tag, updatedTag);
-    revalidatePhotosKey();
-    redirect(PATH_ADMIN_TAGS);
+    await sqlRenamePhotoTagGlobally(tag, updatedTag)
+    await sqlRenameBlogTagGlobally(tag, updatedTag)
+    revalidatePhotosKey()
+    revalidateBlogsKey()
+    revalidateAdminPaths()
+
+    redirect(PATH_ADMIN_TAGS)
   }
 }
 
 export async function deleteBlobPhotoAction(formData: FormData) {
-  await deleteStorageUrl(formData.get('url') as string);
+  await deleteStorageUrl(formData.get("url") as string)
 
-  revalidateAdminPaths();
+  revalidateAdminPaths()
 
-  if (formData.get('redirectToPhotos') === 'true') {
-    redirect(PATH_ADMIN_PHOTOS);
+  if (formData.get("redirectToPhotos") === "true") {
+    redirect(PATH_ADMIN_PHOTOS)
   }
 }
 
 export async function getExifDataAction(
-  photoFormPrevious: Partial<PhotoFormData>,
+  photoFormPrevious: Partial<PhotoFormData>
 ): Promise<Partial<PhotoFormData>> {
-  const { url } = photoFormPrevious;
+  const { url } = photoFormPrevious
   if (url) {
-    const { photoFormExif } = await extractExifDataFromBlobPath(url);
+    const { photoFormExif } = await extractExifDataFromBlobPath(url)
     if (photoFormExif) {
-      return photoFormExif;
+      return photoFormExif
     }
   }
-  return {};
+  return {}
 }
 
 export async function syncPhotoExifDataAction(formData: FormData) {
-  const photoId = formData.get('id') as string;
+  const photoId = formData.get("id") as string
   if (photoId) {
-    const photo = await getPhoto(photoId);
+    const photo = await getPhoto(photoId)
     if (photo) {
-      const { photoFormExif } = await extractExifDataFromBlobPath(photo.url);
+      const { photoFormExif } = await extractExifDataFromBlobPath(photo.url)
       if (photoFormExif) {
         const photoFormDbInsert = convertFormDataToPhotoDbInsert({
           ...convertPhotoToFormData(photo),
           ...photoFormExif,
-        });
-        await sqlUpdatePhoto(photoFormDbInsert);
-        revalidatePhotosKey();
+        })
+        await sqlUpdatePhoto(photoFormDbInsert)
+        revalidatePhotosKey()
       }
     }
   }
 }
 
 export async function syncCacheAction() {
-  revalidateAllKeysAndPaths();
+  revalidateAllKeysAndPaths()
 }

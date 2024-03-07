@@ -52,7 +52,7 @@ export async function createBlogAction(formData: CreateBlogAction) {
     content,
     hidden,
     views: 0,
-    tags: tags.split(","),
+    tags: tags.toLowerCase().split(","),
   })
 
   revalidateAllKeysAndPaths()
@@ -76,7 +76,7 @@ export async function updateBlogAction(formData: UpdateBlogAction) {
     content,
     hidden,
     views: 0,
-    tags: tags.split(","),
+    tags: tags.toLowerCase().split(","),
     updatedAt: new Date(),
   })
 

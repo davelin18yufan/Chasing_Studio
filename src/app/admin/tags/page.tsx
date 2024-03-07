@@ -1,6 +1,6 @@
 import FormWithConfirm from "@/components/FormWithConfirm"
 import SiteGrid from "@/components/SiteGrid"
-import { deletePhotoTagGloballyAction } from "@/photo/actions"
+import { deleteTagGloballyAction } from "@/photo/actions"
 import AdminGrid from "@/admin/AdminGrid"
 import { Fragment } from "react"
 import DeleteButton from "@/admin/DeleteButton"
@@ -11,7 +11,7 @@ import EditButton from "@/admin/EditButton"
 import { pathForAdminTagEdit } from "@/site/paths"
 import { clsx } from "clsx/lite"
 import FavsTag from "@/tag/FavsTag"
-import { getItemQuantityText, getItemLabelForCount } from "@/blog"
+import { getTagQuantityText, getTagLabelForCount } from "@/blog"
 import { mergeTags } from "@/lib/utils"
 
 export default async function AdminTagsPage() {
@@ -21,6 +21,12 @@ export default async function AdminTagsPage() {
   ])
   const tags = mergeTags(photoTags, blogTags)
 
+  const renderQuantityText = (count: number, label: string) =>
+    getTagQuantityText(
+      count,
+      getTagLabelForCount(count, label, `${label}s`),
+      false
+    )
   return (
     <SiteGrid
       contentMain={
@@ -34,22 +40,10 @@ export default async function AdminTagsPage() {
                   </div>
                   <div className="text-dim uppercase flex gap-2">
                     {photoCount > 0 && (
-                      <p>
-                        {getItemQuantityText(
-                          photoCount,
-                          getItemLabelForCount(photoCount, "Photo", "Photos"),
-                          false
-                        )}
-                      </p>
+                      <span>{renderQuantityText(photoCount, "Photo")}</span>
                     )}
                     {blogCount > 0 && (
-                      <p>
-                        {getItemQuantityText(
-                          blogCount,
-                          getItemLabelForCount(blogCount, "Blog", "Blogs"),
-                          false
-                        )}
-                      </p>
+                      <span>{renderQuantityText(blogCount, "Blog")}</span>
                     )}
                   </div>
                   <div
@@ -60,7 +54,7 @@ export default async function AdminTagsPage() {
                   >
                     <EditButton href={pathForAdminTagEdit(tag)} />
                     <FormWithConfirm
-                      action={deletePhotoTagGloballyAction}
+                      action={deleteTagGloballyAction}
                       confirmText={
                         // eslint-disable-next-line max-len
                         `Are you sure you want to remove "${formatTag(tag)}"?`

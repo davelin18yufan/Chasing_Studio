@@ -1,3 +1,4 @@
+import { getTagLabelForCount } from '@/blog';
 import { FilmSimulation } from '@/simulation';
 import { SHOW_EXIF_DATA } from '@/site/config';
 import { ABSOLUTE_PATH_FOR_HOME_IMAGE } from '@/site/paths';
@@ -163,30 +164,22 @@ export const translatePhotoId = (id: string) =>
 export const titleForPhoto = (photo: Photo) =>
   photo.title || 'Untitled';
 
-export const photoLabelForCount = (count: number) =>
-  count === 1 ? 'Photo' : 'Photos';
-
-export const photoQuantityText = (count: number, includeParentheses = true) =>
-  includeParentheses
-    ? `(${count} ${photoLabelForCount(count)})`
-    : `${count} ${photoLabelForCount(count)}`;  
-
 export type PhotoDateRange = { start: string, end: string };
 
 export const descriptionForPhotoSet = (
-  photos:Photo[],
+  photos: Photo[],
   descriptor?: string,
   dateBased?: boolean,
   explicitCount?: number,
-  explicitDateRange?: PhotoDateRange,
+  explicitDateRange?: PhotoDateRange
 ) =>
   dateBased
     ? dateRangeForPhotos(photos, explicitDateRange).description.toUpperCase()
     : [
-      explicitCount ?? photos.length,
-      descriptor,
-      photoLabelForCount(explicitCount ?? photos.length),
-    ].join(' ');
+        explicitCount ?? photos.length,
+        descriptor,
+        getTagLabelForCount(explicitCount ?? photos.length, "Photo", "Photos"),
+      ].join(" ")
 
 const sortPhotosByDate = (
   photos: Photo[],

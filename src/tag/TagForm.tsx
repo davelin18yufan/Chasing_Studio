@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { PATH_ADMIN_TAGS } from '@/site/paths';
 import FieldSetWithStatus from '@/components/FieldSetWithStatus';
 import { ReactNode, useMemo, useState } from 'react';
-import { renamePhotoTagGloballyAction } from '@/photo/actions';
+import { renameTagGloballyAction } from '@/photo/actions';
 import { parameterize } from '@/utility/string';
 
 export default function TagForm({
@@ -28,7 +28,7 @@ export default function TagForm({
 
   return (
     <form
-      action={renamePhotoTagGloballyAction}
+      action={renameTagGloballyAction}
       className="space-y-8"
     >
       <FieldSetWithStatus
