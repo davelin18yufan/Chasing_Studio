@@ -1,5 +1,3 @@
-"use client"
-
 import { Blog, getSerializeTextFromSlate } from "@/blog"
 import {
   Card,
@@ -7,23 +5,16 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card"
-import EditAndDeleteBtn from "@/site/EditAndDeleteBtn"
-
-import { isPathAdmin } from "@/site/paths"
 import Image from "next/image"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import clsx from "clsx/lite"
 import { formatBlogDate } from "@/utility/date"
 
 interface Props {
   blog: Blog
-  showButton: boolean
 }
 
-export default function BlogCard({ blog, showButton }: Props) {
-  const pathname = usePathname()
-  const allowEdit = showButton && isPathAdmin(pathname)
+export default function BlogCard({ blog }: Props) {
   const textObj = getSerializeTextFromSlate(JSON.parse(blog.content))
   const description = textObj.map((t) => t.text)
 
@@ -36,11 +27,6 @@ export default function BlogCard({ blog, showButton }: Props) {
           "relative"
         )}
       >
-        {allowEdit && (
-          <div className="absolute top-0 right-0 px-4 py-2">
-            <EditAndDeleteBtn />
-          </div>
-        )}
         <CardContent className="flex items-start p-4 md:p-6">
           <Image
             alt="Image"

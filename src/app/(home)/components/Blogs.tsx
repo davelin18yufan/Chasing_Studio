@@ -1,6 +1,7 @@
-import BlogCard from "./BlogCard";
+import BlogCard from "./BlogCard"
+import { Blog } from "@/blog"
 
-export default function Blogs() {
+export default function Blogs({blogs}: {blogs:Blog[]}) {
   return (
     <section className="py-12 lg:py-16">
       <div className="container grid gap-4 px-4 md:gap-8 md:px-6">
@@ -14,8 +15,9 @@ export default function Blogs() {
             </p>
           </div>
           <div className="grid gap-4 md:gap-6">
-            <BlogCard showButton={false} />
-            <BlogCard showButton={false} />
+            {blogs.map((blog) => (
+              <BlogCard blog={blog} key={blog.id} />
+            ))}
           </div>
         </div>
       </div>

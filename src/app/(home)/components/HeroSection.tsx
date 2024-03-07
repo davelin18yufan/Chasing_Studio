@@ -9,11 +9,11 @@ import Image from "next/image"
 export default function HeroSection({
   title,
   subTitle,
-  photos
+  photos,
 }: {
   title: string
   subTitle: string
-  photos: {id:string, url:string}[]
+  photos: { id: string; url: string }[]
 }) {
   const [index, setIndex] = useState(0)
 

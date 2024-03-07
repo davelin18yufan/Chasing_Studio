@@ -1,8 +1,7 @@
-import { getPhotosCached } from "@/cache"
 import GalleryCard from "./GalleryCard"
+import { Photo } from "@/photo"
 
-export default async function GallerySection() {
-  const photos = await getPhotosCached({ limit: 6 })
+export default function GallerySection({ photos }: { photos: Photo[] }) {
   return (
     <section className="py-12 lg:py-20">
       <div className="container grid items-center justify-center gap-4 px-4 text-center mb-4 md:px-6">
@@ -10,15 +9,15 @@ export default async function GallerySection() {
       </div>
       <div className="mx-auto grid max-w-5xl items-start gap-4 px-4 md:gap-8 md:px-6 lg:gap-10">
         <div className="grid grid-cols-2 items-stretch justify-center gap-4 md:grid-cols-3">
-          {photos?.map((item) => (
+          {photos?.map((p) => (
             <GalleryCard
-              key={item.id}
-              alt={item.title || "img"}
-              title={item.title}
-              src={item.url}
+              key={p.id}
+              alt={p.title || "picture"}
+              title={p.title}
+              src={p.url}
               size={600}
-              tags={item.tags}
-              id={item.id}
+              tags={p.tags}
+              id={p.id}
             />
           ))}
         </div>
