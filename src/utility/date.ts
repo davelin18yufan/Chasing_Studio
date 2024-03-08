@@ -75,7 +75,8 @@ export const generateLocalNaivePostgresString = () =>
   format(new Date(), DATE_STRING_FORMAT_POSTGRES)
 
 // month. date year
-export const formatBlogDate = (date: Date): string => {
+export const formatBlogDate = (dateStr: Date): string => {
+  const date = new Date(dateStr)
   const year = date.getFullYear()
   const month = date.getMonth()
   const day = date.getDate()

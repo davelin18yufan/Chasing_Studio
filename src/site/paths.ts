@@ -70,9 +70,9 @@ export const PATHS_TO_CACHE = [
 ]
 
 // Absolute paths
-export const ABSOLUTE_PATH_FOR_HOME_IMAGE = `${BASE_URL}/home-image`
+export const ABSOLUTE_PATH_FOR_HOME_IMAGE = `${BASE_URL}/api/home-image`
 
-export const ABSOLUTE_PATH_FOR_BLOGS = `${BASE_URL}/blogs-og`
+export const ABSOLUTE_PATH_FOR_BLOGS = `${BASE_URL}/api/blogs-og`
 
 const pathWithNext = (path: string, next?: number) =>
   next !== undefined ? `${path}?${NEXT}=${next}` : path
@@ -165,6 +165,8 @@ export const absolutePathForPhoto = (
 
 export const absolutePathForTag = (tag: string) =>
   `${BASE_URL}${pathForTag(tag)}`
+
+export const absolutePathForBlog =(id:string) => `${BASE_URL}/api/blog-og?id=${id}`
 
 export const absolutePathForCamera = (camera: Camera) =>
   `${BASE_URL}${pathForCamera(camera)}`
