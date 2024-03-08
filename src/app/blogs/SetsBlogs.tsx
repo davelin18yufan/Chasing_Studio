@@ -17,7 +17,7 @@ export default function SetsBlogs({
       <h2 className="title py-6">All Posts</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {blogs.map((blog) => 
-          <BlogCard blog={blog} showButton={true} key={blog.id}/>
+          <BlogCard blog={blog} key={blog.id}/>
         )}
       </div>
       {showMore && <MorePhotos path={pathForBlogs(offset + 1)} />}
