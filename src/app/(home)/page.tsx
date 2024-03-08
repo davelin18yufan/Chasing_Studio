@@ -19,11 +19,11 @@ export async function generateMetadata(): Promise<Metadata> {
   // show hero section
   return {
     openGraph: {
-      images: BASE_URL,
+      images: `${BASE_URL}/api/og`,
     },
     twitter: {
       card: "summary_large_image",
-      images: BASE_URL,
+      images: `${BASE_URL}/api/og`,
     },
   }
 }
