@@ -1,26 +1,23 @@
-import { getTagLabelForCount } from '@/blog';
-import { FilmSimulation } from '@/simulation';
-import { SHOW_EXIF_DATA } from '@/site/config';
-import { ABSOLUTE_PATH_FOR_HOME_IMAGE } from '@/site/paths';
-import { formatDateFromPostgresString } from '@/utility/date';
+import { getTagLabelForCount } from "@/blog"
+import { FilmSimulation } from "@/simulation"
+import { SHOW_EXIF_DATA } from "@/site/config"
+import { ABSOLUTE_PATH_FOR_HOME_IMAGE } from "@/site/paths"
+import { formatDateFromPostgresString } from "@/utility/date"
 import {
   formatAperture,
   formatIso,
   formatExposureCompensation,
   formatExposureTime,
   formatFocalLength,
-} from '@/utility/exif';
-import camelcaseKeys from 'camelcase-keys';
-import type { Metadata } from 'next';
+} from "@/utility/exif"
+import camelcaseKeys from "camelcase-keys"
+import type { Metadata } from "next"
 
-export const GRID_THUMBNAILS_TO_SHOW_MAX = 12;
+export const GRID_THUMBNAILS_TO_SHOW_MAX = 12
 
-export const ACCEPTED_PHOTO_FILE_TYPES = [
-  'image/jpg',
-  'image/jpeg',
-];
+export const ACCEPTED_PHOTO_FILE_TYPES = ["image/jpg", "image/jpeg"]
 
-export const MAX_PHOTO_UPLOAD_SIZE_IN_BYTES = 50_000_000;
+export const MAX_PHOTO_UPLOAD_SIZE_IN_BYTES = 50_000_000
 
 // Core EXIF data
 export interface PhotoExif {
@@ -54,7 +51,7 @@ export interface PhotoDbInsert extends PhotoExif {
 }
 
 // Raw db response
-export interface PhotoDb extends Omit<PhotoDbInsert, 'takenAt' | 'tags'> {
+export interface PhotoDb extends Omit<PhotoDbInsert, "takenAt" | "tags"> {
   updatedAt: Date
   createdAt: Date
   takenAt: Date
@@ -75,67 +72,60 @@ export interface Photo extends PhotoDb {
 export const parsePhotoFromDb = (photoDbRaw: PhotoDb): Photo => {
   const photoDb = camelcaseKeys(
     photoDbRaw as unknown as Record<string, unknown>
-  ) as unknown as PhotoDb;
+  ) as unknown as PhotoDb
   return {
     ...photoDb,
     tags: photoDb.tags ?? [],
-    focalLengthFormatted:
-      formatFocalLength(photoDb.focalLength),
-    focalLengthIn35MmFormatFormatted:
-      formatFocalLength(photoDb.focalLengthIn35MmFormat),
-    fNumberFormatted:
-      formatAperture(photoDb.fNumber),
-    isoFormatted:
-      formatIso(photoDb.iso),
-    exposureTimeFormatted:
-      formatExposureTime(photoDb.exposureTime),
-    exposureCompensationFormatted:
-      formatExposureCompensation(photoDb.exposureCompensation),
-    takenAtNaiveFormatted:
-      formatDateFromPostgresString(photoDb.takenAtNaive),
-  };
-};
+    focalLengthFormatted: formatFocalLength(photoDb.focalLength),
+    focalLengthIn35MmFormatFormatted: formatFocalLength(
+      photoDb.focalLengthIn35MmFormat
+    ),
+    fNumberFormatted: formatAperture(photoDb.fNumber),
+    isoFormatted: formatIso(photoDb.iso),
+    exposureTimeFormatted: formatExposureTime(photoDb.exposureTime),
+    exposureCompensationFormatted: formatExposureCompensation(
+      photoDb.exposureCompensation
+    ),
+    takenAtNaiveFormatted: formatDateFromPostgresString(photoDb.takenAtNaive),
+  }
+}
 
-export const parseCachedPhotoDates = (photo: Photo) => ({
-  ...photo,
-  takenAt: new Date(photo.takenAt),
-  updatedAt: new Date(photo.updatedAt),
-  createdAt: new Date(photo.createdAt),
-} as Photo);
+export const parseCachedPhotoDates = (photo: Photo) =>
+  ({
+    ...photo,
+    takenAt: new Date(photo.takenAt),
+    updatedAt: new Date(photo.updatedAt),
+    createdAt: new Date(photo.createdAt),
+  } as Photo)
 
 export const parseCachedPhotosDates = (photos: Photo[]) =>
-  photos.map(parseCachedPhotoDates);
+  photos.map(parseCachedPhotoDates)
 
-export const convertPhotoToPhotoDbInsert = (
-  photo: Photo,
-): PhotoDbInsert => ({
+export const convertPhotoToPhotoDbInsert = (photo: Photo): PhotoDbInsert => ({
   ...photo,
   takenAt: photo.takenAt.toISOString(),
-});
+})
 
-export const photoStatsAsString = (photo: Photo) => [
-  photo.model,
-  photo.focalLengthFormatted,
-  photo.fNumberFormatted,
-  photo.isoFormatted,
-].join(' ');
+export const photoStatsAsString = (photo: Photo) =>
+  [
+    photo.model,
+    photo.focalLengthFormatted,
+    photo.fNumberFormatted,
+    photo.isoFormatted,
+  ].join(" ")
 
 export const descriptionForPhoto = (photo: Photo) =>
-  photo.takenAtNaiveFormatted?.toUpperCase();
+  photo.takenAtNaiveFormatted?.toUpperCase()
 
 export const getPreviousPhoto = (photo: Photo, photos: Photo[]) => {
-  const index = photos.findIndex(p => p.id === photo.id);
-  return index > 0
-    ? photos[index - 1]
-    : undefined;
-};
+  const index = photos.findIndex((p) => p.id === photo.id)
+  return index > 0 ? photos[index - 1] : undefined
+}
 
 export const getNextPhoto = (photo: Photo, photos: Photo[]) => {
-  const index = photos.findIndex(p => p.id === photo.id);
-  return index < photos.length - 1
-    ? photos[index + 1]
-    : undefined;
-};
+  const index = photos.findIndex((p) => p.id === photo.id)
+  return index < photos.length - 1 ? photos[index + 1] : undefined
+}
 
 export const generateOgImageMetaForPhotos = (photos: Photo[]): Metadata => {
   if (photos.length > 0) {
@@ -144,27 +134,26 @@ export const generateOgImageMetaForPhotos = (photos: Photo[]): Metadata => {
         images: ABSOLUTE_PATH_FOR_HOME_IMAGE,
       },
       twitter: {
-        card: 'summary_large_image',
+        card: "summary_large_image",
         images: ABSOLUTE_PATH_FOR_HOME_IMAGE,
       },
-    };
+    }
   } else {
     // If there are no photos, refrain from showing an OG image
-    return {};
+    return {}
   }
-};
+}
 
 const PHOTO_ID_FORWARDING_TABLE: Record<string, string> = JSON.parse(
-  process.env.PHOTO_ID_FORWARDING_TABLE || '{}'
-);
+  process.env.PHOTO_ID_FORWARDING_TABLE || "{}"
+)
 
 export const translatePhotoId = (id: string) =>
-  PHOTO_ID_FORWARDING_TABLE[id] || id;
+  PHOTO_ID_FORWARDING_TABLE[id] || id
 
-export const titleForPhoto = (photo: Photo) =>
-  photo.title || 'Untitled';
+export const titleForPhoto = (photo: Photo) => photo.title || "Untitled"
 
-export type PhotoDateRange = { start: string, end: string };
+export type PhotoDateRange = { start: string; end: string }
 
 export const descriptionForPhotoSet = (
   photos: Photo[],
@@ -181,43 +170,38 @@ export const descriptionForPhotoSet = (
         getTagLabelForCount(explicitCount ?? photos.length, "Photo", "Photos"),
       ].join(" ")
 
-const sortPhotosByDate = (
-  photos: Photo[],
-  order: 'ASC' | 'DESC' = 'DESC'
-) =>
-  [...photos].sort((a, b) => order === 'DESC'
-    ? b.takenAt.getTime() - a.takenAt.getTime()
-    : a.takenAt.getTime() - b.takenAt.getTime());
+const sortPhotosByDate = (photos: Photo[], order: "ASC" | "DESC" = "DESC") =>
+  [...photos].sort((a, b) =>
+    order === "DESC"
+      ? b.takenAt.getTime() - a.takenAt.getTime()
+      : a.takenAt.getTime() - b.takenAt.getTime()
+  )
 
 export const dateRangeForPhotos = (
   photos: Photo[] = [],
-  explicitDateRange?: PhotoDateRange,
+  explicitDateRange?: PhotoDateRange
 ) => {
-  let start = '';
-  let end = '';
-  let description = '';
+  let start = ""
+  let end = ""
+  let description = ""
 
   if (explicitDateRange || photos.length > 0) {
-    const photosSorted = sortPhotosByDate(photos);
+    const photosSorted = sortPhotosByDate(photos)
     start = formatDateFromPostgresString(
       explicitDateRange?.start ?? photosSorted[photos.length - 1].takenAtNaive,
-      true,
-    );
+      true
+    )
     end = formatDateFromPostgresString(
       explicitDateRange?.end ?? photosSorted[0].takenAtNaive,
       true
-    );
-    description = start === end
-      ? start
-      : `${start}–${end}`;
+    )
+    description = start === end ? start : `${start}–${end}`
   }
 
-  return { start, end, description };
-};
+  return { start, end, description }
+}
 
-const photoHasCameraData = (photo: Photo) =>
-  photo.make &&
-  photo.model;
+const photoHasCameraData = (photo: Photo) => photo.make && photo.model
 
 const photoHasExifData = (photo: Photo) =>
   photo.focalLength ||
@@ -225,10 +209,13 @@ const photoHasExifData = (photo: Photo) =>
   photo.fNumberFormatted ||
   photo.isoFormatted ||
   photo.exposureTimeFormatted ||
-  photo.exposureCompensationFormatted;
+  photo.exposureCompensationFormatted
 
 export const shouldShowCameraDataForPhoto = (photo: Photo) =>
-  SHOW_EXIF_DATA && photoHasCameraData(photo);
+  SHOW_EXIF_DATA && photoHasCameraData(photo)
 
 export const shouldShowExifDataForPhoto = (photo: Photo) =>
-  SHOW_EXIF_DATA && photoHasExifData(photo);
+  SHOW_EXIF_DATA && photoHasExifData(photo)
+
+export const photoQuantityText = (count: number) =>
+  `${count} ${count > 1 ? "Photos" : "Photo"}`
