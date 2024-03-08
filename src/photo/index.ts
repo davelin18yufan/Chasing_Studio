@@ -217,5 +217,10 @@ export const shouldShowCameraDataForPhoto = (photo: Photo) =>
 export const shouldShowExifDataForPhoto = (photo: Photo) =>
   SHOW_EXIF_DATA && photoHasExifData(photo)
 
-export const photoQuantityText = (count: number) =>
-  `${count} ${count > 1 ? "Photos" : "Photo"}`
+export const photoLabelForCount = (count: number) =>
+  count === 1 ? "Photo" : "Photos"
+
+export const photoQuantityText = (count: number, includeParentheses = true) =>
+  includeParentheses
+    ? `(${count} ${photoLabelForCount(count)})`
+    : `${count} ${photoLabelForCount(count)}`
