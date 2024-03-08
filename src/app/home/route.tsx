@@ -5,7 +5,7 @@ import {
 } from "@/photo/image-response"
 import { getIBMPlexMonoMedium } from "@/site/font"
 import { ImageResponse } from "next/og"
-import HeroSection from "./components/HeroSection"
+import HeroSection from "../(home)/components/HeroSection"
 import { SITE_DESCRIPTION, SITE_DOMAIN_OR_TITLE } from "@/site/config"
 
 export const runtime = "edge"
