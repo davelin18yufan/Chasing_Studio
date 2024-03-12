@@ -60,6 +60,12 @@ export const metadata: Metadata = {
 //   url: BASE_URL,
 // }
 
+// *framer-motion bug
+//@ts-ignore
+global.performance = global.performance || {
+  now: () => new Date().getTime(),
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -90,7 +96,7 @@ export default function RootLayout({
               <div
                 className={clsx(
                   "min-h-[16rem] sm:min-h-[30rem]",
-                  "mb-12 pt-20"
+                  "mb-12"
                 )}
               >
                 {children}

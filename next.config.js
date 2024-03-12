@@ -33,7 +33,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'source.unsplash.com',
         port: '',
-        pathname: '/random/**',
+        pathname: '/**',
       },]
       .concat(createRemotePattern(VERCEL_BLOB_HOSTNAME))
       .concat(createRemotePattern(CLOUDFLARE_R2_HOSTNAME))

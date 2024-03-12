@@ -35,16 +35,12 @@ export default async function HomePage() {
     getPhotosCached({ limit: MAX_PHOTOS_TO_SHOW_PER_TAG }),
   ])
 
-  const urls = coverPhotos.map(({ id, url }: { id: string; url: string }) => ({
-    id,
-    url,
-  }))
   return (
     <>
       <HeroSection
-        title="Welcome to Chasing Studio"
+        title="Chasing Studio"
         subTitle="Where your memories come to life. Capture your moments with our professional photography services."
-        photos={urls}
+        photos={coverPhotos}
       />
       <Intro
         title="Who are we?"
