@@ -44,7 +44,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fadeIn": "fadeIn 1.5s ease-out infinite",
-        "neon": "neon 5s steps(1) infinite"
+        "neon": "neon 5s steps(1) infinite",
       },
       keyframes: {
         'rotate-pulse': {
@@ -74,7 +74,7 @@ module.exports = {
             color: '#668cf5',
             textShadow: '0px 0px 5px #668cf5, 0px 0px 20px #0b2902, 0px 0px 50px #188998'
           }
-        }
+        },
       },
     },
   },

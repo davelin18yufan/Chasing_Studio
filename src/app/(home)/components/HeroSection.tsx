@@ -2,7 +2,6 @@
 
 import clsx from "clsx/lite"
 import { useState, useEffect } from "react"
-import { heroSectionImgs } from "@/constants"
 import Image from "next/image"
 import { Photo } from "@/photo"
 import { useScroll, useMotionValueEvent } from "framer-motion"
