@@ -3,7 +3,7 @@ import { Photo } from "@/photo"
 
 export default function GallerySection({ photos }: { photos: Photo[] }) {
   return (
-    <section className="py-12 lg:py-20">
+    <section className="py-10 lg:py-16">
       <div className="container grid items-center justify-center gap-4 px-4 text-center mb-4 md:px-6">
         <h2 className="title">Gallery</h2>
       </div>
@@ -12,10 +12,9 @@ export default function GallerySection({ photos }: { photos: Photo[] }) {
           {photos?.map((p) => (
             <GalleryCard
               key={p.id}
-              alt={p.title || "picture"}
               title={p.title}
               src={p.url}
-              size={600}
+              size={225}
               tags={p.tags}
               id={p.id}
             />

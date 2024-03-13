@@ -163,10 +163,6 @@
     @apply transition-colors bg-content dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:text-gray-900 rounded-md border-none shadow-none cursor-pointer;
   }
 
-  .galleryCardImg {
-    @apply object-cover object-center w-full transition-transform group-hover:scale-105 aspect-square opacity-70 group-hover:opacity-100;
-  }
-
   .loading {
     @apply motion-safe:animate-spin border-2 border-x-white border-y-gray-800 rounded-full
   }
@@ -194,7 +190,7 @@
     @apply max-w-3xl mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400;
   }
 
-  /* background filter */
+  /* background filter for blogCard */
   .bg-filter {
     background-image: linear-gradient(
       transparent,
@@ -225,8 +221,5 @@
   .heroTitle {
     height: calc(100vh + 130px);
   }
-
 }
-
-
 

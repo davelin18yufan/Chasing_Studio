@@ -1,11 +1,9 @@
-import Image from "next/image"
 import Link from "next/link"
 import clsx from "clsx/lite"
-import { dataUrl } from "@/lib/utils"
+import "@/site/style.css"
 
 interface Props {
   id: string
-  alt: string
   src: string
   title?: string
   tags: string[]
@@ -14,7 +12,6 @@ interface Props {
 }
 
 export default function GalleryCard({
-  alt,
   src,
   title,
   size,
@@ -24,27 +21,35 @@ export default function GalleryCard({
 }: Props) {
   return (
     <Link
-      className="relative group overflow-hidden rounded-xl aspect-square"
+      className="relative overflow-hidden rounded-xl aspect-square galleryCard group"
       href={`/p/${id}`}
     >
-      <Image
-        alt={alt}
-        className={`galleryCardImg`}
-        height={size}
-        src={src}
-        width={size}
-        placeholder="blur"
-        blurDataURL={dataUrl}
-      />
+      <div
+        style={{
+          backgroundImage: `url(${src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className={`galleryCardImg galleryCardImg1 w-[${size}]`}
+      ></div>
+      <div
+        style={{
+          backgroundImage: `url(${src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className={`galleryCardImg galleryCardImg2 w-[${size}]`}
+      ></div>
+
       <div
         className={clsx(
           "absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center",
-          "text-main opacity-100 transition group-hover:opacity-50"
+          "text-main opacity-10 transition group-hover:opacity-100"
         )}
       >
         <h3 className="text-xl font-bold ">{title}</h3>
         {tags.map((tag, i) => (
-          <p className="text-sm" key={i}>
+          <p className="text-sm underline" key={i}>
             {tag}
           </p>
         ))}

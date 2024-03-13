@@ -1,0 +1,28 @@
+/* Effect that hard to use tailwind */
+
+/* *GalleryCard in Homepage* */
+/* group hover effect will have time lag with atomic css */
+.galleryCard {
+  display: grid;
+}
+.galleryCardImg {
+  grid-area: 1 / 1/ 2 / 2;
+  transition: 0.5s ease-in-out;
+  filter: brightness(0.7) saturate(2.5);
+}
+/* img1 */
+.galleryCardImg1 {
+  filter: hue-rotate(90deg) saturate(2);
+  scale: 1.2
+}
+.galleryCard:hover .galleryCardImg1 {
+  filter: hue-rotate(0deg) saturate(0.1);
+  scale: 1
+}
+/* img2 */
+.galleryCardImg2 {
+  clip-path: circle(75% at 50%)
+}
+.galleryCard:hover .galleryCardImg2 {
+  clip-path: circle(0% at 50%)
+}
