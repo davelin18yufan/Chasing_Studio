@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/menubar"
 import ThemeSwitcher from "./ThemeSwitcher"
 import NavMobile from "./NavMobile"
-import { useMotionValueEvent, useScroll, scroll } from "framer-motion"
+import { useMotionValueEvent, useScroll } from "framer-motion"
 import { useState } from "react"
 
 export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
@@ -50,14 +50,14 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
       className={clsx(
         "flex items-center justify-end bg-content sm:justify-between py-2 pr-8",
         "fixed top-0 w-full opacity-80 z-50",
-        "origin-top scale-y-0 transition-all",
+        "origin-top transition-all",
+        pathname === PATH_ROOT && "scale-y-0",
         visible && "scale-y-100"
       )}
     >
       <Link
         className="hidden sm:block cursor-pointer w-[220px] h-[70px] relative"
         href="/"
-        as="image"
       >
         <Image
           src="/logo_horizontal.png"

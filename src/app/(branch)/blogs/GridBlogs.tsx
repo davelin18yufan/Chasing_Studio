@@ -40,7 +40,7 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
 export default function GridBlogs({ blogs }: { blogs: Blog[] }) {
   return (
     <section>
-      <h1 className="title py-6">Latest Post</h1>
+      <h1 className="title pb-3">Latest Post</h1>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:h-[600px]">
         <BlogCard blog={blogs[0]} />

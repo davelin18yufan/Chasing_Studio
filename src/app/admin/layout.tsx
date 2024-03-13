@@ -10,6 +10,7 @@ import {
   PATH_ADMIN_TAGS,
   PATH_ADMIN_UPLOADS,
 } from "@/site/paths"
+import clsx from "clsx/lite"
 
 export default async function AdminLayout({
   children,
@@ -63,7 +64,8 @@ export default async function AdminLayout({
   if (countBlogs > 0) navItems.push(navItemBlogs)
 
   return (
-    <div className="mt-4 space-y-5">
+    <div className="mt-4 space-y-5 pt-20 px-3 pb-3
+                lg:px-6 lg:pb-6">
       <AdminNav items={navItems} />
       {children}
     </div>

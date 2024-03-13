@@ -3,7 +3,7 @@ import { Photo } from "@/photo"
 
 export default function GallerySection({ photos }: { photos: Photo[] }) {
   return (
-    <section className="py-10 lg:py-16">
+    <section className="px-3 py-10 lg:py-16 lg:px-6">
       <div className="container grid items-center justify-center gap-4 px-4 text-center mb-4 md:px-6">
         <h2 className="title">Gallery</h2>
       </div>

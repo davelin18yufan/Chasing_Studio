@@ -3,7 +3,7 @@ import { Blog } from "@/blog"
 
 export default function Blogs({blogs}: {blogs:Blog[]}) {
   return (
-    <section className="py-10 lg:py-16">
+    <section className="px-3 py-10 lg:py-16 lg:px-6">
       <div className="container grid gap-4 px-4 md:gap-8 md:px-6">
         <div className="mx-auto grid max-w-3xl gap-2 lg:max-w-5xl">
           <div className="space-y-2">

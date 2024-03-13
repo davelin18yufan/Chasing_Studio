@@ -85,8 +85,7 @@ export default function RootLayout({
           <ThemeProviderClient>
             <main
               className={clsx(
-                "px-3 pb-3",
-                "lg:px-6 lg:pb-6",
+                "pb-3 lg:pb-6",
                 "w-full",
                 "relative"
               )}
@@ -95,12 +94,7 @@ export default function RootLayout({
               <Suspense fallback={<NavClient />}>
                 <Nav />
               </Suspense>
-              <div
-                className={clsx(
-                  "min-h-[16rem] sm:min-h-[30rem]",
-                  "mb-12"
-                )}
-              >
+              <div className={clsx("min-h-[16rem] sm:min-h-[30rem]", "mb-12")}>
                 {children}
               </div>
               <Suspense fallback={<FooterClient />}>
