@@ -15,6 +15,8 @@ import FooterClient from "@/site/FooterClient"
 import NavClient from "@/site/NavClient"
 
 import "../site/globals.css"
+import "../site/style.css"
+
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],

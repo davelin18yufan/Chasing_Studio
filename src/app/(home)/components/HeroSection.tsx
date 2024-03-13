@@ -44,14 +44,16 @@ function GridImg({
       style={{ transitionDelay: `${delay}ms` }}
       // dynamic transition class might replace the default timing, using style for top priority
     >
-      <Image
-        src={src}
-        alt={alt}
-        className="object-cover"
-        fill
-        sizes="50vw"
-        priority
-      />
+      <div className="w-full h-full relative">
+        <Image
+          src={src}
+          alt={alt}
+          className="object-cover"
+          fill
+          sizes="50vw"
+          priority
+        />
+      </div>
     </li>
   )
 }

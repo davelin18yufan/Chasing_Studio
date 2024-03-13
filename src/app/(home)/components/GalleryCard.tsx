@@ -1,6 +1,5 @@
 import Link from "next/link"
 import clsx from "clsx/lite"
-import "@/site/style.css"
 
 interface Props {
   id: string

@@ -26,3 +26,23 @@
 .galleryCard:hover .galleryCardImg2 {
   clip-path: circle(0% at 50%)
 }
+
+/* *BlogCard in Homepage* */
+.blink::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -90px;
+  left: -180px; /* */
+  background: white;
+  width: 50px;
+  height: calc(180px + (90px * 2));
+  opacity: 20%;
+  transform: rotate(-45deg);
+}
+
+.blink:hover::after {
+  left: 120%;
+  transition: all 1200ms cubic-bezier(0.3, 1, 0.2, 1);
+  -webkit-transition: all 1200ms cubic-bezier(0.3, 1, 0.2, 1);
+}
