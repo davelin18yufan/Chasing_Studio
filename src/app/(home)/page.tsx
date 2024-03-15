@@ -39,7 +39,6 @@ export default async function HomePage() {
     <>
       <HeroSection
         title="Chasing Studio"
-        subTitle="Where your memories come to life. Capture your moments with our professional photography services."
         photos={coverPhotos}
       />
       <Intro

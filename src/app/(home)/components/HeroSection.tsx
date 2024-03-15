@@ -60,11 +60,9 @@ function GridImg({
 
 export default function HeroSection({
   title,
-  subTitle,
   photos,
 }: {
   title: string
-  subTitle: string
   photos: Photo[]
 }) {
   const [index, setIndex] = useState(0)
@@ -80,9 +78,9 @@ export default function HeroSection({
     return () => clearInterval(interval)
   }, [])
 
-  useMotionValueEvent(scrollY, "change", (latest) =>latest > 435 ? setAnimation(true) : setAnimation(false))
-
- 
+  useMotionValueEvent(scrollY, "change", (latest) =>
+    latest > 435 ? setAnimation(true) : setAnimation(false)
+  )
 
   return (
     <section id="cover" className={clsx("w-full h-screen", "relative")}>
@@ -97,13 +95,13 @@ export default function HeroSection({
       >
         <GridImgWrapper gridClasses="col-start-1 col-span-1 md:row-span-2">
           <GridImg
-            src="https://source.unsplash.com/random"
+            src={photos[0].url}
             alt={photos[0].id}
             show={index === 0}
             delay={200}
           />
           <GridImg
-            src="/assets/photographer.png"
+            src={photos[1].url}
             alt={photos[1].id}
             show={index === 1}
             delay={200}
@@ -112,14 +110,14 @@ export default function HeroSection({
         </GridImgWrapper>
         <GridImgWrapper gridClasses="col-start-2 col-span-1 md:row-span-2">
           <GridImg
-            src="https://source.unsplash.com/random"
-            alt={photos[0].id}
+            src={photos[2].url}
+            alt={photos[2].id}
             show={index === 0}
             delay={500}
           />
           <GridImg
-            src="/assets/photographer.png"
-            alt={photos[1].id}
+            src={photos[3].url}
+            alt={photos[3].id}
             show={index === 1}
             delay={500}
             absolute={true}
@@ -127,14 +125,14 @@ export default function HeroSection({
         </GridImgWrapper>
         <GridImgWrapper gridClasses="col-span-2 md:row-span-2 md:row-start-3 md:col-start-1">
           <GridImg
-            src="https://source.unsplash.com/random"
-            alt={photos[0].id}
+            src={photos[4].url}
+            alt={photos[4].id}
             show={index === 0}
             delay={300}
           />
           <GridImg
-            src="/assets/photographer.png"
-            alt={photos[1].id}
+            src={photos[5].url}
+            alt={photos[5].id}
             show={index === 1}
             delay={300}
             absolute={true}
@@ -142,14 +140,14 @@ export default function HeroSection({
         </GridImgWrapper>
         <GridImgWrapper gridClasses="col-span-2 row-start-3 row-span-2 md:row-start-1 md:row-span-4">
           <GridImg
-            src="https://source.unsplash.com/random"
-            alt={photos[0].id}
+            src={photos[6].url}
+            alt={photos[6].id}
             show={index === 0}
             delay={0}
           />
           <GridImg
-            src="/assets/photographer.png"
-            alt={photos[1].id}
+            src={photos[7].url}
+            alt={photos[7].id}
             show={index === 1}
             delay={0}
             absolute={true}
@@ -159,7 +157,11 @@ export default function HeroSection({
 
       {/* Title */}
       <div className="relative heroTitle">
-        <div className={`sticky top-1/2 -translate-y-1/2 z-20  text-center leading-tight md:leading-[1.2] ${animation && 'animate-neon'}`}>
+        <div
+          className={`sticky top-1/2 -translate-y-1/2 z-20  text-center leading-tight md:leading-[1.2] ${
+            animation && "animate-neon"
+          }`}
+        >
           <h1 className="text-6xl md:text-max font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
             {title}
           </h1>

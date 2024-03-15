@@ -34,7 +34,7 @@ export default function Contact() {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof contactSchema>) {
-    // TODO: directly passing messages to line -> webhook  
+    // TODO: directly passing messages to line -> webhook
     console.log(values)
   }
   return (
@@ -162,18 +162,14 @@ export default function Contact() {
             {/* QR Code */}
           </div>
           <div className="flex flex-col items-center justify-center gap-4">
-            <Link
-              href="https://liff.line.me/1645278921-kWRPP32q/?accountId=157lrzya"
-              className="text-lg text-slate-900 dark:text-slate-200 bg-gray-400 w-full text-center py-2 rounded-md shadow-sm"
-            >
-              Join Our Line
-            </Link>
-            <QRCodeSVG
-              value="https://liff.line.me/1645278921-kWRPP32q/?accountId=157lrzya"
-              size={200}
-              fgColor="green"
-              bgColor="transparent"
-            />
+            <a href="https://lin.ee/UcCpVtZ" className="hover:opacity-70">
+              <img
+                src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"
+                alt="加入好友"
+                height="20"
+              />
+            </a>
+            <img src="https://qr-official.line.me/gs/M_157lrzya_GW.png?oat_content=qr" className=""/>
           </div>
         </div>
       </div>
