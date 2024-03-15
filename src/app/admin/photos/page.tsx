@@ -1,78 +1,77 @@
-import { Fragment } from 'react';
-import PhotoUpload from '@/photo/PhotoUpload';
-import Link from 'next/link';
-import PhotoTiny from '@/photo/PhotoTiny';
-import { clsx } from 'clsx/lite';
-import FormWithConfirm from '@/components/FormWithConfirm';
-import SiteGrid from '@/components/SiteGrid';
-import { deletePhotoAction, syncPhotoExifDataAction } from '@/photo/actions';
+import { Fragment } from "react"
+import PhotoUpload from "@/photo/PhotoUpload"
+import Link from "next/link"
+import PhotoTiny from "@/photo/PhotoTiny"
+import { clsx } from "clsx/lite"
+import FormWithConfirm from "@/components/FormWithConfirm"
+import SiteGrid from "@/components/SiteGrid"
+import { deletePhotoAction, syncPhotoExifDataAction } from "@/photo/actions"
 import {
   pathForAdminPhotos,
   pathForPhoto,
   pathForAdminPhotoEdit,
-} from '@/site/paths';
-import { titleForPhoto } from '@/photo';
-import MorePhotos from '@/photo/MorePhotos';
+} from "@/site/paths"
+import { titleForPhoto } from "@/photo"
+import MorePhotos from "@/photo/MorePhotos"
 import {
   getStoragePhotoUrlsNoStore,
   getPhotosCached,
   getPhotosCountIncludingHiddenCached,
-} from '@/cache';
-import { AiOutlineEyeInvisible } from 'react-icons/ai';
+} from "@/cache"
+import { AiOutlineEyeInvisible } from "react-icons/ai"
 import {
   PaginationParams,
   getPaginationForSearchParams,
-} from '@/site/pagination';
-import AdminGrid from '@/admin/AdminGrid';
-import DeleteButton from '@/admin/DeleteButton';
-import EditButton from '@/admin/EditButton';
-import StorageUrls from '@/admin/StorageUrls';
-import { PRO_MODE_ENABLED } from '@/site/config';
-import SubmitButtonWithStatus from '@/components/SubmitButtonWithStatus';
-import IconGrSync from '@/site/IconGrSync';
+} from "@/site/pagination"
+import AdminGrid from "@/admin/AdminGrid"
+import DeleteButton from "@/admin/DeleteButton"
+import EditButton from "@/admin/EditButton"
+import StorageUrls from "@/admin/StorageUrls"
+import { PRO_MODE_ENABLED } from "@/site/config"
+import SubmitButtonWithStatus from "@/components/SubmitButtonWithStatus"
+import IconGrSync from "@/site/IconGrSync"
 
-const DEBUG_PHOTO_BLOBS = false;
+const DEBUG_PHOTO_BLOBS = false
 
 export default async function AdminPhotosPage({
   searchParams,
 }: PaginationParams) {
-  const { offset, limit } = getPaginationForSearchParams(searchParams);
+  const { offset, limit } = getPaginationForSearchParams(searchParams)
 
-  const [
-    photos,
-    count,
-    blobPhotoUrls,
-  ] = await Promise.all([
-    getPhotosCached({ includeHidden: true, sortBy: 'createdAt', limit }),
+  const [photos, count, blobPhotoUrls] = await Promise.all([
+    getPhotosCached({ includeHidden: true, sortBy: "createdAt", limit }),
     getPhotosCountIncludingHiddenCached(),
     DEBUG_PHOTO_BLOBS ? getStoragePhotoUrlsNoStore() : [],
-  ]);
+  ])
 
-  const showMorePhotos = count > photos.length;
+  const showMorePhotos = count > photos.length
 
   return (
     <SiteGrid
       contentMain={
         <div className="space-y-8">
           <PhotoUpload shouldResize={!PRO_MODE_ENABLED} />
-          {blobPhotoUrls.length > 0 &&
-            <div className={clsx(
-              'border-b pb-6',
-              'border-gray-200 dark:border-gray-700',
-            )}>
+          {blobPhotoUrls.length > 0 && (
+            <div
+              className={clsx(
+                "border-b pb-6",
+                "border-shironezumi dark:border-gray-700"
+              )}
+            >
               <StorageUrls
                 title={`Photo Blobs (${blobPhotoUrls.length})`}
                 urls={blobPhotoUrls}
               />
-            </div>}
+            </div>
+          )}
           <div className="space-y-4">
             <AdminGrid>
-              {photos.map(photo =>
+              {photos.map((photo) => (
                 <Fragment key={photo.id}>
                   <PhotoTiny
                     className={clsx(
-                      'rounded-sm overflow-hidden',
-                      'border border-gray-200 dark:border-gray-800',
+                      "rounded-sm overflow-hidden",
+                      "border border-shironezumi dark:border-gray-800"
                     )}
                     photo={photo}
                   />
@@ -82,44 +81,49 @@ export default async function AdminPhotosPage({
                       href={pathForPhoto(photo)}
                       className="lg:w-[50%] flex items-center gap-2"
                     >
-                      <span className={clsx(
-                        'inline-flex items-center gap-2',
-                        photo.hidden && 'text-dim',
-                      )}>
-                        <span>{photo.title || 'Untitled'}</span>
-                        {photo.hidden &&
+                      <span
+                        className={clsx(
+                          "inline-flex items-center gap-2",
+                          photo.hidden && "text-dim"
+                        )}
+                      >
+                        <span>{photo.title || "Untitled"}</span>
+                        {photo.hidden && (
                           <AiOutlineEyeInvisible
                             className="translate-y-[0.25px]"
                             size={16}
-                          />}
+                          />
+                        )}
                       </span>
-                      {photo.priorityOrder !== null &&
-                        <span className={clsx(
-                          'text-xs leading-none px-1.5 py-1 rounded-sm',
-                          'dark:text-gray-300',
-                          'bg-gray-100 dark:bg-gray-800',
-                        )}>
+                      {photo.priorityOrder !== null && (
+                        <span
+                          className={clsx(
+                            "text-xs leading-none px-1.5 py-1 rounded-sm",
+                            "dark:text-hainezumi",
+                            "bg-gofun dark:bg-gray-800"
+                          )}
+                        >
                           {photo.priorityOrder}
-                        </span>}
+                        </span>
+                      )}
                     </Link>
-                    <div className={clsx(
-                      'lg:w-[50%] uppercase',
-                      'text-dim',
-                    )}>
+                    <div className={clsx("lg:w-[50%] uppercase", "text-dim")}>
                       {photo.takenAtNaive}
                     </div>
                   </div>
-                  <div className={clsx(
-                    'flex flex-nowrap',
-                    'gap-2 sm:gap-3 items-center',
-                  )}>
+                  <div
+                    className={clsx(
+                      "flex flex-nowrap",
+                      "gap-2 sm:gap-3 items-center"
+                    )}
+                  >
                     <EditButton href={pathForAdminPhotoEdit(photo)} />
                     <FormWithConfirm
                       action={syncPhotoExifDataAction}
                       confirmText={
-                        'Are you sure you want to overwrite EXIF data ' +
+                        "Are you sure you want to overwrite EXIF data " +
                         `for "${titleForPhoto(photo)}" from source file? ` +
-                        'This action cannot be undone.'
+                        "This action cannot be undone."
                       }
                     >
                       <input type="hidden" name="id" value={photo.id} />
@@ -134,19 +138,25 @@ export default async function AdminPhotosPage({
                       action={deletePhotoAction}
                       confirmText={
                         // eslint-disable-next-line max-len
-                        `Are you sure you want to delete "${titleForPhoto(photo)}?"`}
+                        `Are you sure you want to delete "${titleForPhoto(
+                          photo
+                        )}?"`
+                      }
                     >
                       <input type="hidden" name="id" value={photo.id} />
                       <input type="hidden" name="url" value={photo.url} />
                       <DeleteButton />
                     </FormWithConfirm>
                   </div>
-                </Fragment>)}
+                </Fragment>
+              ))}
             </AdminGrid>
-            {showMorePhotos &&
-              <MorePhotos path={pathForAdminPhotos(offset + 1)} />}
+            {showMorePhotos && (
+              <MorePhotos path={pathForAdminPhotos(offset + 1)} />
+            )}
           </div>
-        </div>}
+        </div>
+      }
     />
-  );
+  )
 }

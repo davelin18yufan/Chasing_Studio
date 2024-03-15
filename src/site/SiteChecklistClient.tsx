@@ -1,23 +1,17 @@
-'use client';
+"use client"
 
-import { ComponentProps, ReactNode, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
-import { clsx } from 'clsx/lite';
-import ChecklistRow from '../components/ChecklistRow';
-import { FiExternalLink } from 'react-icons/fi';
-import {
-  BiCog,
-  BiCopy,
-  BiData,
-  BiLockAlt,
-  BiPencil,
-} from 'react-icons/bi';
-import IconButton from '@/components/IconButton';
-import Checklist from '@/components/Checklist';
-import { toastSuccess } from '@/toast';
-import { ConfigChecklistStatus } from './config';
-import StatusIcon from '@/components/StatusIcon';
-import { labelForStorage } from '@/services/storage';
+import { ComponentProps, ReactNode, useTransition } from "react"
+import { useRouter } from "next/navigation"
+import { clsx } from "clsx/lite"
+import ChecklistRow from "../components/ChecklistRow"
+import { FiExternalLink } from "react-icons/fi"
+import { BiCog, BiCopy, BiData, BiLockAlt, BiPencil } from "react-icons/bi"
+import IconButton from "@/components/IconButton"
+import Checklist from "@/components/Checklist"
+import { toastSuccess } from "@/toast"
+import { ConfigChecklistStatus } from "./config"
+import StatusIcon from "@/components/StatusIcon"
+import { labelForStorage } from "@/services/storage"
 
 export default function SiteChecklistClient({
   hasPostgres,
@@ -44,84 +38,79 @@ export default function SiteChecklistClient({
 }: ConfigChecklistStatus & {
   showRefreshButton?: boolean
 }) {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [isPendingPage, startTransitionPage] = useTransition();
+  const [isPendingPage, startTransitionPage] = useTransition()
 
   const refreshPage = () => {
-    startTransitionPage(router.refresh);
-  };
+    startTransitionPage(router.refresh)
+  }
 
-  const renderLink = (href: string, text: string, external = true) =>
+  const renderLink = (href: string, text: string, external = true) => (
     <>
-      <a {...{
-        href,
-        ...external && { target: '_blank', rel: 'noopener noreferrer' },
-        className: clsx(
-          'underline hover:no-underline',
-        ),
-      }}>
+      <a
+        {...{
+          href,
+          ...(external && { target: "_blank", rel: "noopener noreferrer" }),
+          className: clsx("underline hover:no-underline"),
+        }}
+      >
         {text}
       </a>
-      {external &&
+      {external && (
         <>
           &nbsp;
-          <FiExternalLink
-            size={14}
-            className='inline translate-y-[-1.5px]'
-          />
-        </>}
-    </>;
+          <FiExternalLink size={14} className="inline translate-y-[-1.5px]" />
+        </>
+      )}
+    </>
+  )
 
-  const renderCopyButton = (label: string, text: string, subtle?: boolean) =>
+  const renderCopyButton = (label: string, text: string, subtle?: boolean) => (
     <IconButton
       icon={<BiCopy size={15} />}
-      className={clsx(subtle && 'text-gray-300 dark:text-gray-700')}
+      className={clsx(subtle && "text-hainezumi dark:text-gray-700")}
       onClick={() => {
-        navigator.clipboard.writeText(text);
-        toastSuccess(`${label} copied to clipboard`);
+        navigator.clipboard.writeText(text)
+        toastSuccess(`${label} copied to clipboard`)
       }}
-    />;
+    />
+  )
 
-  const renderEnvVar = (variable: string) =>
-    <div
-      key={variable}
-      className="overflow-x-scroll overflow-y-hidden"
-    >
+  const renderEnvVar = (variable: string) => (
+    <div key={variable} className="overflow-x-scroll overflow-y-hidden">
       <span className="inline-flex items-center gap-1">
-        <span className={clsx(
-          'text-medium',
-          'rounded-sm',
-          'bg-gray-100 dark:bg-gray-800',
-        )}>
+        <span
+          className={clsx(
+            "text-medium",
+            "rounded-sm",
+            "bg-gofun dark:bg-gray-800"
+          )}
+        >
           `{variable}`
         </span>
         {renderCopyButton(variable, variable, true)}
       </span>
-    </div>;
+    </div>
+  )
 
-  const renderEnvVars = (variables: string[]) =>
-    <div className="py-1 space-y-1">
-      {variables.map(renderEnvVar)}
-    </div>;
+  const renderEnvVars = (variables: string[]) => (
+    <div className="py-1 space-y-1">{variables.map(renderEnvVar)}</div>
+  )
 
   const renderSubStatus = (
-    type: ComponentProps<typeof StatusIcon>['type'],
-    label: ReactNode,
-  ) =>
+    type: ComponentProps<typeof StatusIcon>["type"],
+    label: ReactNode
+  ) => (
     <div className="flex gap-1 -translate-x-1">
       <StatusIcon {...{ type }} />
-      <span>
-        {label}
-      </span>
-    </div>;
+      <span>{label}</span>
+    </div>
+  )
 
   return (
     <div className="text-sm max-w-xl space-y-6 w-full">
-      <Checklist
-        title="Storage"
-        icon={<BiData size={16} />}
-      >
+      <Checklist title="Storage" icon={<BiData size={16} />}>
         <ChecklistRow
           title="Setup database"
           status={hasPostgres}
@@ -129,82 +118,70 @@ export default function SiteChecklistClient({
         >
           {renderLink(
             // eslint-disable-next-line max-len
-            'https://vercel.com/docs/storage/vercel-postgres/quickstart#create-a-postgres-database',
-            'Create Vercel Postgres store',
-          )}
-          {' '}
+            "https://vercel.com/docs/storage/vercel-postgres/quickstart#create-a-postgres-database",
+            "Create Vercel Postgres store"
+          )}{" "}
           and connect to project
         </ChecklistRow>
         <ChecklistRow
-          title={!hasStorage
-            ? 'Setup storage (one of the following)'
-            : hasMultipleStorageProviders
-              // eslint-disable-next-line max-len
-              ? `Setup storage (new uploads go to: ${labelForStorage(currentStorage)})`
-              : 'Setup storage'}
+          title={
+            !hasStorage
+              ? "Setup storage (one of the following)"
+              : hasMultipleStorageProviders
+              ? // eslint-disable-next-line max-len
+                `Setup storage (new uploads go to: ${labelForStorage(
+                  currentStorage
+                )})`
+              : "Setup storage"
+          }
           status={hasStorage}
           isPending={isPendingPage}
         >
           {renderSubStatus(
-            hasVercelBlobStorage ? 'checked' : 'optional',
+            hasVercelBlobStorage ? "checked" : "optional",
             <>
-              {labelForStorage('vercel-blob')}:
-              {' '}
+              {labelForStorage("vercel-blob")}:{" "}
               {renderLink(
                 // eslint-disable-next-line max-len
-                'https://vercel.com/docs/storage/vercel-blob/quickstart#create-a-blob-store',
-                'create store',
-              )}
-              {' '} 
+                "https://vercel.com/docs/storage/vercel-blob/quickstart#create-a-blob-store",
+                "create store"
+              )}{" "}
               and connect to project
-            </>,
+            </>
           )}
           {renderSubStatus(
-            hasCloudflareR2Storage ? 'checked' : 'optional',
+            hasCloudflareR2Storage ? "checked" : "optional",
             <>
-              {labelForStorage('cloudflare-r2')}:
-              {' '}
+              {labelForStorage("cloudflare-r2")}:{" "}
               {renderLink(
-                'https://github.com/sambecker/exif-photo-blog#cloudflare-r2',
-                'create/configure bucket',
+                "https://github.com/sambecker/exif-photo-blog#cloudflare-r2",
+                "create/configure bucket"
               )}
             </>
           )}
           {renderSubStatus(
-            hasAwsS3Storage ? 'checked' : 'optional',
+            hasAwsS3Storage ? "checked" : "optional",
             <>
-              {labelForStorage('aws-s3')}:
-              {' '}
+              {labelForStorage("aws-s3")}:{" "}
               {renderLink(
-                'https://github.com/sambecker/exif-photo-blog#aws-s3',
-                'create/configure bucket',
+                "https://github.com/sambecker/exif-photo-blog#aws-s3",
+                "create/configure bucket"
               )}
             </>
           )}
         </ChecklistRow>
       </Checklist>
-      <Checklist
-        title="Authentication"
-        icon={<BiLockAlt size={16} />}
-      >
+      <Checklist title="Authentication" icon={<BiLockAlt size={16} />}>
         <ChecklistRow
           title="Setup admin user"
           status={hasAdminUser}
           isPending={isPendingPage}
         >
-          Store admin email/password
-          {' '}
-          in environment variables:
-          {renderEnvVars([
-            'ADMIN_EMAIL',
-            'ADMIN_PASSWORD',
-          ])}
+          Store admin email/password in environment variables:
+          {renderEnvVars(["ADMIN_EMAIL", "ADMIN_PASSWORD"])}
         </ChecklistRow>
       </Checklist>
-      <Checklist
-        title="Content"
-        icon={<BiPencil size={16} />}
-      >
+      <Checklist title="Content" icon={<BiPencil size={16} />}>
         <ChecklistRow
           title="Add title"
           status={hasTitle}
@@ -212,7 +189,7 @@ export default function SiteChecklistClient({
           optional
         >
           Store in environment variable (used in page titles):
-          {renderEnvVars(['NEXT_PUBLIC_SITE_TITLE'])}
+          {renderEnvVars(["NEXT_PUBLIC_SITE_TITLE"])}
         </ChecklistRow>
         <ChecklistRow
           title="Add custom domain"
@@ -221,22 +198,19 @@ export default function SiteChecklistClient({
           optional
         >
           Store in environment variable (displayed in top-right nav):
-          {renderEnvVars(['NEXT_PUBLIC_SITE_DOMAIN'])}
+          {renderEnvVars(["NEXT_PUBLIC_SITE_DOMAIN"])}
         </ChecklistRow>
       </Checklist>
-      <Checklist
-        title="Settings"
-        icon={<BiCog size={16} />}
-      >
+      <Checklist title="Settings" icon={<BiCog size={16} />}>
         <ChecklistRow
           title="Pro Mode"
           status={isProModeEnabled}
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {'"1"'} to enable
-          higher quality image storage:
-          {renderEnvVars(['NEXT_PUBLIC_PRO_MODE'])}
+          Set environment variable to {'"1"'} to enable higher quality image
+          storage:
+          {renderEnvVars(["NEXT_PUBLIC_PRO_MODE"])}
         </ChecklistRow>
         <ChecklistRow
           title="Image Blur"
@@ -244,9 +218,9 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {'"1"'} to prevent
-          image blur data being stored and displayed
-          {renderEnvVars(['NEXT_PUBLIC_BLUR_DISABLED'])}
+          Set environment variable to {'"1"'} to prevent image blur data being
+          stored and displayed
+          {renderEnvVars(["NEXT_PUBLIC_BLUR_DISABLED"])}
         </ChecklistRow>
         <ChecklistRow
           title="Geo Privacy"
@@ -254,9 +228,9 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {'"1"'} to disable
-          collection/display of location-based data
-          {renderEnvVars(['NEXT_PUBLIC_GEO_PRIVACY'])}
+          Set environment variable to {'"1"'} to disable collection/display of
+          location-based data
+          {renderEnvVars(["NEXT_PUBLIC_GEO_PRIVACY"])}
         </ChecklistRow>
         <ChecklistRow
           title="Priority Order"
@@ -264,9 +238,9 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {'"1"'} to prevent
-          priority order photo field affecting photo order
-          {renderEnvVars(['NEXT_PUBLIC_IGNORE_PRIORITY_ORDER'])}
+          Set environment variable to {'"1"'} to prevent priority order photo
+          field affecting photo order
+          {renderEnvVars(["NEXT_PUBLIC_IGNORE_PRIORITY_ORDER"])}
         </ChecklistRow>
         <ChecklistRow
           title="Public API"
@@ -274,9 +248,8 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {'"1"'} to enable
-          a public API available at <code>/api</code>:
-          {renderEnvVars(['NEXT_PUBLIC_PUBLIC_API'])}
+          Set environment variable to {'"1"'} to enable a public API available
+          at <code>/api</code>:{renderEnvVars(["NEXT_PUBLIC_PUBLIC_API"])}
         </ChecklistRow>
         <ChecklistRow
           title="Show Repo Link"
@@ -285,7 +258,7 @@ export default function SiteChecklistClient({
           optional
         >
           Set environment variable to {'"1"'} to hide footer link:
-          {renderEnvVars(['NEXT_PUBLIC_HIDE_REPO_LINK'])}
+          {renderEnvVars(["NEXT_PUBLIC_HIDE_REPO_LINK"])}
         </ChecklistRow>
         <ChecklistRow
           title="Show Fujifilm simulations"
@@ -293,9 +266,9 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {'"1"'} to prevent
-          simulations showing up in <code>/grid</code> sidebar:
-          {renderEnvVars(['NEXT_PUBLIC_HIDE_FILM_SIMULATIONS'])}
+          Set environment variable to {'"1"'} to prevent simulations showing up
+          in <code>/grid</code> sidebar:
+          {renderEnvVars(["NEXT_PUBLIC_HIDE_FILM_SIMULATIONS"])}
         </ChecklistRow>
         <ChecklistRow
           title="Show EXIF data"
@@ -304,7 +277,7 @@ export default function SiteChecklistClient({
           optional
         >
           Set environment variable to {'"1"'} to hide EXIF data:
-          {renderEnvVars(['NEXT_PUBLIC_HIDE_EXIF_DATA'])}
+          {renderEnvVars(["NEXT_PUBLIC_HIDE_EXIF_DATA"])}
         </ChecklistRow>
         <ChecklistRow
           title={`Grid Aspect Ratio: ${gridAspectRatio}`}
@@ -312,10 +285,9 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to any number to enforce aspect ratio
-          {' '}
+          Set environment variable to any number to enforce aspect ratio{" "}
           (defaults to {'"1"'}, i.e., square)—set to {'"0"'} to disable:
-          {renderEnvVars(['NEXT_PUBLIC_GRID_ASPECT_RATIO'])}
+          {renderEnvVars(["NEXT_PUBLIC_GRID_ASPECT_RATIO"])}
         </ChecklistRow>
         <ChecklistRow
           title="Legacy OG Text Alignment"
@@ -323,21 +295,20 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {'"BOTTOM"'} to
-          keep OG image text bottom aligned (default is top):
-          {renderEnvVars(['NEXT_PUBLIC_OG_TEXT_ALIGNMENT'])}
+          Set environment variable to {'"BOTTOM"'} to keep OG image text bottom
+          aligned (default is top):
+          {renderEnvVars(["NEXT_PUBLIC_OG_TEXT_ALIGNMENT"])}
         </ChecklistRow>
       </Checklist>
-      {showRefreshButton &&
+      {showRefreshButton && (
         <div className="py-4 space-y-4">
-          <button onClick={refreshPage}>
-            Check
-          </button>
-        </div>}
+          <button onClick={refreshPage}>Check</button>
+        </div>
+      )}
       <div className="px-11 text-dim">
-        Changes to environment variables require a redeploy
-        or reboot of local dev server
+        Changes to environment variables require a redeploy or reboot of local
+        dev server
       </div>
     </div>
-  );
+  )
 }

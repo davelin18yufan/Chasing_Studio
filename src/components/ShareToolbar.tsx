@@ -1,4 +1,4 @@
-function BookmarkIcon(props:any) {
+function BookmarkIcon(props: any) {
   return (
     <svg
       {...props}
@@ -17,7 +17,7 @@ function BookmarkIcon(props:any) {
   )
 }
 
-function ClapperboardIcon(props:any) {
+function ClapperboardIcon(props: any) {
   return (
     <svg
       {...props}
@@ -39,7 +39,7 @@ function ClapperboardIcon(props:any) {
   )
 }
 
-function MoreHorizontalIcon(props:any) {
+function MoreHorizontalIcon(props: any) {
   return (
     <svg
       {...props}
@@ -60,7 +60,7 @@ function MoreHorizontalIcon(props:any) {
   )
 }
 
-function ReplyIcon(props:any) {
+function ReplyIcon(props: any) {
   return (
     <svg
       {...props}
@@ -80,7 +80,7 @@ function ReplyIcon(props:any) {
   )
 }
 
-function ShareIcon(props:any) {
+function ShareIcon(props: any) {
   return (
     <svg
       {...props}
@@ -105,16 +105,16 @@ export default function ShareToolbar() {
   return (
     <div className="flex items-center space-x-4 mb-6 bg-highlight">
       <div className="flex items-center space-x-2">
-        <ClapperboardIcon className="h-6 w-6 text-gray-500" />
+        <ClapperboardIcon className="h-6 w-6 text-hai" />
         <span className="text-gray-700">90</span>
       </div>
       <div className="flex items-center space-x-2">
-        <ReplyIcon className="h-6 w-6 text-gray-500" />
+        <ReplyIcon className="h-6 w-6 text-hai" />
         <span className="text-gray-700">1</span>
       </div>
-      <BookmarkIcon className="h-6 w-6 text-gray-500" />
-      <ShareIcon className="h-6 w-6 text-gray-500" />
-      <MoreHorizontalIcon className="h-6 w-6 text-gray-500" />
+      <BookmarkIcon className="h-6 w-6 text-hai" />
+      <ShareIcon className="h-6 w-6 text-hai" />
+      <MoreHorizontalIcon className="h-6 w-6 text-hai" />
     </div>
   )
 }

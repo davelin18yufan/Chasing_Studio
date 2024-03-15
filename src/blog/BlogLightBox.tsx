@@ -26,7 +26,7 @@ function BlogCard({ blog }: { blog: Blog }) {
           "px-2 gap-10",
           "absolute left-0 top-[50%] -translate-y-2",
           "w-full z-10",
-          "text-gray-100 bg-transparent pointer-events-none",
+          "text-gofun bg-transparent pointer-events-none",
           "bg-clip-text text-transparent bg-gradient-to-r from-stone-300 to-teal-700"
         )}
       >

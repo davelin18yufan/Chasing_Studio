@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
-import { UseEmojiPickerType } from '@udecode/plate-emoji';
+import React, { ReactNode } from "react"
+import { UseEmojiPickerType } from "@udecode/plate-emoji"
 
 export type EmojiPickerSearchBarProps = {
-  children: ReactNode;
-} & Pick<UseEmojiPickerType, 'i18n' | 'searchValue' | 'setSearch'>;
+  children: ReactNode
+} & Pick<UseEmojiPickerType, "i18n" | "searchValue" | "setSearch">
 
 export function EmojiPickerSearchBar({
   i18n,
@@ -19,12 +19,12 @@ export function EmojiPickerSearchBar({
           placeholder={i18n.search}
           autoComplete="off"
           aria-label="Search"
-          className="block w-full appearance-none rounded-lg border-0 bg-gray-100 px-8 py-2 outline-none"
+          className="block w-full appearance-none rounded-lg border-0 bg-gofun px-8 py-2 outline-none"
           onChange={(event) => setSearch(event.target.value)}
           value={searchValue}
         />
         {children}
       </div>
     </div>
-  );
+  )
 }

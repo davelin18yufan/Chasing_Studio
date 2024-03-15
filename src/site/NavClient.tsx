@@ -92,7 +92,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
               <Button
                 className={`navItem ${
                   isActive &&
-                  "text-gray-900 bg-gray-200 dark:bg-gray-200 dark:text-gray-900"
+                  "text-kachi bg-shironezumi dark:bg-shironezumi dark:text-kachi"
                 }`}
               >
                 {item.label}

@@ -7,7 +7,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTrigger,
-  SheetClose
+  SheetClose,
 } from "@/components/ui/sheet"
 import ViewSwitcher, { SwitcherSelection } from "@/site/ViewSwitcher"
 import { IoCarSport } from "react-icons/io5"
@@ -76,7 +76,7 @@ export default function NavMobile({
                 <Link href={item.route} key={item.label}>
                   <Button
                     className={`navItem w-full ${
-                      isActive && "text-gray-900 bg-gray-200"
+                      isActive && "text-kachi bg-shironezumi"
                     }`}
                   >
                     {item.label}

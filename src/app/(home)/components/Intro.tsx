@@ -28,7 +28,7 @@ export default function Intro({
             transition={{ duration: 3, ease: "easeOut" }}
             className={clsx(
               "md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed",
-              "inline bg-gradient-to-b from-gray-500 to-gray-500 bg-no-repeat bg-clip-text bg-left",
+              "inline bg-gradient-to-b from-hai to-hai bg-no-repeat bg-clip-text bg-left",
               "text-transparent"
             )}
           >

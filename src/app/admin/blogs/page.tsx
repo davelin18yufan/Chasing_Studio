@@ -85,7 +85,7 @@ export default async function AdminArticlePage({
                   <PhotoTiny
                     className={clsx(
                       "rounded-sm overflow-hidden",
-                      "border border-gray-200 dark:border-gray-800"
+                      "border border-shironezumi dark:border-gray-800"
                     )}
                     id={blog.id}
                     blog={blog}

@@ -1,12 +1,12 @@
-import { clsx } from 'clsx/lite';
+import { clsx } from "clsx/lite"
 
-const SIZE_DEFAULT = 12;
+const SIZE_DEFAULT = 12
 
-export type SpinnerColor = 'text' | 'dim' | 'light-gray';
+export type SpinnerColor = "text" | "dim" | "light-gray"
 
 export default function Spinner({
   size = SIZE_DEFAULT,
-  color = 'light-gray',
+  color = "light-gray",
   className,
 }: {
   size?: number
@@ -17,13 +17,11 @@ export default function Spinner({
     <span
       className={clsx(
         className,
-        color === 'light-gray' && 
-          'text-gray-300 dark:text-gray-600',
-        color === 'dim' &&
-          'text-dim',
+        color === "light-gray" && "text-hainezumi dark:text-namari",
+        color === "dim" && "text-dim"
       )}
       style={{
-        display: 'inline-flex',
+        display: "inline-flex",
         width: size,
         height: size,
       }}
@@ -34,7 +32,7 @@ export default function Spinner({
         viewBox="0 0 12 12"
         fill="none"
         stroke="currentColor"
-        strokeWidth={SIZE_DEFAULT / size * 2}
+        strokeWidth={(SIZE_DEFAULT / size) * 2}
         xmlns="http://www.w3.org/2000/svg"
         className="animate-rotate-pulse"
       >
@@ -44,5 +42,5 @@ export default function Spinner({
         />
       </svg>
     </span>
-  );
+  )
 }

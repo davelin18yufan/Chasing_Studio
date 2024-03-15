@@ -1,15 +1,15 @@
-'use client';
+"use client"
 
-import { blobToImage } from '@/utility/blob';
-import { useRef, useState } from 'react';
-import { CopyExif } from '@/lib/CopyExif';
-import exifr from 'exifr';
-import { clsx } from 'clsx/lite';
-import Spinner from './Spinner';
-import { ACCEPTED_PHOTO_FILE_TYPES } from '@/photo';
-import { FiUploadCloud } from 'react-icons/fi';
+import { blobToImage } from "@/utility/blob"
+import { useRef, useState } from "react"
+import { CopyExif } from "@/lib/CopyExif"
+import exifr from "exifr"
+import { clsx } from "clsx/lite"
+import Spinner from "./Spinner"
+import { ACCEPTED_PHOTO_FILE_TYPES } from "@/photo"
+import { FiUploadCloud } from "react-icons/fi"
 
-const INPUT_ID = 'file';
+const INPUT_ID = "file"
 
 export default function ImageInput({
   onStart,
@@ -235,8 +235,8 @@ export default function ImageInput({
       <canvas
         ref={ref}
         className={clsx(
-          "bg-gray-50 dark:bg-gray-900/50 rounded-md",
-          "border border-gray-200 dark:border-gray-800",
+          "bg-gray-50 dark:bg-kachi/50 rounded-md",
+          "border border-shironezumi dark:border-gray-800",
           "w-[400px]",
           (!image || !debug) && "hidden"
         )}

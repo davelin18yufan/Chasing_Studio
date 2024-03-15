@@ -159,8 +159,8 @@ export default function Contact() {
                 </Button>
               </form>
             </Form>
-            {/* QR Code */}
           </div>
+          {/* QR Code */}
           <div className="flex flex-col items-center justify-center gap-4">
             <a href="https://lin.ee/UcCpVtZ" className="hover:opacity-70">
               <img

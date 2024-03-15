@@ -32,6 +32,20 @@ module.exports = {
       'max': '4rem',
     },
     extend: {
+      colors: {
+        // https://nipponcolors.com/
+        'harakurenai': '#D0104C', // red-500
+        'kurenai': '#CB1B45', // red-400
+        'kon': '#0F2540', // slate-800
+        'kachi': '#08192D', // slate-900
+        'shironeri': '#FCFAF2', // white
+        'gofun': '#FFFFFB', // gray-100
+        'shironezumi': '#BDC0BA', // gray-200
+        'hainezumi': '#9D9FA3', // gray-300
+        'ginnezumi': '#91989F', // gray-400
+        'hai': '#828282', // gray-500
+        'namari': '#787878' // gray-600
+      },
       fontFamily: {
         'mono': ['var(--font-ibm-plex-mono)', ...defaultTheme.fontFamily.mono],
       },

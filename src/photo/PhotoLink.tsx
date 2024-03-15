@@ -42,7 +42,7 @@ export default function PhotoLink({
       {children}
     </Link>
   ) : (
-    <span className="text-gray-300 dark:text-gray-700 cursor-default">
+    <span className="text-hainezumi dark:text-gray-700 cursor-default">
       {children}
     </span>
   )

@@ -18,12 +18,14 @@ interface Props {
 
 const variants: Variants = {
   offView: {
-    x: "-50vw",
+    x: "-100",
     rotate: -90,
+    scale: 0
   },
   onView: {
     x: 0,
     rotate: 0,
+    scale: 1,
     transition: {
       type: "spring",
       bounce: 0.4,
@@ -42,12 +44,12 @@ export default function BlogCard({ blog }: Props) {
       initial="offView"
       whileInView="onView"
       variants={variants}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true }}
     >
       <Card
         className={clsx(
           "border-transparent rounded-md outline-none",
-          "hover:bg-gray-300 hover:shadow-lg dark:hover:bg-slate-800 dark:border-gray-200/50",
+          "hover:bg-shironezumi hover:shadow-lg dark:hover:bg-kon dark:border-shironezumi/50",
           "relative overflow-hidden blink"
         )}
       >

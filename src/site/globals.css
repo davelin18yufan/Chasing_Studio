@@ -11,7 +11,7 @@
   body {
     @apply text-main
       font-mono text-sm md:text-base
-      bg-gray-100 dark:bg-slate-900;
+      bg-gofun dark:bg-kachi;
   }
 
   /* Forms */
@@ -29,8 +29,8 @@
   textarea {
     @apply px-2.5 py-2
       border rounded-md
-      bg-white dark:bg-black
-      border-gray-200 dark:border-gray-700
+      bg-shironeri dark:bg-black
+      border-shironezumi dark:border-gray-700
       font-mono text-base leading-tight
       min-h-[2.4rem];
   }
@@ -45,28 +45,28 @@
   input[type="text"],
   input[type="email"],
   input[type="password"] {
-    @apply read-only:bg-gray-100
-      dark:read-only:bg-gray-900 dark:read-only:text-gray-400;
+    @apply read-only:bg-gofun
+      dark:read-only:bg-kachi dark:read-only:text-ginnezumi;
   }
   /* Required for readonly behavior on <select /> */
   .disabled-select {
     @apply text-medium
-      bg-gray-100 dark:bg-gray-900
+      bg-gofun dark:bg-kachi
       pointer-events-none;
   }
   input[type="file"] {
     @apply block font-mono w-full text-medium
-      file:bg-white dark:file:bg-gray-950
+      file:bg-shironeri dark:file:bg-gray-950
       file:mr-2 file:my-2 file:px-4 file:py-1.5 file:rounded-md
       file:border-solid file:border
-      file:border-gray-200 dark:file:border-gray-700
+      file:border-shironezumi dark:file:border-gray-700
       file:cursor-pointer
       file:shadow-sm
-      file:active:bg-gray-100
-      file:disabled:bg-gray-100
-      file:hover:border-gray-300 file:dark:hover:border-gray-600
-      file:hover:disabled:border-gray-200 file:dark:hover:disabled:border-gray-700
-      file:active:disabled:bg-white
+      file:active:bg-gofun
+      file:disabled:bg-gofun
+      file:hover:border-hainezumi file:dark:hover:border-namari
+      file:hover:disabled:border-shironezumi file:dark:hover:disabled:border-gray-700
+      file:active:disabled:bg-shironeri
       file:hover:disabled:cursor-not-allowed;
   }
   input[type="checkbox"] {
@@ -74,7 +74,7 @@
   }
   input.error,
   select.error {
-    @apply border-red-500 dark:border-red-400;
+    @apply border-harakurenai dark:border-kurenai;
   }
   button,
   .button {
@@ -84,26 +84,26 @@
       px-4
       text-base
       shadow-sm
-      active:bg-gray-100 dark:active:bg-gray-900
-      hover:border-gray-300 dark:hover:border-gray-600
+      active:bg-gofun dark:active:bg-kachi
+      hover:border-hainezumi dark:hover:border-namari
       disabled:cursor-not-allowed
-      disabled:bg-gray-100 dark:disabled:bg-gray-900
-      disabled:border-gray-200 disabled:dark:border-gray-700;
+      disabled:bg-gofun dark:disabled:bg-kachi
+      disabled:border-shironezumi disabled:dark:border-gray-700;
   }
   button.subtle,
   .button.subtle {
     @apply disabled:shadow-none
       disabled:bg-transparent dark:disabled:bg-transparent
-      disabled:border-gray-100 dark:disabled:border-gray-900;
+      disabled:border-gofun dark:disabled:border-kachi;
   }
   button.primary,
   .button.primary {
     @apply text-invert
-      bg-gray-900 dark:bg-gray-100
-      disabled:bg-gray-900 disabled:dark:bg-gray-100
-      border-gray-900 dark:border-gray-100
+      bg-kachi dark:bg-gofun
+      disabled:bg-kachi disabled:dark:bg-gofun
+      border-kachi dark:border-gofun
       active:bg-gray-700 active:border-gray-700
-      active:dark:bg-gray-300 active:dark:border-gray-300
+      active:dark:bg-hainezumi active:dark:border-hainezumi
       shadow-none;
   }
   button.primary.disabled,
@@ -116,65 +116,65 @@
   }
   a,
   .link {
-    @apply hover:text-gray-600
-      hover:dark:text-gray-400;
+    @apply hover:text-namari
+      hover:dark:text-ginnezumi;
   }
-  ul,li {
+  ul,
+  li {
     @apply list-none block;
   }
   /* Common Utilities: Text */
   .text-main {
-    @apply text-gray-900 dark:text-gray-100;
+    @apply text-kachi dark:text-gofun;
   }
   .text-invert {
-    @apply text-gray-100 dark:text-gray-900;
+    @apply text-gofun dark:text-kachi;
   }
   .text-medium {
-    @apply text-gray-500 dark:text-gray-400;
+    @apply text-hai dark:text-ginnezumi;
   }
   .text-dim {
-    @apply text-gray-400 dark:text-gray-500;
+    @apply text-ginnezumi dark:text-hai;
   }
   .text-extra-dim {
-    @apply text-gray-400/80 dark:text-gray-400/50;
+    @apply text-ginnezumi/80 dark:text-ginnezumi/50;
   }
   .text-icon {
-    @apply text-gray-800 dark:text-gray-200;
+    @apply text-gray-800 dark:text-shironezumi;
   }
   .text-error {
-    @apply text-red-500 dark:text-red-400;
+    @apply text-harakurenai dark:text-kurenai;
   }
   /* Common Utilities: Background */
   .bg-content,
   .bg-popover {
-    @apply bg-gray-100 dark:bg-slate-900;
+    @apply bg-gofun dark:bg-kachi;
   }
   .bg-primary {
-    @apply bg-gray-900 dark:bg-gray-100;
+    @apply bg-kachi dark:bg-gofun;
   }
 
   .bg-highlight {
-    @apply bg-gray-200 dark:bg-slate-800
+    @apply bg-shironezumi dark:bg-kon;
   }
 }
 
 @layer components {
   .navItem {
-    @apply transition-colors bg-content dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:text-gray-900 rounded-md border-none shadow-none cursor-pointer;
+    @apply transition-colors bg-content dark:text-shironeri hover:bg-shironezumi hover:text-kachi dark:hover:text-kachi rounded-md border-none shadow-none cursor-pointer;
   }
 
   .loading {
-    @apply motion-safe:animate-spin border-2 border-x-white border-y-gray-800 rounded-full
+    @apply motion-safe:animate-spin border-2 border-x-white border-y-gray-800 rounded-full;
   }
-  
+
   .form-container {
-    @apply flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2
+    @apply flex gap-2 w-full lg:max-w-[70vw] justify-between items-center py-2;
   }
 
   .formErrorMsg {
-    @apply text-error absolute top-[100%] left-1
+    @apply text-error absolute top-[100%] left-1;
   }
-
 }
 
 @layer utilities {
@@ -187,7 +187,7 @@
   }
 
   .subTitle {
-    @apply max-w-3xl mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400;
+    @apply max-w-3xl mx-auto text-hai md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-ginnezumi;
   }
 
   /* background filter for blogCard */
@@ -215,11 +215,10 @@
   }
 
   .fadeIn {
-    @apply opacity-100 scale-100
+    @apply opacity-100 scale-100;
   }
 
   .heroTitle {
     height: calc(100vh + 130px);
   }
 }
-

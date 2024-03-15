@@ -1,10 +1,10 @@
-'use client';
+"use client"
 
-import { useRouter } from 'next/navigation';
-import IconButton from './IconButton';
-import { useEffect, useState, useTransition } from 'react';
-import { clsx } from 'clsx/lite';
-import { SpinnerColor } from './Spinner';
+import { useRouter } from "next/navigation"
+import IconButton from "./IconButton"
+import { useEffect, useState, useTransition } from "react"
+import { clsx } from "clsx/lite"
+import { SpinnerColor } from "./Spinner"
 
 export default function IconPathButton({
   icon,
@@ -23,47 +23,49 @@ export default function IconPathButton({
   shouldReplace?: boolean
   spinnerColor?: SpinnerColor
 }) {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [isPending, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition()
 
-  const [shouldShowLoader, setShouldShowLoader] = useState(false);
+  const [shouldShowLoader, setShouldShowLoader] = useState(false)
 
   useEffect(() => {
     if (isPending) {
       const timeout = setTimeout(() => {
-        setShouldShowLoader(true);
-      }, loaderDelay);
-      return () => clearTimeout(timeout);
+        setShouldShowLoader(true)
+      }, loaderDelay)
+      return () => clearTimeout(timeout)
     } else {
-      setShouldShowLoader(false);
+      setShouldShowLoader(false)
     }
-  }, [isPending, loaderDelay]);
+  }, [isPending, loaderDelay])
 
   useEffect(() => {
     if (prefetch) {
-      router.prefetch(path);
+      router.prefetch(path)
     }
-  }, [prefetch, router, path]);
+  }, [prefetch, router, path])
 
   return (
     <IconButton
       icon={icon}
-      onClick={() => startTransition(() => {
-        if (shouldReplace) {
-          router.replace(path, { scroll: shouldScroll });
-        } else {
-          router.push(path, { scroll: shouldScroll });
-        }
-      })}
+      onClick={() =>
+        startTransition(() => {
+          if (shouldReplace) {
+            router.replace(path, { scroll: shouldScroll })
+          } else {
+            router.push(path, { scroll: shouldScroll })
+          }
+        })
+      }
       isLoading={shouldShowLoader}
       className={clsx(
-        'translate-y-[-0.5px]',
-        'active:translate-y-[1px]',
-        'text-medium',
-        'active:text-gray-600 dark:active:text-gray-300',
+        "translate-y-[-0.5px]",
+        "active:translate-y-[1px]",
+        "text-medium",
+        "active:text-namari dark:active:text-hainezumi"
       )}
-      spinnerColor={spinnerColor ?? 'text'}
+      spinnerColor={spinnerColor ?? "text"}
     />
-  );
+  )
 }
