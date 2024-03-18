@@ -16,8 +16,8 @@ export default function Intro({
       <div
         className={clsx(
           "container grid items-center justify-center",
-          " gap-4 px-4 md:px-6",
-          "text-center "
+          "gap-4 px-4 md:px-6",
+          "text-center max-w-3xl lg:max-w-5xl"
         )}
       >
         <div className="space-y-4 text-main bg-content">

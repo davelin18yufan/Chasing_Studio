@@ -1,7 +1,7 @@
 "use client"
 
 import clsx from "clsx/lite"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { Photo } from "@/photo"
 import { useScroll, useMotionValueEvent } from "framer-motion"
@@ -66,21 +66,32 @@ export default function HeroSection({
   photos: Photo[]
 }) {
   const [index, setIndex] = useState(0)
-  const [animation, setAnimation] = useState(false)
+  const [titleHeight, setTitleHeight] = useState(87) // initial height
   const { scrollY } = useScroll()
+  const titleRef = useRef<HTMLDivElement>(null)
 
-  // switch pictures every 5 secs.
+  // switch pictures every 4 secs.
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % 2)
-    }, 5000)
+    }, 4000)
 
     return () => clearInterval(interval)
   }, [])
 
-  useMotionValueEvent(scrollY, "change", (latest) =>
-    latest > 435 ? setAnimation(true) : setAnimation(false)
-  )
+  useMotionValueEvent(scrollY, "change", (scrollPosition) => {
+    // using container relative height to change style
+    const windowHeight = window.innerHeight
+    if (!titleRef.current) return
+    const containerRect = titleRef.current.getBoundingClientRect()
+
+    // calculate overflow - exceeding screen height
+    const overflowDistance = Math.max(
+      0,
+      scrollPosition - (windowHeight / 2 - containerRect.height)
+    )
+    setTitleHeight(Math.max(0, 87 - overflowDistance))
+  })
 
   return (
     <section id="cover" className={clsx("w-full h-screen", "relative")}>
@@ -158,13 +169,17 @@ export default function HeroSection({
       {/* Title */}
       <div className="relative heroTitle">
         <div
-          className={`sticky top-1/2 -translate-y-1/2 z-20  text-center leading-tight md:leading-[1.2] ${
-            animation && "animate-neon"
-          }`}
+          className={`sticky top-1/2 -translate-y-1/2 text-center leading-tight md:leading-[1.2] z-20`}
+          ref={titleRef}
+          style={{
+            filter: `invert(${(titleHeight / 87) * 100}%) 
+              grayscale(${(titleHeight / 87) * 100}%) 
+              brightness(${(titleHeight / 87) * 100 + 100}%)`,
+          }}
         >
-          <h1 className="text-6xl md:text-max font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+          <h2 className="text-6xl md:text-max font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-shinbashi to-tokusa">
             {title}
-          </h1>
+          </h2>
         </div>
       </div>
     </section>

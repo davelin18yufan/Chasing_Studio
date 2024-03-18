@@ -8,7 +8,7 @@
 .galleryCardImg {
   grid-area: 1 / 1/ 2 / 2;
   transition: 0.5s ease-in-out;
-  filter: brightness(0.7) saturate(2.5);
+  /* filter: brightness(1.2) contrast(0.8); */
 }
 /* img1 */
 .galleryCardImg1 {

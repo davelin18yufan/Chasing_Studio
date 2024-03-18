@@ -35,6 +35,7 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },]
+      .concat(createRemotePattern('qr-official.line.me'))
       .concat(createRemotePattern(VERCEL_BLOB_HOSTNAME))
       .concat(createRemotePattern(CLOUDFLARE_R2_HOSTNAME))
       .concat(createRemotePattern(AWS_S3_HOSTNAME)),

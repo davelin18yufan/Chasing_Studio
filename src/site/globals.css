@@ -29,7 +29,7 @@
   textarea {
     @apply px-2.5 py-2
       border rounded-md
-      bg-shironeri dark:bg-black
+      bg-shironeri/80 dark:bg-black/80
       border-shironezumi dark:border-gray-700
       font-mono text-base leading-tight
       min-h-[2.4rem];
@@ -38,6 +38,7 @@
   input[type="email"],
   input[type="password"],
   select,
+  option,
   textarea {
     @apply text-[1rem] /* Prevent iOS auto-zoom behavior */
       min-w-[10rem] read-only:cursor-default;

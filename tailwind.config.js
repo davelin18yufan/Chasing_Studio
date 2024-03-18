@@ -44,13 +44,17 @@ module.exports = {
         'hainezumi': '#9D9FA3', // gray-300
         'ginnezumi': '#91989F', // gray-400
         'hai': '#828282', // gray-500
-        'namari': '#787878' // gray-600
+        'namari': '#787878', // gray-600
+        'tokusa': '#2D6D4B', // green-600
+        'shinbashi': '#0089A7' // blue-600
+
       },
       fontFamily: {
         'mono': ['var(--font-ibm-plex-mono)', ...defaultTheme.fontFamily.mono],
       },
       backgroundImage: {
         "home-hero": "url('/assets/photographer.png')",
+        "footer": "url('/assets/camera.webp')",
       },
       animation: {
         'rotate-pulse':

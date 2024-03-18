@@ -14,7 +14,7 @@ export const navbarLinks = [
   },
 ]
 
-export const genders = ["Male", "Female", "Non-binary", "Other"]
+export const genders = ["Select", "Male", "Female", "Non-binary", "Other"]
 
 export const heroSectionImgs = [
   "4b7cA5it",

@@ -43,7 +43,7 @@ export default function GalleryCard({
       <div
         className={clsx(
           "absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center",
-          "text-main opacity-10 transition group-hover:opacity-100"
+          "text-gofun opacity-10 transition group-hover:opacity-100"
         )}
       >
         <h3 className="text-xl font-bold ">{title}</h3>

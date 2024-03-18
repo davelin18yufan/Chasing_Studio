@@ -94,7 +94,7 @@ export default function RootLayout({
               <Suspense fallback={<NavClient />}>
                 <Nav />
               </Suspense>
-              <div className={clsx("min-h-[16rem] sm:min-h-[30rem]", "mb-12")}>
+              <div className={clsx("min-h-[16rem] sm:min-h-[30rem]")}>
                 {children}
               </div>
               <Suspense fallback={<FooterClient />}>
