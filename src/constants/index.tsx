@@ -2,6 +2,7 @@ import {
   FaInstagramSquare,
   FaLine,
   FaFacebook,
+  FaYoutube
 } from "react-icons/fa"
 
 export const navbarLinks = [
@@ -53,20 +54,21 @@ export const relativeLinks = [
   {
     label: "youtube",
     url: "",
+    icon: FaYoutube
   },
   {
     label: "line",
     url: "https://lin.ee/UcCpVtZ",
-    icon: <FaLine size={20} />,
+    icon: FaLine,
   },
   {
     label: "instagram",
     url: "https://www.instagram.com/chasing_studio",
-    icon: <FaInstagramSquare size={20} />,
+    icon: FaInstagramSquare,
   },
   {
     label: "facebook",
     url: "https://www.facebook.com/profile.php?id=61553440178008&mibextid=LQQJ4d",
-    icon: <FaFacebook size={20} />,
+    icon: FaFacebook
   },
 ]

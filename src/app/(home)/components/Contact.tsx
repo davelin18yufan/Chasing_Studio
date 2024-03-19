@@ -46,17 +46,7 @@ export default function Contact() {
                     key={link.label}
                     className="text-main text-2xl icon-hover"
                   >
-                    {link.label === "youtube" ? (
-                      <Image
-                        src="/assets/youtube.png"
-                        alt="youtube"
-                        width={20}
-                        height={20}
-                        className="object-cover dark:invert hover:opacity-50"
-                      />
-                    ) : (
-                      link.icon
-                    )}
+                    <link.icon size={20} />
                   </Link>
                 ))}
               </div>,

@@ -52,17 +52,7 @@ export default function PortfolioButton({
                 key={link.label}
                 className="text-main text-2xl"
               >
-                {link.label === "youtube" ? (
-                  <Image
-                    src="/assets/youtube.png"
-                    alt="youtube"
-                    width={20}
-                    height={20}
-                    className="object-cover dark:invert max-w-[none] hover:opacity-50"
-                  />
-                ) : (
-                  link.icon
-                )}
+                <link.icon size={20} />
               </Link>
             ))}
           </motion.ul>
