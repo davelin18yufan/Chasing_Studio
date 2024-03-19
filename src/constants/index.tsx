@@ -1,9 +1,9 @@
 import {
-  FaYoutube,
   FaInstagramSquare,
   FaLine,
   FaFacebook,
 } from "react-icons/fa"
+import { FaYoutube } from "react-icons/fa6"
 
 export const navbarLinks = [
   {
