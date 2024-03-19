@@ -5,7 +5,6 @@ import { relativeLinks } from "@/constants"
 import clsx from "clsx"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
 import { TbHexagonLetterC } from "react-icons/tb"
 
 export default function PortfolioButton({
