@@ -3,7 +3,6 @@ import {
   FaLine,
   FaFacebook,
 } from "react-icons/fa"
-import { FaYoutube } from "react-icons/fa6"
 
 export const navbarLinks = [
   {
@@ -54,21 +53,20 @@ export const relativeLinks = [
   {
     label: "youtube",
     url: "",
-    icon: <FaYoutube />
   },
   {
     label: "line",
     url: "https://lin.ee/UcCpVtZ",
-    icon: <FaLine />,
+    icon: <FaLine size={20} />,
   },
   {
     label: "instagram",
     url: "https://www.instagram.com/chasing_studio",
-    icon: <FaInstagramSquare />,
+    icon: <FaInstagramSquare size={20} />,
   },
   {
     label: "facebook",
     url: "https://www.facebook.com/profile.php?id=61553440178008&mibextid=LQQJ4d",
-    icon: <FaFacebook />,
+    icon: <FaFacebook size={20} />,
   },
 ]

@@ -5,6 +5,7 @@ import AnimateItems from "@/components/AnimateItems"
 import { Button } from "@/components/ui/button"
 import { relativeLinks } from "@/constants"
 import Link from "next/link"
+import Image from "next/image"
 import clsx from "clsx/lite"
 import ContactModal from "./ContactModal"
 import PortfolioButton from "@/components/PortfolioButton"
@@ -45,7 +46,17 @@ export default function Contact() {
                     key={link.label}
                     className="text-main text-2xl icon-hover"
                   >
-                    {link.icon}
+                    {link.label === "youtube" ? (
+                      <Image
+                        src="/assets/youtube.png"
+                        alt="youtube"
+                        width={20}
+                        height={20}
+                        className="object-cover dark:invert hover:opacity-50"
+                      />
+                    ) : (
+                      link.icon
+                    )}
                   </Link>
                 ))}
               </div>,

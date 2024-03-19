@@ -5,9 +5,14 @@ import { relativeLinks } from "@/constants"
 import clsx from "clsx"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import { TbHexagonLetterC } from "react-icons/tb"
 
-export default function PortfolioButton({positionClass}: {positionClass?: string}) {
+export default function PortfolioButton({
+  positionClass,
+}: {
+  positionClass?: string
+}) {
   const [linkOpen, setLinkOpen] = useState(false)
 
   return (
@@ -47,7 +52,17 @@ export default function PortfolioButton({positionClass}: {positionClass?: string
                 key={link.label}
                 className="text-main text-2xl"
               >
-                {link.icon}
+                {link.label === "youtube" ? (
+                  <Image
+                    src="/assets/youtube.png"
+                    alt="youtube"
+                    width={20}
+                    height={20}
+                    className="object-cover dark:invert max-w-[none] hover:opacity-50"
+                  />
+                ) : (
+                  link.icon
+                )}
               </Link>
             ))}
           </motion.ul>
