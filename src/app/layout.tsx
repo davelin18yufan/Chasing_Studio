@@ -17,7 +17,6 @@ import NavClient from "@/site/NavClient"
 import "../site/globals.css"
 import "../site/style.css"
 
-
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
@@ -66,7 +65,7 @@ export const metadata: Metadata = {
 //@ts-ignore
 global.performance = global.performance || {
   now: () => new Date().getTime(),
-};
+}
 
 export default function RootLayout({
   children,
@@ -81,15 +80,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={ibmPlexMono.variable}>
+        {/*for preload animation*/}
         <StateProvider>
           <ThemeProviderClient>
-            <main
-              className={clsx(
-                "pb-3 lg:pb-6",
-                "w-full",
-                "relative"
-              )}
-            >
+            <main className={clsx("w-ful relative")}>
               {/* Stream pair the nav and footer out of order */}
               <Suspense fallback={<NavClient />}>
                 <Nav />

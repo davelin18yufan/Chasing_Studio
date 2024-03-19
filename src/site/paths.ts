@@ -52,7 +52,7 @@ export const PATHS_ADMIN = [
   PATH_ADMIN_TAGS,
   PATH_ADMIN_CONFIGURATION,
   PATH_ADMIN_BLOGS,
-  PATH_ADMIN_BLOGS_CREATE
+  PATH_ADMIN_BLOGS_CREATE,
 ]
 
 export const PATHS_TO_CACHE = [
@@ -166,7 +166,8 @@ export const absolutePathForPhoto = (
 export const absolutePathForTag = (tag: string) =>
   `${BASE_URL}${pathForTag(tag)}`
 
-export const absolutePathForBlog =(id:string) => `${BASE_URL}/api/blog-og?id=${id}`
+export const absolutePathForBlog = (id: string) =>
+  `${BASE_URL}/api/blog-og?id=${id}`
 
 export const absolutePathForCamera = (camera: Camera) =>
   `${BASE_URL}${pathForCamera(camera)}`
@@ -247,6 +248,8 @@ export const isPathFilmSimulationPhotoShare = (pathname = "") =>
 
 export const checkPathPrefix = (pathname = "", prefix: string) =>
   pathname.toLowerCase().startsWith(prefix)
+
+export const isPathRoot = (pathname?: string) => pathname === PATH_ROOT
 
 export const isPathGallery = (pathname?: string) =>
   checkPathPrefix(pathname, PATH_GALLERY)
