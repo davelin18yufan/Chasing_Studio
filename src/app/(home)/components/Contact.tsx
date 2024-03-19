@@ -5,12 +5,26 @@ import AnimateItems from "@/components/AnimateItems"
 import { Button } from "@/components/ui/button"
 import { relativeLinks } from "@/constants"
 import Link from "next/link"
-import Image from "next/image"
+import {
+  FaInstagramSquare,
+  FaLine,
+  FaFacebook,
+  FaYoutube,
+} from "react-icons/fa"
+
 import clsx from "clsx/lite"
 import ContactModal from "./ContactModal"
 import PortfolioButton from "@/components/PortfolioButton"
 import { pathForAdminPhotos } from "@/site/paths"
 import { FaLocationArrow } from "react-icons/fa6"
+import { IconType } from "react-icons/lib"
+
+const icons: Record<string, IconType> = {
+  FaLine,
+  FaInstagramSquare,
+  FaFacebook,
+  FaYoutube,
+}
 
 export default function Contact() {
   const [open, setOpen] = useState(false)
@@ -40,15 +54,18 @@ export default function Contact() {
                 </div>
               </Button>,
               <div className="flex justify-center space-x-4">
-                {relativeLinks.map((link) => (
-                  <Link
-                    href={link.url}
-                    key={link.label}
-                    className="text-main text-2xl icon-hover"
-                  >
-                    <link.icon size={20} />
-                  </Link>
-                ))}
+                {relativeLinks.map((link) => {
+                  const IconComponent = icons[link.icon]
+                  return (
+                    <Link
+                      href={link.url}
+                      key={link.label}
+                      className="text-main text-2xl icon-hover"
+                    >
+                      <IconComponent size={20} />
+                    </Link>
+                  )
+                })}
               </div>,
               <p className="text-xs text-center">
                 &copy;Copyright Chasing Studio. All Rights Reserved.

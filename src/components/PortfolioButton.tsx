@@ -6,6 +6,20 @@ import clsx from "clsx"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { TbHexagonLetterC } from "react-icons/tb"
+import {
+  FaInstagramSquare,
+  FaLine,
+  FaFacebook,
+  FaYoutube,
+} from "react-icons/fa"
+import { IconType } from "react-icons/lib"
+
+const icons: Record<string, IconType> = {
+  FaLine,
+  FaInstagramSquare,
+  FaFacebook,
+  FaYoutube,
+}
 
 export default function PortfolioButton({
   positionClass,
@@ -45,15 +59,18 @@ export default function PortfolioButton({
             style={{ originX: 0.5 }}
             className="flex justify-center -translate-x-1/2 gap-0.5"
           >
-            {relativeLinks.map((link) => (
-              <Link
-                href={link.url}
-                key={link.label}
-                className="text-main text-2xl"
-              >
-                <link.icon size={20} />
-              </Link>
-            ))}
+            {relativeLinks.map((link) => {
+              const IconComponent = icons[link.icon]
+              return (
+                <Link
+                  href={link.url}
+                  key={link.label}
+                  className="text-main text-2xl icon-hover"
+                >
+                  <IconComponent size={20} />
+                </Link>
+              )
+            })}
           </motion.ul>
         )}
       </AnimatePresence>
