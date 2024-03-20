@@ -65,7 +65,7 @@ export default function PortfolioButton({
                 <Link
                   href={link.url}
                   key={link.label}
-                  className="text-main text-2xl icon-hover"
+                  className="text-main text-2xl"
                 >
                   <IconComponent size={20} />
                 </Link>
