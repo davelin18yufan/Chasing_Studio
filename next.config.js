@@ -17,12 +17,12 @@ const AWS_S3_HOSTNAME =
     : undefined;
 
 const createRemotePattern = (hostname) => hostname
-  ? {
+  ? [{
     protocol: "https",
     hostname,
     port: "",
     pathname: "/**",
-  }
+  }]
   : [];
 
 /** @type {import('next').NextConfig} */
