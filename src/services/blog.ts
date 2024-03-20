@@ -1,3 +1,5 @@
+// eslint-disable max-len
+
 import { Blog, BlogDB, parseBlogFromDB } from "@/blog"
 import { QueryResultRow, db, sql } from "@vercel/postgres"
 import { convertArrayToPostgresString } from "./vercel-postgres"
@@ -32,7 +34,7 @@ const safelyQueryBlogs = async <T>(callback: () => Promise<T>): Promise<T> => {
     result = await callback()
   } catch (e: any) {
     if (/relation "blogs" does not exist/i.test(e.message)) {
-      console.log('Creating table "blogs" because it did not exist')
+      console.log("Creating table \"blogs\" because it did not exist")
       await sqlCreateBlogsTable()
       result = await callback()
     } else if (/endpoint is in transition/i.test(e.message)) {
@@ -78,7 +80,8 @@ export const getBlogs = async (options: GetBlogsOptions = {}) => {
   } = options
 
   let sqlQuery = ["SELECT * FROM blogs"]
-  let values: (number | string)[] = [] // using parametrize search preventing sql injection
+  // using parametrize search preventing sql injection
+  let values: (number | string)[] = []
   let valueIndex = 1 // index refer to value
 
   let where: string[] = []
@@ -99,6 +102,7 @@ export const getBlogs = async (options: GetBlogsOptions = {}) => {
   // title + content
   if (query) {
     where.push(
+      // eslint-disable-next-line max-len
       `title LIKE %||$${valueIndex++}||% OR content LIKE %||$${valueIndex++}||% OR author_name LIKE %||$${valueIndex++}||%`
     )
     values.push(query)
@@ -109,18 +113,18 @@ export const getBlogs = async (options: GetBlogsOptions = {}) => {
 
   // sort
   switch (sortBy) {
-    case "newest":
-      sqlQuery.push("ORDER BY created_at DESC")
-      break
-    case "oldest":
-      sqlQuery.push("ORDER BY created_at ASC")
-      break
-    case "popular":
-      sqlQuery.push("ORDER BY view_number DESC")
-      break
-    default:
-      sqlQuery.push("ORDER BY created_at DESC")
-      break
+  case "newest":
+    sqlQuery.push("ORDER BY created_at DESC")
+    break
+  case "oldest":
+    sqlQuery.push("ORDER BY created_at ASC")
+    break
+  case "popular":
+    sqlQuery.push("ORDER BY view_number DESC")
+    break
+  default:
+    sqlQuery.push("ORDER BY created_at DESC")
+    break
   }
 
   // LIMIT + OFFSET
@@ -153,13 +157,13 @@ const sqlGetUniqueTags = async (includeHidden: boolean) => {
     GROUP BY tag
     ORDER BY tag ASC
   `.then(
-      ({ rows }): Tags =>
-        rows.map(({ tag, count }) => ({
-          type: 'blog',
-          tag: tag as string,
-          count: parseInt(count, 10),
-        }))
-    )
+        ({ rows }): Tags =>
+          rows.map(({ tag, count }) => ({
+            type: "blog",
+            tag: tag as string,
+            count: parseInt(count, 10),
+          }))
+      )
   } else {
     return sql`
       SELECT DISTINCT unnest(tags) as tag, COUNT(*) FROM blogs
@@ -167,31 +171,34 @@ const sqlGetUniqueTags = async (includeHidden: boolean) => {
       GROUP BY tag
       ORDER BY tag ASC
     `.then(
-      ({ rows }): Tags =>
-        rows.map(({ tag, count }) => ({
-          type: 'blog',
-          tag: tag as string,
-          count: parseInt(count, 10),
-        }))
-    )
+        ({ rows }): Tags =>
+          rows.map(({ tag, count }) => ({
+            type: "blog",
+            tag: tag as string,
+            count: parseInt(count, 10),
+          }))
+      )
   }
 }
 export const getUniqueBlogTags = (includeHidden: boolean) =>
   safelyQueryBlogs(() => sqlGetUniqueTags(includeHidden))
 
 // *** Full-Text Search
-// CREATE INDEX idx_search_globally ON blogs USING GIN (to_tsvector('english', title || ' ' || content || ' ' || author_name));
+// CREATE INDEX idx_search_globally ON blogs USING GIN
+// (to_tsvector('english', title || ' ' || content || ' ' || author_name));
 const sqlSearchGlobally = async (query: string) =>
   sql`
     SELECT * FROM blogs 
-    WHERE to_tsvector('english', title || ' ' || content || ' ' || author_name) @@ to_tsquery('english', ${query})
+    WHERE to_tsvector('english', title || ' ' || content || ' ' || author_name)
+     @@ to_tsquery('english', ${query})
   `
 export const searchGlobally = (query: string) =>
   safelyQueryBlogs(() => sqlSearchGlobally(query))
 
 // COUNT
 const sqlGetBlogsCount = async (includeHidden = false) => {
-  // vercel sql SDK will compile template string into (query, value) in postgres syntax to prevent injection
+  // vercel sql SDK will compile template string into 
+  // (query, value) in postgres syntax to prevent injection
   // using client.query or hack like below
   // if using sql`SELECT * FROM ${query}`, query will be compile into $1
   if (includeHidden)

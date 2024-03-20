@@ -1,9 +1,9 @@
-import { Photo, PhotoDateRange } from '@/photo';
-import SiteGrid from '@/components/SiteGrid';
-import AnimateItems from '@/components/AnimateItems';
-import PhotoGrid from '@/photo/PhotoGrid';
-import FilmSimulationHeader from './FilmSimulationHeader';
-import { FilmSimulation } from '.';
+import { Photo, PhotoDateRange } from "@/photo";
+import SiteGrid from "@/components/SiteGrid";
+import AnimateItems from "@/components/AnimateItems";
+import PhotoGrid from "@/photo/PhotoGrid";
+import FilmSimulationHeader from "./FilmSimulationHeader";
+import { FilmSimulation } from ".";
 
 export default function FilmSimulationOverview({
   simulation,

@@ -3,12 +3,12 @@ import {
   PhotoDateRange,
   descriptionForPhotoSet,
   photoQuantityText,
-} from '@/photo';
-import { Camera, cameraFromPhoto, formatCameraText } from '.';
+} from "@/photo";
+import { Camera, cameraFromPhoto, formatCameraText } from ".";
 import {
   absolutePathForCamera,
   absolutePathForCameraImage,
-} from '@/site/paths';
+} from "@/site/paths";
 
 // Meta functions moved to separate file to avoid
 // dependencies (camelcase-keys) found in photo/index.ts
@@ -19,10 +19,10 @@ export const titleForCamera = (
   photos: Photo[],
   explicitCount?: number,
 ) => [
-  'Shot on',
+  "Shot on",
   formatCameraText(cameraFromPhoto(photos[0], camera)),
   photoQuantityText(explicitCount ?? photos.length),
-].join(' ');
+].join(" ");
 
 export const descriptionForCameraPhotos = (
   photos: Photo[],

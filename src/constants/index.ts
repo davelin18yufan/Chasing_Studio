@@ -47,7 +47,7 @@ export const relativeLinks = [
   {
     label: "youtube",
     url: "",
-    icon: "FaYoutube"
+    icon: "FaYoutube",
   },
   {
     label: "line",
@@ -62,6 +62,6 @@ export const relativeLinks = [
   {
     label: "facebook",
     url: "https://www.facebook.com/profile.php?id=61553440178008&mibextid=LQQJ4d",
-    icon: "FaFacebook"
+    icon: "FaFacebook",
   },
 ]

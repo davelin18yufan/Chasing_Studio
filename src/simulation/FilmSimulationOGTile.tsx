@@ -1,16 +1,16 @@
-import { Photo, PhotoDateRange } from '@/photo';
+import { Photo, PhotoDateRange } from "@/photo";
 import {
   absolutePathForFilmSimulationImage,
   pathForFilmSimulation,
-} from '@/site/paths';
-import OGTile from '@/components/OGTile';
+} from "@/site/paths";
+import OGTile from "@/components/OGTile";
 import {
   FilmSimulation,
   descriptionForFilmSimulationPhotos,
   titleForFilmSimulation,
-} from '.';
+} from ".";
 
-export type OGLoadingState = 'unloaded' | 'loading' | 'loaded' | 'failed';
+export type OGLoadingState = "unloaded" | "loading" | "loaded" | "failed";
 
 export default function FilmSimulationOGTile({
   simulation,

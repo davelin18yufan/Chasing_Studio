@@ -1,7 +1,7 @@
-import { pathForTag } from '@/site/paths';
-import { FaTag } from 'react-icons/fa';
-import { formatTag } from '.';
-import EntityLink, { EntityLinkExternalProps } from '@/components/EntityLink';
+import { pathForTag } from "@/site/paths";
+import { FaTag } from "react-icons/fa";
+import { formatTag } from ".";
+import EntityLink, { EntityLinkExternalProps } from "@/components/EntityLink";
 
 export default function PhotoTag({
   tag,

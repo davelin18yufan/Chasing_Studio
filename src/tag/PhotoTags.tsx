@@ -1,6 +1,6 @@
-import PhotoTag from '@/tag/PhotoTag';
-import { isTagFavs } from '.';
-import FavsTag from './FavsTag';
+import PhotoTag from "@/tag/PhotoTag";
+import { isTagFavs } from ".";
+import FavsTag from "./FavsTag";
 
 export default function PhotoTags({
   tags,

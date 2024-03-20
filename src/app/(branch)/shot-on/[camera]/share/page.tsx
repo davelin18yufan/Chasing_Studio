@@ -1,14 +1,14 @@
-import { cameraFromPhoto, getCameraFromKey } from '@/camera';
-import CameraShareModal from '@/camera/CameraShareModal';
-import { generateMetaForCamera } from '@/camera/meta';
-import { Metadata } from 'next';
-import { GRID_THUMBNAILS_TO_SHOW_MAX } from '@/photo';
-import { PaginationParams } from '@/site/pagination';
+import { cameraFromPhoto, getCameraFromKey } from "@/camera";
+import CameraShareModal from "@/camera/CameraShareModal";
+import { generateMetaForCamera } from "@/camera/meta";
+import { Metadata } from "next";
+import { GRID_THUMBNAILS_TO_SHOW_MAX } from "@/photo";
+import { PaginationParams } from "@/site/pagination";
 import {
   getPhotosCameraDataCached,
   getPhotosCameraDataCachedWithPagination,
-} from '@/camera/data';
-import CameraOverview from '@/camera/CameraOverview';
+} from "@/camera/data";
+import CameraOverview from "@/camera/CameraOverview";
 
 interface CameraProps {
   params: { camera: string }
@@ -46,7 +46,7 @@ export async function generateMetadata({
     twitter: {
       images,
       description,
-      card: 'summary_large_image',
+      card: "summary_large_image",
     },
     description,
   };

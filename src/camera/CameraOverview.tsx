@@ -1,9 +1,9 @@
-import { Photo, PhotoDateRange } from '@/photo';
-import { Camera } from '.';
-import SiteGrid from '@/components/SiteGrid';
-import AnimateItems from '@/components/AnimateItems';
-import CameraHeader from './CameraHeader';
-import PhotoGrid from '@/photo/PhotoGrid';
+import { Photo, PhotoDateRange } from "@/photo";
+import { Camera } from ".";
+import SiteGrid from "@/components/SiteGrid";
+import AnimateItems from "@/components/AnimateItems";
+import CameraHeader from "./CameraHeader";
+import PhotoGrid from "@/photo/PhotoGrid";
 
 export default function CameraOverview({
   camera,

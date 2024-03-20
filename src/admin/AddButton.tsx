@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { BiImageAdd } from 'react-icons/bi';
+import Link from "next/link";
+import { BiImageAdd } from "react-icons/bi";
 
 export default function AddButton ({
   href,
-  label = 'Add',
+  label = "Add",
 }: {
   href: string,
   label?: string,

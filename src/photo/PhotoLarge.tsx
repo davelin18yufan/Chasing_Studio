@@ -3,20 +3,20 @@ import {
   shouldShowCameraDataForPhoto,
   shouldShowExifDataForPhoto,
   titleForPhoto,
-} from '.';
-import SiteGrid from '@/components/SiteGrid';
-import ImageLarge from '@/components/ImageLarge';
-import { clsx } from 'clsx/lite';
-import Link from 'next/link';
-import { pathForPhoto, pathForPhotoShare } from '@/site/paths';
-import PhotoTags from '@/tag/PhotoTags';
-import ShareButton from '@/components/ShareButton';
-import PhotoCamera from '../camera/PhotoCamera';
-import { cameraFromPhoto } from '@/camera';
-import PhotoFilmSimulation from '@/simulation/PhotoFilmSimulation';
-import { sortTags } from '@/tag';
-import AdminPhotoMenu from '@/admin/AdminPhotoMenu';
-import { Suspense } from 'react';
+} from ".";
+import SiteGrid from "@/components/SiteGrid";
+import ImageLarge from "@/components/ImageLarge";
+import { clsx } from "clsx/lite";
+import Link from "next/link";
+import { pathForPhoto, pathForPhotoShare } from "@/site/paths";
+import PhotoTags from "@/tag/PhotoTags";
+import ShareButton from "@/components/ShareButton";
+import PhotoCamera from "../camera/PhotoCamera";
+import { cameraFromPhoto } from "@/camera";
+import PhotoFilmSimulation from "@/simulation/PhotoFilmSimulation";
+import { sortTags } from "@/tag";
+import AdminPhotoMenu from "@/admin/AdminPhotoMenu";
+import { Suspense } from "react";
 
 export default function PhotoLarge({
   photo,
@@ -47,10 +47,10 @@ export default function PhotoLarge({
   
   const renderMiniGrid = (children: JSX.Element, rightPadding = true) =>
     <div className={clsx(
-      'flex gap-y-4',
-      'flex-col sm:flex-row md:flex-col',
-      '[&>*]:sm:flex-grow',
-      rightPadding && 'pr-2',
+      "flex gap-y-4",
+      "flex-col sm:flex-row md:flex-col",
+      "[&>*]:sm:flex-grow",
+      rightPadding && "pr-2",
     )}>
       {children}
     </div>;
@@ -69,13 +69,13 @@ export default function PhotoLarge({
         />}
       contentSide={
         <div className={clsx(
-          'leading-snug',
-          'sticky top-4 self-start',
-          'grid grid-cols-2 md:grid-cols-1',
-          'gap-x-0.5 sm:gap-x-1',
-          'gap-y-4',
-          '-translate-y-1',
-          'mb-4',
+          "leading-snug",
+          "sticky top-4 self-start",
+          "grid grid-cols-2 md:grid-cols-1",
+          "gap-x-0.5 sm:gap-x-1",
+          "gap-y-4",
+          "-translate-y-1",
+          "mb-4",
         )}>
           {renderMiniGrid(<>
             <div className="-space-y-0.5">
@@ -118,7 +118,7 @@ export default function PhotoLarge({
                   {photo.focalLengthFormatted}
                   {photo.focalLengthIn35MmFormatFormatted &&
                     <>
-                      {' '}
+                      {" "}
                       <span
                         title="35mm equivalent"
                         className="text-extra-dim"
@@ -130,15 +130,15 @@ export default function PhotoLarge({
                 <li>{photo.fNumberFormatted}</li>
                 <li>{photo.exposureTimeFormatted}</li>
                 <li>{photo.isoFormatted}</li>
-                <li>{photo.exposureCompensationFormatted ?? '—'}</li>
+                <li>{photo.exposureCompensationFormatted ?? "—"}</li>
               </ul>}
             <div className={clsx(
-              'flex gap-y-4',
-              'flex-col sm:flex-row md:flex-col',
+              "flex gap-y-4",
+              "flex-col sm:flex-row md:flex-col",
             )}>
               <div className={clsx(
-                'grow uppercase',
-                'text-medium',
+                "grow uppercase",
+                "text-medium",
               )}>
                 {photo.takenAtNaiveFormatted}
               </div>

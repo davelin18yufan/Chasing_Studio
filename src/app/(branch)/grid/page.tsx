@@ -1,19 +1,19 @@
-import { getPhotosCached } from '@/cache';
-import SiteGrid from '@/components/SiteGrid';
-import { generateOgImageMetaForPhotos } from '@/photo';
-import PhotoGrid from '@/photo/PhotoGrid';
-import PhotosEmptyState from '@/photo/PhotosEmptyState';
-import { MAX_PHOTOS_TO_SHOW_OG } from '@/photo/image-response';
-import { pathForGrid } from '@/site/paths';
-import { Metadata } from 'next';
+import { getPhotosCached } from "@/cache";
+import SiteGrid from "@/components/SiteGrid";
+import { generateOgImageMetaForPhotos } from "@/photo";
+import PhotoGrid from "@/photo/PhotoGrid";
+import PhotosEmptyState from "@/photo/PhotosEmptyState";
+import { MAX_PHOTOS_TO_SHOW_OG } from "@/photo/image-response";
+import { pathForGrid } from "@/site/paths";
+import { Metadata } from "next";
 import {
   PaginationParams,
   getPaginationForSearchParams,
-} from '@/site/pagination';
-import PhotoGridSidebar from '@/photo/PhotoGridSidebar';
-import { getPhotoSidebarDataCached } from '@/photo/data';
+} from "@/site/pagination";
+import PhotoGridSidebar from "@/photo/PhotoGridSidebar";
+import { getPhotoSidebarDataCached } from "@/photo/data";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 export async function generateMetadata(): Promise<Metadata> {
   const photos = await getPhotosCached({ limit: MAX_PHOTOS_TO_SHOW_OG });

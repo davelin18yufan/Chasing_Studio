@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { FaRegEdit } from 'react-icons/fa';
+import Link from "next/link";
+import { FaRegEdit } from "react-icons/fa";
 
 export default function EditButton ({
   href,
-  label = 'Edit',
+  label = "Edit",
 }: {
   href: string,
   label?: string,

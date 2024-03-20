@@ -1,9 +1,9 @@
-import { Photo, PhotoDateRange } from '@/photo';
-import PhotoTag from './PhotoTag';
-import { descriptionForTaggedPhotos, isTagFavs } from '.';
-import { pathForTagShare } from '@/site/paths';
-import PhotoSetHeader from '@/photo/PhotoSetHeader';
-import FavsTag from './FavsTag';
+import { Photo, PhotoDateRange } from "@/photo";
+import PhotoTag from "./PhotoTag";
+import { descriptionForTaggedPhotos, isTagFavs } from ".";
+import { pathForTagShare } from "@/site/paths";
+import PhotoSetHeader from "@/photo/PhotoSetHeader";
+import FavsTag from "./FavsTag";
 
 export default function TagHeader({
   tag,

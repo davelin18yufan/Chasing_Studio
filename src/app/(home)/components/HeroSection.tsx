@@ -42,7 +42,8 @@ function GridImg({
         absolute && "absolute top-0 left-0"
       )}
       style={{ transitionDelay: `${delay}ms` }}
-      // dynamic transition class might replace the default timing, using style for top priority
+      // dynamic transition class might replace the default timing,
+      // using style for top priority
     >
       <div className="w-full h-full relative">
         <Image
@@ -134,7 +135,12 @@ export default function HeroSection({
             absolute={true}
           />
         </GridImgWrapper>
-        <GridImgWrapper gridClasses="col-span-2 md:row-span-2 md:row-start-3 md:col-start-1">
+        <GridImgWrapper
+          gridClasses={clsx(
+            "col-span-2 md:col-start-1",
+            "md:row-span-2 md:row-start-3"
+          )}
+        >
           <GridImg
             src={photos[4].url}
             alt={photos[4].id}
@@ -149,7 +155,12 @@ export default function HeroSection({
             absolute={true}
           />
         </GridImgWrapper>
-        <GridImgWrapper gridClasses="col-span-2 row-start-3 row-span-2 md:row-start-1 md:row-span-4">
+        <GridImgWrapper
+          gridClasses={clsx(
+            "col-span-2",
+            "row-start-3 row-span-2 md:row-start-1 md:row-span-4"
+          )}
+        >
           <GridImg
             src={photos[6].url}
             alt={photos[6].id}
@@ -169,15 +180,25 @@ export default function HeroSection({
       {/* Title */}
       <div className="relative heroTitle">
         <div
-          className={`sticky top-1/2 -translate-y-1/2 text-center leading-tight md:leading-[1.2] z-20`}
+          className={clsx(
+            "sticky top-1/2 -translate-y-1/2",
+            "text-center leading-tight md:leading-[1.2] z-20"
+          )}
           ref={titleRef}
           style={{
+            // eslint-disable-next-line max-len
             filter: `invert(${(titleHeight / 87) * 100}%) 
               grayscale(${(titleHeight / 87) * 100}%) 
               brightness(${(titleHeight / 87) * 100 + 100}%)`,
           }}
         >
-          <h2 className="text-6xl md:text-max font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-shinbashi to-tokusa">
+          <h2
+            className={clsx(
+              "text-6xl md:text-max font-extrabold",
+              "bg-clip-text text-transparent",
+              "bg-gradient-to-r from-shinbashi to-tokusa"
+            )}
+          >
             {title}
           </h2>
         </div>

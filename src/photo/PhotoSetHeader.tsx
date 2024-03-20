@@ -1,9 +1,9 @@
-import { clsx } from 'clsx/lite';
-import { Photo, PhotoDateRange, dateRangeForPhotos } from '.';
-import ShareButton from '@/components/ShareButton';
-import AnimateItems from '@/components/AnimateItems';
-import { ReactNode } from 'react';
-import { HIGH_DENSITY_GRID } from '@/site/config';
+import { clsx } from "clsx/lite";
+import { Photo, PhotoDateRange, dateRangeForPhotos } from ".";
+import ShareButton from "@/components/ShareButton";
+import AnimateItems from "@/components/AnimateItems";
+import { ReactNode } from "react";
+import { HIGH_DENSITY_GRID } from "@/site/config";
 
 export default function PhotoSetHeader({
   entity,
@@ -38,23 +38,23 @@ export default function PhotoSetHeader({
       items={[<div
         key="PhotosHeader"
         className={clsx(
-          'grid gap-0.5 sm:gap-1 items-start',
+          "grid gap-0.5 sm:gap-1 items-start",
           HIGH_DENSITY_GRID
-            ? 'xs:grid-cols-2 sm:grid-cols-4 lg:grid-cols-5'
-            : 'xs:grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4',
+            ? "xs:grid-cols-2 sm:grid-cols-4 lg:grid-cols-5"
+            : "xs:grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4",
         )}>
         <span className={clsx(
-          'inline-flex',
-          HIGH_DENSITY_GRID && 'sm:col-span-2',
+          "inline-flex",
+          HIGH_DENSITY_GRID && "sm:col-span-2",
         )}>
           {entity}
         </span>
         <span className={clsx(
-          'inline-flex gap-2 items-center self-start',
-          'uppercase text-dim',
+          "inline-flex gap-2 items-center self-start",
+          "uppercase text-dim",
           HIGH_DENSITY_GRID
-            ? 'lg:col-span-2'
-            : 'sm:col-span-2 md:col-span-1 lg:col-span-2',
+            ? "lg:col-span-2"
+            : "sm:col-span-2 md:col-span-1 lg:col-span-2",
         )}>
           {selectedPhotoIndex !== undefined
             // eslint-disable-next-line max-len
@@ -64,9 +64,9 @@ export default function PhotoSetHeader({
             <ShareButton path={sharePath} dim />}
         </span>
         <span className={clsx(
-          'hidden sm:inline-block',
-          'text-right uppercase',
-          'text-dim',
+          "hidden sm:inline-block",
+          "text-right uppercase",
+          "text-dim",
         )}>
           {start === end
             ? start

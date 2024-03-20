@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
-import { PiWarningBold } from 'react-icons/pi';
-import { FiCheckSquare } from 'react-icons/fi';
-import { toast } from 'sonner';
+import type { ReactNode } from "react";
+import { PiWarningBold } from "react-icons/pi";
+import { FiCheckSquare } from "react-icons/fi";
+import { toast } from "sonner";
 
 const DEFAULT_DURATION = 4000;
 

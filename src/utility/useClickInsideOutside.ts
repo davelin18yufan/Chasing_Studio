@@ -1,6 +1,6 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from "react";
 
-const MOUSE_DOWN = 'mousedown';
+const MOUSE_DOWN = "mousedown";
 
 interface Options {
   // HTML reference

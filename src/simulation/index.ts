@@ -3,15 +3,15 @@ import {
   PhotoDateRange,
   descriptionForPhotoSet,
   photoQuantityText,
-} from '@/photo';
+} from "@/photo";
 import {
   absolutePathForFilmSimulation,
   absolutePathForFilmSimulationImage,
-} from '@/site/paths';
+} from "@/site/paths";
 import {
   FujifilmSimulation,
   labelForFilmSimulation,
-} from '@/vendors/fujifilm';
+} from "@/vendors/fujifilm";
 
 export type FilmSimulation = FujifilmSimulation;
 
@@ -38,7 +38,7 @@ export const titleForFilmSimulation = (
 ) => [
   labelForFilmSimulation(simulation).large,
   photoQuantityText(explicitCount ?? photos.length),
-].join(' ');
+].join(" ");
 
 export const descriptionForFilmSimulationPhotos = (
   photos: Photo[],

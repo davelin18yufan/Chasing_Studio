@@ -22,8 +22,8 @@ export const BASE_URL = makeUrlAbsolute(
   VERCEL_ENV === "production"
     ? SITE_DOMAIN
     : VERCEL_ENV === "preview"
-    ? VERCEL_BRANCH_URL || VERCEL_DEPLOYMENT_URL
-    : `http://localhost:${process.env.PORT || 3000}`
+      ? VERCEL_BRANCH_URL || VERCEL_DEPLOYMENT_URL
+      : `http://localhost:${process.env.PORT || 3000}`
 )?.toLocaleLowerCase()
 
 const SITE_DOMAIN_SHORT = shortenUrl(SITE_DOMAIN)
@@ -72,8 +72,8 @@ export const CURRENT_STORAGE: StorageType =
   (HAS_CLOUDFLARE_R2_STORAGE_CLIENT
     ? "cloudflare-r2"
     : HAS_AWS_S3_STORAGE_CLIENT
-    ? "aws-s3"
-    : "vercel-blob")
+      ? "aws-s3"
+      : "vercel-blob")
 
 // SETTINGS
 

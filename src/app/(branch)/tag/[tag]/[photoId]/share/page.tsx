@@ -1,7 +1,7 @@
-import { getPhotoCached } from '@/cache';
-import PhotoShareModal from '@/photo/PhotoShareModal';
-import { PATH_ROOT } from '@/site/paths';
-import { redirect } from 'next/navigation';
+import { getPhotoCached } from "@/cache";
+import PhotoShareModal from "@/photo/PhotoShareModal";
+import { PATH_ROOT } from "@/site/paths";
+import { redirect } from "next/navigation";
 
 export default async function Share({
   params: { photoId, tag },

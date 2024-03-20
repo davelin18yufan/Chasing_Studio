@@ -2,11 +2,11 @@ import {
   Photo,
   descriptionForPhoto,
   titleForPhoto,
-} from '@/photo';
-import { absolutePathForPhotoImage, pathForPhoto } from '@/site/paths';
-import OGTile from '@/components/OGTile';
+} from "@/photo";
+import { absolutePathForPhotoImage, pathForPhoto } from "@/site/paths";
+import OGTile from "@/components/OGTile";
 
-export type OGLoadingState = 'unloaded' | 'loading' | 'loaded' | 'failed';
+export type OGLoadingState = "unloaded" | "loading" | "loaded" | "failed";
 
 export default function PhotoOGTile({
   photo,

@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import FieldSetWithStatus from '@/components/FieldSetWithStatus';
-import InfoBlock from '@/components/InfoBlock';
-import SubmitButtonWithStatus from '@/components/SubmitButtonWithStatus';
-import { useLayoutEffect, useRef, useState } from 'react';
-import { signInAction } from './actions';
-import { useFormState } from 'react-dom';
-import ErrorNote from '@/components/ErrorNote';
-import { KEY_CALLBACK_URL, KEY_CREDENTIALS_SIGN_IN_ERROR } from '.';
-import { useSearchParams } from 'next/navigation';
+import FieldSetWithStatus from "@/components/FieldSetWithStatus";
+import InfoBlock from "@/components/InfoBlock";
+import SubmitButtonWithStatus from "@/components/SubmitButtonWithStatus";
+import { useLayoutEffect, useRef, useState } from "react";
+import { signInAction } from "./actions";
+import { useFormState } from "react-dom";
+import ErrorNote from "@/components/ErrorNote";
+import { KEY_CALLBACK_URL, KEY_CREDENTIALS_SIGN_IN_ERROR } from ".";
+import { useSearchParams } from "next/navigation";
 
 export default function SignInForm() {
   const params = useSearchParams();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [response, action] = useFormState(signInAction, undefined);
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -53,7 +53,7 @@ export default function SignInForm() {
             <input
               type="hidden"
               name={KEY_CALLBACK_URL}
-              value={params.get(KEY_CALLBACK_URL) ?? ''}
+              value={params.get(KEY_CALLBACK_URL) ?? ""}
             />
           </div>
           <SubmitButtonWithStatus disabled={!isFormValid}>

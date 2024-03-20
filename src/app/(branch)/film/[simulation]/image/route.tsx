@@ -1,16 +1,16 @@
-import { auth } from '@/auth';
-import { getImageCacheHeadersForAuth, getPhotosCached } from '@/cache';
+import { auth } from "@/auth";
+import { getImageCacheHeadersForAuth, getPhotosCached } from "@/cache";
 import {
   IMAGE_OG_DIMENSION_SMALL,
   MAX_PHOTOS_TO_SHOW_PER_TAG,
-} from '@/photo/image-response';
+} from "@/photo/image-response";
 import FilmSimulationImageResponse from
-  '@/photo/image-response/FilmSimulationImageResponse';
-import { FilmSimulation } from '@/simulation';
-import { getIBMPlexMonoMedium } from '@/site/font';
-import { ImageResponse } from 'next/og';
+  "@/photo/image-response/FilmSimulationImageResponse";
+import { FilmSimulation } from "@/simulation";
+import { getIBMPlexMonoMedium } from "@/site/font";
+import { ImageResponse } from "next/og";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 export async function GET(
   _: Request,

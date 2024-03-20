@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { formatDate } from '@/utility/date';
+import { formatDate } from "@/utility/date";
 
 export default function LocalDate({ date }: { date: Date }) {
   return (

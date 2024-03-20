@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { getEscapePath } from '@/site/paths';
-import { useRouter, usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { getEscapePath } from "@/site/paths";
+import { useRouter, usePathname } from "next/navigation";
+import { useEffect } from "react";
 
-const LISTENER_KEYUP = 'keyup';
+const LISTENER_KEYUP = "keyup";
 
 export default function PhotoEscapeHandler() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function PhotoEscapeHandler() {
 
   useEffect(() => {
     const onKeyUp = (e: KeyboardEvent) => {
-      if (e.key.toUpperCase() === 'ESCAPE' && escapePath) {
+      if (e.key.toUpperCase() === "ESCAPE" && escapePath) {
         router.push(escapePath, { scroll: false });
       };
     };

@@ -1,19 +1,19 @@
 import {
   descriptionForPhoto,
   titleForPhoto,
-} from '@/photo';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+} from "@/photo";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import {
   PATH_ROOT,
   absolutePathForPhoto,
   absolutePathForPhotoImage,
-} from '@/site/paths';
-import PhotoDetailPage from '@/photo/PhotoDetailPage';
-import { getPhotoCached } from '@/cache';
-import { ReactNode } from 'react';
-import { FilmSimulation } from '@/simulation';
-import { getPhotosFilmSimulationDataCached } from '@/simulation/data';
+} from "@/site/paths";
+import PhotoDetailPage from "@/photo/PhotoDetailPage";
+import { getPhotoCached } from "@/cache";
+import { ReactNode } from "react";
+import { FilmSimulation } from "@/simulation";
+import { getPhotosFilmSimulationDataCached } from "@/simulation/data";
 
 interface PhotoFilmSimulationProps {
   params: { photoId: string, simulation: FilmSimulation }
@@ -44,7 +44,7 @@ export async function generateMetadata({
       title,
       description,
       images,
-      card: 'summary_large_image',
+      card: "summary_large_image",
     },
   };
 }

@@ -1,19 +1,19 @@
-import { getPhotosCached, getPhotosCountCached } from '@/cache';
-import AnimateItems from '@/components/AnimateItems';
-import MorePhotos from '@/photo/MorePhotos';
-import SiteGrid from '@/components/SiteGrid';
-import { generateOgImageMetaForPhotos } from '@/photo';
-import PhotoLarge from '@/photo/PhotoLarge';
-import PhotosEmptyState from '@/photo/PhotosEmptyState';
+import { getPhotosCached, getPhotosCountCached } from "@/cache";
+import AnimateItems from "@/components/AnimateItems";
+import MorePhotos from "@/photo/MorePhotos";
+import SiteGrid from "@/components/SiteGrid";
+import { generateOgImageMetaForPhotos } from "@/photo";
+import PhotoLarge from "@/photo/PhotoLarge";
+import PhotosEmptyState from "@/photo/PhotosEmptyState";
 import {
   PaginationParams,
   getPaginationForSearchParams,
-} from '@/site/pagination';
-import { pathForGallery } from '@/site/paths';
-import { Metadata } from 'next';
-import { MAX_PHOTOS_TO_SHOW_OG } from '@/photo/image-response';
+} from "@/site/pagination";
+import { pathForGallery } from "@/site/paths";
+import { Metadata } from "next";
+import { MAX_PHOTOS_TO_SHOW_OG } from "@/photo/image-response";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 export async function generateMetadata(): Promise<Metadata> {
   // Make Page queries resilient to error on first time setup

@@ -3,9 +3,9 @@ import {
   getUniqueCamerasCached,
   getUniqueFilmSimulationsCached,
   getUniqueTagsCached,
-} from '@/cache';
-import { SHOW_FILM_SIMULATIONS } from '@/site/config';
-import { TAG_FAVS } from '@/tag';
+} from "@/cache";
+import { SHOW_FILM_SIMULATIONS } from "@/site/config";
+import { TAG_FAVS } from "@/tag";
 
 export const getPhotoSidebarDataCached = () => [
   getPhotosCountCached(),

@@ -25,7 +25,7 @@ interface EditorProps {
 export default function PlateEditor({
   readOnly,
   setContent,
-  initialValue
+  initialValue,
 }: EditorProps) {
   const containerRef = useRef(null)
 
@@ -45,6 +45,7 @@ export default function PlateEditor({
           !readOnly &&
             cn(
               // Block selection
+              // eslint-disable-next-line max-len
               "[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4"
             )
         )}

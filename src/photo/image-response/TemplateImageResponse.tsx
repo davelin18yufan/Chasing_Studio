@@ -1,8 +1,8 @@
-import { Photo } from '..';
-import IconFullFrame from '@/site/IconFullFrame';
-import IconGrid from '@/site/IconGrid';
-import ImagePhotoGrid from './components/ImagePhotoGrid';
-import { NextImageSize } from '@/services/next-image';
+import { Photo } from "..";
+import IconFullFrame from "@/site/IconFullFrame";
+import IconGrid from "@/site/IconGrid";
+import ImagePhotoGrid from "./components/ImagePhotoGrid";
+import { NextImageSize } from "@/services/next-image";
 
 export default function TemplateImageResponse({
   photos,
@@ -27,65 +27,65 @@ export default function TemplateImageResponse({
 
   return (
     <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'column',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "column",
       padding: outerMargin,
       ...darkMode
-        ? { background: 'black', color: 'white' }
-        : { background: 'white', color: 'black' },
+        ? { background: "black", color: "white" }
+        : { background: "white", color: "black" },
       width,
       height,
       fontFamily,
     }}>
       {includeHeader &&
         <div style={{
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
           fontSize: 40,
           height: 80,
           lineHeight: 1,
           marginBottom: outerMargin,
-          width: '100%',
+          width: "100%",
         }}>
           <div style={{
-            display: 'flex',
-            justifyContent: 'flex-start',
+            display: "flex",
+            justifyContent: "flex-start",
             flexGrow: 1,
           }}>
             <div style={{
-              display: 'flex',
-              border: '2px solid #333',
-              alignItems: 'center',
+              display: "flex",
+              border: "2px solid #333",
+              alignItems: "center",
               borderRadius: 8,
             }}>
               <div style={{
-                display: 'flex',
-                padding: '3px 10px',
-                color: '#333',
-                borderRight: '2px solid #333',
+                display: "flex",
+                padding: "3px 10px",
+                color: "#333",
+                borderRight: "2px solid #333",
               }}>
                 <IconFullFrame includeTitle={false} width={80} />
               </div>
               <div style={{
-                display: 'flex',
-                padding: '3px 10px',
+                display: "flex",
+                padding: "3px 10px",
               }}>
                 <IconGrid includeTitle={false} width={80} />
               </div>
             </div>
           </div>
           <div style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
+            display: "flex",
+            justifyContent: "flex-end",
             flexGrow: 1,
           }}>
             photos.sambecker.com
           </div>
         </div>}
       <div style={{
-        display: 'flex',
+        display: "flex",
         ...verticalOffset && { transform: `translateY(${verticalOffset}px)` },
       }}>
         <ImagePhotoGrid {...{

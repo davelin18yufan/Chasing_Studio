@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import {
   KEY_CALLBACK_URL,
@@ -6,16 +6,16 @@ import {
   KEY_CREDENTIALS_SIGN_IN_ERROR_URL,
   signIn,
   signOut,
-} from '@/auth';
-import { PATH_ADMIN_PHOTOS } from '@/site/paths';
-import { redirect } from 'next/navigation';
+} from "@/auth";
+import { PATH_ADMIN_PHOTOS } from "@/site/paths";
+import { redirect } from "next/navigation";
 
 export const signInAction = async (
   _prevState: string | undefined,
   formData: FormData,
 ) => {
   try {
-    await signIn('credentials', Object.fromEntries(formData));
+    await signIn("credentials", Object.fromEntries(formData));
   } catch (error) {
     if (
       `${error}`.includes(KEY_CREDENTIALS_SIGN_IN_ERROR) || 
@@ -23,8 +23,8 @@ export const signInAction = async (
     ) {
       // Return credentials error to display on sign-in page.
       return KEY_CREDENTIALS_SIGN_IN_ERROR;
-    } else if (!`${error}`.includes('NEXT_REDIRECT')) {
-      console.log('Unknown sign in error:', {
+    } else if (!`${error}`.includes("NEXT_REDIRECT")) {
+      console.log("Unknown sign in error:", {
         errorText: `${error}`,
         error,
       });

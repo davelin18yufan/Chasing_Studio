@@ -64,8 +64,11 @@ export default async function AdminLayout({
   if (countBlogs > 0) navItems.push(navItemBlogs)
 
   return (
-    <div className="mt-4 space-y-5 pt-20 px-3 pb-3
-                lg:px-6 lg:pb-6">
+    <div
+      className={clsx("mt-4 space-y-5", 
+        "pt-20 px-3 pb-3", 
+        "lg:px-6 lg:pb-6")}
+    >
       <AdminNav items={navItems} />
       {children}
     </div>

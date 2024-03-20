@@ -10,14 +10,7 @@ interface Props {
   className?: string
 }
 
-export default function GalleryCard({
-  src,
-  title,
-  size,
-  tags,
-  id,
-  className,
-}: Props) {
+export default function GalleryCard({ src, title, size, tags, id }: Props) {
   return (
     <Link
       className="relative overflow-hidden rounded-xl aspect-square galleryCard group"
@@ -42,8 +35,10 @@ export default function GalleryCard({
 
       <div
         className={clsx(
-          "absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center",
-          "text-gofun opacity-10 transition group-hover:opacity-100"
+          "absolute inset-0 flex flex-col items-center justify-center",
+          "gap-2 p-4 text-center",
+          "text-gofun opacity-10",
+          "transition group-hover:opacity-100"
         )}
       >
         <h3 className="text-xl font-bold ">{title}</h3>

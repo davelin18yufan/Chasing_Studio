@@ -18,10 +18,10 @@ const AWS_S3_HOSTNAME =
 
 const createRemotePattern = (hostname) => hostname
   ? {
-    protocol: 'https',
+    protocol: "https",
     hostname,
-    port: '',
-    pathname: '/**',
+    port: "",
+    pathname: "/**",
   }
   : [];
 
@@ -30,12 +30,12 @@ const nextConfig = {
   images: {
     imageSizes: [200],
     remotePatterns: [{
-        protocol: 'https',
-        hostname: 'source.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },]
-      .concat(createRemotePattern('qr-official.line.me'))
+      protocol: "https",
+      hostname: "source.unsplash.com",
+      port: "",
+      pathname: "/**",
+    }]
+      .concat(createRemotePattern("qr-official.line.me"))
       .concat(createRemotePattern(VERCEL_BLOB_HOSTNAME))
       .concat(createRemotePattern(CLOUDFLARE_R2_HOSTNAME))
       .concat(createRemotePattern(AWS_S3_HOSTNAME)),
@@ -43,8 +43,8 @@ const nextConfig = {
   },
 };
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
 });
 
 module.exports = withBundleAnalyzer(nextConfig);

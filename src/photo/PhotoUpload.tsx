@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { uploadPhotoFromClient } from '@/services/storage';
-import { useRouter } from 'next/navigation';
-import { PATH_ADMIN_UPLOADS, pathForAdminUploadUrl } from '@/site/paths';
-import ImageInput from '../components/ImageInput';
-import { MAX_IMAGE_SIZE } from '@/services/next-image';
-import { clsx } from 'clsx/lite';
+import { useState } from "react";
+import { uploadPhotoFromClient } from "@/services/storage";
+import { useRouter } from "next/navigation";
+import { PATH_ADMIN_UPLOADS, pathForAdminUploadUrl } from "@/site/paths";
+import ImageInput from "../components/ImageInput";
+import { MAX_IMAGE_SIZE } from "@/services/next-image";
+import { clsx } from "clsx/lite";
 
 export default function PhotoUpload({
   shouldResize,
   debug,
-  path = 'photo'
+  path = "photo",
 }: {
   shouldResize?: boolean
   debug?: boolean
-  path?: "photo" | 'blog'
+  path?: "photo" | "blog"
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string>();
@@ -62,7 +62,7 @@ export default function PhotoUpload({
                         router.push(PATH_ADMIN_UPLOADS)
                       } else {
                         // Redirect to photo detail page
-                        if(path === 'photo') router.push(pathForAdminUploadUrl(url))
+                        if(path === "photo") router.push(pathForAdminUploadUrl(url))
                       }
                     }
                   })

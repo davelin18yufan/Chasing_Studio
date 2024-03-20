@@ -14,17 +14,17 @@ export default function StatusIcon({
 }) {
   const getIcon = () => {
     switch (type) {
-      case "checked":
-        return <BiSolidCheckboxChecked size={18} className="text-green-400" />
-      case "missing":
-        return (
-          <BiSolidXSquare
-            size={14}
-            className="text-kurenai translate-x-[2px] translate-y-[1.5px]"
-          />
-        )
-      case "optional":
-        return <BiSolidCheckboxMinus size={18} className="text-dim" />
+    case "checked":
+      return <BiSolidCheckboxChecked size={18} className="text-green-400" />
+    case "missing":
+      return (
+        <BiSolidXSquare
+          size={14}
+          className="text-kurenai translate-x-[2px] translate-y-[1.5px]"
+        />
+      )
+    case "optional":
+      return <BiSolidCheckboxMinus size={18} className="text-dim" />
     }
   }
 

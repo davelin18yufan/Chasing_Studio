@@ -125,10 +125,10 @@ export const pathForPhoto = (
   tag
     ? `${pathForTag(tag)}/${getPhotoId(photo)}`
     : camera
-    ? `${pathForCamera(camera)}/${getPhotoId(photo)}`
-    : simulation
-    ? `${pathForFilmSimulation(simulation)}/${getPhotoId(photo)}`
-    : `${PREFIX_PHOTO}/${getPhotoId(photo)}`
+      ? `${pathForCamera(camera)}/${getPhotoId(photo)}`
+      : simulation
+        ? `${pathForFilmSimulation(simulation)}/${getPhotoId(photo)}`
+        : `${PREFIX_PHOTO}/${getPhotoId(photo)}`
 
 export const pathForPhotoShare = (
   photo: PhotoOrPhotoId,

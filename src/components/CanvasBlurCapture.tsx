@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 const RETRY_DELAY = 2000;
 
@@ -34,11 +34,11 @@ export default function CanvasBlurCapture({
         canvas.height = height * scale;
         canvas.style.width = `${width}px`;
         canvas.style.height = `${height}px`;
-        const context = refCanvas.current?.getContext('2d');
+        const context = refCanvas.current?.getContext("2d");
         if (context) {
           context.scale(scale, scale);
           context.filter =
-            'contrast(1.2) saturate(1.2)' +
+            "contrast(1.2) saturate(1.2)" +
             `blur(${scale * 10}px)`;
           context.drawImage(
             image,
@@ -48,21 +48,21 @@ export default function CanvasBlurCapture({
             width * image.height / image.width + edgeCompensation * 2,
           );
           refTimeouts.current.forEach(clearTimeout);
-          onCapture(canvas.toDataURL('image/jpeg', quality));
+          onCapture(canvas.toDataURL("image/jpeg", quality));
         } else {
-          console.error('Cannot get 2d context');
+          console.error("Cannot get 2d context");
           // Retry capture in case canvas is not available
           refTimeouts.current.push(setTimeout(capture, RETRY_DELAY));
         }
       } else {
-        console.error('Cannot generate blur data: canvas not found');
+        console.error("Cannot generate blur data: canvas not found");
         // Retry capture in case canvas is not available
         refTimeouts.current.push(setTimeout(capture, RETRY_DELAY));
       }
     };
 
     const image = new Image();
-    image.crossOrigin = 'anonymous';
+    image.crossOrigin = "anonymous";
     image.src = imageUrl;
     image.onload = capture;
 
@@ -84,6 +84,6 @@ export default function CanvasBlurCapture({
   ]);
 
   return (
-    <canvas ref={refCanvas} className={hidden ? 'hidden' : undefined} />
+    <canvas ref={refCanvas} className={hidden ? "hidden" : undefined} />
   );
 }

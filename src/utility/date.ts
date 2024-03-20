@@ -38,10 +38,10 @@ const dateFromTimestamp = (timestamp?: AmbiguousTimestamp): Date =>
   typeof timestamp === "number"
     ? new Date(timestamp * 1000)
     : typeof timestamp === "string"
-    ? /.+Z/i.test(timestamp)
-      ? new Date(timestamp)
-      : new Date(`${timestamp}Z`)
-    : new Date()
+      ? /.+Z/i.test(timestamp)
+        ? new Date(timestamp)
+        : new Date(`${timestamp}Z`)
+      : new Date()
 
 const createNaiveDateWithOffset = (
   timestamp?: AmbiguousTimestamp,

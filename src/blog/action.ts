@@ -1,10 +1,6 @@
 "use server"
 
-import {
-  revalidateAdminPaths,
-  revalidateAllKeysAndPaths,
-  revalidateBlogsKey,
-} from "@/cache"
+import { revalidateAllKeysAndPaths } from "@/cache"
 import {
   sqlDeleteBlog,
   sqlInsertBlog,
@@ -15,7 +11,7 @@ import { convertUploadToPhoto, deleteStorageUrl } from "@/services/storage"
 import { PATH_ADMIN_BLOGS } from "@/site/paths"
 import { generateNanoid } from "@/utility/nanoid"
 import { redirect } from "next/navigation"
-import { BlogBase, Blog } from "."
+import { BlogBase } from "."
 
 interface CreateBlogAction extends Omit<BlogBase, "tags"> {
   tags: string
@@ -26,16 +22,17 @@ interface UpdateBlogAction extends Omit<BlogBase, "tags"> {
   tags: string
 }
 
-interface DeleteBlogAction extends Pick<Blog, "id" | "coverPhoto"> {}
-
 export async function createBlogAction(formData: CreateBlogAction) {
   const { title, author, coverPhoto, content, tags, hidden } = formData
   const blogId = generateNanoid()
   const coverPhotoId = generateNanoid()
   // convert upload file name and path
-  if (!coverPhoto.src) throw new Error("Could not found uploaded cover photo")
+  if (!coverPhoto.src) {
+    throw new Error("Could not found uploaded cover photo")
+  }
 
-  const updatedUrl = await convertUploadToPhoto(coverPhoto.src, coverPhotoId) // copy to new url and delete stale blob
+  // copy to new url and delete stale blob
+  const updatedUrl = await convertUploadToPhoto(coverPhoto.src, coverPhotoId) 
 
   if (updatedUrl) coverPhoto.src = updatedUrl // replace
 

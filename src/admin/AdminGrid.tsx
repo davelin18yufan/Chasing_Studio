@@ -1,5 +1,5 @@
-import { clsx } from 'clsx/lite';
-import { ReactNode } from 'react';
+import { clsx } from "clsx/lite";
+import { ReactNode } from "react";
 
 export default function AdminGrid ({
   title,
@@ -16,9 +16,9 @@ export default function AdminGrid ({
     {/* py-[1px] fixes Safari vertical scroll bug */}
     <div className="min-w-[14rem] overflow-x-scroll py-[1px]">
       <div className={clsx(
-        'w-full',
-        'grid grid-cols-[auto_1fr_auto] ',
-        'gap-2 sm:gap-3 items-center',
+        "w-full",
+        "grid grid-cols-[auto_1fr_auto] ",
+        "gap-2 sm:gap-3 items-center",
       )}>
         {children}
       </div>

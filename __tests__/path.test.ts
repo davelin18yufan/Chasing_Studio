@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 import {
   getEscapePath,
   getPathComponents,
@@ -17,19 +17,19 @@ import {
   isPathTagPhoto,
   isPathTagPhotoShare,
   isPathTagShare,
-} from '@/site/paths';
-import { getCameraFromKey } from '@/camera';
+} from "@/site/paths";
+import { getCameraFromKey } from "@/camera";
 
-const PHOTO_ID        = 'UsKSGcbt';
-const TAG             = 'tag-name';
-const CAMERA          = 'fujifilm-x-t1';
+const PHOTO_ID        = "UsKSGcbt";
+const TAG             = "tag-name";
+const CAMERA          = "fujifilm-x-t1";
 const CAMERA_OBJECT   = getCameraFromKey(CAMERA);
-const FILM_SIMULATION = 'acros';
-const SHARE           = 'share';
+const FILM_SIMULATION = "acros";
+const SHARE           = "share";
 
-const PATH_ROOT                         = '/';
-const PATH_GRID                         = '/grid';
-const PATH_ADMIN                        = '/admin/photos';
+const PATH_ROOT                         = "/";
+const PATH_GRID                         = "/grid";
+const PATH_ADMIN                        = "/admin/photos";
 
 const PATH_PHOTO                        = `/p/${PHOTO_ID}`;
 const PATH_PHOTO_SHARE                  = `${PATH_PHOTO}/${SHARE}`;
@@ -49,8 +49,8 @@ const PATH_FILM_SIMULATION_SHARE        = `${PATH_FILM_SIMULATION}/${SHARE}`;
 const PATH_FILM_SIMULATION_PHOTO        = `${PATH_FILM_SIMULATION}/${PHOTO_ID}`;
 const PATH_FILM_SIMULATION_PHOTO_SHARE  = `${PATH_FILM_SIMULATION_PHOTO}/${SHARE}`;
  
-describe('Paths', () => {
-  it('can be classified', () => {
+describe("Paths", () => {
+  it("can be classified", () => {
     // Positive
     expect(isPathPhoto(PATH_PHOTO)).toBe(true);
     expect(isPathPhotoShare(PATH_PHOTO_SHARE)).toBe(true);
@@ -82,7 +82,7 @@ describe('Paths', () => {
     expect(isPathFilmSimulationPhoto(PATH_PHOTO_SHARE)).toBe(false);
     expect(isPathFilmSimulationPhotoShare(PATH_PHOTO)).toBe(false);
   });
-  it('can be parsed', () => {
+  it("can be parsed", () => {
     expect(getPathComponents(PATH_ROOT)).toEqual({});
     expect(getPathComponents(PATH_PHOTO)).toEqual({
       photoId: PHOTO_ID,
@@ -133,7 +133,7 @@ describe('Paths', () => {
       simulation: FILM_SIMULATION,
     });
   });
-  it('can be escaped', () => {
+  it("can be escaped", () => {
     // Root views
     expect(getEscapePath(PATH_ROOT)).toEqual(undefined);
     expect(getEscapePath(PATH_GRID)).toEqual(undefined);

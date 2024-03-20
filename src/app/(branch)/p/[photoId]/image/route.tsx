@@ -1,11 +1,11 @@
-import { auth } from '@/auth';
-import { getImageCacheHeadersForAuth, getPhotoCached } from '@/cache';
-import { IMAGE_OG_DIMENSION } from '@/photo/image-response';
-import PhotoImageResponse from '@/photo/image-response/PhotoImageResponse';
-import { getIBMPlexMonoMedium } from '@/site/font';
-import { ImageResponse } from 'next/og';
+import { auth } from "@/auth";
+import { getImageCacheHeadersForAuth, getPhotoCached } from "@/cache";
+import { IMAGE_OG_DIMENSION } from "@/photo/image-response";
+import PhotoImageResponse from "@/photo/image-response/PhotoImageResponse";
+import { getIBMPlexMonoMedium } from "@/site/font";
+import { ImageResponse } from "next/og";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 export async function GET(
   _: Request,
@@ -21,7 +21,7 @@ export async function GET(
     getImageCacheHeadersForAuth(await auth()),
   ]);
   
-  if (!photo) { return new Response('Photo not found', { status: 404 }); }
+  if (!photo) { return new Response("Photo not found", { status: 404 }); }
 
   const { width, height } = IMAGE_OG_DIMENSION;
   

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect, ReactNode } from 'react';
-import { AppStateContext } from '.';
-import { AnimationConfig } from '@/components/AnimateItems';
-import usePathnames from '@/utility/usePathnames';
+import { useState, useEffect, ReactNode } from "react";
+import { AppStateContext } from ".";
+import { AnimationConfig } from "@/components/AnimateItems";
+import usePathnames from "@/utility/usePathnames";
 
 export default function StateProvider({
   children,

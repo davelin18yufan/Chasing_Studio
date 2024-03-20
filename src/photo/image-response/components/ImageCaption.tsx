@@ -1,7 +1,7 @@
-import { OG_TEXT_BOTTOM_ALIGNMENT } from '@/site/config';
-import { ReactNode } from 'react';
+import { OG_TEXT_BOTTOM_ALIGNMENT } from "@/site/config";
+import { ReactNode } from "react";
 
-const GRADIENT_STOPS = 'rgba(0,0,0,0), rgba(0,0,0,0.3), rgba(0,0,0,0.7)';
+const GRADIENT_STOPS = "rgba(0,0,0,0), rgba(0,0,0,0.3), rgba(0,0,0,0.7)";
 
 export default function ImageCaption({
   height,
@@ -17,13 +17,13 @@ export default function ImageCaption({
 }) {
   return (
     <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'absolute',
+      display: "flex",
+      flexDirection: "column",
+      position: "absolute",
       paddingLeft: height * .0875,
       paddingRight: height * .0875,
-      color: 'white',
-      backgroundBlendMode: 'multiply',
+      color: "white",
+      backgroundBlendMode: "multiply",
       fontFamily,
       fontSize: height *.089,
       lineHeight: 1,
@@ -46,22 +46,22 @@ export default function ImageCaption({
       {subhead &&
         <div
           style={{
-            display: 'flex',
+            display: "flex",
             gap: height * .053,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
           }}
         >
           {subhead}
         </div>}
       <div
         style={{
-          display: 'flex',
+          display: "flex",
           gap: height * .053,
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
         }}
       >
         {children}

@@ -32,7 +32,8 @@
     // ],
     "max-len": [
       "warn",
-      { "code": 80 }
+      { "code": 90 }
   ]
-  }
+  },
+  "ignorePatterns": ["**/plate-ui/*", "**/plate/**", "**/components/ui/**", "/src/components/icons.tsx"]
 }

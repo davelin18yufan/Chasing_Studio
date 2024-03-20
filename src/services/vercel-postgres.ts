@@ -232,13 +232,13 @@ const sqlGetUniqueTags = async () =>
   GROUP BY tag
   ORDER BY tag ASC
 `.then(
-    ({ rows }): Tags =>
-      rows.map(({ tag, count }) => ({
-        type: "photo",
-        tag: tag as string,
-        count: parseInt(count, 10),
-      }))
-  )
+      ({ rows }): Tags =>
+        rows.map(({ tag, count }) => ({
+          type: "photo",
+          tag: tag as string,
+          count: parseInt(count, 10),
+        }))
+    )
 
 const sqlGetUniqueTagsHidden = async () =>
   sql`
@@ -247,13 +247,13 @@ const sqlGetUniqueTagsHidden = async () =>
   GROUP BY tag
   ORDER BY tag ASC
 `.then(
-    ({ rows }): Tags =>
-      rows.map(({ tag, count }) => ({
-        type: "photo",
-        tag: tag as string,
-        count: parseInt(count, 10),
-      }))
-  )
+      ({ rows }): Tags =>
+        rows.map(({ tag, count }) => ({
+          type: "photo",
+          tag: tag as string,
+          count: parseInt(count, 10),
+        }))
+    )
 
 const sqlGetUniqueCameras = async () =>
   sql`
@@ -265,13 +265,13 @@ const sqlGetUniqueCameras = async () =>
   GROUP BY make, model
   ORDER BY camera ASC
 `.then(
-    ({ rows }): Cameras =>
-      rows.map(({ make, model, count }) => ({
-        cameraKey: createCameraKey({ make, model }),
-        camera: { make, model },
-        count: parseInt(count, 10),
-      }))
-  )
+      ({ rows }): Cameras =>
+        rows.map(({ make, model, count }) => ({
+          cameraKey: createCameraKey({ make, model }),
+          camera: { make, model },
+          count: parseInt(count, 10),
+        }))
+    )
 
 const sqlGetUniqueFilmSimulations = async () =>
   sql`
@@ -281,12 +281,12 @@ const sqlGetUniqueFilmSimulations = async () =>
   GROUP BY film_simulation
   ORDER BY film_simulation ASC
 `.then(
-    ({ rows }): FilmSimulations =>
-      rows.map(({ film_simulation, count }) => ({
-        simulation: film_simulation as FilmSimulation,
-        count: parseInt(count, 10),
-      }))
-  )
+      ({ rows }): FilmSimulations =>
+        rows.map(({ film_simulation, count }) => ({
+          simulation: film_simulation as FilmSimulation,
+          count: parseInt(count, 10),
+        }))
+    )
 
 export type GetPhotosOptions = {
   sortBy?: "createdAt" | "takenAt" | "priority"
@@ -307,7 +307,7 @@ const safelyQueryPhotos = async <T>(callback: () => Promise<T>): Promise<T> => {
     result = await callback()
   } catch (e: any) {
     if (/relation "photos" does not exist/i.test(e.message)) {
-      console.log('Creating table "photos" because it did not exist')
+      console.log("Creating table \"photos\" because it did not exist")
       await sqlCreatePhotosTable()
       result = await callback()
     } else if (/endpoint is in transition/i.test(e.message)) {
@@ -388,15 +388,15 @@ export const getPhotos = async (options: GetPhotosOptions = {}) => {
 
   // ORDER BY
   switch (sortBy) {
-    case "createdAt":
-      sql.push("ORDER BY created_at DESC")
-      break
-    case "takenAt":
-      sql.push("ORDER BY taken_at DESC")
-      break
-    case "priority":
-      sql.push("ORDER BY priority_order ASC, taken_at DESC")
-      break
+  case "createdAt":
+    sql.push("ORDER BY created_at DESC")
+    break
+  case "takenAt":
+    sql.push("ORDER BY taken_at DESC")
+    break
+  case "priority":
+    sql.push("ORDER BY priority_order ASC, taken_at DESC")
+    break
   }
 
   // LIMIT + OFFSET

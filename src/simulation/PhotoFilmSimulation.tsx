@@ -1,14 +1,14 @@
-import { labelForFilmSimulation } from '@/vendors/fujifilm';
-import PhotoFilmSimulationIcon from './PhotoFilmSimulationIcon';
-import { pathForFilmSimulation } from '@/site/paths';
-import { FilmSimulation } from '.';
-import EntityLink, { EntityLinkExternalProps } from '@/components/EntityLink';
+import { labelForFilmSimulation } from "@/vendors/fujifilm";
+import PhotoFilmSimulationIcon from "./PhotoFilmSimulationIcon";
+import { pathForFilmSimulation } from "@/site/paths";
+import { FilmSimulation } from ".";
+import EntityLink, { EntityLinkExternalProps } from "@/components/EntityLink";
 
 export default function PhotoFilmSimulation({
   simulation,
-  type = 'icon-last',
+  type = "icon-last",
   badged = true,
-  contrast = 'low',
+  contrast = "low",
   countOnHover,
 }: {
   simulation: FilmSimulation

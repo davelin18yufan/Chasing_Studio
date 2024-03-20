@@ -1,13 +1,13 @@
-import { GRID_THUMBNAILS_TO_SHOW_MAX } from '@/photo';
-import { PaginationParams } from '@/site/pagination';
-import { generateMetaForTag } from '@/tag';
-import TagOverview from '@/tag/TagOverview';
-import TagShareModal from '@/tag/TagShareModal';
+import { GRID_THUMBNAILS_TO_SHOW_MAX } from "@/photo";
+import { PaginationParams } from "@/site/pagination";
+import { generateMetaForTag } from "@/tag";
+import TagOverview from "@/tag/TagOverview";
+import TagShareModal from "@/tag/TagShareModal";
 import {
   getPhotosTagDataCached,
   getPhotosTagDataCachedWithPagination,
-} from '@/tag/data';
-import { Metadata } from 'next';
+} from "@/tag/data";
+import { Metadata } from "next";
 
 interface TagProps {
   params: { tag: string }
@@ -43,7 +43,7 @@ export async function generateMetadata({
     twitter: {
       images,
       description,
-      card: 'summary_large_image',
+      card: "summary_large_image",
     },
     description,
   };

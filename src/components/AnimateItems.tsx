@@ -44,7 +44,8 @@ function AnimateItems({
 
   // memorize initial state, prevent update during render
   const hasLoadedInitial = useRef(hasLoaded)
-  const nextPhotoAnimationInitial = useRef(nextPhotoAnimation) // if there is next animation
+  // if there is next animation
+  const nextPhotoAnimationInitial = useRef(nextPhotoAnimation) 
 
   // check if there is next animation and delay
   const shouldAnimate =
@@ -63,26 +64,26 @@ function AnimateItems({
 
   const getInitialVariant = (): Variant => {
     switch (typeResolved) {
-      case "left":
-        return {
-          opacity: 0,
-          transform: `translateX(${distanceOffset}px)`,
-        }
-      case "right":
-        return {
-          opacity: 0,
-          transform: `translateX(${-distanceOffset}px)`,
-        }
-      case "bottom":
-        return {
-          opacity: 0,
-          transform: `translateY(${distanceOffset}px)`,
-        }
-      default:
-        return {
-          opacity: 0,
-          transform: `translateY(${distanceOffset}px) scale(${scaleOffset})`,
-        }
+    case "left":
+      return {
+        opacity: 0,
+        transform: `translateX(${distanceOffset}px)`,
+      }
+    case "right":
+      return {
+        opacity: 0,
+        transform: `translateX(${-distanceOffset}px)`,
+      }
+    case "bottom":
+      return {
+        opacity: 0,
+        transform: `translateY(${distanceOffset}px)`,
+      }
+    default:
+      return {
+        opacity: 0,
+        transform: `translateY(${distanceOffset}px) scale(${scaleOffset})`,
+      }
     }
   }
 
@@ -94,12 +95,12 @@ function AnimateItems({
       variants={
         shouldStagger
           ? {
-              show: {
-                transition: {
-                  staggerChildren: staggerDelay,
-                },
+            show: {
+              transition: {
+                staggerChildren: staggerDelay,
               },
-            }
+            },
+          }
           : undefined
       }
       onAnimationComplete={() => {

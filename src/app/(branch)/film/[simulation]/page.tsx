@@ -1,12 +1,12 @@
-import { GRID_THUMBNAILS_TO_SHOW_MAX } from '@/photo';
-import { FilmSimulation, generateMetaForFilmSimulation } from '@/simulation';
-import FilmSimulationOverview from '@/simulation/FilmSimulationOverview';
+import { GRID_THUMBNAILS_TO_SHOW_MAX } from "@/photo";
+import { FilmSimulation, generateMetaForFilmSimulation } from "@/simulation";
+import FilmSimulationOverview from "@/simulation/FilmSimulationOverview";
 import {
   getPhotosFilmSimulationDataCached,
   getPhotosFilmSimulationDataCachedWithPagination,
-} from '@/simulation/data';
-import { PaginationParams } from '@/site/pagination';
-import { Metadata } from 'next';
+} from "@/simulation/data";
+import { PaginationParams } from "@/site/pagination";
+import { Metadata } from "next";
 
 interface FilmSimulationProps {
   params: { simulation: FilmSimulation }
@@ -42,7 +42,7 @@ export async function generateMetadata({
     twitter: {
       images,
       description,
-      card: 'summary_large_image',
+      card: "summary_large_image",
     },
     description,
   };

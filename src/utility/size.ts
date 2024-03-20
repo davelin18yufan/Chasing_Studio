@@ -8,7 +8,7 @@ export const getDimensionsFromSize = (
   height: number
   aspectRatio: number
 } => {
-  const aspectRatio = typeof aspectRatioRaw === 'string'
+  const aspectRatio = typeof aspectRatioRaw === "string"
     ? parseFloat(aspectRatioRaw)
     : aspectRatioRaw || DEFAULT_ASPECT_RATIO;
 

@@ -1,10 +1,10 @@
-import { Photo } from '..';
-import ImageCaption from './components/ImageCaption';
-import ImagePhotoGrid from './components/ImagePhotoGrid';
-import ImageContainer from './components/ImageContainer';
-import { Camera, cameraFromPhoto, formatCameraText } from '@/camera';
-import { IoMdCamera } from 'react-icons/io';
-import { NextImageSize } from '@/services/next-image';
+import { Photo } from "..";
+import ImageCaption from "./components/ImageCaption";
+import ImagePhotoGrid from "./components/ImagePhotoGrid";
+import ImageContainer from "./components/ImageContainer";
+import { Camera, cameraFromPhoto, formatCameraText } from "@/camera";
+import { IoMdCamera } from "react-icons/io";
+import { NextImageSize } from "@/services/next-image";
 
 export default function CameraImageResponse({
   camera: cameraProp,
@@ -24,7 +24,7 @@ export default function CameraImageResponse({
     <ImageContainer {...{
       width,
       height,
-      ...photos.length === 0 && { background: 'black' },
+      ...photos.length === 0 && { background: "black" },
     }}>
       <ImagePhotoGrid
         {...{
@@ -38,7 +38,7 @@ export default function CameraImageResponse({
           size={height * .09}
           style={{ transform: `translateY(${height * 0.002}px)` }}
         />
-        <span style={{textTransform: 'uppercase'}}>
+        <span style={{textTransform: "uppercase"}}>
           {formatCameraText(camera)}
         </span>
       </ImageCaption>

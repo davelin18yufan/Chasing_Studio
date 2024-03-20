@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import useIsDesktop from '@/utility/useIsDesktop';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import useIsDesktop from "@/utility/useIsDesktop";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function RedirectOnDesktop({
   redirectPath,

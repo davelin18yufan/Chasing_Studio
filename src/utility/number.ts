@@ -16,9 +16,9 @@ const gcd = (a: number, b: number): number => {
 
 const formatDecimalToFraction = (decimal: number) => {
   if (Math.abs(decimal - 0.33) < 0.011) {
-    return '1/3';
+    return "1/3";
   } else if (Math.abs(decimal - 0.66) <= 0.011) {
-    return '2/3';
+    return "2/3";
   } else {
     const length = decimal.toString().length - 2;
 
@@ -41,10 +41,10 @@ export const formatNumberToFraction = (number: number) => {
   const integer = Math.round(Math.abs(number - decimal));
   const fraction = decimal !== 0
     ? formatDecimalToFraction(Math.abs(decimal))
-    : '';
-  const sign = number > 0 ? '+' : '-';
+    : "";
+  const sign = number > 0 ? "+" : "-";
   const whole = integer > 0
     ? fraction ? `${integer} ` : integer
-    : '';
+    : "";
   return `${sign}${whole}${fraction}`;
 };

@@ -20,7 +20,7 @@ const variants: Variants = {
   offView: {
     x: "-100",
     rotate: -90,
-    scale: 0
+    scale: 0,
   },
   onView: {
     x: 0,
@@ -49,7 +49,8 @@ export default function BlogCard({ blog }: Props) {
       <Card
         className={clsx(
           "border-transparent rounded-md outline-none",
-          "hover:bg-shironezumi hover:shadow-lg dark:hover:bg-kon dark:border-shironezumi/50",
+          "hover:bg-shironezumi hover:shadow-lg dark:hover:bg-kon ",
+          "dark:border-shironezumi/50",
           "relative overflow-hidden blink"
         )}
       >

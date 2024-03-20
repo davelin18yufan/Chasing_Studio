@@ -2,18 +2,18 @@ import {
   GRID_THUMBNAILS_TO_SHOW_MAX,
   descriptionForPhoto,
   titleForPhoto,
-} from '@/photo';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+} from "@/photo";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import {
   PATH_ROOT,
   absolutePathForPhoto,
   absolutePathForPhotoImage,
-} from '@/site/paths';
-import PhotoDetailPage from '@/photo/PhotoDetailPage';
-import { getPhotoCached, getPhotosNearIdCached } from '@/cache';
+} from "@/site/paths";
+import PhotoDetailPage from "@/photo/PhotoDetailPage";
+import { getPhotoCached, getPhotosNearIdCached } from "@/cache";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 interface PhotoProps {
   params: { photoId: string }
@@ -44,7 +44,7 @@ export async function generateMetadata({
       title,
       description,
       images,
-      card: 'summary_large_image',
+      card: "summary_large_image",
     },
   };
 }

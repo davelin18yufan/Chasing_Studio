@@ -9,7 +9,12 @@ export default function PopoutButton({
   label?: string
 }) {
   return (
-    <Link title={label} href={href} className="button bg-transparent" target="_blank">
+    <Link
+      title={label}
+      href={href}
+      className="button bg-transparent"
+      target="_blank"
+    >
       <MdOutlineScreenShare className="translate-y-[-0.5px]" />
     </Link>
   )

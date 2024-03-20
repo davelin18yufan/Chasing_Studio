@@ -75,7 +75,7 @@ export default async function BlogPage({
                 <p className="font-semibold text-xl">{blog.author.name}</p>
               </Link>
             ) : (
-                <p className="font-semibold text-xl">{blog.author.name}</p>
+              <p className="font-semibold text-xl">{blog.author.name}</p>
             )}
           </div>
 

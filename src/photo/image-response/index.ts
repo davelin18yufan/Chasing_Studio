@@ -1,5 +1,5 @@
-import { NextImageSize } from '@/services/next-image';
-import { getDimensionsFromSize } from '@/utility/size';
+import { NextImageSize } from "@/services/next-image";
+import { getDimensionsFromSize } from "@/utility/size";
 
 export const MAX_PHOTOS_TO_SHOW_OG = 12;
 export const MAX_PHOTOS_TO_SHOW_PER_TAG = 6;

@@ -1,6 +1,6 @@
-import { PATH_API_VERCEL_BLOB_UPLOAD } from '@/site/paths';
-import { copy, del, list } from '@vercel/blob';
-import { upload } from '@vercel/blob/client';
+import { PATH_API_VERCEL_BLOB_UPLOAD } from "@/site/paths";
+import { copy, del, list } from "@vercel/blob";
+import { upload } from "@vercel/blob/client";
 
 const VERCEL_BLOB_STORE_ID = process.env.BLOB_READ_WRITE_TOKEN?.match(
   /^vercel_blob_rw_([a-z0-9]+)_[a-z0-9]+$/i,
@@ -23,7 +23,7 @@ export const vercelBlobUploadFromClient = async (
     fileName,
     file,
     {
-      access: 'public',
+      access: "public",
       handleUploadUrl: PATH_API_VERCEL_BLOB_UPLOAD,
     },
   )
@@ -38,7 +38,7 @@ export const vercelBlobCopy = (
     fileNameSource,
     fileNameDestination,
     {
-      access: 'public',
+      access: "public",
       addRandomSuffix,
     },
   )

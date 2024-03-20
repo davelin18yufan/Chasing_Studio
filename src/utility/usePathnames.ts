@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 const usePathnames = () => {
   const pathname = usePathname();

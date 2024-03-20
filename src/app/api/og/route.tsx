@@ -21,13 +21,13 @@ export async function GET() {
   return new ImageResponse(
     (
       <ImageContainer {...{ width, height }}>
-        {/* <ImagePhotoGrid
+        <ImagePhotoGrid
           {...{
             photos,
             width,
             height,
           }}
-        /> */}
+        />
         <ImageCaption {...{ width, height, fontFamily }}>
           {SITE_DOMAIN_OR_TITLE}
         </ImageCaption>

@@ -1,12 +1,12 @@
-import { OrientationTypes, type ExifData } from 'ts-exif-parser';
-import { formatNumberToFraction } from './number';
+import { OrientationTypes, type ExifData } from "ts-exif-parser";
+import { formatNumberToFraction } from "./number";
 
 const OFFSET_REGEX = /[+-]\d\d:\d\d/;
 
 export const getOffsetFromExif = (data: ExifData) =>
   Object.values(data.tags as any)
     .find((value: any) =>
-      typeof value === 'string' &&
+      typeof value === "string" &&
       OFFSET_REGEX.test(value)
     ) as string | undefined;
 

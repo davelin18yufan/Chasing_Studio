@@ -10,13 +10,13 @@ export default function ImageBlurFallback(props: ImageProps) {
         ...props,
         ...(BLUR_ENABLED && props.blurDataURL
           ? {
-              placeholder: "blur",
-              blurDataURL: props.blurDataURL,
-            }
+            placeholder: "blur",
+            blurDataURL: props.blurDataURL,
+          }
           : {
-              placeholder: "empty",
-              className: clsx(props.className, "bg-gofun/50 dark:bg-kachi/50"),
-            }),
+            placeholder: "empty",
+            className: clsx(props.className, "bg-gofun/50 dark:bg-kachi/50"),
+          }),
       }}
     />
   )

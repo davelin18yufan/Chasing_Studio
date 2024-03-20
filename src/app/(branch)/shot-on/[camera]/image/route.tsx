@@ -1,15 +1,15 @@
-import { auth } from '@/auth';
-import { getImageCacheHeadersForAuth, getPhotosCached } from '@/cache';
-import { getCameraFromKey } from '@/camera';
+import { auth } from "@/auth";
+import { getImageCacheHeadersForAuth, getPhotosCached } from "@/cache";
+import { getCameraFromKey } from "@/camera";
 import {
   IMAGE_OG_DIMENSION_SMALL,
   MAX_PHOTOS_TO_SHOW_PER_TAG,
-} from '@/photo/image-response';
-import CameraImageResponse from '@/photo/image-response/CameraImageResponse';
-import { getIBMPlexMonoMedium } from '@/site/font';
-import { ImageResponse } from 'next/og';
+} from "@/photo/image-response";
+import CameraImageResponse from "@/photo/image-response/CameraImageResponse";
+import { getIBMPlexMonoMedium } from "@/site/font";
+import { ImageResponse } from "next/og";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 export async function GET(
   _: Request,

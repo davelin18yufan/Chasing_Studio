@@ -1,5 +1,5 @@
-import { IMAGE_TINY_WIDTH } from '@/site';
-import ImageBlurFallback from './ImageBlurFallback';
+import { IMAGE_TINY_WIDTH } from "@/site";
+import ImageBlurFallback from "./ImageBlurFallback";
 
 export default function ImageTiny({
   className,
@@ -21,7 +21,7 @@ export default function ImageTiny({
       alt,
       ...blurData && {
         blurDataURL: blurData,
-        placeholder: 'blur',
+        placeholder: "blur",
       },
       width: IMAGE_TINY_WIDTH,
       height: Math.round(IMAGE_TINY_WIDTH / aspectRatio),

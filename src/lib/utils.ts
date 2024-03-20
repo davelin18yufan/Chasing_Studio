@@ -7,8 +7,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // PLACEHOLDER LOADER
-const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+const shimmer = (w: number, h: number) =>
+  // eslint-disable-next-line max-len
+  `<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <linearGradient id="g">
       <stop stop-color="#7986AC" offset="20%" />
@@ -18,7 +19,8 @@ const shimmer = (w: number, h: number) => `
   </defs>
   <rect width="${w}" height="${h}" fill="#7986AC" />
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+  <animate xlink:href="#r" attributeName="x" 
+    from="-${w}" to="${w}" dur="1s" repeatCount="indefinite" />
 </svg>`
 
 const toBase64 = (str: string) =>

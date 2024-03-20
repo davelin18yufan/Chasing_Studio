@@ -102,12 +102,12 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
   const initialValue: Value = blog
     ? JSON.parse(blog.content)
     : [
-        {
-          id: "content",
-          type: ELEMENT_PARAGRAPH,
-          children: [{ text: "Cover image will appear at top of title" }],
-        },
-      ]
+      {
+        id: "content",
+        type: ELEMENT_PARAGRAPH,
+        children: [{ text: "Cover image will appear at top of title" }],
+      },
+    ]
 
   const initialTitleValue = {
     title: blog?.title || "",
@@ -206,7 +206,12 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
     <>
       {/* Form */}
       <div className="flex flex-col justify-center items-start gap-4">
-        <div className="flex items-center justify-between gap-2 lg:max-w-[70vw] relative w-full py-2">
+        <div
+          className={clsx(
+            "flex items-center justify-between gap-2",
+            "lg:max-w-[70vw] relative w-full py-2"
+          )}
+        >
           <Button
             className={clsx(
               "bg-primary text-invert",

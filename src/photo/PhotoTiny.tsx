@@ -1,8 +1,8 @@
-import { Photo, titleForPhoto } from '.';
-import ImageTiny from '@/components/ImageTiny';
-import Link from 'next/link';
-import { clsx } from 'clsx/lite';
-import { pathForPhoto } from '@/site/paths';
+import { Photo, titleForPhoto } from ".";
+import ImageTiny from "@/components/ImageTiny";
+import Link from "next/link";
+import { clsx } from "clsx/lite";
+import { pathForPhoto } from "@/site/paths";
 
 export default function PhotoTiny({
   photo,
@@ -20,9 +20,9 @@ export default function PhotoTiny({
       href={pathForPhoto(photo, tag)}
       className={clsx(
         className,
-        'active:brightness-75',
-        selected && 'brightness-50',
-        'min-w-[50px]',
+        "active:brightness-75",
+        selected && "brightness-50",
+        "min-w-[50px]",
       )}
     >
       <ImageTiny

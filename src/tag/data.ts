@@ -2,12 +2,12 @@ import {
   getPhotosCached,
   getPhotosTagCountCached,
   getPhotosTagDateRangeCached,
-} from '@/cache';
+} from "@/cache";
 import {
   PaginationSearchParams,
   getPaginationForSearchParams,
-} from '@/site/pagination';
-import { pathForTag } from '@/site/paths';
+} from "@/site/pagination";
+import { pathForTag } from "@/site/paths";
 
 export const getPhotosTagDataCached = ({
   tag,

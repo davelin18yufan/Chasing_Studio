@@ -1,9 +1,9 @@
-import { Photo, PhotoDateRange } from '@/photo';
-import { FilmSimulation, descriptionForFilmSimulationPhotos } from '.';
-import { pathForFilmSimulationShare } from '@/site/paths';
-import PhotoSetHeader from '@/photo/PhotoSetHeader';
+import { Photo, PhotoDateRange } from "@/photo";
+import { FilmSimulation, descriptionForFilmSimulationPhotos } from ".";
+import { pathForFilmSimulationShare } from "@/site/paths";
+import PhotoSetHeader from "@/photo/PhotoSetHeader";
 import PhotoFilmSimulation from
-  '@/simulation/PhotoFilmSimulation';
+  "@/simulation/PhotoFilmSimulation";
 
 export default function FilmSimulationHeader({
   simulation,

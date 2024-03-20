@@ -1,22 +1,22 @@
 /* eslint-disable jsx-a11y/alt-text */
 
-import { Photo } from '@/photo';
+import { Photo } from "@/photo";
 import {
   NextImageSize,
   getNextImageUrlForRequest,
-} from '@/services/next-image';
+} from "@/services/next-image";
 
 export default function ImagePhotoGrid({
   photos,
   width,
   widthArbitrary,
   height,
-  imagePosition = 'center',
+  imagePosition = "center",
   gap = 4,
 }: ({
   photos: Photo[]
   height: number
-  imagePosition?: 'center' | 'top'
+  imagePosition?: "center" | "top"
   gap?: number
 } & (
   { width: NextImageSize, widthArbitrary?: undefined } |
@@ -46,30 +46,30 @@ export default function ImagePhotoGrid({
 
   return (
     <div style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      alignItems: 'center',
-      justifyContent: 'center',
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      justifyContent: "center",
       gap,
     }}>
       {photos.slice(0, count).map(({ id, url }) =>
         <div
           key={id}
           style={{
-            display: 'flex',
+            display: "flex",
             width: cellWidth,
             height: cellHeight,
-            overflow: 'hidden',
+            overflow: "hidden",
           }}
         >
           <img {...{
             src: getNextImageUrlForRequest(url, nextImageWidth),
             style: {
-              width: '100%',
-              ...imagePosition === 'center' && {
-                height: '100%',
+              width: "100%",
+              ...imagePosition === "center" && {
+                height: "100%",
               },
-              objectFit: 'cover',
+              objectFit: "cover",
             },
           }} />
         </div>

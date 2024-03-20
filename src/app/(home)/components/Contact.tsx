@@ -47,13 +47,14 @@ export default function Contact() {
               <Button
                 className="text-invert group *:transition-all *:duration-200"
                 onClick={() => setOpen(true)}
+                key="contactBtn"
               >
                 <span className="group-hover:mr-2">Contact Us</span>
                 <div className="group-hover:rotate-45">
                   <FaLocationArrow size={18} />
                 </div>
               </Button>,
-              <div className="flex justify-center space-x-4">
+              <div className="flex justify-center space-x-4" key="links">
                 {relativeLinks.map((link) => {
                   const IconComponent = icons[link.icon]
                   return (
@@ -67,7 +68,7 @@ export default function Contact() {
                   )
                 })}
               </div>,
-              <p className="text-xs text-center">
+              <p className="text-xs text-center" key="copyRight">
                 &copy;Copyright Chasing Studio. All Rights Reserved.
               </p>,
             ]}

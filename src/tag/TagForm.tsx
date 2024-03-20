@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import SubmitButtonWithStatus from '@/components/SubmitButtonWithStatus';
-import Link from 'next/link';
-import { PATH_ADMIN_TAGS } from '@/site/paths';
-import FieldSetWithStatus from '@/components/FieldSetWithStatus';
-import { ReactNode, useMemo, useState } from 'react';
-import { renameTagGloballyAction } from '@/photo/actions';
-import { parameterize } from '@/utility/string';
+import SubmitButtonWithStatus from "@/components/SubmitButtonWithStatus";
+import Link from "next/link";
+import { PATH_ADMIN_TAGS } from "@/site/paths";
+import FieldSetWithStatus from "@/components/FieldSetWithStatus";
+import { ReactNode, useMemo, useState } from "react";
+import { renameTagGloballyAction } from "@/photo/actions";
+import { parameterize } from "@/utility/string";
 
 export default function TagForm({
   tag,

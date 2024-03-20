@@ -1,14 +1,14 @@
 import { 
   PaginationSearchParams,
   getPaginationForSearchParams,
-} from '@/site/pagination';
-import { Camera } from '.';
+} from "@/site/pagination";
+import { Camera } from ".";
 import {
   getPhotosCached,
   getPhotosCameraCountCached,
   getPhotosCameraDateRangeCached,
-} from '@/cache';
-import { pathForCamera } from '@/site/paths';
+} from "@/cache";
+import { pathForCamera } from "@/site/paths";
 
 export const getPhotosCameraDataCached = ({
   camera,

@@ -43,6 +43,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
     }
   }
   useMotionValueEvent(scrollY, "change", (latest) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     latest > 0 ? setVisible(true) : setVisible(false)
   })
   return (
@@ -56,7 +57,10 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
       )}
     >
       <Link
-        className="hidden sm:block cursor-pointer w-[220px] h-[70px] relative"
+        className={clsx(
+          "hidden sm:block cursor-pointer",
+          "w-[220px] h-[70px] relative"
+        )}
         href="/"
       >
         <Image
@@ -68,7 +72,13 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
           priority
         />
       </Link>
-      <nav className="hidden sm:flex gap-1 p-2 text-sm font-medium rounded-md  text-gray-700">
+      <nav
+        className={clsx(
+          "hidden sm:flex",
+          "gap-1 p-2",
+          "text-sm font-medium rounded-md  text-gray-700"
+        )}
+      >
         {isPathGallery(pathname) && (
           <div
             className={clsx(

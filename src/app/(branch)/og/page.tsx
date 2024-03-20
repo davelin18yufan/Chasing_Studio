@@ -1,11 +1,11 @@
-import { getPhotosCached, getPhotosCountCached } from '@/cache';
-import MorePhotos from '@/photo/MorePhotos';
-import StaggeredOgPhotos from '@/photo/StaggeredOgPhotos';
+import { getPhotosCached, getPhotosCountCached } from "@/cache";
+import MorePhotos from "@/photo/MorePhotos";
+import StaggeredOgPhotos from "@/photo/StaggeredOgPhotos";
 import {
   PaginationParams,
   getPaginationForSearchParams,
-} from '@/site/pagination';
-import { pathForOg } from '@/site/paths';
+} from "@/site/pagination";
+import { pathForOg } from "@/site/paths";
 
 export default async function GridPage({ searchParams }: PaginationParams) {
   const { offset, limit } = getPaginationForSearchParams(searchParams);

@@ -21,19 +21,19 @@ export default function HeaderList({
       staggerDelay={0.05}
       items={(title || icon
         ? [
-            <div
-              key="header"
-              className={clsx(
-                "text-kachi",
-                "dark:text-gofun",
-                "flex items-center mb-0.5 gap-1",
-                "uppercase"
-              )}
-            >
-              {icon && <span className="w-[1rem]">{icon}</span>}
-              {title}
-            </div>,
-          ]
+          <div
+            key="header"
+            className={clsx(
+              "text-kachi",
+              "dark:text-gofun",
+              "flex items-center mb-0.5 gap-1",
+              "uppercase"
+            )}
+          >
+            {icon && <span className="w-[1rem]">{icon}</span>}
+            {title}
+          </div>,
+        ]
         : ([] as ReactNode[])
       ).concat(items)}
       classNameItem="text-dim uppercase"

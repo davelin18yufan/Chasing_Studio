@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export default function FormWithConfirm({
   action,
   confirmText,
   children,
-  onClearForm
+  onClearForm,
 }: {
   action: (data: FormData) => Promise<void>
   confirmText: string

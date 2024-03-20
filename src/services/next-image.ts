@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/site/config';
+import { BASE_URL } from "@/site/config";
 
 // Explicity defined next.config.js `imageSizes`
 type NextCustomSize = 200;
@@ -16,9 +16,9 @@ export const getNextImageUrlForRequest = (
 ) => {
   const url = new URL(`${baseUrl}/_next/image`);
 
-  url.searchParams.append('url', imageUrl);
-  url.searchParams.append('w', size.toString());
-  url.searchParams.append('q', quality.toString());
+  url.searchParams.append("url", imageUrl);
+  url.searchParams.append("w", size.toString());
+  url.searchParams.append("q", quality.toString());
 
   return url.toString();
 };

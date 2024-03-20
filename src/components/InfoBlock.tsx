@@ -14,12 +14,12 @@ export default function InfoBlock({
 }) {
   const getPaddingClasses = () => {
     switch (padding) {
-      case "loose":
-        return "p-4 md:p-24"
-      case "normal":
-        return "p-4 md:p-8"
-      case "tight":
-        return "py-2 px-3"
+    case "loose":
+      return "p-4 md:p-24"
+    case "normal":
+      return "p-4 md:p-8"
+    case "tight":
+      return "py-2 px-3"
     }
   }
 

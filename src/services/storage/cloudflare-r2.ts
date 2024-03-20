@@ -4,19 +4,19 @@ import {
   PutObjectCommand,
   DeleteObjectCommand,
   CopyObjectCommand,
-} from '@aws-sdk/client-s3';
-import { StorageListResponse, generateStorageId } from '.';
+} from "@aws-sdk/client-s3";
+import { StorageListResponse, generateStorageId } from ".";
 
 const CLOUDFLARE_R2_BUCKET =
-  process.env.NEXT_PUBLIC_CLOUDFLARE_R2_BUCKET ?? '';
+  process.env.NEXT_PUBLIC_CLOUDFLARE_R2_BUCKET ?? "";
 const CLOUDFLARE_R2_ACCOUNT_ID =
-  process.env.NEXT_PUBLIC_CLOUDFLARE_R2_ACCOUNT_ID ?? '';
+  process.env.NEXT_PUBLIC_CLOUDFLARE_R2_ACCOUNT_ID ?? "";
 const CLOUDFLARE_R2_PUBLIC_DOMAIN =
-  process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_DOMAIN ?? '';
+  process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_DOMAIN ?? "";
 const CLOUDFLARE_R2_ACCESS_KEY =
-  process.env.CLOUDFLARE_R2_ACCESS_KEY ?? '';
+  process.env.CLOUDFLARE_R2_ACCESS_KEY ?? "";
 const CLOUDFLARE_R2_SECRET_ACCESS_KEY =
-  process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY ?? '';
+  process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY ?? "";
 const CLOUDFLARE_R2_ENDPOINT = CLOUDFLARE_R2_ACCOUNT_ID
   ? `https://${CLOUDFLARE_R2_ACCOUNT_ID}.r2.cloudflarestorage.com`
   : undefined;
@@ -30,7 +30,7 @@ export const CLOUDFLARE_R2_BASE_URL_PRIVATE =
     : undefined;
 
 export const cloudflareR2Client = () => new S3Client({
-  region: 'auto',
+  region: "auto",
   endpoint: CLOUDFLARE_R2_ENDPOINT,
   credentials: {
     accessKeyId: CLOUDFLARE_R2_ACCESS_KEY,
@@ -58,8 +58,8 @@ export const cloudflareR2Copy = async (
   fileNameDestination: string,
   addRandomSuffix?: boolean,
 ) => {
-  const name = fileNameSource.split('.')[0];
-  const extension = fileNameSource.split('.')[1];
+  const name = fileNameSource.split(".")[0];
+  const extension = fileNameSource.split(".")[1];
   const Key = addRandomSuffix
     ? `${name}-${generateStorageId()}.${extension}`
     : fileNameDestination;

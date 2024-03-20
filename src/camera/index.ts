@@ -1,7 +1,7 @@
-import { Photo } from '@/photo';
-import { parameterize } from '@/utility/string';
+import { Photo } from "@/photo";
+import { parameterize } from "@/utility/string";
 
-const CAMERA_PLACEHOLDER: Camera = { make: 'Camera', model: 'Model' };
+const CAMERA_PLACEHOLDER: Camera = { make: "Camera", model: "Model" };
 
 export type Camera = {
   make: string
@@ -40,7 +40,7 @@ export const cameraFromPhoto = (
 ): Camera =>
   photo?.make && photo?.model
     ? { make: photo.make, model: photo.model }
-    : typeof fallback === 'string'
+    : typeof fallback === "string"
       ? getCameraFromKey(fallback)
       : fallback ?? CAMERA_PLACEHOLDER;
 
@@ -49,8 +49,8 @@ export const formatCameraText = (
   includeMakeApple?: boolean,
 ) => {
   // Remove potential duplicate make from model
-  const model = modelRaw.replace(`${make} `, '');
-  return make === 'Apple' && !includeMakeApple
+  const model = modelRaw.replace(`${make} `, "");
+  return make === "Apple" && !includeMakeApple
     ? model
     : `${make} ${model}`;
 };
@@ -59,12 +59,12 @@ export const formatCameraModelText = (
   { make, model: modelRaw }: Camera,
 ) => {
   // Remove potential duplicate make from model
-  const model = modelRaw.replace(`${make} `, '');
+  const model = modelRaw.replace(`${make} `, "");
   const textLength = model?.length ?? 0;
   if (textLength > 0 && textLength <= 8) {
     return model;
-  } else if (model?.includes('iPhone')) {
-    return model.split('iPhone')[1];
+  } else if (model?.includes("iPhone")) {
+    return model.split("iPhone")[1];
   } else {
     return undefined;
   }

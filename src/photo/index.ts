@@ -165,10 +165,10 @@ export const descriptionForPhotoSet = (
   dateBased
     ? dateRangeForPhotos(photos, explicitDateRange).description.toUpperCase()
     : [
-        explicitCount ?? photos.length,
-        descriptor,
-        getTagLabelForCount(explicitCount ?? photos.length, "Photo", "Photos"),
-      ].join(" ")
+      explicitCount ?? photos.length,
+      descriptor,
+      getTagLabelForCount(explicitCount ?? photos.length, "Photo", "Photos"),
+    ].join(" ")
 
 const sortPhotosByDate = (photos: Photo[], order: "ASC" | "DESC" = "DESC") =>
   [...photos].sort((a, b) =>

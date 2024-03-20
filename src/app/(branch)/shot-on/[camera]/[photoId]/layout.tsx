@@ -1,19 +1,19 @@
 import {
   descriptionForPhoto,
   titleForPhoto,
-} from '@/photo';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+} from "@/photo";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import {
   PATH_ROOT,
   absolutePathForPhoto,
   absolutePathForPhotoImage,
-} from '@/site/paths';
-import PhotoDetailPage from '@/photo/PhotoDetailPage';
-import { getPhotoCached } from '@/cache';
-import { cameraFromPhoto } from '@/camera';
-import { getPhotosCameraDataCached } from '@/camera/data';
-import { ReactNode } from 'react';
+} from "@/site/paths";
+import PhotoDetailPage from "@/photo/PhotoDetailPage";
+import { getPhotoCached } from "@/cache";
+import { cameraFromPhoto } from "@/camera";
+import { getPhotosCameraDataCached } from "@/camera/data";
+import { ReactNode } from "react";
 
 interface PhotoCameraProps {
   params: { photoId: string, camera: string }
@@ -48,7 +48,7 @@ export async function generateMetadata({
       title,
       description,
       images,
-      card: 'summary_large_image',
+      card: "summary_large_image",
     },
   };
 }

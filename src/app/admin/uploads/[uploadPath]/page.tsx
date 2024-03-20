@@ -1,8 +1,8 @@
-import PhotoForm from '@/photo/PhotoForm';
-import AdminChildPage from '@/components/AdminChildPage';
-import { PATH_ADMIN, PATH_ADMIN_UPLOADS } from '@/site/paths';
-import { extractExifDataFromBlobPath } from '@/photo/server';
-import { redirect } from 'next/navigation';
+import PhotoForm from "@/photo/PhotoForm";
+import AdminChildPage from "@/components/AdminChildPage";
+import { PATH_ADMIN, PATH_ADMIN_UPLOADS } from "@/site/paths";
+import { extractExifDataFromBlobPath } from "@/photo/server";
+import { redirect } from "next/navigation";
 
 interface Params {
   params: { uploadPath: string }

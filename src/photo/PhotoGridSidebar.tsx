@@ -1,15 +1,15 @@
-import { Cameras, sortCamerasWithCount } from '@/camera';
-import PhotoCamera from '@/camera/PhotoCamera';
-import HeaderList from '@/components/HeaderList';
-import PhotoTag from '@/tag/PhotoTag';
-import { FaTag } from 'react-icons/fa';
-import { IoMdCamera } from 'react-icons/io';
-import { PhotoDateRange, dateRangeForPhotos, photoQuantityText } from '.';
-import { TAG_FAVS, Tags } from '@/tag';
-import PhotoFilmSimulation from '@/simulation/PhotoFilmSimulation';
-import PhotoFilmSimulationIcon from '@/simulation/PhotoFilmSimulationIcon';
-import { FilmSimulations, sortFilmSimulationsWithCount } from '@/simulation';
-import FavsTag from '../tag/FavsTag';
+import { Cameras, sortCamerasWithCount } from "@/camera";
+import PhotoCamera from "@/camera/PhotoCamera";
+import HeaderList from "@/components/HeaderList";
+import PhotoTag from "@/tag/PhotoTag";
+import { FaTag } from "react-icons/fa";
+import { IoMdCamera } from "react-icons/io";
+import { PhotoDateRange, dateRangeForPhotos, photoQuantityText } from ".";
+import { TAG_FAVS, Tags } from "@/tag";
+import PhotoFilmSimulation from "@/simulation/PhotoFilmSimulation";
+import PhotoFilmSimulationIcon from "@/simulation/PhotoFilmSimulationIcon";
+import { FilmSimulations, sortFilmSimulationsWithCount } from "@/simulation";
+import FavsTag from "../tag/FavsTag";
 
 export default function PhotoGridSidebar({
   tags,

@@ -64,8 +64,15 @@ export default function ContactModal({
               <div className="flex-grow text-center">Line Official</div>
             </div>
             {/* QR Code */}
-            <div className="flex flex-col items-center justify-center gap-4 relative aspect-square max-w-[300px] mx-auto mt-4">
+            <div
+              className={clsx(
+                "flex flex-col items-center justify-center",
+                "gap-4 relative aspect-square",
+                "max-w-[300px] mx-auto mt-4"
+              )}
+            >
               <img
+                // eslint-disable-next-line max-len
                 src="https://qr-official.line.me/gs/M_157lrzya_GW.png?oat_content=qr"
                 alt="qrcode"
                 style={{ width: "100%", height: "100%" }}

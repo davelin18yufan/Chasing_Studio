@@ -1,10 +1,10 @@
-import { Photo } from '..';
-import { FaStar, FaTag } from 'react-icons/fa';
-import ImageCaption from './components/ImageCaption';
-import ImagePhotoGrid from './components/ImagePhotoGrid';
-import ImageContainer from './components/ImageContainer';
-import { NextImageSize } from '@/services/next-image';
-import { isTagFavs } from '@/tag';
+import { Photo } from "..";
+import { FaStar, FaTag } from "react-icons/fa";
+import ImageCaption from "./components/ImageCaption";
+import ImagePhotoGrid from "./components/ImagePhotoGrid";
+import ImageContainer from "./components/ImageContainer";
+import { NextImageSize } from "@/services/next-image";
+import { isTagFavs } from "@/tag";
 
 export default function TagImageResponse({
   tag,
@@ -23,7 +23,7 @@ export default function TagImageResponse({
     <ImageContainer {...{
       width,
       height,
-      ...photos.length === 0 && { background: 'black' },
+      ...photos.length === 0 && { background: "black" },
     }}>
       <ImagePhotoGrid
         {...{

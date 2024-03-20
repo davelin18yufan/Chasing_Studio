@@ -1,13 +1,13 @@
-import { getPhotosCached } from '@/cache';
-import { API_PHOTO_REQUEST_LIMIT, formatPhotoForApi } from '@/site/api';
+import { getPhotosCached } from "@/cache";
+import { API_PHOTO_REQUEST_LIMIT, formatPhotoForApi } from "@/site/api";
 import {
   BASE_URL,
   PUBLIC_API_ENABLED,
   SITE_TITLE,
-} from '@/site/config';
-import { NextResponse } from 'next/server';
+} from "@/site/config";
+import { NextResponse } from "next/server";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 export async function GET() {
   if (PUBLIC_API_ENABLED) {

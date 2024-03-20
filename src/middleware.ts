@@ -1,12 +1,12 @@
-import { auth } from './auth';
-import { NextRequest, NextResponse } from 'next/server';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { auth } from "./auth";
+import { NextRequest, NextResponse } from "next/server";
+import type { NextApiRequest, NextApiResponse } from "next";
 import {
   PATH_ADMIN,
   PATH_ADMIN_PHOTOS,
   PREFIX_PHOTO,
   PREFIX_TAG,
-} from './site/paths';
+} from "./site/paths";
 
 export default function middleware(req: NextRequest, res:NextResponse) {
   const pathname = req.nextUrl.pathname;
@@ -36,5 +36,5 @@ export default function middleware(req: NextRequest, res:NextResponse) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

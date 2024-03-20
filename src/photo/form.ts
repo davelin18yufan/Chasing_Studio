@@ -1,22 +1,22 @@
-import type { ExifData } from 'ts-exif-parser';
-import { Photo, PhotoDbInsert, PhotoExif } from '.';
+import type { ExifData } from "ts-exif-parser";
+import { Photo, PhotoDbInsert, PhotoExif } from ".";
 import {
   convertTimestampToNaivePostgresString,
   convertTimestampWithOffsetToPostgresString,
-} from '@/utility/date';
-import { getAspectRatioFromExif, getOffsetFromExif } from '@/utility/exif';
-import { toFixedNumber } from '@/utility/number';
-import { convertStringToArray } from '@/utility/string';
-import { generateNanoid } from '@/utility/nanoid';
+} from "@/utility/date";
+import { getAspectRatioFromExif, getOffsetFromExif } from "@/utility/exif";
+import { toFixedNumber } from "@/utility/number";
+import { convertStringToArray } from "@/utility/string";
+import { generateNanoid } from "@/utility/nanoid";
 import {
   FILM_SIMULATION_FORM_INPUT_OPTIONS,
   MAKE_FUJIFILM,
-} from '@/vendors/fujifilm';
-import { FilmSimulation } from '@/simulation';
-import { BLUR_ENABLED, GEO_PRIVACY_ENABLED } from '@/site/config';
-import { TAG_FAVS, doesTagsStringIncludeFavs } from '@/tag';
+} from "@/vendors/fujifilm";
+import { FilmSimulation } from "@/simulation";
+import { BLUR_ENABLED, GEO_PRIVACY_ENABLED } from "@/site/config";
+import { TAG_FAVS, doesTagsStringIncludeFavs } from "@/tag";
 
-type VirtualFields = 'favorite';
+type VirtualFields = "favorite";
 
 export type PhotoFormData = Record<keyof PhotoDbInsert | VirtualFields, string>;
 
@@ -38,47 +38,47 @@ type FormMeta = {
 };
 
 const FORM_METADATA: Record<keyof PhotoFormData, FormMeta> = {
-  title: { label: 'title', capitalize: true },
+  title: { label: "title", capitalize: true },
   tags: {
-    label: 'tags',
-    note: 'comma-separated values',
+    label: "tags",
+    note: "comma-separated values",
     validate: tags => doesTagsStringIncludeFavs(tags)
       ? `'${TAG_FAVS}' is a reserved tag`
       : undefined,
   },
-  id: { label: 'id', readOnly: true, hideIfEmpty: true },
+  id: { label: "id", readOnly: true, hideIfEmpty: true },
   blurData: {
-    label: 'blur data',
+    label: "blur data",
     readOnly: true,
     required: BLUR_ENABLED,
     hideIfEmpty: !BLUR_ENABLED,
-    loadingMessage: 'Generating blur data ...',
+    loadingMessage: "Generating blur data ...",
   },
-  url: { label: 'url', readOnly: true },
-  extension: { label: 'extension', readOnly: true },
-  aspectRatio: { label: 'aspect ratio', readOnly: true },
-  make: { label: 'camera make' },
-  model: { label: 'camera model' },
+  url: { label: "url", readOnly: true },
+  extension: { label: "extension", readOnly: true },
+  aspectRatio: { label: "aspect ratio", readOnly: true },
+  make: { label: "camera make" },
+  model: { label: "camera model" },
   filmSimulation: {
-    label: 'fujifilm simulation',
+    label: "fujifilm simulation",
     options: FILM_SIMULATION_FORM_INPUT_OPTIONS,
-    optionsDefaultLabel: 'Unknown',
+    optionsDefaultLabel: "Unknown",
     hideBasedOnCamera: make => make !== MAKE_FUJIFILM,
   },
-  focalLength: { label: 'focal length' },
-  focalLengthIn35MmFormat: { label: 'focal length 35mm-equivalent' },
-  fNumber: { label: 'aperture' },
-  iso: { label: 'ISO' },
-  exposureTime: { label: 'exposure time' },
-  exposureCompensation: { label: 'exposure compensation' },
-  locationName: { label: 'location name', hide: true },
-  latitude: { label: 'latitude' },
-  longitude: { label: 'longitude' },
-  takenAt: { label: 'taken at' },
-  takenAtNaive: { label: 'taken at (naive)' },
-  priorityOrder: { label: 'priority order' },
-  favorite: { label: 'favorite', checkbox: true, virtual: true },
-  hidden: { label: 'hidden', checkbox: true },
+  focalLength: { label: "focal length" },
+  focalLengthIn35MmFormat: { label: "focal length 35mm-equivalent" },
+  fNumber: { label: "aperture" },
+  iso: { label: "ISO" },
+  exposureTime: { label: "exposure time" },
+  exposureCompensation: { label: "exposure compensation" },
+  locationName: { label: "location name", hide: true },
+  latitude: { label: "latitude" },
+  longitude: { label: "longitude" },
+  takenAt: { label: "taken at" },
+  takenAtNaive: { label: "taken at (naive)" },
+  priorityOrder: { label: "priority order" },
+  favorite: { label: "favorite", checkbox: true, virtual: true },
+  hidden: { label: "hidden", checkbox: true },
 };
 
 export const FORM_METADATA_ENTRIES =
@@ -111,14 +111,14 @@ export const convertPhotoToFormData = (
 ): PhotoFormData => {
   const valueForKey = (key: keyof Photo, value: any) => {
     switch (key) {
-    case 'tags':
+    case "tags":
       return (value ?? [])
         .filter((tag: string) => tag !== TAG_FAVS)
-        .join(', ');
-    case 'takenAt':
+        .join(", ");
+    case "takenAt":
       return value?.toISOString ? value.toISOString() : value;
-    case 'hidden':
-      return value ? 'true' : 'false';
+    case "hidden":
+      return value ? "true" : "false";
     default:
       return value !== undefined && value !== null
         ? value.toString()
@@ -129,7 +129,7 @@ export const convertPhotoToFormData = (
     ...photoForm,
     [key]: valueForKey(key as keyof Photo, value),
   }), {
-    favorite: photo.tags.includes(TAG_FAVS) ? 'true' : 'false',
+    favorite: photo.tags.includes(TAG_FAVS) ? "true" : "false",
   } as PhotoFormData);
 };
 
@@ -175,7 +175,7 @@ export const convertFormDataToPhotoDbInsert = (
     : formData;
 
   const tags = convertStringToArray(photoForm.tags) ?? [];
-  if (photoForm.favorite === 'true') {
+  if (photoForm.favorite === "true") {
     tags.push(TAG_FAVS);
   }
   
@@ -184,8 +184,8 @@ export const convertFormDataToPhotoDbInsert = (
   // - remove empty strings
   Object.keys(photoForm).forEach(key => {
     if (
-      key.startsWith('$ACTION_ID_') ||
-      (photoForm as any)[key] === '' ||
+      key.startsWith("$ACTION_ID_") ||
+      (photoForm as any)[key] === "" ||
       FORM_METADATA[key as keyof PhotoFormData]?.virtual
     ) {
       delete (photoForm as any)[key];
@@ -226,6 +226,6 @@ export const convertFormDataToPhotoDbInsert = (
     priorityOrder: photoForm.priorityOrder
       ? parseFloat(photoForm.priorityOrder)
       : undefined,
-    hidden: photoForm.hidden === 'true',
+    hidden: photoForm.hidden === "true",
   };
 };

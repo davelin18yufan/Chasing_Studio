@@ -1,6 +1,6 @@
-import { clsx } from 'clsx/lite';
-import Link from 'next/link';
-import { BiLogoGithub } from 'react-icons/bi';
+import { clsx } from "clsx/lite";
+import Link from "next/link";
+import { BiLogoGithub } from "react-icons/bi";
 
 export default function RepoLink() {
   return (

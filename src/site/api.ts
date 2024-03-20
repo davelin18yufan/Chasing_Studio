@@ -1,7 +1,7 @@
-import { Photo } from '@/photo';
-import { absolutePathForPhoto } from './paths';
-import { formatDateFromPostgresString } from '@/utility/date';
-import { getNextImageUrlForRequest } from '@/services/next-image';
+import { Photo } from "@/photo";
+import { absolutePathForPhoto } from "./paths";
+import { formatDateFromPostgresString } from "@/utility/date";
+import { getNextImageUrlForRequest } from "@/services/next-image";
 
 export const API_PHOTO_REQUEST_LIMIT = 20;
 
@@ -22,7 +22,7 @@ interface PublicApiPhoto {
   tags?: string[]
   takenAtNaive: string
   src: Record<
-    'small' | 'medium' | 'large',
+    "small" | "medium" | "large",
     string
   >
 }

@@ -1,6 +1,6 @@
-import { IMAGE_LARGE_WIDTH } from '@/site';
-import Link from 'next/link';
-import ImageBlurFallback from './ImageBlurFallback';
+import { IMAGE_LARGE_WIDTH } from "@/site";
+import Link from "next/link";
+import ImageBlurFallback from "./ImageBlurFallback";
 
 export default function ImageLarge({
   className,

@@ -62,20 +62,20 @@ const getPhotosCacheKeyForOption = (
   option: keyof GetPhotosOptions
 ): string | null => {
   switch (option) {
-    // Complex keys
-    case "camera": {
-      const value = options[option]
-      return value ? `${option}-${createCameraKey(value)}` : null
-    }
-    case "takenBefore":
-    case "takenAfterInclusive": {
-      const value = options[option]
-      return value ? `${option}-${value.toISOString()}` : null
-    }
-    // Primitive keys
-    default:
-      const value = options[option]
-      return value !== undefined ? `${option}-${value}` : null
+  // Complex keys
+  case "camera": {
+    const value = options[option]
+    return value ? `${option}-${createCameraKey(value)}` : null
+  }
+  case "takenBefore":
+  case "takenAfterInclusive": {
+    const value = options[option]
+    return value ? `${option}-${value.toISOString()}` : null
+  }
+  // Primitive keys
+  default:
+    const value = options[option]
+    return value !== undefined ? `${option}-${value}` : null
   }
 }
 
@@ -197,7 +197,10 @@ export const getPhotosTagCountCached = unstable_cache(getPhotosTagCount, [
   KEY_TAGS,
 ])
 
-export const getBlogsTagCountCached = unstable_cache(getBlogsTagsCount, [KEY_BLOGS, KEY_TAGS])
+export const getBlogsTagCountCached = unstable_cache(getBlogsTagsCount, [
+  KEY_BLOGS,
+  KEY_TAGS,
+])
 
 export const getPhotosCameraCountCached = (
   ...args: Parameters<typeof getPhotosCameraCount>

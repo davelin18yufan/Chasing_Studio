@@ -53,7 +53,7 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
             fontSize: "1.25rem",
             fontWeight: "bolder",
             marginBottom: "0.5rem",
-            textTransform: "capitalize"
+            textTransform: "capitalize",
           }}
         >
           {blog.title}

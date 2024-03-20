@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useState } from 'react';
-import { Photo } from '@/photo';
-import PhotoOGTile, { OGLoadingState } from './PhotoOGTile';
+import { useCallback, useEffect, useState } from "react";
+import { Photo } from "@/photo";
+import PhotoOGTile, { OGLoadingState } from "./PhotoOGTile";
 
 const DEFAULT_MAX_CONCURRENCY = 3;
 
@@ -18,7 +18,7 @@ export default function StaggeredOgPhotos({
   const [loadingState, setLoadingState] = useState(
     photos.reduce((acc, photo) => ({
       ...acc,
-      [photo.id]: 'unloaded' as const,
+      [photo.id]: "unloaded" as const,
     }), {} as PhotoLoadingState),
   );
 
@@ -36,10 +36,10 @@ export default function StaggeredOgPhotos({
 
     let imagesLoadingCount = 0;
     Object.entries(initialLoadingState).forEach(([id, state]) => {
-      if (state === 'loading') {
+      if (state === "loading") {
         imagesLoadingCount++;
-      } else if (imagesLoadingCount < maxConcurrency && state === 'unloaded') {
-        updatedLoadingState[id] = 'loading';
+      } else if (imagesLoadingCount < maxConcurrency && state === "unloaded") {
+        updatedLoadingState[id] = "loading";
         imagesLoadingCount++;
       }
     });
@@ -57,8 +57,8 @@ export default function StaggeredOgPhotos({
       key={photo.id}
       photo={photo}
       loadingState={loadingState[photo.id]}
-      onLoad={() => recomputeLoadingState({ [photo.id]: 'loaded' })}
-      onFail={() => recomputeLoadingState({ [photo.id]: 'failed' })}
+      onLoad={() => recomputeLoadingState({ [photo.id]: "loaded" })}
+      onFail={() => recomputeLoadingState({ [photo.id]: "failed" })}
       riseOnHover
     />);
 };

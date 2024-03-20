@@ -1,15 +1,15 @@
 import {
   getExtensionFromStorageUrl,
   getIdFromStorageUrl,
-} from '@/services/storage';
-import { convertExifToFormData } from '@/photo/form';
+} from "@/services/storage";
+import { convertExifToFormData } from "@/photo/form";
 import {
   getFujifilmSimulationFromMakerNote,
   isExifForFujifilm,
-} from '@/vendors/fujifilm';
-import { ExifData, ExifParserFactory } from 'ts-exif-parser';
-import { PhotoFormData } from './form';
-import { FilmSimulation } from '@/simulation';
+} from "@/vendors/fujifilm";
+import { ExifData, ExifParserFactory } from "ts-exif-parser";
+import { PhotoFormData } from "./form";
+import { FilmSimulation } from "@/simulation";
 
 export const extractExifDataFromBlobPath = async (
   blobPath: string
