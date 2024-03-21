@@ -34,8 +34,7 @@ const nextConfig = {
       hostname: "source.unsplash.com",
       port: "",
       pathname: "/**",
-    },
-    { hostname: "public.blob.vercel-storage.com" }]
+    }]
       .concat(createRemotePattern("qr-official.line.me"))
       .concat(createRemotePattern(VERCEL_BLOB_HOSTNAME))
       .concat(createRemotePattern(CLOUDFLARE_R2_HOSTNAME))
