@@ -9,5 +9,5 @@ export default function myImageLoader({
   width?: string | number
   quality?: string | number
 }) {
-  return src
+  return `${src}?w=${width}&q=${quality || 75}`
 }

@@ -3,6 +3,7 @@ import {
   getStorageUploadUrlsNoStore,
   getPhotosCountIncludingHiddenCached,
   getUniqueTagsCached,
+  getBlogsCountCached,
 } from "@/cache"
 import {
   PATH_ADMIN_BLOGS,
@@ -17,7 +18,7 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [countPhotos, countUploads, countTags] = await Promise.all([
+  const [countPhotos, countUploads, countTags, countBlogs] = await Promise.all([
     getPhotosCountIncludingHiddenCached(),
     getStorageUploadUrlsNoStore()
       .then((urls) => urls.length)
@@ -26,10 +27,9 @@ export default async function AdminLayout({
         return 0
       }),
     getUniqueTagsCached().then((tags) => tags.length),
+    getBlogsCountCached(true)
   ])
 
-  //* dummy
-  const countBlogs = 1
 
   const navItemPhotos = {
     label: "Photos",
