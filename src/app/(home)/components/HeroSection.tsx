@@ -51,13 +51,7 @@ function GridImg({
           alt={alt}
           className="object-cover"
           fill
-          sizes="50vw"
           priority
-          loader={({ src, width, quality }) =>
-            `_next/image?url=${src}&w=${width}&q=${
-              quality || 75
-            }`
-          }
         />
       </div>
     </li>

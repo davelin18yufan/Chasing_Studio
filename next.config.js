@@ -28,7 +28,9 @@ const createRemotePattern = (hostname) => hostname
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    imageSizes: [200],
+    // imageSizes: [200],
+    loader: 'custom',
+    loaderFile: './src/lib/loader.ts',
     remotePatterns: [{
       protocol: "https",
       hostname: "source.unsplash.com",
