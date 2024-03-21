@@ -50,6 +50,7 @@ function GridImg({
           src={src}
           alt={alt}
           className="object-cover"
+          sizes="50vw"
           fill
           priority
         />

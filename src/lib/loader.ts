@@ -9,7 +9,5 @@ export default function myImageLoader({
   width?: string | number
   quality?: string | number
 }) {
-  return `_next/image?url=${encodeURIComponent(src)}?w=${width}&q=${
-    quality || 75
-  }`
+  return src
 }
