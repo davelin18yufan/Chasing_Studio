@@ -54,7 +54,7 @@ function GridImg({
           sizes="50vw"
           priority
           loader={({ src, width, quality }) =>
-            `_next/image?url=${encodeURIComponent(src)}&w=${width}&q=${
+            `_next/image?url=${src}&w=${width}&q=${
               quality || 75
             }`
           }
