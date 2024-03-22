@@ -27,9 +27,8 @@ export default async function AdminLayout({
         return 0
       }),
     getUniqueTagsCached().then((tags) => tags.length),
-    getBlogsCountCached(true)
+    getBlogsCountCached(true),
   ])
-
 
   const navItemPhotos = {
     label: "Photos",
@@ -65,9 +64,7 @@ export default async function AdminLayout({
 
   return (
     <div
-      className={clsx("mt-4 space-y-5", 
-        "pt-20 px-3 pb-3", 
-        "lg:px-6 lg:pb-6")}
+      className={clsx("mt-4 space-y-5", "pt-20 px-3 pb-3", "lg:px-6 lg:pb-6")}
     >
       <AdminNav items={navItems} />
       {children}

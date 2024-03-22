@@ -71,11 +71,11 @@ export default function HeroSection({
   const { scrollY } = useScroll()
   const titleRef = useRef<HTMLDivElement>(null)
 
-  // switch pictures every 4 secs.
+  // switch pictures every 3.5 secs.
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % 2)
-    }, 4000)
+    }, 3500)
 
     return () => clearInterval(interval)
   }, [])
