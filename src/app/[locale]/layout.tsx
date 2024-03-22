@@ -14,8 +14,8 @@ import { Suspense } from "react"
 import FooterClient from "@/site/FooterClient"
 import NavClient from "@/site/NavClient"
 
-import "../site/globals.css"
-import "../site/style.css"
+import "../../site/globals.css"
+import "../../site/style.css"
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -69,12 +69,14 @@ global.performance = global.performance || {
 
 export default function RootLayout({
   children,
+  params: { locale },
 }: {
   children: React.ReactNode
+  params: { locale: string }
 }) {
   return (
     <html
-      lang="en"
+      lang={locale}
       // Suppress hydration errors due to
       // next-themes behavior
       suppressHydrationWarning

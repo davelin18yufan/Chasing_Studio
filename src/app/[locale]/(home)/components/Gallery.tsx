@@ -1,8 +1,10 @@
 import GalleryCard from "./GalleryCard"
 import { Photo } from "@/photo"
 import clsx from "clsx/lite"
+import { useTranslations } from "next-intl"
 
 export default function GallerySection({ photos }: { photos: Photo[] }) {
+  const t = useTranslations("Home.gallery")
   return (
     <section className="px-3 py-10 lg:py-16 lg:px-6">
       <div
@@ -12,7 +14,7 @@ export default function GallerySection({ photos }: { photos: Photo[] }) {
           "mb-6 md:px-6"
         )}
       >
-        <h2 className="title">Gallery</h2>
+        <h2 className="title">{t("title")}</h2>
       </div>
       <div
         className={clsx(
