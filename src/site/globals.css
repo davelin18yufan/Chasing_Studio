@@ -162,6 +162,11 @@
 
 @layer components {
   .navItem {
+    @apply !transition-transform !duration-500 bg-content dark:text-shironeri hover:-translate-y-[125%] rounded-md border-none shadow-none cursor-pointer relative;
+    @apply after:content-[attr(data-content)] after:absolute after:-bottom-full after:left-0 after:w-full;
+  }
+
+  .mobileNavItem {
     @apply transition-colors bg-content dark:text-shironeri hover:bg-shironezumi hover:text-kachi dark:hover:text-kachi rounded-md border-none shadow-none cursor-pointer;
   }
 

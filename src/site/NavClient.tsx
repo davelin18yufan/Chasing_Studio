@@ -24,12 +24,13 @@ import {
 import ThemeSwitcher from "./ThemeSwitcher"
 import NavMobile from "./NavMobile"
 import { useMotionValueEvent, useScroll } from "framer-motion"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
   const pathname = usePathname()
   const [visible, setVisible] = useState(false)
   const { scrollY } = useScroll()
+  const previousScrollY = useRef<number>(0)
 
   const switcherSelectionForPath = (): SwitcherSelection | undefined => {
     if (pathname === PATH_ROOT) {
@@ -44,7 +45,14 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
   }
   useMotionValueEvent(scrollY, "change", (latest) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    latest > 0 ? setVisible(true) : setVisible(false)
+    if (latest > previousScrollY.current || latest === 0) {
+      // if scroll down hide nav
+      setVisible(false)
+    } else {
+      setVisible(true)
+    }
+    // update previous value
+    previousScrollY.current = latest
   })
   return (
     <header
@@ -75,7 +83,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
       <nav
         className={clsx(
           "hidden sm:flex",
-          "gap-1 p-2",
+          "gap-1 p-2 overflow-hidden",
           "text-sm font-medium rounded-md  text-gray-700"
         )}
       >
@@ -98,21 +106,25 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
             (pathname.includes(item.route) && item.route.length > 1) ||
             pathname === item.route
           return (
-            <Link href={item.route} key={item.label}>
-              <Button
-                className={`navItem ${
-                  isActive &&
-                  "text-kachi bg-shironezumi dark:bg-shironezumi dark:text-kachi"
-                }`}
-              >
-                {item.label}
-              </Button>
-            </Link>
+            <Button
+              key={item.label}
+              data-content={item.label}
+              className={clsx(
+                "navItem",
+                isActive &&
+                  "text-kachi bg-shironezumi dark:bg-shironezumi dark:text-kachi hover:transform-none"
+              )}
+            >
+              <Link href={item.route}>{item.label}</Link>
+            </Button>
           )
         })}
         <Menubar className="relative border-none bg-transparent shadow-none">
           <MenubarMenu>
-            <MenubarTrigger className="navItem cursor-pointer">
+            <MenubarTrigger
+              data-content="Theme"
+              className="navItem cursor-pointer"
+            >
               <FaEarthEurope />
             </MenubarTrigger>
             <MenubarContent className="bg-content min-w-[120px] mr-1.5">

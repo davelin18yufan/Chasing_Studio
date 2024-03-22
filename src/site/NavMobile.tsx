@@ -75,7 +75,7 @@ export default function NavMobile({
               return (
                 <Link href={item.route} key={item.label}>
                   <Button
-                    className={`navItem w-full ${
+                    className={`mobileNavItem w-full ${
                       isActive && "text-kachi bg-shironezumi"
                     }`}
                   >
