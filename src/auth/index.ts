@@ -35,7 +35,7 @@ export const {
       const isUrlProtected = isPathProtected(pathname);
       const isUserLoggedIn = !!auth?.user;
       const isRequestAuthorized = !isUrlProtected || isUserLoggedIn;
-
+      
       return isRequestAuthorized;
     },
   },
