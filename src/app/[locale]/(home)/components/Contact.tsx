@@ -18,6 +18,7 @@ import PortfolioButton from "@/components/PortfolioButton"
 import { pathForAdminPhotos } from "@/site/paths"
 import { FaLocationArrow } from "react-icons/fa6"
 import { IconType } from "react-icons/lib"
+import { useTranslations } from "next-intl"
 
 const icons: Record<string, IconType> = {
   FaLine,
@@ -28,7 +29,7 @@ const icons: Record<string, IconType> = {
 
 export default function Contact() {
   const [open, setOpen] = useState(false)
-
+  const t = useTranslations("Home.contact")
   return (
     <>
       <section
@@ -49,7 +50,7 @@ export default function Contact() {
                 onClick={() => setOpen(true)}
                 key="contactBtn"
               >
-                <span className="group-hover:mr-2">Contact Us</span>
+                <span className="group-hover:mr-2">{t("title")}</span>
                 <div className="group-hover:rotate-45">
                   <FaLocationArrow size={18} />
                 </div>

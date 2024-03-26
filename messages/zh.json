@@ -14,5 +14,95 @@
     "contact": {
       "title": "聯絡我們"
     }
+  },
+  "Admin": {
+    "actions": {
+      "submit": "送出",
+      "edit": "編輯完成",
+      "update": "更新",
+      "create": "新增",
+      "cancel": "取消",
+      "editButton": "編輯",
+      "upload": "上傳照片",
+      "uploading": "上傳中",
+      "download": "下載",
+      "untitled": "無標題",
+      "uploadStatus":  "{filesLength, plural, =0 {尚未上傳任何圖片} =1 {{fileUploadName}} other {{fileUploadIndex} / # 圖片}}",
+      "deleteUploadConfirmText": "你確定要刪除上傳圖片？",
+      "deleteBlogConfirmText": "你確定要刪除 {title} 這篇文章？",
+      "deletePhotoConfirmText": "你確定要刪除 {title} 這張照片？",
+      "deleteTagConfirmText": "你確定要刪除 {title} 這則標籤？",
+      "unhiddenBlogConfirmText": "你確定要取消隱藏這篇文章嗎?",
+      "hiddenBlogConfirmText": "你確定要隱藏這篇文章嗎?",
+      "syncPhotoConfirmText": "你確定要覆寫 {title} 這個資料？此動作不能被還原",
+      "toast": {
+        "syncPhoto": "{title} 同步成功",
+        "updatePhotoSuccess": "成功更新EXIF: {fields}",
+        "updatePhotoWarning": "無EXIF內容需要更新"
+      }
+    },
+    "nav":{
+      "photos": "照片集",
+      "blogs": "部落格",
+      "tags": "標籤",
+      "uploads": "已上傳"
+    },
+    "photo": {
+      "form": {
+        "uploadLabel": "回到上傳",
+        "backLabel": "返回",
+        "required": "必要資訊",
+        "labels": {
+          "title": "標題",
+          "tags": "標籤",
+          "blurData": "模糊圖像數據",
+          "url": "網址",
+          "extension": "檔案格式",
+          "aspectRatio": "圖像長寬比",
+          "make": "相機品牌",
+          "model": "相機型號",
+          "fujifilmSimulation": "富士膠片模擬模式",
+          "focalLength": "焦距",
+          "focalLength35mmEquivalent": "35mm等效焦距",
+          "aperture": "光圈",
+          "ISO": "ISO",
+          "exposureTime": "曝光時間",
+          "exposureCompensation": "曝光補償",
+          "locationName": "位置名稱",
+          "latitude": "緯度",
+          "longitude": "經度",
+          "takenAt": "拍攝時間",
+          "takenAtNaive": "拍攝時間（純文字",
+          "priorityOrder": "優先順序",
+          "favorite": "收藏",
+          "hidden": "隱藏"
+        },
+        "note": "使用逗號分隔",
+        "loadingMessage": "產生模糊圖像資料中..."
+      }
+    },
+    "blog": {
+      "createTitle": "撰寫新文章",
+      "editTitle": "編輯文章",
+      "form": {
+        "title": "標題",
+        "hidden": "隱藏?",
+        "author": {
+          "name":"作者",
+          "url": "傳送門"
+        },
+        "coverPhoto": {
+          "title": "封面圖",
+          "src": "網址",
+          "aspectRatio": "圖片比例",
+          "placeholder": "預設 16:9"
+        },
+        "tag": {
+          "title": "標籤",
+          "placeholder": "標籤1,標籤2,標籤3"
+        },
+        "error": "文章不存在"
+      }
+    }
   }
 }

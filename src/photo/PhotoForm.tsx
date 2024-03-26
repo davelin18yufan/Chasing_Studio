@@ -23,6 +23,7 @@ import { toastSuccess, toastWarning } from "@/toast"
 import { getDimensionsFromSize } from "@/utility/size"
 import ImageBlurFallback from "@/components/ImageBlurFallback"
 import { BLUR_ENABLED } from "@/site/config"
+import { useTranslations } from "next-intl"
 
 const THUMBNAIL_SIZE = 300
 
@@ -42,6 +43,7 @@ export default function PhotoForm({
   const [formErrors, setFormErrors] = useState(
     getInitialErrors(initialPhotoForm)
   )
+  const t = useTranslations("Admin")
 
   // Update form when EXIF data
   // is refreshed by parent
@@ -64,9 +66,14 @@ export default function PhotoForm({
 
       if (changedKeys.length > 0) {
         const fields = convertFormKeysToLabels(changedKeys)
-        toastSuccess(`Updated EXIF fields: ${fields.join(", ")}`, 8000)
+        // toastSuccess(`Updated EXIF fields: ${fields.join(", ")}`, 8000)
+        toastSuccess(
+          t("actions.toast.updatePhotoSuccess", { fields: fields.join(", ") }),
+          8000
+        )
       } else {
-        toastWarning("No new EXIF data found")
+        // toastWarning("No new EXIF data found")
+        toastWarning(t("actions.toast.updatePhotoWarning"))
       }
     }
   }, [updatedExifData])
@@ -163,8 +170,8 @@ export default function PhotoForm({
               <FieldSetWithStatus
                 key={key}
                 id={key}
-                label={label}
-                note={note}
+                label={t(`photo.form.labels.${key}`)}
+                note={t("photo.form.note")}
                 error={formErrors[key]}
                 value={formData[key] ?? ""}
                 onChange={(value) => {
@@ -179,9 +186,15 @@ export default function PhotoForm({
                 readOnly={readOnly}
                 capitalize={capitalize}
                 placeholder={
-                  loadingMessage && !formData[key] ? loadingMessage : undefined
+                  t("photo.form.loadingMessage") && !formData[key]
+                    ? t("photo.form.loadingMessage")
+                    : undefined
                 }
-                loading={loadingMessage && !formData[key] ? true : false}
+                loading={
+                  t("photo.form.loadingMessage") && !formData[key]
+                    ? true
+                    : false
+                }
                 type={checkbox ? "checkbox" : undefined}
               />
             )
@@ -191,10 +204,10 @@ export default function PhotoForm({
             className="button"
             href={type === "edit" ? PATH_ADMIN_PHOTOS : PATH_ADMIN_UPLOADS}
           >
-            Cancel
+            {t("actions.cancel")}
           </Link>
           <SubmitButtonWithStatus disabled={!isFormValid(formData)}>
-            {type === "create" ? "Create" : "Update"}
+            {type === "create" ? t("actions.create") : t("actions.update")}
           </SubmitButtonWithStatus>
         </div>
       </form>

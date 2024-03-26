@@ -106,17 +106,18 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
             (pathname.includes(item.route) && item.route.length > 1) ||
             pathname === item.route
           return (
-            <Button
-              key={item.label}
-              data-content={item.label}
-              className={clsx(
-                "navItem",
-                isActive &&
-                  "text-kachi bg-shironezumi dark:bg-shironezumi dark:text-kachi hover:transform-none"
-              )}
-            >
-              <Link href={item.route}>{item.label}</Link>
-            </Button>
+            <Link href={item.route} key={item.label}>
+              <Button
+                data-content={item.label}
+                className={clsx(
+                  "navItem",
+                  isActive &&
+                    "text-kachi bg-shironezumi dark:bg-shironezumi dark:text-kachi hover:transform-none"
+                )}
+              >
+                {item.label}
+              </Button>
+            </Link>
           )
         })}
         <Menubar className="relative border-none bg-transparent shadow-none">

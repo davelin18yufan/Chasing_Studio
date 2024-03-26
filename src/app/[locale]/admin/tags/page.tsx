@@ -13,11 +13,13 @@ import { clsx } from "clsx/lite"
 import FavsTag from "@/tag/FavsTag"
 import { getTagQuantityText, getTagLabelForCount } from "@/blog"
 import { mergeTags } from "@/lib/utils"
+import { getTranslations } from "next-intl/server"
 
 export default async function AdminTagsPage() {
-  const [photoTags, blogTags] = await Promise.all([
+  const [photoTags, blogTags, t] = await Promise.all([
     getUniqueTagsHiddenCached(),
     getUniqueBlogTagsCached(true),
+    getTranslations("Admin"),
   ])
   const tags = mergeTags(photoTags, blogTags)
 
@@ -52,13 +54,15 @@ export default async function AdminTagsPage() {
                       "gap-2 sm:gap-3 items-center"
                     )}
                   >
-                    <EditButton href={pathForAdminTagEdit(tag)} />
+                    <EditButton
+                      href={pathForAdminTagEdit(tag)}
+                      label={t("actions.editButton")}
+                    />
                     <FormWithConfirm
                       action={deleteTagGloballyAction}
-                      confirmText={
-                        // eslint-disable-next-line max-len
-                        `Are you sure you want to remove "${formatTag(tag)}"?`
-                      }
+                      confirmText={t("actions.deleteTagConfirmText", {
+                        title: formatTag(tag),
+                      })}
                     >
                       <input type="hidden" name="tag" value={tag} />
                       <DeleteButton />

@@ -4,6 +4,7 @@ import { LegacyRef } from "react"
 import { useFormStatus } from "react-dom"
 import Spinner from "./Spinner"
 import { clsx } from "clsx/lite"
+import { useTranslations } from "next-intl"
 
 export default function FieldSetWithStatus({
   id,
@@ -39,6 +40,7 @@ export default function FieldSetWithStatus({
   inputRef?: LegacyRef<HTMLInputElement>
 }) {
   const { pending } = useFormStatus()
+  const t = useTranslations("Admin.photo.form")
 
   return (
     <div className="space-y-1">
@@ -49,7 +51,9 @@ export default function FieldSetWithStatus({
         )}
         {error && <span className="text-error">{error}</span>}
         {required && (
-          <span className="text-ginnezumi dark:text-namari">Required</span>
+          <span className="text-ginnezumi dark:text-namari">
+            {t("required")}
+          </span>
         )}
         {loading && (
           <span className="translate-y-[1.5px]">

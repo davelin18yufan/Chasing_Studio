@@ -31,11 +31,10 @@ export const {
   callbacks: {
     authorized({ auth, request }) {
       const { pathname } = request.nextUrl;
-
       const isUrlProtected = isPathProtected(pathname);
       const isUserLoggedIn = !!auth?.user;
       const isRequestAuthorized = !isUrlProtected || isUserLoggedIn;
-
+      
       return isRequestAuthorized;
     },
   },

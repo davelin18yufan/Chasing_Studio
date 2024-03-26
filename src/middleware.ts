@@ -18,7 +18,6 @@ const intlMiddleware = createMiddleware({
   localeDetection: false,
 })
 
-
 export default async function middleware(req: NextRequest, res: NextResponse) {
   // Apply next-intl middleware first
   const response = intlMiddleware(req)
@@ -43,15 +42,14 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
       new URL(`/${locale}/${PREFIX_TAG}/${matches?.[1]}`, req.url)
     )
   }
-
- await auth(
+  
+  await auth(
     req as unknown as NextApiRequest,
     response as unknown as NextApiResponse
   )
-
   return response
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
 }

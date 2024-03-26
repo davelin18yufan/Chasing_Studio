@@ -23,10 +23,11 @@ import {
 } from "@/site/paths"
 import { formatDBDate } from "@/utility/date"
 import clsx from "clsx"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import React, { Fragment } from "react"
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai"
 import { LuPencil } from "react-icons/lu"
+import { getTranslations } from "next-intl/server"
 
 function PhotoTiny({
   className,
@@ -62,6 +63,7 @@ export default async function AdminArticlePage({
   ])
 
   const showMoreBlogs = count > blogs.length
+  const t = await getTranslations("Admin")
 
   return (
     <SiteGrid
@@ -73,7 +75,7 @@ export default async function AdminArticlePage({
               className="flex justify-center items-center gap-2 text-lg hover:text-invert"
             >
               <LuPencil />
-              Write a new article
+              {t("blog.createTitle")}
             </Link>
           </Button>
 
@@ -110,9 +112,11 @@ export default async function AdminArticlePage({
                       </Link>
                       <FormWithConfirm
                         action={toggleBlogHidden}
-                        confirmText={`Are you sure you want to ${
-                          blog.hidden ? "show" : "hid"
-                        } this blog?"`}
+                        confirmText={
+                          blog.hidden
+                            ? t("actions.unhiddenBlogConfirmText")
+                            : t("actions.hiddenBlogConfirmText")
+                        }
                       >
                         <button
                           className={clsx(
@@ -151,10 +155,9 @@ export default async function AdminArticlePage({
                     <PopoutButton href={pathForBlog(blog.id)} />
                     <FormWithConfirm
                       action={deleteBlogAction}
-                      confirmText={
-                        // eslint-disable-next-line max-len
-                        `Are you sure you want to delete "${blog.title}?"`
-                      }
+                      confirmText={t("actions.deleteBlogConfirmText", {
+                        title: blog.title,
+                      })}
                     >
                       <input type="hidden" name="id" value={blog.id} />
                       <input

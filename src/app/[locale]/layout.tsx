@@ -13,6 +13,7 @@ import Footer from "@/site/Footer"
 import { Suspense } from "react"
 import FooterClient from "@/site/FooterClient"
 import NavClient from "@/site/NavClient"
+import { NextIntlClientProvider, useMessages } from "next-intl"
 
 import "../../site/globals.css"
 import "../../site/style.css"
@@ -74,6 +75,7 @@ export default function RootLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
+   const messages = useMessages()
   return (
     <html
       lang={locale}
@@ -82,23 +84,25 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={ibmPlexMono.variable}>
-        {/*for preload animation*/}
-        <StateProvider>
-          <ThemeProviderClient>
-            <main className={clsx("w-ful relative")}>
-              {/* Stream pair the nav and footer out of order */}
-              <Suspense fallback={<NavClient />}>
-                <Nav />
-              </Suspense>
-              <div className={clsx("min-h-[16rem] sm:min-h-[30rem]")}>
-                {children}
-              </div>
-              <Suspense fallback={<FooterClient />}>
-                <Footer />
-              </Suspense>
-            </main>
-          </ThemeProviderClient>
-        </StateProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {/*for preload animation*/}
+          <StateProvider>
+            <ThemeProviderClient>
+              <main className={clsx("w-ful relative")}>
+                {/* Stream pair the nav and footer out of order */}
+                <Suspense fallback={<NavClient />}>
+                  <Nav />
+                </Suspense>
+                <div className={clsx("min-h-[16rem] sm:min-h-[30rem]")}>
+                  {children}
+                </div>
+                <Suspense fallback={<FooterClient />}>
+                  <Footer />
+                </Suspense>
+              </main>
+            </ThemeProviderClient>
+          </StateProvider>
+        </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
         <PhotoEscapeHandler />

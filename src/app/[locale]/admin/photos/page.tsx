@@ -30,6 +30,7 @@ import StorageUrls from "@/admin/StorageUrls"
 import { PRO_MODE_ENABLED } from "@/site/config"
 import SubmitButtonWithStatus from "@/components/SubmitButtonWithStatus"
 import IconGrSync from "@/site/IconGrSync"
+import { getTranslations } from "next-intl/server"
 
 const DEBUG_PHOTO_BLOBS = false
 
@@ -45,6 +46,7 @@ export default async function AdminPhotosPage({
   ])
 
   const showMorePhotos = count > photos.length
+  const t = await getTranslations("Admin")
 
   return (
     <SiteGrid
@@ -87,7 +89,7 @@ export default async function AdminPhotosPage({
                           photo.hidden && "text-dim"
                         )}
                       >
-                        <span>{photo.title || "Untitled"}</span>
+                        <span>{photo.title || t("actions.untitled")}</span>
                         {photo.hidden && (
                           <AiOutlineEyeInvisible
                             className="translate-y-[0.25px]"
@@ -117,31 +119,34 @@ export default async function AdminPhotosPage({
                       "gap-2 sm:gap-3 items-center"
                     )}
                   >
-                    <EditButton href={pathForAdminPhotoEdit(photo)} />
+                    <EditButton
+                      href={pathForAdminPhotoEdit(photo)}
+                      label={t("actions.editButton")}
+                    />
                     <FormWithConfirm
                       action={syncPhotoExifDataAction}
                       confirmText={
-                        "Are you sure you want to overwrite EXIF data " +
-                        `for "${titleForPhoto(photo)}" from source file? ` +
-                        "This action cannot be undone."
+                        t("actions.syncPhotoConfirmText", {
+                          title: titleForPhoto(photo),
+                        })
+                        // "Are you sure you want to overwrite EXIF data " +
+                        // `for "${titleForPhoto(photo)}" from source file? ` +
+                        // "This action cannot be undone."
                       }
                     >
                       <input type="hidden" name="id" value={photo.id} />
                       <SubmitButtonWithStatus
                         icon={<IconGrSync className="translate-y-[-0.5px]" />}
-                        onFormSubmitToastMessage={`
-                          "${titleForPhoto(photo)}" EXIF data synced
-                        `}
+                        onFormSubmitToastMessage={t("actions.toast.syncPhoto", {
+                          title: titleForPhoto(photo),
+                        })}
                       />
                     </FormWithConfirm>
                     <FormWithConfirm
                       action={deletePhotoAction}
-                      confirmText={
-                        // eslint-disable-next-line max-len
-                        `Are you sure you want to delete "${titleForPhoto(
-                          photo
-                        )}?"`
-                      }
+                      confirmText={t("actions.deletePhotoConfirmText", {
+                        title: titleForPhoto(photo),
+                      })}
                     >
                       <input type="hidden" name="id" value={photo.id} />
                       <input type="hidden" name="url" value={photo.url} />

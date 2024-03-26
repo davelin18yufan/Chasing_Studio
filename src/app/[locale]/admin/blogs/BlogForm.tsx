@@ -4,6 +4,7 @@ import { Value } from "@udecode/plate-common"
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph"
 import React, { useState } from "react"
 import clsx from "clsx/lite"
+import { useTranslations } from "next-intl"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -102,19 +103,18 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
   const initialValue: Value = blog
     ? JSON.parse(blog.content)
     : [
-      {
-        id: "content",
-        type: ELEMENT_PARAGRAPH,
-        children: [{ text: "Cover image will appear at top of title" }],
-      },
-    ]
+        {
+          id: "content",
+          type: ELEMENT_PARAGRAPH,
+          children: [{ text: "Cover image will appear at top of title" }],
+        },
+      ]
 
   const initialTitleValue = {
     title: blog?.title || "",
     author: { name: blog?.author.name || "", url: blog?.author.url || "" },
     coverPhoto: {
-      src:
-        blog?.coverPhoto?.src || "https://source.unsplash.com/random/600x400",
+      src: blog?.coverPhoto?.src || "",
       aspectRatio: blog?.coverPhoto?.aspectRatio || 16 / 9,
     },
     tags: blog?.tags?.join(",") || "",
@@ -126,6 +126,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
   const [errMsg, setErrMsg] = useState<ErrorItem[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
+  const t = useTranslations("Admin")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -168,7 +169,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           content: JSON.stringify(content),
         })
       } else {
-        if (!blog) throw Error("Blog Does not exist")
+        if (!blog) throw Error(t("blog.form.error"))
         await updateBlogAction({
           id: blog?.id,
           ...titleAndAuthor,
@@ -224,7 +225,9 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           >
             <div className="flex items-center gap-3">
               {isSubmitting && <div className="loading h-5 w-5" />}
-              <p>{type === "create" ? "Submit" : "Edit Done"}</p>
+              <p>
+                {type === "create" ? t("actions.submit") : t("actions.edit")}
+              </p>
             </div>
           </Button>
 
@@ -233,7 +236,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               id="title"
               type="text"
               name="title"
-              label="Title"
+              label={t("blog.form.title")}
               value={titleAndAuthor.title}
               onChange={handleChange}
               errMsg={errMsg}
@@ -246,7 +249,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           <div className="relative">
             <FormField
               id="hidden"
-              label="Hidden?"
+              label={t("blog.form.hidden")}
               type="checkbox"
               name="hidden"
               checked={titleAndAuthor.hidden}
@@ -262,7 +265,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           <div className="max-lg:flex-1 relative">
             <FormField
               id="author.name"
-              label="Author"
+              label={t("blog.form.author.name")}
               type="text"
               name="author.name"
               onChange={handleChange}
@@ -276,7 +279,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           <div className="flex-1 relative">
             <FormField
               id="author.url"
-              label="Portfolio"
+              label={t("blog.form.author.url")}
               type="text"
               name="author.url"
               otherClasses="w-full"
@@ -294,7 +297,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           {/* Cover photo */}
           <div className="relative">
             <Label className="mb-2">
-              Cover Photo
+              {t("blog.form.coverPhoto.title")}
               <span className="text-sky-500 dark:text-sky-400 ml-1">*</span>
             </Label>
 
@@ -334,7 +337,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
                 <div className="ml-2">
                   <FormWithConfirm
                     action={deleteBlobPhotoAction}
-                    confirmText="Are you sure you want to delete this upload?"
+                    confirmText={t("actions.deleteUploadConfirmText")}
                     onClearForm={clearUpload}
                   >
                     <input
@@ -378,12 +381,12 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           <div className="flex relative">
             <FormField
               id="coverPhoto.aspectRatio"
-              label="AspectRatio"
+              label={t("blog.form.coverPhoto.aspectRatio")}
               type="number"
               name="coverPhoto.aspectRatio"
               onChange={handleChange}
               value={titleAndAuthor.coverPhoto.aspectRatio}
-              placeholder="default 16/9"
+              placeholder={t("blog.form.coverPhoto.placeholder")}
               required={false}
               otherClasses="!min-w-fit"
               errMsg={errMsg}
@@ -395,7 +398,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
           <div className="sm:flex-1 relative">
             <FormField
               id="tags"
-              label="Tags"
+              label={t("blog.form.tag.title")}
               type="text"
               name="tags"
               onChange={handleChange}

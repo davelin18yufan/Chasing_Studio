@@ -12,12 +12,14 @@ import {
   PATH_ADMIN_UPLOADS,
 } from "@/site/paths"
 import clsx from "clsx/lite"
+import { getTranslations } from "next-intl/server"
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const t = await getTranslations("Admin.nav")
   const [countPhotos, countUploads, countTags, countBlogs] = await Promise.all([
     getPhotosCountIncludingHiddenCached(),
     getStorageUploadUrlsNoStore()
@@ -31,25 +33,25 @@ export default async function AdminLayout({
   ])
 
   const navItemPhotos = {
-    label: "Photos",
+    label: t("photos"),
     href: PATH_ADMIN_PHOTOS,
     count: countPhotos,
   }
 
   const navItemUploads = {
-    label: "Uploads",
+    label: t("uploads"),
     href: PATH_ADMIN_UPLOADS,
     count: countUploads,
   }
 
   const navItemTags = {
-    label: "Tags",
+    label: t("tags"),
     href: PATH_ADMIN_TAGS,
     count: countTags,
   }
 
   const navItemBlogs = {
-    label: "Blogs",
+    label: t("blogs"),
     href: PATH_ADMIN_BLOGS,
     count: countBlogs, // count blogs
   }
