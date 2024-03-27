@@ -123,8 +123,10 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
         <Menubar className="relative border-none bg-transparent shadow-none">
           <MenubarMenu>
             <MenubarTrigger
-              data-content="Theme"
-              className="navItem cursor-pointer"
+              className={clsx(
+                "border-none shadow-none cursor-pointer",
+                "dark:text-shironeri hover:opacity-80"
+              )}
             >
               <FaEarthEurope />
             </MenubarTrigger>

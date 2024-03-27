@@ -6,6 +6,7 @@ import clsx from "clsx/lite"
 import { Blog, getSerializeTextFromSlate } from "@/blog"
 import { pathForBlog } from "@/site/paths"
 import { formatBlogDate } from "@/utility/date"
+import { useTranslations } from "next-intl"
 
 function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
   const textObj = getSerializeTextFromSlate(JSON.parse(blog.content))
@@ -52,9 +53,10 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
 }
 
 export default function GridBlogs({ blogs }: { blogs: Blog[] }) {
+  const t = useTranslations("Blog")
   return (
     <section>
-      <h1 className="title pb-3">Latest Post</h1>
+      <h1 className="title pb-3">{t("latest")}</h1>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:h-[600px]">
         <BlogCard blog={blogs[0]} />

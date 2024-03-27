@@ -1,13 +1,15 @@
 import Image from "next/image"
-import Link from "next/link"
 import ShareToolbar from "@/components/ShareToolbar"
 import BlogContent from "./BlogContent"
 import { getBlogCached } from "@/cache"
-import { redirect } from "next/navigation"
+import { redirect, Link } from "@/site/navigation"
 import { Metadata } from "next"
 import { getSerializeTextFromSlate } from "@/blog"
 import { absolutePathForBlog } from "@/site/paths"
 import { formatBlogDate } from "@/utility/date"
+import { readingTime } from "@/lib/utils"
+import { getTranslations } from "next-intl/server"
+import { useLocale } from "next-intl"
 
 export async function generateMetadata({
   params: { blogId },
@@ -46,7 +48,13 @@ export default async function BlogPage({
 }) {
   const blog = await getBlogCached(blogId)
 
-  if(!blog) return redirect("/blogs")
+  if (!blog) return redirect("/blogs")
+
+  const textObj = getSerializeTextFromSlate(JSON.parse(blog.content))
+  const text = textObj.map((t) => t.text)
+
+  const t = await getTranslations("Blog")
+  const locale = useLocale()
 
   return (
     <main className="w-full">
@@ -69,7 +77,7 @@ export default async function BlogPage({
         <h1 className="text-5xl font-bold mb-4 capitalize">{blog.title}</h1>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-medium">
-            <span>Created by</span>
+            <span>{t("createdBy")}</span>
             {blog.author.url ? (
               <Link href={blog.author.url || ""}>
                 <p className="font-semibold text-xl">{blog.author.name}</p>
@@ -83,7 +91,8 @@ export default async function BlogPage({
           <ShareToolbar />
         </div>
         <p className="text-sm text-dim mb-6">
-          14 min read · {formatBlogDate(blog.createdAt)}
+          {`${readingTime(text.join(""), locale)} ${t("readingTime")}`} ·{" "}
+          {formatBlogDate(blog.createdAt)}
         </p>
 
         {/* content */}

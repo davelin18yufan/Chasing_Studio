@@ -105,5 +105,11 @@
         "error": "文章不存在"
       }
     }
+  },
+  "Blog": {
+    "latest": "最新文章",
+    "all": "全部文章",
+    "createdBy": "作者",
+    "readingTime": "分鐘閱讀"
   }
 }

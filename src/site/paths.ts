@@ -2,7 +2,7 @@ import { Photo } from "@/photo"
 import { BASE_URL } from "./config"
 import { Camera, createCameraKey, getCameraFromKey } from "@/camera"
 import { FilmSimulation } from "@/simulation"
-
+// TODO: add [locale] in every route
 // Core paths
 export const PATH_ROOT = "/"
 export const PATH_GALLERY = "/gallery"
