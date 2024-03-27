@@ -7,21 +7,8 @@ import {
   PREFIX_PHOTO,
   PREFIX_TAG,
 } from "./site/paths"
-import createMiddleware from "next-intl/middleware"
-import { locales, localePrefix, defaultLocale } from "./site/navigation"
-
-// Define your next-intl middleware
-const intlMiddleware = createMiddleware({
-  locales,
-  localePrefix,
-  defaultLocale,
-  localeDetection: false,
-})
 
 export default async function middleware(req: NextRequest, res: NextResponse) {
-  // Apply next-intl middleware first
-  const response = intlMiddleware(req)
-
   const pathname = req.nextUrl.pathname
   const locale = req.nextUrl.locale // Extract the locale from the request
 
@@ -43,11 +30,12 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
     )
   }
   
-  await auth(
+  // intl middleware in this global fn
+  // check every route, update session and return intl page
+  return auth(
     req as unknown as NextApiRequest,
-    response as unknown as NextApiResponse
+    res as unknown as NextApiResponse
   )
-  return response
 }
 
 export const config = {

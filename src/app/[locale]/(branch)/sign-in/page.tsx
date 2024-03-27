@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import SignInForm from "@/auth/SignInForm";
 import { PATH_ADMIN } from "@/site/paths";
 import { clsx } from "clsx/lite";
-import { redirect } from "next/navigation";
+import { redirect } from "@/site/navigation";
 
 export default async function SignInPage() {
   const session = await auth();
