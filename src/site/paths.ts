@@ -93,7 +93,7 @@ export const pathForAdminBlogs = (next?: number) =>
   pathWithNext(PATH_ADMIN_BLOGS, next)
 
 export const pathForAdminUploadUrl = (url: string) =>
-  `${PATH_ADMIN_UPLOADS}/${encodeURIComponent(url)}`
+  `${PATH_ADMIN_UPLOADS}/add?path=${encodeURIComponent(url)}`
 
 export const pathForAdminPhotoEdit = (photo: PhotoOrPhotoId) =>
   `${PATH_ADMIN_PHOTOS}/${getPhotoId(photo)}/${EDIT}`

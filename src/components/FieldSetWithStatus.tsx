@@ -47,7 +47,7 @@ export default function FieldSetWithStatus({
       <label className="flex gap-2 items-center select-none" htmlFor={id}>
         {label}
         {note && !error && (
-          <span className="text-ginnezumi dark:text-namari">({note})</span>
+          <span className="text-ginnezumi dark:text-namari">({t("note")})</span>
         )}
         {error && <span className="text-error">{error}</span>}
         {required && (

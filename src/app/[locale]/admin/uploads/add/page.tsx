@@ -6,15 +6,15 @@ import { redirect } from "@/site/navigation"
 import { getTranslations } from "next-intl/server"
 
 interface Params {
-  params: { uploadPath: string }
+  searchParams: { path: string }
 }
 
-export default async function UploadPage({ params: { uploadPath } }: Params) {
+export default async function UploadPage({ searchParams: { path } }: Params) {
   const { blobId, photoFormExif } = await extractExifDataFromBlobPath(
-    uploadPath
+    path
   )
   const t = await getTranslations("Admin.photo")
-  
+
   if (!photoFormExif) {
     redirect(PATH_ADMIN)
   }

@@ -42,9 +42,10 @@ const FORM_METADATA: Record<keyof PhotoFormData, FormMeta> = {
   tags: {
     label: "tags",
     note: "comma-separated values",
-    validate: tags => doesTagsStringIncludeFavs(tags)
-      ? `'${TAG_FAVS}' is a reserved tag`
-      : undefined,
+    validate: (tags) =>
+      doesTagsStringIncludeFavs(tags)
+        ? `'${TAG_FAVS}' is a reserved tag`
+        : undefined,
   },
   id: { label: "id", readOnly: true, hideIfEmpty: true },
   blurData: {
@@ -63,7 +64,8 @@ const FORM_METADATA: Record<keyof PhotoFormData, FormMeta> = {
     label: "fujifilm simulation",
     options: FILM_SIMULATION_FORM_INPUT_OPTIONS,
     optionsDefaultLabel: "Unknown",
-    hideBasedOnCamera: make => make !== MAKE_FUJIFILM,
+    hideBasedOnCamera: (make) =>
+      MAKE_FUJIFILM.some((substring) => make?.includes(substring))
   },
   focalLength: { label: "focal length" },
   focalLengthIn35MmFormat: { label: "focal length 35mm-equivalent" },
@@ -71,7 +73,7 @@ const FORM_METADATA: Record<keyof PhotoFormData, FormMeta> = {
   iso: { label: "ISO" },
   exposureTime: { label: "exposure time" },
   exposureCompensation: { label: "exposure compensation" },
-  locationName: { label: "location name", hide: true },
+  locationName: { label: "location name", hide: false },
   latitude: { label: "latitude" },
   longitude: { label: "longitude" },
   takenAt: { label: "taken at" },
@@ -79,7 +81,7 @@ const FORM_METADATA: Record<keyof PhotoFormData, FormMeta> = {
   priorityOrder: { label: "priority order" },
   favorite: { label: "favorite", checkbox: true, virtual: true },
   hidden: { label: "hidden", checkbox: true },
-};
+}
 
 export const FORM_METADATA_ENTRIES =
   (Object.entries(FORM_METADATA) as [keyof PhotoFormData, FormMeta][])

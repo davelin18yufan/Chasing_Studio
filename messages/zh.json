@@ -51,7 +51,7 @@
       "form": {
         "uploadLabel": "回到上傳",
         "backLabel": "返回",
-        "required": "必要資訊",
+        "required": "*必要資訊",
         "labels": {
           "title": "標題",
           "tags": "標籤",
@@ -61,24 +61,25 @@
           "aspectRatio": "圖像長寬比",
           "make": "相機品牌",
           "model": "相機型號",
-          "fujifilmSimulation": "富士膠片模擬模式",
+          "filmSimulation": "富士相機模擬模式",
           "focalLength": "焦距",
-          "focalLength35mmEquivalent": "35mm等效焦距",
-          "aperture": "光圈",
-          "ISO": "ISO",
+          "focalLengthIn35MmFormat": "35mm等效焦距",
+          "fNumber": "光圈大小",
+          "iso": "ISO",
           "exposureTime": "曝光時間",
           "exposureCompensation": "曝光補償",
-          "locationName": "位置名稱",
+          "locationName": "地點",
           "latitude": "緯度",
           "longitude": "經度",
           "takenAt": "拍攝時間",
-          "takenAtNaive": "拍攝時間（純文字",
+          "takenAtNaive": "拍攝時間（純文字)",
           "priorityOrder": "優先順序",
           "favorite": "收藏",
           "hidden": "隱藏"
         },
         "note": "使用逗號分隔",
-        "loadingMessage": "產生模糊圖像資料中..."
+        "loadingMessage": "產生模糊圖像資料中...",
+        "optionsDefaultLabel": "不明"
       }
     },
     "blog": {

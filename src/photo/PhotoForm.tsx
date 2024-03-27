@@ -171,7 +171,7 @@ export default function PhotoForm({
                 key={key}
                 id={key}
                 label={t(`photo.form.labels.${key}`)}
-                note={t("photo.form.note")}
+                note={note}
                 error={formErrors[key]}
                 value={formData[key] ?? ""}
                 onChange={(value) => {
@@ -181,17 +181,17 @@ export default function PhotoForm({
                   }
                 }}
                 selectOptions={options}
-                selectOptionsDefaultLabel={optionsDefaultLabel}
+                selectOptionsDefaultLabel={t("photo.form.optionsDefaultLabel")}
                 required={required}
                 readOnly={readOnly}
                 capitalize={capitalize}
                 placeholder={
-                  t("photo.form.loadingMessage") && !formData[key]
+                  loadingMessage && !formData[key]
                     ? t("photo.form.loadingMessage")
                     : undefined
                 }
                 loading={
-                  t("photo.form.loadingMessage") && !formData[key]
+                  loadingMessage && !formData[key]
                     ? true
                     : false
                 }

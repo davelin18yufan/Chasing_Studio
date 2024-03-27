@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import AdminGrid from "./AdminGrid"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import ImageTiny from "@/components/ImageTiny"
 import { StorageListResponse, fileNameForStorageUrl } from "@/services/storage"
 import FormWithConfirm from "@/components/FormWithConfirm"
