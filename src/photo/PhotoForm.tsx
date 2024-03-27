@@ -66,13 +66,11 @@ export default function PhotoForm({
 
       if (changedKeys.length > 0) {
         const fields = convertFormKeysToLabels(changedKeys)
-        // toastSuccess(`Updated EXIF fields: ${fields.join(", ")}`, 8000)
         toastSuccess(
           t("actions.toast.updatePhotoSuccess", { fields: fields.join(", ") }),
           8000
         )
       } else {
-        // toastWarning("No new EXIF data found")
         toastWarning(t("actions.toast.updatePhotoWarning"))
       }
     }

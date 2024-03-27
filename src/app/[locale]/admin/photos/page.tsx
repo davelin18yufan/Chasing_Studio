@@ -129,9 +129,6 @@ export default async function AdminPhotosPage({
                         t("actions.syncPhotoConfirmText", {
                           title: titleForPhoto(photo),
                         })
-                        // "Are you sure you want to overwrite EXIF data " +
-                        // `for "${titleForPhoto(photo)}" from source file? ` +
-                        // "This action cannot be undone."
                       }
                     >
                       <input type="hidden" name="id" value={photo.id} />

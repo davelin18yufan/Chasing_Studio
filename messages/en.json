@@ -1,5 +1,109 @@
 {
-  "Home": {
-    "title": "Who we are!"
-  }
+ "Home": {
+    "intro": {
+      "title": "About Us?",
+      "description": "We are Chasing Studio, dedicated to capturing the most precious moments in life with creativity and precision. We believe that every photo holds a unique story, and our professional services cover a wide range of areas including portraits, events, car photos, and commercial projects. We understand the importance of creating everlasting memories, which will be passed down through generations. Our team is composed of experienced photographers, combining technical expertise with artistic vision to provide stunning image works that exceed customer expectations. We are committed to pursuing excellence and customer satisfaction, providing seamless and enjoyable experiences. From the initial consultation to the final delivery of images, we always prioritize clear communication, careful handling, and personalized service. Whether you are celebrating a special milestone, launching a new product, or preserving precious memories, Chasing Studio will help you realize your vision. Contact us immediately to discuss your photography needs and let us capture the most important moments in your life."
+    },
+    "gallery": {
+      "title": "Gallery"
+    },
+    "blogs": {
+      "title": "Blog",
+      "subTitle": "About life, about work, sharing what we see and hear, recording ideas and feelings, exploring the beauty of the world."
+    },
+    "contact": {
+      "title": "Contact Us"
+    }
+ },
+ "Admin": {
+    "actions": {
+      "submit": "Submit",
+      "edit": "Edit Complete",
+      "update": "Update",
+      "create": "Add New",
+      "cancel": "Cancel",
+      "editButton": "Edit",
+      "upload": "Upload Photos",
+      "uploading": "Uploading",
+      "download": "Download",
+      "untitled": "Untitled",
+      "uploadStatus": "{filesLength, plural, =0 {No photos have been uploaded yet} =1 {{fileUploadName}} other {{fileUploadIndex} / # photos}}",
+      "deleteUploadConfirmText": "Are you sure you want to delete the uploaded photo?",
+      "deleteBlogConfirmText": "Are you sure you want to delete the article titled: {title}?",
+      "deletePhotoConfirmText": "Are you sure you want to delete the photo titled: {title}?",
+      "deleteTagConfirmText": "Are you sure you want to delete the tag titled: {title}?",
+      "unhiddenBlogConfirmText": "Are you sure you want to unhide this article?",
+      "hiddenBlogConfirmText": "Are you sure you want to hide this article?",
+      "syncPhotoConfirmText": "Are you sure you want to overwrite the data for {title}? This action cannot be undone",
+      "toast": {
+        "syncPhoto": "{title} synchronized successfully",
+        "updatePhotoSuccess": "Successfully updated EXIF: {fields}",
+        "updatePhotoWarning": "No EXIF content needs to be updated"
+      }
+    },
+    "nav":{
+      "photos": "Photos",
+      "blogs": "Blog",
+      "tags": "Tags",
+      "uploads": "Uploaded"
+    },
+    "photo": {
+      "form": {
+        "uploadLabel": "Return to Upload",
+        "backLabel": "Return",
+        "required": "*Required Information",
+        "labels": {
+          "title": "Title",
+          "tags": "Tags",
+          "blurData": "Blur Image Data",
+          "url": "URL",
+          "extension": "File Format",
+          "aspectRatio": "Aspect Ratio",
+          "make": "Camera Brand",
+          "model": "Camera Model",
+          "filmSimulation": "Fujifilm Camera Simulation Mode",
+          "focalLength": "Focal Length",
+          "focalLengthIn35MmFormat": "35mm Equivalent Focal Length",
+          "fNumber": "Aperture Size",
+          "iso": "ISO",
+          "exposureTime": "Exposure Time",
+          "exposureCompensation": "Exposure Compensation",
+          "locationName": "Location",
+          "latitude": "Latitude",
+          "longitude": "Longitude",
+          "takenAt": "Taken At",
+          "takenAtNaive": "Taken At (Plain Text)",
+          "priorityOrder": "Priority Order",
+          "favorite": "Favorite",
+          "hidden": "Hidden"
+        },
+        "note": "Separate with commas",
+        "loadingMessage": "Generating blur image data...",
+        "optionsDefaultLabel": "Unknown"
+      }
+    },
+    "blog": {
+      "createTitle": "Write a New Article",
+      "editTitle": "Edit Article",
+      "form": {
+        "title": "Title",
+        "hidden": "Hidden?",
+        "author": {
+          "name":"Author",
+          "url": "Link"
+        },
+        "coverPhoto": {
+          "title": "Cover Photo",
+          "src": "URL",
+          "aspectRatio": "Aspect Ratio",
+          "placeholder": "Default 16:9"
+        },
+        "tag": {
+          "title": "Tag",
+          "placeholder": "Tag1, Tag2, Tag3"
+        },
+        "error": "Article does not exist"
+      }
+    }
+ }
 }

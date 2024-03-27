@@ -1,0 +1,109 @@
+{
+ "Home": {
+    "intro": {
+      "title": "私たちについて?",
+      "description": "私たちはChasing Studioで、生活の中で最も貴重な瞬間を創造性と精密さで捉えることに致力しています。私たちは、すべての写真が独自の物語を蘊んでいると信じています。専門サービスは、ポートレート、イベント、車の写真、商業プロジェクトなど、広範な分野をカバーしています。記憶を永遠に作り出すことの重要性を理解しており、これらの記憶は世代を超えて伝えられます。私たちのチームは経験豊富な撮影者で構成されており、技術的な専門知識と芸術的な視点を組み合わせて、顧客の期待を超える驚くべきイメージ作品を提供しています。私たちは卓越を追求し、顧客満足度に堅実に対応しています。初回の相談から最終的なイメージの提供まで、私たちは常に明確なコミュニケーション、細心の注意、個別のサービスを優先しています。特別な里程碑を慶祝しているか、新しい製品を発表しているか、貴重な記憶を保存しているかに関係なく、Chasing Studioはあなたのビジョンを実現するのを手伝います。すぐに私たちに連絡して、あなたの撮影ニーズについて話し合い、あなたの人生の最も重要な瞬間を捉えることをお手伝いしましょう。"
+    },
+    "gallery": {
+      "title": "ギャラリー"
+    },
+    "blogs": {
+      "title": "ブログ",
+      "subTitle": "生活について、仕事について、見たことを共有し、アイデアと感情を記録し、世界の美しさを探求します。"
+    },
+    "contact": {
+      "title": "私たちに連絡してください"
+    }
+ },
+ "Admin": {
+    "actions": {
+      "submit": "送信",
+      "edit": "編集完了",
+      "update": "更新",
+      "create": "新規追加",
+      "cancel": "キャンセル",
+      "editButton": "編集",
+      "upload": "写真をアップロード",
+      "uploading": "アップロード中",
+      "download": "ダウンロード",
+      "untitled": "タイトルなし",
+      "uploadStatus": "{filesLength, plural, =0 {まだ写真がアップロードされていません} =1 {{fileUploadName}} other {{fileUploadIndex} / # 写真}}",
+      "deleteUploadConfirmText": "アップロードした写真を削除してもよろしいですか？",
+      "deleteBlogConfirmText": "{title}というタイトルの記事を削除してもよろしいですか？",
+      "deletePhotoConfirmText": "{title}というタイトルの写真を削除してもよろしいですか？",
+      "deleteTagConfirmText": "{title}というタイトルのタグを削除してもよろしいですか？",
+      "unhiddenBlogConfirmText": "この記事を非表示にすることをキャンセルしてもよろしいですか？",
+      "hiddenBlogConfirmText": "この記事を非表示にしてもよろしいですか？",
+      "syncPhotoConfirmText": "{title}のデータを上書きしてもよろしいですか？このアクションは元に戻せません",
+      "toast": {
+        "syncPhoto": "{title} 同期成功",
+        "updatePhotoSuccess": "EXIFの更新成功: {fields}",
+        "updatePhotoWarning": "EXIFの内容が更新される必要がありません"
+      }
+    },
+    "nav":{
+      "photos": "フォトコレクション",
+      "blogs": "ブログ",
+      "tags": "タグ",
+      "uploads": "アップロード済み"
+    },
+    "photo": {
+      "form": {
+        "uploadLabel": "アップロードに戻る",
+        "backLabel": "戻る",
+        "required": "*必要な情報",
+        "labels": {
+          "title": "タイトル",
+          "tags": "タグ",
+          "blurData": "ブラー画像データ",
+          "url": "URL",
+          "extension": "ファイル形式",
+          "aspectRatio": "アスペクト比",
+          "make": "カメラブランド",
+          "model": "カメラモデル",
+          "filmSimulation": "富士フイルムカメラシミュレーションモード",
+          "focalLength": "焦点距離",
+          "focalLengthIn35MmFormat": "35mm等価焦点距離",
+          "fNumber": "絞り値",
+          "iso": "ISO",
+          "exposureTime": "露出時間",
+          "exposureCompensation": "露出補正",
+          "locationName": "場所",
+          "latitude": "緯度",
+          "longitude": "経度",
+          "takenAt": "撮影時間",
+          "takenAtNaive": "撮影時間（プレーンテキスト)",
+          "priorityOrder": "優先順位",
+          "favorite": "お気に入り",
+          "hidden": "非表示"
+        },
+        "note": "カンマで区切る",
+        "loadingMessage": "ブラー画像データを生成中...",
+        "optionsDefaultLabel": "不明"
+      }
+    },
+    "blog": {
+      "createTitle": "新しい記事を書く",
+      "editTitle": "編集",
+      "form": {
+        "title": "タイトル",
+        "hidden": "非表示？",
+        "author": {
+          "name":"著者",
+          "url": "リンク"
+        },
+        "coverPhoto": {
+          "title": "カバー写真",
+          "src": "URL",
+          "aspectRatio": "アスペクト比",
+          "placeholder": "デフォルト 16:9"
+        },
+        "tag": {
+          "title": "タグ",
+          "placeholder": "タグ1,タグ2,タグ3"
+        },
+        "error": "記事は存在しません"
+      }
+    }
+ }
+}
