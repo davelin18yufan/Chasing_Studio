@@ -57,7 +57,7 @@ export default function PlateEditor({
         )}
 
         <Editor
-          className={clsx(!readOnly && "px-16", "py-8")}
+          className={clsx(!readOnly && "px-16")}
           focusRing={false}
           variant="ghost"
           size="md"

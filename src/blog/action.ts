@@ -10,7 +10,7 @@ import {
 import { convertUploadToPhoto, deleteStorageUrl } from "@/services/storage"
 import { PATH_ADMIN_BLOGS } from "@/site/paths"
 import { generateNanoid } from "@/utility/nanoid"
-import { redirect } from "next/navigation"
+import { redirect } from "@/site/navigation"
 import { BlogBase } from "."
 
 interface CreateBlogAction extends Omit<BlogBase, "tags"> {
@@ -32,7 +32,7 @@ export async function createBlogAction(formData: CreateBlogAction) {
   }
 
   // copy to new url and delete stale blob
-  const updatedUrl = await convertUploadToPhoto(coverPhoto.src, coverPhotoId) 
+  const updatedUrl = await convertUploadToPhoto(coverPhoto.src, coverPhotoId)
 
   if (updatedUrl) coverPhoto.src = updatedUrl // replace
 

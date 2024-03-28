@@ -3,6 +3,7 @@ import { Photo, PhotoDateRange } from "../photo";
 import ShareModal from "@/components/ShareModal";
 import CameraOGTile from "./CameraOGTile";
 import { Camera } from ".";
+import { useTranslations } from "next-intl";
 
 export default function CameraShareModal({
   camera,
@@ -15,9 +16,10 @@ export default function CameraShareModal({
   count: number
   dateRange: PhotoDateRange,
 }) {
+  const t = useTranslations("Photo")
   return (
     <ShareModal
-      title="Share Photos"
+      title={t("share")}
       pathShare={absolutePathForCamera(camera)}
       pathClose={pathForCamera(camera)}
     >

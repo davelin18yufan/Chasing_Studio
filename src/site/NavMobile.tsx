@@ -11,11 +11,13 @@ import {
 } from "@/components/ui/sheet"
 import ViewSwitcher, { SwitcherSelection } from "@/site/ViewSwitcher"
 import { IoCarSport } from "react-icons/io5"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import Image from "next/image"
 import { navbarLinks } from "@/constants"
 import { Button } from "@/components/ui/button"
-import { usePathname } from "next/navigation"
+import { usePathname } from "@/site/navigation"
+import ThemeSwitcher from "./ThemeSwitcher"
+import LocaleSwitcher from "./LocaleSwitcher"
 
 export default function NavMobile({
   isPathGallery,
@@ -43,7 +45,7 @@ export default function NavMobile({
       <SheetContent className="bg-content" side="right">
         <SheetHeader>
           <Link
-            className="hidden xs:block cursor-pointer relative w-auto h-[150px] p-2"
+            className="hidden xs:block cursor-pointer relative w-auto h-[120px] p-2"
             href="/"
             as="image"
           >
@@ -60,6 +62,10 @@ export default function NavMobile({
 
         <SheetClose asChild>
           <section className="flex h-full flex-col gap-6 pt-16">
+            <div>
+              <ThemeSwitcher />
+              <LocaleSwitcher />
+            </div>
             {isPathGallery && (
               <div className={clsx("flex", "items-center justify-center")}>
                 <ViewSwitcher

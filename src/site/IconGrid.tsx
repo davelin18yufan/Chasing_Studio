@@ -5,7 +5,7 @@ const INTRINSIC_HEIGHT = 24;
 
 export default function IconGrid({
   width = INTRINSIC_WIDTH,
-  includeTitle = true,
+  includeTitle = false,
 }: {
   width?: number
   includeTitle?: boolean

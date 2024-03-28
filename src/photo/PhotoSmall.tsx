@@ -1,10 +1,10 @@
-import { Photo, titleForPhoto } from ".";
-import ImageSmall from "@/components/ImageSmall";
-import Link from "next/link";
-import { clsx } from "clsx/lite";
-import { pathForPhoto } from "@/site/paths";
-import { Camera } from "@/camera";
-import { FilmSimulation } from "@/simulation";
+import { Photo, titleForPhoto } from "."
+import ImageSmall from "@/components/ImageSmall"
+import { Link } from "@/site/navigation"
+import { clsx } from "clsx/lite"
+import { pathForPhoto } from "@/site/paths"
+import { Camera } from "@/camera"
+import { FilmSimulation } from "@/simulation"
 
 export default function PhotoSmall({
   photo,
@@ -22,10 +22,7 @@ export default function PhotoSmall({
   return (
     <Link
       href={pathForPhoto(photo, tag, camera, simulation)}
-      className={clsx(
-        "active:brightness-75",
-        selected && "brightness-50",
-      )}
+      className={clsx("active:brightness-75", selected && "brightness-50")}
     >
       <ImageSmall
         src={photo.url}
@@ -35,5 +32,5 @@ export default function PhotoSmall({
         alt={titleForPhoto(photo)}
       />
     </Link>
-  );
-};
+  )
+}

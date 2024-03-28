@@ -151,8 +151,14 @@ export default async function AdminArticlePage({
                       "gap-2 sm:gap-3 items-center"
                     )}
                   >
-                    <EditButton href={pathForAdminBlogEdit(blog.id)} />
-                    <PopoutButton href={pathForBlog(blog.id)} />
+                    <EditButton
+                      href={pathForAdminBlogEdit(blog.id)}
+                      label={t("actions.editButton")}
+                    />
+                    <PopoutButton
+                      href={pathForBlog(blog.id)}
+                      label={t("actions.popOut")}
+                    />
                     <FormWithConfirm
                       action={deleteBlogAction}
                       confirmText={t("actions.deleteBlogConfirmText", {

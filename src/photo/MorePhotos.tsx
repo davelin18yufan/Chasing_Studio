@@ -1,8 +1,9 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/site/navigation"
 import { useCallback, useEffect, useRef, useTransition } from "react"
 import Spinner from "../components/Spinner"
+import { useTranslations } from "next-intl"
 
 export default function MorePhotos({
   path,
@@ -14,6 +15,7 @@ export default function MorePhotos({
   prefetch?: boolean
 }) {
   const router = useRouter()
+  const t = useTranslations("Photo")
 
   const [isPending, startTransition] = useTransition()
 
@@ -63,7 +65,7 @@ export default function MorePhotos({
           <Spinner size={16} />
         </span>
       ) : (
-        "See More"
+        t("more")
       )}
     </button>
   )

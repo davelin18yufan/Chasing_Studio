@@ -3,6 +3,7 @@ import EntityLink, { EntityLinkExternalProps } from "@/components/EntityLink";
 import { TAG_FAVS } from ".";
 import { pathForTag } from "@/site/paths";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 export default function FavsTag({
   type,
@@ -12,18 +13,19 @@ export default function FavsTag({
 }: {
   countOnHover?: number
 } & EntityLinkExternalProps) {
+  const t = useTranslations()
   return (
     <EntityLink
       label={
         badged
           ? <span className="inline-flex gap-1">
-            {TAG_FAVS}
+            {t(TAG_FAVS)}
             <FaStar
               size={10}
               className="text-amber-500"
             />
           </span>
-          : TAG_FAVS}
+          : t(TAG_FAVS)}
       href={pathForTag(TAG_FAVS)}
       icon={!badged &&
         <FaStar

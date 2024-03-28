@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react"
 import { Photo } from "@/photo"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { AnimationConfig } from "../components/AnimateItems"
 import { useAppState } from "@/contexts"
 import { pathForPhoto } from "@/site/paths"

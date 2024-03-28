@@ -13,20 +13,25 @@ import { clsx } from "clsx/lite"
 import FavsTag from "@/tag/FavsTag"
 import { getTagQuantityText, getTagLabelForCount } from "@/blog"
 import { mergeTags } from "@/lib/utils"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, getLocale } from "next-intl/server"
 
 export default async function AdminTagsPage() {
-  const [photoTags, blogTags, t] = await Promise.all([
+  const [photoTags, blogTags, t, locale] = await Promise.all([
     getUniqueTagsHiddenCached(),
     getUniqueBlogTagsCached(true),
     getTranslations("Admin"),
+    getLocale(),
   ])
   const tags = mergeTags(photoTags, blogTags)
 
   const renderQuantityText = (count: number, label: string) =>
     getTagQuantityText(
       count,
-      getTagLabelForCount(count, label, `${label}s`),
+      getTagLabelForCount(
+        count,
+        label,
+        `${locale === "en" ? label + "s" : label}`
+      ),
       false
     )
   return (
@@ -42,10 +47,14 @@ export default async function AdminTagsPage() {
                   </div>
                   <div className="text-dim uppercase flex gap-2">
                     {photoCount > 0 && (
-                      <span>{renderQuantityText(photoCount, "Photo")}</span>
+                      <span>
+                        {renderQuantityText(photoCount, t("nav.photo"))}
+                      </span>
                     )}
                     {blogCount > 0 && (
-                      <span>{renderQuantityText(blogCount, "Blog")}</span>
+                      <span>
+                        {renderQuantityText(blogCount, t("nav.blog"))}
+                      </span>
                     )}
                   </div>
                   <div

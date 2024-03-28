@@ -4,11 +4,13 @@ import { IS_SITE_READY } from "@/site/config"
 import { PATH_ADMIN_CONFIGURATION, PATH_ADMIN_PHOTOS } from "@/site/paths"
 import SiteChecklist from "@/site/SiteChecklist"
 import { clsx } from "clsx/lite"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { FaArrowRight } from "react-icons/fa"
 import { HiOutlinePhotograph } from "react-icons/hi"
+import { useTranslations } from "next-intl"
 
 export default function PhotosEmptyState() {
+  const t = useTranslations("Photo.empty")
   return (
     <SiteGrid
       contentMain={
@@ -30,15 +32,14 @@ export default function PhotosEmptyState() {
           ) : (
             <div className="max-w-md text-center space-y-6">
               <div className="space-y-2">
-                <div>Add your first photo:</div>
+                <div>{t("title")}:</div>
                 <Link href={PATH_ADMIN_PHOTOS} className="button primary">
-                  <span>Admin Dashboard</span>
+                  <span>{t("admin")}</span>
                   <FaArrowRight size={10} />
                 </Link>
               </div>
               <div>
-                Change the name of this blog and other configuration by editing
-                environment variables referenced in{" "}
+                {t("config")}{" "}
                 <Link
                   href={PATH_ADMIN_CONFIGURATION}
                   className="text-main hover:underline"

@@ -4,7 +4,7 @@ import { useState } from "react"
 import AnimateItems from "@/components/AnimateItems"
 import { Button } from "@/components/ui/button"
 import { relativeLinks } from "@/constants"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import {
   FaInstagramSquare,
   FaLine,
@@ -29,7 +29,7 @@ const icons: Record<string, IconType> = {
 
 export default function Contact() {
   const [open, setOpen] = useState(false)
-  const t = useTranslations("Home.contact")
+  const t = useTranslations()
   return (
     <>
       <section
@@ -50,7 +50,9 @@ export default function Contact() {
                 onClick={() => setOpen(true)}
                 key="contactBtn"
               >
-                <span className="group-hover:mr-2">{t("title")}</span>
+                <span className="group-hover:mr-2">
+                  {t("Home.contact.title")}
+                </span>
                 <div className="group-hover:rotate-45">
                   <FaLocationArrow size={18} />
                 </div>
@@ -76,7 +78,7 @@ export default function Contact() {
           />
         </div>
         <Link href={pathForAdminPhotos()} className="absolute left-3 bottom-3">
-          Admin
+          {t("Admin.nav.admin")}
         </Link>
       </section>
 

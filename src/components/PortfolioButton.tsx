@@ -4,7 +4,7 @@ import { useState } from "react"
 import { relativeLinks } from "@/constants"
 import clsx from "clsx"
 import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { TbHexagonLetterC } from "react-icons/tb"
 import {
   FaInstagramSquare,

@@ -1,5 +1,5 @@
 import clsx from "clsx/lite"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { FiMoreHorizontal } from "react-icons/fi"
 import { ReactNode } from "react"
 import {
@@ -8,7 +8,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
 
 export default function MoreMenu({
   items,

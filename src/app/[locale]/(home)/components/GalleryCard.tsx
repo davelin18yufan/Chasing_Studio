@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import clsx from "clsx/lite"
 
 interface Props {

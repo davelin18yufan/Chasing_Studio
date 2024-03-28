@@ -3,7 +3,7 @@
 
 import type { ExifData } from "ts-exif-parser"
 
-export const MAKE_FUJIFILM = ["FUJIFILM", "富士相機", "富士フイルム"]
+export const MAKE_FUJIFILM = "FUJIFILM"
 
 const BYTE_INDEX_TAG_COUNT = 12
 const BYTE_INDEX_FIRST_TAG = 14
@@ -45,7 +45,7 @@ type FujifilmMode =
 export type FujifilmSimulation = FujifilmSimulationFromSaturation | FujifilmMode
 
 export const isExifForFujifilm = (data: ExifData) =>
-  MAKE_FUJIFILM.some((substring) => data.tags?.Make?.includes(substring))
+  data.tags?.Make === MAKE_FUJIFILM
 
 const getFujifilmSimulationFromSaturation = (
   value?: number

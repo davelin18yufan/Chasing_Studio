@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import PhotoUpload from "@/photo/PhotoUpload"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import PhotoTiny from "@/photo/PhotoTiny"
 import { clsx } from "clsx/lite"
 import FormWithConfirm from "@/components/FormWithConfirm"
@@ -125,11 +125,9 @@ export default async function AdminPhotosPage({
                     />
                     <FormWithConfirm
                       action={syncPhotoExifDataAction}
-                      confirmText={
-                        t("actions.syncPhotoConfirmText", {
-                          title: titleForPhoto(photo),
-                        })
-                      }
+                      confirmText={t("actions.syncPhotoConfirmText", {
+                        title: titleForPhoto(photo),
+                      })}
                     >
                       <input type="hidden" name="id" value={photo.id} />
                       <SubmitButtonWithStatus

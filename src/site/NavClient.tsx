@@ -1,7 +1,7 @@
 "use client"
 
 import { clsx } from "clsx/lite"
-import { usePathname } from "next/navigation"
+import { usePathname } from "@/site/navigation"
 import Image from "next/image"
 import ViewSwitcher, { SwitcherSelection } from "@/site/ViewSwitcher"
 import {
@@ -12,7 +12,7 @@ import {
   isPathSets,
 } from "@/site/paths"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { navbarLinks } from "@/constants"
 import { FaEarthEurope } from "react-icons/fa6"
 import {
@@ -22,15 +22,18 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar"
 import ThemeSwitcher from "./ThemeSwitcher"
+import LocaleSwitcher from "./LocaleSwitcher"
 import NavMobile from "./NavMobile"
 import { useMotionValueEvent, useScroll } from "framer-motion"
 import { useState, useRef } from "react"
+import { useTranslations } from "next-intl"
 
 export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
   const pathname = usePathname()
   const [visible, setVisible] = useState(false)
   const { scrollY } = useScroll()
   const previousScrollY = useRef<number>(0)
+  const t = useTranslations("Admin.nav")
 
   const switcherSelectionForPath = (): SwitcherSelection | undefined => {
     if (pathname === PATH_ROOT) {
@@ -69,7 +72,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
           "hidden sm:block cursor-pointer",
           "w-[220px] h-[70px] relative"
         )}
-        href="/"
+        href={PATH_ROOT}
       >
         <Image
           src="/logo_horizontal.png"
@@ -108,14 +111,14 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
           return (
             <Link href={item.route} key={item.label}>
               <Button
-                data-content={item.label}
+                data-content={t(item.label.toLowerCase())}
                 className={clsx(
                   "navItem",
                   isActive &&
                     "text-kachi bg-shironezumi dark:bg-shironezumi dark:text-kachi hover:transform-none"
                 )}
               >
-                {item.label}
+                {t(item.label.toLowerCase())}
               </Button>
             </Link>
           )
@@ -132,6 +135,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
             </MenubarTrigger>
             <MenubarContent className="bg-content min-w-[120px] mr-1.5">
               <ThemeSwitcher />
+              <LocaleSwitcher />
             </MenubarContent>
           </MenubarMenu>
         </Menubar>

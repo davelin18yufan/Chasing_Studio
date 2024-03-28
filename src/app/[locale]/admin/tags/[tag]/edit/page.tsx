@@ -1,5 +1,5 @@
 import AdminChildPage from "@/components/AdminChildPage"
-import { redirect } from "next/navigation"
+import { redirect } from "@/site/navigation"
 import {
   getBlogsCached,
   getBlogsTagCountCached,

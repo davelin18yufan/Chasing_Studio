@@ -11,7 +11,7 @@ import {
 import FieldSetWithStatus from "@/components/FieldSetWithStatus"
 import { createPhotoAction, updatePhotoAction } from "./actions"
 import SubmitButtonWithStatus from "@/components/SubmitButtonWithStatus"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { clsx } from "clsx/lite"
 import CanvasBlurCapture from "@/components/CanvasBlurCapture"
 import { PATH_ADMIN_PHOTOS, PATH_ADMIN_UPLOADS } from "@/site/paths"
@@ -188,11 +188,7 @@ export default function PhotoForm({
                     ? t("photo.form.loadingMessage")
                     : undefined
                 }
-                loading={
-                  loadingMessage && !formData[key]
-                    ? true
-                    : false
-                }
+                loading={loadingMessage && !formData[key] ? true : false}
                 type={checkbox ? "checkbox" : undefined}
               />
             )

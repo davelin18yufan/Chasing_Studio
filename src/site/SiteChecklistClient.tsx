@@ -1,7 +1,7 @@
 "use client"
 // eslint-disable max-len
 import { ComponentProps, ReactNode, useTransition } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/site/navigation"
 import { clsx } from "clsx/lite"
 import ChecklistRow from "../components/ChecklistRow"
 import { FiExternalLink } from "react-icons/fi"
@@ -128,11 +128,11 @@ export default function SiteChecklistClient({
             !hasStorage
               ? "Setup storage (one of the following)"
               : hasMultipleStorageProviders
-                ? // eslint-disable-next-line max-len
+              ? // eslint-disable-next-line max-len
                 `Setup storage (new uploads go to: ${labelForStorage(
                   currentStorage
                 )})`
-                : "Setup storage"
+              : "Setup storage"
           }
           status={hasStorage}
           isPending={isPendingPage}
@@ -208,7 +208,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"1\""} to enable higher quality image
+          Set environment variable to {'"1"'} to enable higher quality image
           storage:
           {renderEnvVars(["NEXT_PUBLIC_PRO_MODE"])}
         </ChecklistRow>
@@ -218,7 +218,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"1\""} to prevent image blur data being
+          Set environment variable to {'"1"'} to prevent image blur data being
           stored and displayed
           {renderEnvVars(["NEXT_PUBLIC_BLUR_DISABLED"])}
         </ChecklistRow>
@@ -228,7 +228,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"1\""} to disable collection/display of
+          Set environment variable to {'"1"'} to disable collection/display of
           location-based data
           {renderEnvVars(["NEXT_PUBLIC_GEO_PRIVACY"])}
         </ChecklistRow>
@@ -238,7 +238,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"1\""} to prevent priority order photo
+          Set environment variable to {'"1"'} to prevent priority order photo
           field affecting photo order
           {renderEnvVars(["NEXT_PUBLIC_IGNORE_PRIORITY_ORDER"])}
         </ChecklistRow>
@@ -248,7 +248,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"1\""} to enable a public API available
+          Set environment variable to {'"1"'} to enable a public API available
           at <code>/api</code>:{renderEnvVars(["NEXT_PUBLIC_PUBLIC_API"])}
         </ChecklistRow>
         <ChecklistRow
@@ -257,7 +257,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"1\""} to hide footer link:
+          Set environment variable to {'"1"'} to hide footer link:
           {renderEnvVars(["NEXT_PUBLIC_HIDE_REPO_LINK"])}
         </ChecklistRow>
         <ChecklistRow
@@ -266,7 +266,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"1\""} to prevent simulations showing up
+          Set environment variable to {'"1"'} to prevent simulations showing up
           in <code>/grid</code> sidebar:
           {renderEnvVars(["NEXT_PUBLIC_HIDE_FILM_SIMULATIONS"])}
         </ChecklistRow>
@@ -276,7 +276,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"1\""} to hide EXIF data:
+          Set environment variable to {'"1"'} to hide EXIF data:
           {renderEnvVars(["NEXT_PUBLIC_HIDE_EXIF_DATA"])}
         </ChecklistRow>
         <ChecklistRow
@@ -286,7 +286,7 @@ export default function SiteChecklistClient({
           optional
         >
           Set environment variable to any number to enforce aspect ratio{" "}
-          (defaults to {"\"1\""}, i.e., square)—set to {"\"0\""} to disable:
+          (defaults to {'"1"'}, i.e., square)—set to {'"0"'} to disable:
           {renderEnvVars(["NEXT_PUBLIC_GRID_ASPECT_RATIO"])}
         </ChecklistRow>
         <ChecklistRow
@@ -295,7 +295,7 @@ export default function SiteChecklistClient({
           isPending={isPendingPage}
           optional
         >
-          Set environment variable to {"\"BOTTOM\""} to keep OG image text bottom
+          Set environment variable to {'"BOTTOM"'} to keep OG image text bottom
           aligned (default is top):
           {renderEnvVars(["NEXT_PUBLIC_OG_TEXT_ALIGNMENT"])}
         </ChecklistRow>

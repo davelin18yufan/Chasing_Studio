@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 import { clsx } from "clsx/lite"
 import StatusIcon from "./StatusIcon"
+import { useTranslations } from "next-intl"
 
 export default function ChecklistRow({
   title,
@@ -15,6 +16,7 @@ export default function ChecklistRow({
   optional?: boolean
   children: ReactNode
 }) {
+  const t = useTranslations("photo.form")
   return (
     <div className={clsx("flex gap-2.5", "px-4 pt-2 pb-2.5")}>
       <StatusIcon
@@ -24,7 +26,7 @@ export default function ChecklistRow({
       <div className="flex flex-col min-w-0">
         <div className="font-bold dark:text-hainezumi">
           {title}
-          {optional && " (optional)"}
+          {optional && ` ${t("optional")}`}
         </div>
         <div>{children}</div>
       </div>

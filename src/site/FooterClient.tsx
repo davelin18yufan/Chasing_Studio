@@ -15,6 +15,7 @@ import SubmitButtonWithStatus from "@/components/SubmitButtonWithStatus"
 import { signOutAction } from "@/auth/actions"
 import Spinner from "@/components/Spinner"
 import AnimateItems from "@/components/AnimateItems"
+import { useTranslations } from "next-intl"
 
 export default function FooterClient({
   userEmail,
@@ -26,6 +27,7 @@ export default function FooterClient({
   const showFooter = !isPathSignIn(pathname) && !isPathRoot(pathname)
 
   const shouldAnimate = !isPathAdmin(pathname)
+  const t= useTranslations("Admin")
   
   return (
     <SiteGrid
@@ -53,7 +55,7 @@ export default function FooterClient({
                               <div>{userEmail}</div>
                               <form action={signOutAction}>
                                 <SubmitButtonWithStatus styleAsLink>
-                                  Sign out
+                                  {t("actions.loginForm.signOut")}
                                 </SubmitButtonWithStatus>
                               </form>
                             </>
@@ -61,7 +63,7 @@ export default function FooterClient({
                         </>
                       ) : (
                         <>
-                          <Link href={pathForAdminPhotos()}>Admin</Link>
+                          <Link href={pathForAdminPhotos()}>{t("nav.admin")}</Link>
                           {SHOW_REPO_LINK && <RepoLink />}
                         </>
                       )}

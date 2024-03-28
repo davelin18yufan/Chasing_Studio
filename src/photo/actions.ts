@@ -13,7 +13,7 @@ import {
   convertFormDataToPhotoDbInsert,
   convertPhotoToFormData,
 } from "./form"
-import { redirect } from "next/navigation"
+import { redirect } from "@/site/navigation"
 import { convertUploadToPhoto, deleteStorageUrl } from "@/services/storage"
 import {
   revalidateAdminPaths,

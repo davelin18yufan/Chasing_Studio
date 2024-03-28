@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { dataUrl } from "@/lib/utils"
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import clsx from "clsx/lite"
 import { Blog, getSerializeTextFromSlate } from "@/blog"
 import { pathForBlog } from "@/site/paths"

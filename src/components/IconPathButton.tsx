@@ -1,6 +1,6 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/site/navigation"
 import IconButton from "./IconButton"
 import { useEffect, useState, useTransition } from "react"
 import { clsx } from "clsx/lite"

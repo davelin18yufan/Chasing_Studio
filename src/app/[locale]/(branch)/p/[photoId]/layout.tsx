@@ -2,18 +2,18 @@ import {
   GRID_THUMBNAILS_TO_SHOW_MAX,
   descriptionForPhoto,
   titleForPhoto,
-} from "@/photo";
-import { Metadata } from "next";
-import { redirect } from "next/navigation";
+} from "@/photo"
+import { Metadata } from "next"
+import { redirect } from "@/site/navigation"
 import {
   PATH_ROOT,
   absolutePathForPhoto,
   absolutePathForPhotoImage,
-} from "@/site/paths";
-import PhotoDetailPage from "@/photo/PhotoDetailPage";
-import { getPhotoCached, getPhotosNearIdCached } from "@/cache";
+} from "@/site/paths"
+import PhotoDetailPage from "@/photo/PhotoDetailPage"
+import { getPhotoCached, getPhotosNearIdCached } from "@/cache"
 
-export const runtime = "edge";
+export const runtime = "edge"
 
 interface PhotoProps {
   params: { photoId: string }
@@ -21,15 +21,17 @@ interface PhotoProps {
 
 export async function generateMetadata({
   params: { photoId },
-}:PhotoProps): Promise<Metadata> {
-  const photo = await getPhotoCached(photoId);
+}: PhotoProps): Promise<Metadata> {
+  const photo = await getPhotoCached(photoId)
 
-  if (!photo) { return {}; }
+  if (!photo) {
+    return {}
+  }
 
-  const title = titleForPhoto(photo);
-  const description = descriptionForPhoto(photo);
-  const images = absolutePathForPhotoImage(photo);
-  const url = absolutePathForPhoto(photo);
+  const title = titleForPhoto(photo)
+  const description = descriptionForPhoto(photo)
+  const images = absolutePathForPhotoImage(photo)
+  const url = absolutePathForPhoto(photo)
 
   return {
     title,
@@ -46,7 +48,7 @@ export async function generateMetadata({
       images,
       card: "summary_large_image",
     },
-  };
+  }
 }
 
 export default async function PhotoPage({
@@ -55,29 +57,33 @@ export default async function PhotoPage({
 }: PhotoProps & { children: React.ReactNode }) {
   const photos = await getPhotosNearIdCached(
     photoId,
-    GRID_THUMBNAILS_TO_SHOW_MAX + 2,
-  );
+    GRID_THUMBNAILS_TO_SHOW_MAX + 2
+  )
 
-  const photo = photos.find(p => p.id === photoId);
+  const photo = photos.find((p) => p.id === photoId)
 
-  if (!photo) { redirect(PATH_ROOT); }
-  
-  const isPhotoFirst = photos.findIndex(p => p.id === photoId) === 0;
+  if (!photo) {
+    redirect(PATH_ROOT)
+  }
+
+  const isPhotoFirst = photos.findIndex((p) => p.id === photoId) === 0
 
   // Warm OG image without waiting on response
-  fetch(absolutePathForPhotoImage(photo));
+  fetch(absolutePathForPhotoImage(photo))
 
-  return <>
-    {children}
-    <PhotoDetailPage
-      photo={photo}
-      photos={photos}
-      photosGrid={photos.slice(
-        isPhotoFirst ? 1 : 2,
-        isPhotoFirst
-          ? GRID_THUMBNAILS_TO_SHOW_MAX + 1
-          : GRID_THUMBNAILS_TO_SHOW_MAX + 2,
-      )}
-    />
-  </>;
+  return (
+    <>
+      {children}
+      <PhotoDetailPage
+        photo={photo}
+        photos={photos}
+        photosGrid={photos.slice(
+          isPhotoFirst ? 1 : 2,
+          isPhotoFirst
+            ? GRID_THUMBNAILS_TO_SHOW_MAX + 1
+            : GRID_THUMBNAILS_TO_SHOW_MAX + 2
+        )}
+      />
+    </>
+  )
 }

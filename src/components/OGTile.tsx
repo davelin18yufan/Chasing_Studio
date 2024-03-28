@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { clsx } from "clsx/lite"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { BiError } from "react-icons/bi"
 import Spinner from "@/components/Spinner"
 import { IMAGE_OG_DIMENSION } from "../photo/image-response"
