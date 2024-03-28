@@ -51,60 +51,60 @@ const getFujifilmSimulationFromSaturation = (
   value?: number
 ): FujifilmSimulationFromSaturation | undefined => {
   switch (value) {
-    case 0x300:
-      return "monochrome"
-    case 0x301:
-      return "monochrome-r"
-    case 0x302:
-      return "monochrome-ye"
-    case 0x303:
-      return "monochrome-g"
-    case 0x310:
-      return "sepia"
-    case 0x500:
-      return "acros"
-    case 0x501:
-      return "acros-r"
-    case 0x502:
-      return "acros-ye"
-    case 0x503:
-      return "acros-g"
+  case 0x300:
+    return "monochrome"
+  case 0x301:
+    return "monochrome-r"
+  case 0x302:
+    return "monochrome-ye"
+  case 0x303:
+    return "monochrome-g"
+  case 0x310:
+    return "sepia"
+  case 0x500:
+    return "acros"
+  case 0x501:
+    return "acros-r"
+  case 0x502:
+    return "acros-ye"
+  case 0x503:
+    return "acros-g"
   }
 }
 
 const getFujifilmMode = (value?: number): FujifilmMode | undefined => {
   switch (value) {
-    case 0x000:
-      return "provia"
-    case 0x100:
-      return "portrait"
-    case 0x110:
-      return "portrait-saturation"
-    case 0x120:
-      return "astia" // can be encoded as 'portrait-skin-tone'
-    case 0x130:
-      return "portrait-sharpness"
-    case 0x300:
-      return "portrait-ex"
-    case 0x200:
-    case 0x400:
-      return "velvia"
-    case 0x500:
-      return "pro-neg-std"
-    case 0x501:
-      return "pro-neg-hi"
-    case 0x600:
-      return "classic-chrome"
-    case 0x700:
-      return "eterna"
-    case 0x800:
-      return "classic-neg"
-    case 0x900:
-      return "eterna-bleach-bypass"
-    case 0xa00:
-      return "nostalgic-neg"
-    case 0xb00:
-      return "reala"
+  case 0x000:
+    return "provia"
+  case 0x100:
+    return "portrait"
+  case 0x110:
+    return "portrait-saturation"
+  case 0x120:
+    return "astia" // can be encoded as 'portrait-skin-tone'
+  case 0x130:
+    return "portrait-sharpness"
+  case 0x300:
+    return "portrait-ex"
+  case 0x200:
+  case 0x400:
+    return "velvia"
+  case 0x500:
+    return "pro-neg-std"
+  case 0x501:
+    return "pro-neg-hi"
+  case 0x600:
+    return "classic-chrome"
+  case 0x700:
+    return "eterna"
+  case 0x800:
+    return "classic-neg"
+  case 0x900:
+    return "eterna-bleach-bypass"
+  case 0xa00:
+    return "nostalgic-neg"
+  case 0xb00:
+    return "reala"
   }
 }
 
@@ -266,20 +266,20 @@ const parseFujifilmMakerNote = (
       const tagId = bytes.readUInt16LE(index)
       const tagType = bytes.readUInt16LE(index + BYTE_OFFSET_TAG_TYPE)
       switch (tagType) {
-        // UInt16
-        case 3:
-          valueForTagUInt(
-            tagId,
-            bytes.readUInt16LE(index + BYTE_OFFSET_TAG_VALUE)
-          )
-          break
+      // UInt16
+      case 3:
+        valueForTagUInt(
+          tagId,
+          bytes.readUInt16LE(index + BYTE_OFFSET_TAG_VALUE)
+        )
+        break
         // UInt32
-        case 4:
-          valueForTagUInt(
-            tagId,
-            bytes.readUInt32LE(index + BYTE_OFFSET_TAG_VALUE)
-          )
-          break
+      case 4:
+        valueForTagUInt(
+          tagId,
+          bytes.readUInt32LE(index + BYTE_OFFSET_TAG_VALUE)
+        )
+        break
       }
     }
   }
@@ -293,12 +293,12 @@ export const getFujifilmSimulationFromMakerNote = (
 
   parseFujifilmMakerNote(bytes, (tag, value) => {
     switch (tag) {
-      case TAG_ID_SATURATION:
-        filmModeFromSaturation = getFujifilmSimulationFromSaturation(value)
-        break
-      case TAG_ID_FILM_MODE:
-        filmMode = getFujifilmMode(value)
-        break
+    case TAG_ID_SATURATION:
+      filmModeFromSaturation = getFujifilmSimulationFromSaturation(value)
+      break
+    case TAG_ID_FILM_MODE:
+      filmMode = getFujifilmMode(value)
+      break
     }
   })
 

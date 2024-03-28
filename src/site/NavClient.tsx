@@ -115,6 +115,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
                 className={clsx(
                   "navItem",
                   isActive &&
+                    // eslint-disable-next-line max-len
                     "text-kachi bg-shironezumi dark:bg-shironezumi dark:text-kachi hover:transform-none"
                 )}
               >

@@ -103,12 +103,12 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
   const initialValue: Value = blog
     ? JSON.parse(blog.content)
     : [
-        {
-          id: "content",
-          type: ELEMENT_PARAGRAPH,
-          children: [{ text: "Cover image will appear at top of title" }],
-        },
-      ]
+      {
+        id: "content",
+        type: ELEMENT_PARAGRAPH,
+        children: [{ text: "Cover image will appear at top of title" }],
+      },
+    ]
 
   const initialTitleValue = {
     title: blog?.title || "",

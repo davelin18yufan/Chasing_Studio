@@ -12,11 +12,11 @@ const VERCEL_BLOB_HOSTNAME = VERCEL_BLOB_STORE_ID
 // const AWS_S3_HOSTNAME =
 //   process.env.NEXT_PUBLIC_AWS_S3_BUCKET &&
 //   process.env.NEXT_PUBLIC_AWS_S3_REGION
-//     // eslint-disable-next-line max-len
+    // eslint-disable-next-line max-len
 //     ? `${process.env.NEXT_PUBLIC_AWS_S3_BUCKET}.s3.${process.env.NEXT_PUBLIC_AWS_S3_REGION}.amazonaws.com`
 //     : undefined;
 
-const createNextIntlPlugin = require('next-intl/plugin');
+const createNextIntlPlugin = require("next-intl/plugin");
  
 const withNextIntl = createNextIntlPlugin();
  
@@ -33,8 +33,8 @@ const createRemotePattern = (hostname) => hostname
 const nextConfig = {
   images: {
     // imageSizes: [200],
-    loader: 'custom',
-    loaderFile: './src/lib/loader.ts',
+    loader: "custom",
+    loaderFile: "./src/lib/loader.ts",
     remotePatterns: [{
       protocol: "https",
       hostname: "source.unsplash.com",
@@ -43,8 +43,8 @@ const nextConfig = {
     }]
       .concat(createRemotePattern("qr-official.line.me"))
       .concat(createRemotePattern(VERCEL_BLOB_HOSTNAME)),
-      // .concat(createRemotePattern(CLOUDFLARE_R2_HOSTNAME))
-      // .concat(createRemotePattern(AWS_S3_HOSTNAME)),
+    // .concat(createRemotePattern(CLOUDFLARE_R2_HOSTNAME))
+    // .concat(createRemotePattern(AWS_S3_HOSTNAME)),
     minimumCacheTTL: 31536000,
   },
 };

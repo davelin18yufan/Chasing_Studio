@@ -40,24 +40,24 @@ export default function PhotoLinks({
   useEffect(() => {
     const onKeyUp = (e: KeyboardEvent) => {
       switch (e.key.toUpperCase()) {
-        case "ARROWLEFT":
-        case "J":
-          if (previousPhoto) {
-            setNextPhotoAnimation?.(ANIMATION_RIGHT)
-            router.push(pathForPhoto(previousPhoto, tag, camera, simulation), {
-              scroll: false,
-            })
-          }
-          break
-        case "ARROWRIGHT":
-        case "L":
-          if (nextPhoto) {
-            setNextPhotoAnimation?.(ANIMATION_LEFT)
-            router.push(pathForPhoto(nextPhoto, tag, camera, simulation), {
-              scroll: false,
-            })
-          }
-          break
+      case "ARROWLEFT":
+      case "J":
+        if (previousPhoto) {
+          setNextPhotoAnimation?.(ANIMATION_RIGHT)
+          router.push(pathForPhoto(previousPhoto, tag, camera, simulation), {
+            scroll: false,
+          })
+        }
+        break
+      case "ARROWRIGHT":
+      case "L":
+        if (nextPhoto) {
+          setNextPhotoAnimation?.(ANIMATION_LEFT)
+          router.push(pathForPhoto(nextPhoto, tag, camera, simulation), {
+            scroll: false,
+          })
+        }
+        break
       }
     }
     window.addEventListener(LISTENER_KEYUP, onKeyUp)

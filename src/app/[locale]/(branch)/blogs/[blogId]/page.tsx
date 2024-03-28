@@ -8,8 +8,7 @@ import { getSerializeTextFromSlate } from "@/blog"
 import { absolutePathForBlog } from "@/site/paths"
 import { formatBlogDate } from "@/utility/date"
 import { readingTime } from "@/lib/utils"
-import { getTranslations } from "next-intl/server"
-import { useLocale } from "next-intl"
+import { getTranslations, getLocale } from "next-intl/server"
 
 export async function generateMetadata({
   params: { blogId },
@@ -46,15 +45,16 @@ export default async function BlogPage({
 }: {
   params: { blogId: string }
 }) {
-  const blog = await getBlogCached(blogId)
+  const [blog, t, locale] = await Promise.all([
+    getBlogCached(blogId),
+    getTranslations("Blog"),
+    getLocale(),
+  ])
 
   if (!blog) return redirect("/blogs")
 
   const textObj = getSerializeTextFromSlate(JSON.parse(blog.content))
   const text = textObj.map((t) => t.text)
-
-  const t = await getTranslations("Blog")
-  const locale = useLocale()
 
   return (
     <main className="w-full">

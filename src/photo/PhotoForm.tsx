@@ -74,7 +74,7 @@ export default function PhotoForm({
         toastWarning(t("actions.toast.updatePhotoWarning"))
       }
     }
-  }, [updatedExifData])
+  }, [updatedExifData, t])
 
   const { width, height } = getDimensionsFromSize(
     THUMBNAIL_SIZE,
@@ -149,11 +149,11 @@ export default function PhotoForm({
           ([
             key,
             {
-              label,
+              // label,
               note,
               required,
               options,
-              optionsDefaultLabel,
+              // optionsDefaultLabel,
               readOnly,
               validate,
               capitalize,

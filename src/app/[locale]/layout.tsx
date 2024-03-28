@@ -75,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
-   const messages = useMessages()
+  const messages = useMessages()
   return (
     <html
       lang={locale}

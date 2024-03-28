@@ -8,14 +8,14 @@ export default function SwitcherItem({
   onClick,
   active,
   noPadding,
-  title
+  title,
 }: {
   icon: JSX.Element
   href?: string
   className?: string
   onClick?: () => void
   active?: boolean
-  noPadding?: boolean,
+  noPadding?: boolean
   title?: string
 }) {
   const className = clsx(
@@ -34,7 +34,12 @@ export default function SwitcherItem({
     noPadding ? (
       icon
     ) : (
-      <div className="w-[28px] h-[24px] flex items-center justify-center pointer-events-none">
+      <div
+        className={clsx(
+          "w-[28px] h-[24px]",
+          "flex items-center justify-center pointer-events-none"
+        )}
+      >
         {icon}
       </div>
     )
