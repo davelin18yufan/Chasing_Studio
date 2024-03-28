@@ -54,7 +54,7 @@ export default async function PhotoTagPage({
   const photo = await getPhotoCached(photoId)
 
   if (!photo) {
-    redirect(PATH_ROOT)
+    return redirect(PATH_ROOT)
   }
 
   const [photos, count, dateRange] = await getPhotosTagDataCached({ tag })

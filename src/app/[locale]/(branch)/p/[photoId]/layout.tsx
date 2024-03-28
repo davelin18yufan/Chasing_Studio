@@ -63,7 +63,7 @@ export default async function PhotoPage({
   const photo = photos.find((p) => p.id === photoId)
 
   if (!photo) {
-    redirect(PATH_ROOT)
+    return redirect(PATH_ROOT)
   }
 
   const isPhotoFirst = photos.findIndex((p) => p.id === photoId) === 0

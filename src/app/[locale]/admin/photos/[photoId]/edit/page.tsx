@@ -11,7 +11,7 @@ export default async function PhotoEditPage({
   const photo = await getPhotoNoStore(photoId)
 
   if (!photo) {
-    redirect(PATH_ADMIN)
+    return redirect(PATH_ADMIN)
   }
 
   return <PhotoEditPageClient {...{ photo }} />
