@@ -1,5 +1,5 @@
 import { MdOutlineScreenShare } from "react-icons/md"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 
 export default function PopoutButton({
   href,

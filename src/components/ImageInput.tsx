@@ -8,6 +8,7 @@ import { clsx } from "clsx/lite"
 import Spinner from "./Spinner"
 import { ACCEPTED_PHOTO_FILE_TYPES } from "@/photo"
 import { FiUploadCloud } from "react-icons/fi"
+import { useTranslations } from "next-intl"
 
 const INPUT_ID = "file"
 
@@ -39,11 +40,17 @@ export default function ImageInput({
   const [filesLength, setFilesLength] = useState(0)
   const [fileUploadIndex, setFileUploadIndex] = useState(0)
   const [fileUploadName, setFileUploadName] = useState("")
-
-  const uploadStatusText =
-    filesLength > 1
-      ? `${fileUploadIndex + 1} of ${filesLength}: ${fileUploadName}`
-      : fileUploadName
+  const t = useTranslations("Admin.actions")
+  // TODO: check
+  // const uploadStatusText =
+  //   filesLength > 1
+  //     ? `${fileUploadIndex + 1} of ${filesLength}: ${fileUploadName}`
+  //     : fileUploadName
+  const uploadStatusText = t("uploadStatus", {
+    fileUploadName,
+    filesLength,
+    fileUploadIndex: fileUploadIndex + 1,
+  })
 
   return (
     <div className="space-y-4 min-w-0">
@@ -72,7 +79,7 @@ export default function ImageInput({
                 />
               )}
             </span>
-            {loading ? "Uploading" : "Upload Photos"}
+            {loading ? t("uploading") : t("upload")}
           </span>
           <input
             id={INPUT_ID}

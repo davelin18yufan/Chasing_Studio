@@ -4,6 +4,7 @@ import { Photo } from ".";
 import ShareModal from "@/components/ShareModal";
 import { Camera } from "@/camera";
 import { FilmSimulation } from "@/simulation";
+import { useTranslations } from "next-intl"
 
 export default function PhotoShareModal({
   photo,
@@ -16,9 +17,10 @@ export default function PhotoShareModal({
   camera?: Camera
   simulation?: FilmSimulation
 }) {
+  const t = useTranslations("Photo")
   return (
     <ShareModal
-      title="Share Photo"
+      title={t("share")}
       pathShare={absolutePathForPhoto(photo, tag, camera, simulation)}
       pathClose={pathForPhoto(photo, tag, camera, simulation)}
     >

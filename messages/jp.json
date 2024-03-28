@@ -1,0 +1,156 @@
+{
+ "Home": {
+    "intro": {
+      "title": "私たちについて?",
+      "description": "私たちはChasing Studioで、生活の中で最も貴重な瞬間を創造性と精密さで捉えることに奮闘しています。私たちは、すべての写真が独自の物語を蘊んでいると信じています。専門サービスは、ポートレート、イベント、車の写真、商業プロジェクトなど、広範な分野をカバーしています。私たちは、永遠の記憶を作り出すことの重要性を理解しており、これらの記憶は世代を超えて伝えられます。私たちのチームは、経験豊富な撮影者で構成されており、技術的な専門知識と芸術的な視点を組み合わせて、顧客の期待を超える驚くべきイメージ作品を提供しています。私たちは、卓越したことを追求し、顧客満足度を堅持しており、すべての顧客にシームレスで楽しい体験を提供します。初回の相談から最終的な画像の提供まで、私たちは常に明確なコミュニケーション、細心の注意、個性化されたサービスを優先しています。特別な里程碑を記念する、新しい製品を発表する、または貴重な記憶を保存するなど、あなたがあなたのビジョンを実現したいと思っている場合、Chasing Studioはあなたを支援します。すぐに私たちに連絡して、あなたの撮影ニーズについて話し合い、あなたの人生の最も重要な瞬間を捉えることを許してください。"
+    },
+    "gallery": {
+      "title": "ギャラリー"
+    },
+    "blogs": {
+      "title": "ブログ",
+      "subTitle": "生活、仕事について、見たことを共有し、アイデアや感情を記録し、世界の美しさを探求します。"
+    },
+    "contact": {
+      "title": "私たちに連絡してください"
+    },
+    "share": "共有"
+ },
+ "Admin": {
+    "actions": {
+      "submit": "送信",
+      "edit": "編集完了",
+      "update": "更新",
+      "create": "新規追加",
+      "cancel": "キャンセル",
+      "editButton": "編集",
+      "upload": "写真をアップロード",
+      "uploading": "アップロード中",
+      "download": "ダウンロード",
+      "popOut": "プレビュー",
+      "untitled": "タイトルなし",
+      "uploadStatus": "{filesLength, plural, =0 {まだ写真がアップロードされていません} =1 {{fileUploadName}} other {{fileUploadIndex} / # 写真}}",
+      "deleteUploadConfirmText": "このアップロードされた写真を削除してもよろしいですか？",
+      "deleteBlogConfirmText": "{title}というタイトルの記事を削除してもよろしいですか？",
+      "deletePhotoConfirmText": "{title}というタイトルの写真を削除してもよろしいですか？",
+      "deleteTagConfirmText": "{title}というタイトルのタグを削除してもよろしいですか？",
+      "unhiddenBlogConfirmText": "この記事を非表示にすることをキャンセルしてもよろしいですか？",
+      "hiddenBlogConfirmText": "この記事を非表示にしてもよろしいですか？",
+      "syncPhotoConfirmText": "{title}のデータを上書きしてもよろしいですか？このアクションは元に戻すことができません",
+      "loginForm": {
+        "error": "メールアドレス/パスワードが正しくありません",
+        "email": "管理者メールアドレス",
+        "password": "管理者パスワード",
+        "signIn": "サインイン",
+        "signOut": "サインアウト"
+      },
+      "toast": {
+        "syncPhoto": "{title} 同期成功",
+        "updatePhotoSuccess": "EXIFの更新に成功しました: {fields}",
+        "updatePhotoWarning": "EXIFコンテンツが更新する必要がありません"
+      }
+    },
+    "nav":{
+      "home": "ホーム",
+      "photo": "写真",
+      "blog": "記事",
+      "photos": "写真集",
+      "gallery": "写真集",
+      "blogs": "ブログ",
+      "tags": "タグ",
+      "uploads": "アップロード済み",
+      "admin": "管理パネル",
+      "view": {
+        "fullFrame": "フルフレーム",
+        "grid": "グリッド",
+        "sets": "リストモード",
+        "admin": "管理者"
+      },
+      "theme": {
+        "system": "システムモード",
+        "dark": "ダークモード",
+        "light": "ライトモード"
+      }
+    },
+    "photo": {
+      "form": {
+        "uploadLabel": "アップロードに戻る",
+        "backLabel": "戻る",
+        "required": "*必須情報",
+        "optional": "オプション",
+        "labels": {
+          "title": "タイトル",
+          "tags": "タグ",
+          "blurData": "ぼやけた画像データ",
+          "url": "URL",
+          "extension": "ファイル形式",
+          "aspectRatio": "アスペクト比",
+          "make": "カメラブランド",
+          "model": "カメラモデル",
+          "filmSimulation": "富士シミュレーションモード",
+          "focalLength": "焦点距離",
+          "focalLengthIn35MmFormat": "35mm等価焦点距離",
+          "fNumber": "絞り値",
+          "iso": "ISO",
+          "exposureTime": "露出時間",
+          "exposureCompensation": "露出補正",
+          "locationName": "場所",
+          "latitude": "緯度",
+          "longitude": "経度",
+          "takenAt": "撮影時間",
+          "takenAtNaive": "撮影時間（プレーンテキスト)",
+          "priorityOrder": "優先順位",
+          "favorite": "お気に入り",
+          "hidden": "非表示"
+        },
+        "note": "カンマで区切る",
+        "loadingMessage": "ぼやけた画像データを生成中...",
+        "optionsDefaultLabel": "不明"
+      }
+    },
+    "blog": {
+      "createTitle": "新しい記事を書く",
+      "editTitle": "記事を編集",
+      "form": {
+        "title": "タイトル",
+        "hidden": "非表示?",
+        "author": {
+          "name":"著者",
+          "url": "リンク"
+        },
+        "coverPhoto": {
+          "title": "カバー写真",
+          "src": "URL",
+          "aspectRatio": "アスペクト比",
+          "placeholder": "デフォルト 16:9"
+        },
+        "tag": {
+          "title": "タグ",
+          "placeholder": "タグ1,タグ2,タグ3"
+        },
+        "error": "記事は存在しません"
+      }
+    }
+ },
+ "Blog": {
+    "latest": "最新のブログ",
+    "all": "全部のブログ",
+    "createdBy": "著者",
+    "readingTime": "分間読む"
+ },
+ "Photo": {
+    "next": "次へ",
+    "prev": "前へ",
+    "more": "もっと見る..",
+    "share": "写真を共有",
+    "empty": {
+      "title": "最初の写真を作成しましょう",
+      "admin": "管理パネル",
+      "config": "設定ページで環境変数を通じてウェブサイト設定を変更します"
+    }
+ },
+ "Tag": {
+    "favs": "お気に入りのタグ"
+ }
+}
+

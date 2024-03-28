@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { ReactNode } from "react"
 import Badge from "./Badge"
 import { clsx } from "clsx/lite"

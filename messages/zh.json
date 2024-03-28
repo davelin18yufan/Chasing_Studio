@@ -1,0 +1,155 @@
+{
+  "Home": {
+    "intro": {
+      "title": "關於我們?",
+      "description": "我們是Chasing Studio，致力於以創意和精準捕捉生活中最珍貴的時刻。我們相信每張照片都蘊含著獨特的故事，專業服務涵蓋肖像、活動、車照和商業項目等廣泛範疇。我們深知創造永恆記憶的重要性，這些記憶將被世代傳承。我們的團隊由經驗豐富的攝影師組成，將技術專業與藝術視野相結合，提供令人驚嘆的影像作品，超出客戶的期望。我們堅持追求卓越和客戶滿意度，為每位客戶提供無縫和愉快的體驗。從初次諮詢到最終交付影像，我們始終重視清晰溝通、細心呵護和個性化服務。無論您是慶祝特殊的里程碑、推出新產品還是保存珍貴的回憶，Chasing Studio都會幫助您實現您的願景。立即與我們聯繫，討論您的攝影需求，讓我們捕捉您生活中最重要的時刻。"
+    },
+    "gallery": {
+      "title": "相簿"
+    },
+    "blogs": {
+      "title": "部落格",
+      "subTitle": "關於生活、關於工作，分享所見所聞，記錄想法和感受，探索世界的美好。"
+    },
+    "contact": {
+      "title": "聯絡我們"
+    },
+    "share": "分享"
+  },
+  "Admin": {
+    "actions": {
+      "submit": "送出",
+      "edit": "編輯完成",
+      "update": "更新",
+      "create": "新增",
+      "cancel": "取消",
+      "editButton": "編輯",
+      "upload": "上傳照片",
+      "uploading": "上傳中",
+      "popOut": "預覽",
+      "download": "下載",
+      "untitled": "無標題",
+      "uploadStatus":  "{filesLength, plural, =0 {尚未上傳任何圖片} =1 {{fileUploadName}} other {{fileUploadIndex} / # 圖片}}",
+      "deleteUploadConfirmText": "你確定要刪除此上傳圖片？",
+      "deleteBlogConfirmText": "你確定要刪除 {title} 這篇文章？",
+      "deletePhotoConfirmText": "你確定要刪除 {title} 這張照片？",
+      "deleteTagConfirmText": "你確定要刪除 {title} 這則標籤？",
+      "unhiddenBlogConfirmText": "你確定要取消隱藏這篇文章嗎?",
+      "hiddenBlogConfirmText": "你確定要隱藏這篇文章嗎?",
+      "syncPhotoConfirmText": "你確定要覆寫 {title} 這個資料？此動作不能被還原",
+      "loginForm": {
+        "error": "不正確的信箱/密碼",
+        "email": "管理者信箱",
+        "password": "管理者密碼",
+        "signIn": "登入",
+        "signOut": "登出"
+      },
+      "toast": {
+        "syncPhoto": "{title} 同步成功",
+        "updatePhotoSuccess": "成功更新EXIF: {fields}",
+        "updatePhotoWarning": "無EXIF內容需要更新"
+      }
+    },
+    "nav":{
+      "home": "首頁",
+      "photo": "照片",
+      "blog": "文章",
+      "gallery": "相簿",
+      "photos": "照片集",
+      "blogs": "部落格",
+      "tags": "標籤",
+      "uploads": "已上傳",
+      "admin": "管理後台",
+      "view": {
+        "fullFrame": "全屏模式",
+        "grid": "網格模式",
+        "sets": "列表模式",
+        "admin": "管理模式"
+      },
+      "theme": {
+        "system": "系统預設",
+        "dark": "暗黑模式",
+        "light": "正常模式"
+      }
+    },
+    "photo": {
+      "form": {
+        "uploadLabel": "回到上傳",
+        "backLabel": "返回",
+        "required": "*必要資訊",
+        "optional": "選填",
+        "labels": {
+          "title": "標題",
+          "tags": "標籤",
+          "blurData": "模糊圖像數據",
+          "url": "網址",
+          "extension": "檔案格式",
+          "aspectRatio": "圖像長寬比",
+          "make": "相機品牌",
+          "model": "相機型號",
+          "filmSimulation": "Fujifilm模擬模式",
+          "focalLength": "焦距",
+          "focalLengthIn35MmFormat": "35mm等效焦距",
+          "fNumber": "光圈大小",
+          "iso": "ISO",
+          "exposureTime": "曝光時間",
+          "exposureCompensation": "曝光補償",
+          "locationName": "地點",
+          "latitude": "緯度",
+          "longitude": "經度",
+          "takenAt": "拍攝時間",
+          "takenAtNaive": "拍攝時間（純文字)",
+          "priorityOrder": "優先順序",
+          "favorite": "收藏",
+          "hidden": "隱藏"
+        },
+        "note": "使用逗號分隔",
+        "loadingMessage": "產生模糊圖像資料中...",
+        "optionsDefaultLabel": "不明"
+      }
+    },
+    "blog": {
+      "createTitle": "撰寫新文章",
+      "editTitle": "編輯文章",
+      "form": {
+        "title": "標題",
+        "hidden": "隱藏?",
+        "author": {
+          "name":"作者",
+          "url": "傳送門"
+        },
+        "coverPhoto": {
+          "title": "封面圖",
+          "src": "網址",
+          "aspectRatio": "圖片比例",
+          "placeholder": "預設 16:9"
+        },
+        "tag": {
+          "title": "標籤",
+          "placeholder": "標籤1,標籤2,標籤3"
+        },
+        "error": "文章不存在"
+      }
+    }
+  },
+  "Blog": {
+    "latest": "最新文章",
+    "all": "全部文章",
+    "createdBy": "作者",
+    "readingTime": "分鐘閱讀"
+  },
+  "Photo": {
+    "next": "下一個",
+    "prev": "上一個",
+    "more": "看更多..",
+    "share": "分享照片",
+    "empty": {
+      "title": "創建你的第一張相片",
+      "admin": "後台管理",
+      "config": "到設定頁面透過環境變數更改網站設置"
+    }
+  },
+  "Tag": {
+    "favs": "收藏標籤"
+  }
+}

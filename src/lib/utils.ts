@@ -87,3 +87,13 @@ export const mergeTags = (photoTags: Tags, blogTags: Tags): MergeTags => {
 
   return Array.from(mergeTagsMap.values())
 }
+
+// calculate reading duration
+export const readingTime = (text: string, locale?: string) => {
+  // words per minute (based on study)
+  const wpm = (locale === "zh" || !locale) ? 158 : 225
+  // calculating total words
+  const words = text.trim().split(/\s+/).length
+  const time = Math.ceil(words / wpm)
+  return time
+}

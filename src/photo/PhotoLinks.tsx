@@ -3,12 +3,13 @@
 import { useEffect } from "react"
 import { Photo, getNextPhoto, getPreviousPhoto } from "@/photo"
 import PhotoLink from "./PhotoLink"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/site/navigation"
 import { pathForPhoto } from "@/site/paths"
 import { useAppState } from "@/contexts"
 import { AnimationConfig } from "@/components/AnimateItems"
 import { Camera } from "@/camera"
 import { FilmSimulation } from "@/simulation"
+import { useTranslations } from "next-intl"
 
 const LISTENER_KEYUP = "keyup"
 
@@ -29,6 +30,7 @@ export default function PhotoLinks({
   simulation?: FilmSimulation
 }) {
   const router = useRouter()
+  const t = useTranslations("Photo")
 
   const { setNextPhotoAnimation } = useAppState()
 
@@ -80,7 +82,7 @@ export default function PhotoLinks({
         simulation={simulation}
         prefetch
       >
-        PREV
+        {t("prev")}
       </PhotoLink>
       <PhotoLink
         photo={nextPhoto}
@@ -90,7 +92,7 @@ export default function PhotoLinks({
         simulation={simulation}
         prefetch
       >
-        NEXT
+        {t("next")}
       </PhotoLink>
     </>
   )

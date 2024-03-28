@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import AdminGrid from "./AdminGrid"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import ImageTiny from "@/components/ImageTiny"
 import { StorageListResponse, fileNameForStorageUrl } from "@/services/storage"
 import FormWithConfirm from "@/components/FormWithConfirm"
@@ -10,6 +10,7 @@ import { clsx } from "clsx/lite"
 import { pathForAdminUploadUrl } from "@/site/paths"
 import AddButton from "./AddButton"
 import { formatDate } from "date-fns"
+import { useTranslations } from "next-intl"
 
 export default function StorageUrls({
   title,
@@ -18,6 +19,7 @@ export default function StorageUrls({
   title?: string
   urls: StorageListResponse
 }) {
+  const t = useTranslations("Admin.actions")
   return (
     <AdminGrid {...{ title }}>
       {urls.map(({ url, uploadedAt }) => {
@@ -56,7 +58,7 @@ export default function StorageUrls({
               <AddButton href={addUploadPath} />
               <FormWithConfirm
                 action={deleteBlobPhotoAction}
-                confirmText="Are you sure you want to delete this upload?"
+                confirmText={t("deleteUploadConfirmText")}
               >
                 <input
                   type="hidden"

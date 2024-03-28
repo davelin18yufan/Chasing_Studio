@@ -11,7 +11,7 @@ import {
 import FieldSetWithStatus from "@/components/FieldSetWithStatus"
 import { createPhotoAction, updatePhotoAction } from "./actions"
 import SubmitButtonWithStatus from "@/components/SubmitButtonWithStatus"
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import { clsx } from "clsx/lite"
 import CanvasBlurCapture from "@/components/CanvasBlurCapture"
 import { PATH_ADMIN_PHOTOS, PATH_ADMIN_UPLOADS } from "@/site/paths"
@@ -23,6 +23,7 @@ import { toastSuccess, toastWarning } from "@/toast"
 import { getDimensionsFromSize } from "@/utility/size"
 import ImageBlurFallback from "@/components/ImageBlurFallback"
 import { BLUR_ENABLED } from "@/site/config"
+import { useTranslations } from "next-intl"
 
 const THUMBNAIL_SIZE = 300
 
@@ -42,6 +43,7 @@ export default function PhotoForm({
   const [formErrors, setFormErrors] = useState(
     getInitialErrors(initialPhotoForm)
   )
+  const t = useTranslations("Admin")
 
   // Update form when EXIF data
   // is refreshed by parent
@@ -64,12 +66,15 @@ export default function PhotoForm({
 
       if (changedKeys.length > 0) {
         const fields = convertFormKeysToLabels(changedKeys)
-        toastSuccess(`Updated EXIF fields: ${fields.join(", ")}`, 8000)
+        toastSuccess(
+          t("actions.toast.updatePhotoSuccess", { fields: fields.join(", ") }),
+          8000
+        )
       } else {
-        toastWarning("No new EXIF data found")
+        toastWarning(t("actions.toast.updatePhotoWarning"))
       }
     }
-  }, [updatedExifData])
+  }, [updatedExifData, t])
 
   const { width, height } = getDimensionsFromSize(
     THUMBNAIL_SIZE,
@@ -144,11 +149,11 @@ export default function PhotoForm({
           ([
             key,
             {
-              label,
+              // label,
               note,
               required,
               options,
-              optionsDefaultLabel,
+              // optionsDefaultLabel,
               readOnly,
               validate,
               capitalize,
@@ -163,7 +168,7 @@ export default function PhotoForm({
               <FieldSetWithStatus
                 key={key}
                 id={key}
-                label={label}
+                label={t(`photo.form.labels.${key}`)}
                 note={note}
                 error={formErrors[key]}
                 value={formData[key] ?? ""}
@@ -174,12 +179,14 @@ export default function PhotoForm({
                   }
                 }}
                 selectOptions={options}
-                selectOptionsDefaultLabel={optionsDefaultLabel}
+                selectOptionsDefaultLabel={t("photo.form.optionsDefaultLabel")}
                 required={required}
                 readOnly={readOnly}
                 capitalize={capitalize}
                 placeholder={
-                  loadingMessage && !formData[key] ? loadingMessage : undefined
+                  loadingMessage && !formData[key]
+                    ? t("photo.form.loadingMessage")
+                    : undefined
                 }
                 loading={loadingMessage && !formData[key] ? true : false}
                 type={checkbox ? "checkbox" : undefined}
@@ -191,10 +198,10 @@ export default function PhotoForm({
             className="button"
             href={type === "edit" ? PATH_ADMIN_PHOTOS : PATH_ADMIN_UPLOADS}
           >
-            Cancel
+            {t("actions.cancel")}
           </Link>
           <SubmitButtonWithStatus disabled={!isFormValid(formData)}>
-            {type === "create" ? "Create" : "Update"}
+            {type === "create" ? t("actions.create") : t("actions.update")}
           </SubmitButtonWithStatus>
         </div>
       </form>

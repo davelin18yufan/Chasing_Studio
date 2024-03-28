@@ -1,12 +1,13 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { uploadPhotoFromClient } from "@/services/storage";
-import { useRouter } from "next/navigation";
-import { PATH_ADMIN_UPLOADS, pathForAdminUploadUrl } from "@/site/paths";
-import ImageInput from "../components/ImageInput";
-import { MAX_IMAGE_SIZE } from "@/services/next-image";
-import { clsx } from "clsx/lite";
+import { useState } from "react"
+import { uploadPhotoFromClient } from "@/services/storage"
+import { useRouter } from "@/site/navigation"
+import { PATH_ADMIN_UPLOADS, pathForAdminUploadUrl } from "@/site/paths"
+import ImageInput from "../components/ImageInput"
+import { MAX_IMAGE_SIZE } from "@/services/next-image"
+import { clsx } from "clsx/lite"
+import { useTranslations } from "next-intl"
 
 export default function PhotoUpload({
   shouldResize,
@@ -17,14 +18,15 @@ export default function PhotoUpload({
   debug?: boolean
   path?: "photo" | "blog"
 }) {
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadError, setUploadError] = useState<string>();
+  const [isUploading, setIsUploading] = useState(false)
+  const [uploadError, setUploadError] = useState<string>()
   const [debugDownload, setDebugDownload] = useState<{
     href: string
     fileName: string
-  }>();
+  }>()
 
-  const router = useRouter();
+  const router = useRouter()
+  const t = useTranslations("Admin.actions")
 
   return (
     <div className={clsx("space-y-4", isUploading && "cursor-not-allowed")}>
@@ -62,7 +64,8 @@ export default function PhotoUpload({
                         router.push(PATH_ADMIN_UPLOADS)
                       } else {
                         // Redirect to photo detail page
-                        if(path === "photo") router.push(pathForAdminUploadUrl(url))
+                        if (path === "photo")
+                          router.push(pathForAdminUploadUrl(url))
                       }
                     }
                   })
@@ -82,10 +85,10 @@ export default function PhotoUpload({
           href={debugDownload.href}
           download={debugDownload.fileName}
         >
-          Download
+          {t("download")}
         </a>
       )}
       {uploadError && <div className="text-error">{uploadError}</div>}
     </div>
   )
-};
+}

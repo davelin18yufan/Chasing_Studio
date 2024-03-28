@@ -1,8 +1,9 @@
 import { clsx } from "clsx/lite"
 import { Blog } from "."
-import Link from "next/link"
+import { Link } from "@/site/navigation"
 import Image from "next/image"
 import { pathForAdminBlogEdit } from "@/site/paths"
+import { useTranslations } from "next-intl"
 
 function BlogCard({ blog }: { blog: Blog }) {
   return (
@@ -54,6 +55,7 @@ export default function BlogLightbox({
   const countNotShown = count - blogCountToShow
 
   const showOverageTile = countNotShown > 0
+  const t = useTranslations("Photo")
 
   return (
     <div
@@ -77,7 +79,7 @@ export default function BlogLightbox({
           )}
         >
           <div className="text-[1.1rem] lg:text-[1.5rem]">+{countNotShown}</div>
-          <div className="text-dim">More</div>
+          <div className="text-dim">{t("more")}</div>
         </Link>
       ) : undefined}
     </div>
