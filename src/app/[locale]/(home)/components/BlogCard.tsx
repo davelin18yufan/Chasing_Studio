@@ -48,7 +48,7 @@ export default function BlogCard({ blog }: Props) {
     >
       <Card
         className={clsx(
-          "border-transparent rounded-md outline-none",
+          "border-transparent rounded-md outline-none h-40",
           "hover:bg-shironezumi hover:shadow-lg dark:hover:bg-kon ",
           "dark:border-shironezumi/50",
           "relative overflow-hidden blink"

@@ -192,15 +192,33 @@ export default function HeroSection({
               brightness(${(titleHeight / 87) * 100 + 100}%)`,
           }}
         >
-          <h2
+          <div
             className={clsx(
-              "text-6xl md:text-max font-extrabold",
-              "bg-clip-text text-transparent",
-              "bg-gradient-to-r from-shinbashi to-tokusa"
+              "relative overflow-hidden h-[87px]",
+              "gird place-content-center"
             )}
           >
-            {title}
-          </h2>
+            <h2
+              className={clsx(
+                "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+                "text-6xl md:text-max font-extrabold w-full",
+                "bg-clip-text text-transparent",
+                "bg-gradient-to-r from-shinbashi to-tokusa",
+                "animate-text-clip"
+              )}
+            >
+              {title}
+            </h2>
+            <Image
+              src="/assets/sports-car-icon.svg"
+              alt="car"
+              className={clsx(
+                "w-20 md:w-24 aspect-square",
+                "bg-transparent translate-x-[100vw] mt-4",
+                "opacity-90 mix-blend-exclusion animate-car-move"
+              )}
+            />
+          </div>
         </div>
       </div>
     </section>

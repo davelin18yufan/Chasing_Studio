@@ -62,7 +62,8 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fadeIn": "fadeIn 1.5s ease-out infinite",
-        "neon": "neon 5s steps(1) infinite",
+        "text-clip": "text-clip 1s 1s cubic-bezier(0.5, 0, 0.1, 1) both",
+        "car-move": "car-move 4s ease-in infinite"
       },
       keyframes: {
         "rotate-pulse": {
@@ -79,21 +80,17 @@ module.exports = {
           to: { height: "0" },
         },
         "fadeIn" : {
-          from: {opacity: 0, transform: "scale(1.3)"},
-          to: {opacity : 1, transform: "scale(1)"},
+          from: { opacity: 0, transform: "scale(1.3)" },
+          to: { opacity : 1, transform: "scale(1)" },
         },
-        "neon": {
-          "5%, 9%, 13%, 25%" : {
-            background: "none",
-            color: "rgba(255, 255,255, 0.5)",
-            textShadow: "none",
-          },
-          "7%, 11%, 15%, 19%, 30%, 100%": {
-            color: "#668cf5",
-            // eslint-disable-next-line max-len
-            textShadow: "0px 0px 5px #668cf5, 0px 0px 20px #0b2902, 0px 0px 50px #188998",
-          },
+        "text-clip": {
+          from: { clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" },
+          to: { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }
         },
+        "car-move": {
+          from: { transform: "translateX(100vw)" },
+          to: { transform: "translateX(-35em)" }
+        }
       },
     },
   },
