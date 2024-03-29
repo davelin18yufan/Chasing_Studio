@@ -1,8 +1,8 @@
-import { absolutePathForTag, pathForTag } from "@/site/paths";
-import { Photo, PhotoDateRange } from "../photo";
-import ShareModal from "@/components/ShareModal";
-import TagOGTile from "./TagOGTile";
-import { useTranslations } from "next-intl";
+import { absolutePathForTag, pathForTag } from "@/site/paths"
+import { Photo, PhotoDateRange } from "../photo"
+import ShareModal from "@/components/ShareModal"
+import TagOGTile from "./TagOGTile"
+import { useTranslations } from "next-intl"
 
 export default function TagShareModal({
   tag,
@@ -24,5 +24,5 @@ export default function TagShareModal({
     >
       <TagOGTile {...{ tag, photos, count, dateRange }} />
     </ShareModal>
-  );
-};
+  )
+}

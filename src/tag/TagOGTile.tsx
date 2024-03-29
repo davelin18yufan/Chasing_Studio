@@ -1,9 +1,9 @@
-import { Photo, PhotoDateRange } from "@/photo";
-import { absolutePathForTagImage, pathForTag } from "@/site/paths";
-import OGTile from "@/components/OGTile";
-import { descriptionForTaggedPhotos, titleForTag } from ".";
+import { Photo, PhotoDateRange } from "@/photo"
+import { absolutePathForTagImage, pathForTag } from "@/site/paths"
+import OGTile from "@/components/OGTile"
+import { descriptionForTaggedPhotos, titleForTag } from "."
 
-export type OGLoadingState = "unloaded" | "loading" | "loaded" | "failed";
+export type OGLoadingState = "unloaded" | "loading" | "loaded" | "failed"
 
 export default function TagOGTile({
   tag,
@@ -27,16 +27,18 @@ export default function TagOGTile({
   dateRange?: PhotoDateRange
 }) {
   return (
-    <OGTile {...{
-      title: titleForTag(tag, photos, count),
-      description: descriptionForTaggedPhotos(photos, true, count, dateRange),
-      path: pathForTag(tag),
-      pathImageAbsolute: absolutePathForTagImage(tag),
-      loadingState: loadingStateExternal,
-      onLoad,
-      onFail,
-      riseOnHover,
-      retryTime,
-    }}/>
-  );
-};
+    <OGTile
+      {...{
+        title: titleForTag(tag, photos, count),
+        description: descriptionForTaggedPhotos(photos, true, count, dateRange),
+        path: pathForTag(tag),
+        pathImageAbsolute: absolutePathForTagImage(tag),
+        loadingState: loadingStateExternal,
+        onLoad,
+        onFail,
+        riseOnHover,
+        retryTime,
+      }}
+    />
+  )
+}

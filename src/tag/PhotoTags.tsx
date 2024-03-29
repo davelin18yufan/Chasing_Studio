@@ -1,20 +1,15 @@
-import PhotoTag from "@/tag/PhotoTag";
-import { isTagFavs } from ".";
-import FavsTag from "./FavsTag";
+import PhotoTag from "@/tag/PhotoTag"
+import { isTagFavs } from "."
+import FavsTag from "./FavsTag"
 
-export default function PhotoTags({
-  tags,
-}: {
-  tags: string[]
-}) {
+export default function PhotoTags({ tags }: { tags: string[] }) {
   return (
     <div className="-space-y-0.5">
-      {tags.map(tag =>
+      {tags.map((tag) => (
         <div key={tag}>
-          {isTagFavs(tag)
-            ? <FavsTag />
-            : <PhotoTag tag={tag} />}
-        </div>)}
+          {isTagFavs(tag) ? <FavsTag /> : <PhotoTag tag={tag} />}
+        </div>
+      ))}
     </div>
-  );
+  )
 }
