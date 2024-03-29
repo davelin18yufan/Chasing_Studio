@@ -5,7 +5,7 @@ import {
   photoQuantityText,
 } from "@/photo";
 import {
-  absolutePathForFilmSimulation,
+  absoluteOGPath,
   absolutePathForFilmSimulationImage,
 } from "@/site/paths";
 import {
@@ -60,7 +60,7 @@ export const generateMetaForFilmSimulation = (
   explicitCount?: number,
   explicitDateRange?: PhotoDateRange,
 ) => ({
-  url: absolutePathForFilmSimulation(simulation),
+  url: absoluteOGPath("simulation", simulation),
   title: titleForFilmSimulation(simulation, photos, explicitCount),
   description: descriptionForFilmSimulationPhotos(
     photos,

@@ -33,7 +33,7 @@ export async function generateMetadata({
     description,
     images,
   } = generateMetaForCamera(camera, photos, count, dateRange);
-
+  
   return {
     title,
     openGraph: {

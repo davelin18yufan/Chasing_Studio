@@ -4,7 +4,7 @@ import {
   descriptionForPhotoSet,
   photoQuantityText,
 } from "@/photo"
-import { absolutePathForTag, absolutePathForTagImage } from "@/site/paths"
+import { absolutePathForTagImage, baseOGPath, pathForTag } from "@/site/paths"
 import { capitalizeWords, convertStringToArray } from "@/utility/string"
 
 export const TAG_FAVS = "favs"
@@ -64,7 +64,7 @@ export const generateMetaForTag = (
   explicitCount?: number,
   explicitDateRange?: PhotoDateRange
 ) => ({
-  url: absolutePathForTag(tag),
+  url: `${baseOGPath}${pathForTag(tag)}`,
   title: titleForTag(tag, photos, explicitCount),
   description: descriptionForTaggedPhotos(
     photos,

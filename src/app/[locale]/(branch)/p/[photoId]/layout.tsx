@@ -7,8 +7,9 @@ import { Metadata } from "next"
 import { redirect } from "@/site/navigation"
 import {
   PATH_ROOT,
-  absolutePathForPhoto,
   absolutePathForPhotoImage,
+  baseOGPath,
+  pathForPhoto,
 } from "@/site/paths"
 import PhotoDetailPage from "@/photo/PhotoDetailPage"
 import { getPhotoCached, getPhotosNearIdCached } from "@/cache"
@@ -31,7 +32,7 @@ export async function generateMetadata({
   const title = titleForPhoto(photo)
   const description = descriptionForPhoto(photo)
   const images = absolutePathForPhotoImage(photo)
-  const url = absolutePathForPhoto(photo)
+  const url = `${baseOGPath}${pathForPhoto(photo)}`
 
   return {
     title,

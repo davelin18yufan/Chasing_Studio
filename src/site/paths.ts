@@ -2,7 +2,7 @@ import { Photo } from "@/photo"
 import { BASE_URL } from "./config"
 import { Camera, createCameraKey, getCameraFromKey } from "@/camera"
 import { FilmSimulation } from "@/simulation"
-// TODO: add [locale] in every route
+
 // Core paths
 export const PATH_ROOT = "/"
 export const PATH_GALLERY = "/gallery"
@@ -187,6 +187,11 @@ export const absolutePathForCameraImage = (camera: Camera) =>
 export const absolutePathForFilmSimulationImage = (
   simulation: FilmSimulation
 ) => `${absolutePathForFilmSimulation(simulation)}/image`
+
+// api image for metadata
+export const baseOGPath = `${BASE_URL}/api/image`
+export const absoluteOGPath = (subPath?: string, feat?: string) =>
+  `${BASE_URL}/api/image/${subPath}/${feat}`
 
 // p/[photoId]
 export const isPathPhoto = (pathname = "") =>

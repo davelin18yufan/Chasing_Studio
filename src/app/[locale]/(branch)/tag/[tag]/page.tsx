@@ -30,7 +30,7 @@ export async function generateMetadata({
     description,
     images,
   } = generateMetaForTag(tag, photos, count, dateRange);
-
+  console.log(url)
   return {
     title,
     openGraph: {

@@ -12,7 +12,7 @@ const VERCEL_BLOB_HOSTNAME = VERCEL_BLOB_STORE_ID
 // const AWS_S3_HOSTNAME =
 //   process.env.NEXT_PUBLIC_AWS_S3_BUCKET &&
 //   process.env.NEXT_PUBLIC_AWS_S3_REGION
-    // eslint-disable-next-line max-len
+// eslint-disable-next-line max-len
 //     ? `${process.env.NEXT_PUBLIC_AWS_S3_BUCKET}.s3.${process.env.NEXT_PUBLIC_AWS_S3_REGION}.amazonaws.com`
 //     : undefined;
 

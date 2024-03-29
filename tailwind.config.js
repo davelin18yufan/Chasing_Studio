@@ -63,7 +63,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fadeIn": "fadeIn 1.5s ease-out infinite",
         "text-clip": "text-clip 1s 1s cubic-bezier(0.5, 0, 0.1, 1) both",
-        "car-move": "car-move 4s ease-in infinite"
+        "car-move": "car-move 4s ease-in infinite",
       },
       keyframes: {
         "rotate-pulse": {
@@ -85,12 +85,12 @@ module.exports = {
         },
         "text-clip": {
           from: { clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" },
-          to: { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }
+          to: { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" },
         },
         "car-move": {
           from: { transform: "translateX(100vw)" },
-          to: { transform: "translateX(-35em)" }
-        }
+          to: { transform: "translateX(-35em)" },
+        },
       },
     },
   },

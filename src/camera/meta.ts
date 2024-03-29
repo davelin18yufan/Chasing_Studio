@@ -3,12 +3,13 @@ import {
   PhotoDateRange,
   descriptionForPhotoSet,
   photoQuantityText,
-} from "@/photo";
-import { Camera, cameraFromPhoto, formatCameraText } from ".";
+} from "@/photo"
+import { Camera, cameraFromPhoto, formatCameraText } from "."
 import {
-  absolutePathForCamera,
   absolutePathForCameraImage,
-} from "@/site/paths";
+  baseOGPath,
+  pathForCamera,
+} from "@/site/paths"
 
 // Meta functions moved to separate file to avoid
 // dependencies (camelcase-keys) found in photo/index.ts
@@ -17,36 +18,41 @@ import {
 export const titleForCamera = (
   camera: Camera,
   photos: Photo[],
-  explicitCount?: number,
-) => [
-  "Shot on",
-  formatCameraText(cameraFromPhoto(photos[0], camera)),
-  photoQuantityText(explicitCount ?? photos.length),
-].join(" ");
+  explicitCount?: number
+) =>
+  [
+    "Shot on",
+    formatCameraText(cameraFromPhoto(photos[0], camera)),
+    photoQuantityText(explicitCount ?? photos.length),
+  ].join(" ")
 
 export const descriptionForCameraPhotos = (
   photos: Photo[],
   dateBased?: boolean,
   explicitCount?: number,
-  explicitDateRange?: PhotoDateRange,
+  explicitDateRange?: PhotoDateRange
 ) =>
   descriptionForPhotoSet(
     photos,
     undefined,
     dateBased,
     explicitCount,
-    explicitDateRange,
-  );
+    explicitDateRange
+  )
 
 export const generateMetaForCamera = (
   camera: Camera,
   photos: Photo[],
   explicitCount?: number,
-  explicitDateRange?: PhotoDateRange,
+  explicitDateRange?: PhotoDateRange
 ) => ({
-  url: absolutePathForCamera(camera),
+  url: `${baseOGPath}${pathForCamera(camera)}`,
   title: titleForCamera(camera, photos, explicitCount),
-  description:
-    descriptionForCameraPhotos(photos, true, explicitCount, explicitDateRange),
+  description: descriptionForCameraPhotos(
+    photos,
+    true,
+    explicitCount,
+    explicitDateRange
+  ),
   images: absolutePathForCameraImage(camera),
-});
+})

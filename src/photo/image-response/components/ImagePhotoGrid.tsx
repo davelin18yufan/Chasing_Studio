@@ -43,7 +43,7 @@ export default function ImagePhotoGrid({
     (imagesPerRow - 1) * gap / (imagesPerRow);
   const cellHeight= height / rows -
     (rows - 1) * gap / rows;
-
+    
   return (
     <div style={{
       display: "flex",
