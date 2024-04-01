@@ -33,6 +33,7 @@ export const PATH_ADMIN_TAGS = `${PATH_ADMIN}/tags`
 export const PATH_ADMIN_BLOGS = `${PATH_ADMIN}/blogs`
 export const PATH_ADMIN_BLOGS_CREATE = `${PATH_ADMIN}/blogs/create`
 export const PATH_ADMIN_CONFIGURATION = `${PATH_ADMIN}/configuration`
+export const PATH_ADMIN_LOCALES = [PATH_ADMIN, "/jp/admin", "/en/admin"]
 
 // API paths
 export const PATH_API_STORAGE = `${PATH_API}/storage`
@@ -274,8 +275,12 @@ export const isPathAdmin = (pathname?: string) =>
 export const isPathAdminConfiguration = (pathname?: string) =>
   checkPathPrefix(pathname, PATH_ADMIN_CONFIGURATION)
 
+// using in the middleware, before next-intl hop in
+// have to list all path for checking
 export const isPathProtected = (pathname?: string) =>
-  checkPathPrefix(pathname, PATH_ADMIN)
+  PATH_ADMIN_LOCALES.some((prefix) =>
+    pathname?.toLowerCase().startsWith(prefix.toLowerCase())
+  )
 
 export const getPathComponents = (
   pathname = ""

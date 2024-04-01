@@ -212,6 +212,8 @@ export default function HeroSection({
             <Image
               src="/assets/sports-car-icon.svg"
               alt="car"
+              // width={100}
+              // height={100}
               className={clsx(
                 "w-20 md:w-24 aspect-square",
                 "bg-transparent translate-x-[100vw] mt-4",

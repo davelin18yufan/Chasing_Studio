@@ -44,10 +44,12 @@ export const {
   callbacks: {
     authorized({ auth, request }) {
       const { pathname } = request.nextUrl
+      // using primitive url request, next-intl wont mutate the request nextUrl
+      // modify the isPathProtected to match exact value
       const isUrlProtected = isPathProtected(pathname)
       const isUserLoggedIn = !!auth?.user
       const isRequestAuthorized = !isUrlProtected || isUserLoggedIn
-
+      
       // if not redirect to login page then return intl page
       if (isRequestAuthorized) return intlMiddleware(request)
       
