@@ -128,7 +128,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
           <MenubarMenu>
             <MenubarTrigger
               className={clsx(
-                "border-none shadow-none cursor-pointer",
+                "border-none shadow-none cursor-pointer bg-content",
                 "dark:text-shironeri hover:opacity-80"
               )}
             >

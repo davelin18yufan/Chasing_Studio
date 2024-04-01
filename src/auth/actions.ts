@@ -8,12 +8,13 @@ import {
   signOut,
 } from "@/auth"
 import { PATH_ADMIN_PHOTOS } from "@/site/paths"
-import { redirect } from "@/site/navigation"
+import { redirect } from "next/navigation"
 
 export const signInAction = async (
   _prevState: string | undefined,
   formData: FormData
 ) => {
+  const url = formData.get(KEY_CALLBACK_URL) as string
   try {
     await signIn("credentials", Object.fromEntries(formData))
   } catch (error) {
@@ -32,7 +33,9 @@ export const signInAction = async (
       throw error
     }
   }
-  redirect((formData.get(KEY_CALLBACK_URL) as string) || PATH_ADMIN_PHOTOS)
+  // cant use next-intl redirect fn, due to url is absolute
+  // not necessary go through middleware
+  redirect(url || PATH_ADMIN_PHOTOS)
 }
 
 export const signOutAction = async () => {
