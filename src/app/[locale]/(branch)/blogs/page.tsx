@@ -7,7 +7,7 @@ import {
 } from "@/site/pagination"
 import { Metadata } from "next"
 import { MAX_BLOGS_TO_SHOW_OG } from "@/blog"
-import { ABSOLUTE_PATH_FOR_BLOGS } from "@/site/paths"
+import { absolutePathForBlogsImage } from "@/site/paths"
 
 export async function generateMetadata(): Promise<Metadata> {
   const blogs = await getBlogsCached({ limit: MAX_BLOGS_TO_SHOW_OG })
@@ -15,11 +15,11 @@ export async function generateMetadata(): Promise<Metadata> {
   if (blogs.length > 0) {
     return {
       openGraph: {
-        images: ABSOLUTE_PATH_FOR_BLOGS,
-      }, 
+        images: absolutePathForBlogsImage(),
+      },
       twitter: {
         card: "summary_large_image",
-        images: ABSOLUTE_PATH_FOR_BLOGS,
+        images: absolutePathForBlogsImage(),
       },
     }
   } else return {}

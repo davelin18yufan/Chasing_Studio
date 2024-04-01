@@ -73,8 +73,6 @@ export const PATHS_TO_CACHE = [
 // Absolute paths
 export const ABSOLUTE_PATH_FOR_HOME_IMAGE = `${BASE_URL}/api/home-image`
 
-export const ABSOLUTE_PATH_FOR_BLOGS = `${BASE_URL}/api/blogs-og`
-
 const pathWithNext = (path: string, next?: number) =>
   next !== undefined ? `${path}?${NEXT}=${next}` : path
 
@@ -167,8 +165,9 @@ export const absolutePathForPhoto = (
 export const absolutePathForTag = (tag: string) =>
   `${BASE_URL}${pathForTag(tag)}`
 
-export const absolutePathForBlog = (id: string) =>
-  `${BASE_URL}/api/blog-og?id=${id}`
+export const absolutePathForBlogsImage = () => `${baseOGPath}/${PATH_BLOGS}`
+
+export const absolutePathForBlogImage = (id: string) => `${baseOGPath}?id=${id}`
 
 export const absolutePathForCamera = (camera: Camera) =>
   `${BASE_URL}${pathForCamera(camera)}`
@@ -177,22 +176,22 @@ export const absolutePathForFilmSimulation = (simulation: FilmSimulation) =>
   `${BASE_URL}${pathForFilmSimulation(simulation)}`
 
 export const absolutePathForPhotoImage = (photo: PhotoOrPhotoId) =>
-  `${absolutePathForPhoto(photo)}/image`
+  `${baseOGPath}${pathForPhoto(photo)}`
 
 export const absolutePathForTagImage = (tag: string) =>
-  `${absolutePathForTag(tag)}/image`
+  `${baseOGPath}${pathForTag(tag)}`
 
 export const absolutePathForCameraImage = (camera: Camera) =>
-  `${absolutePathForCamera(camera)}/image`
+  `${baseOGPath}${pathForCamera(camera)}`
 
 export const absolutePathForFilmSimulationImage = (
   simulation: FilmSimulation
-) => `${absolutePathForFilmSimulation(simulation)}/image`
+) => `${baseOGPath}${pathForFilmSimulation(simulation)}`
 
 // api image for metadata
-export const baseOGPath = `${BASE_URL}/api/image`
+export const baseOGPath = `${BASE_URL}/api/images`
 export const absoluteOGPath = (subPath?: string, feat?: string) =>
-  `${BASE_URL}/api/image/${subPath}/${feat}`
+  `${baseOGPath}/${subPath}/${feat}`
 
 // p/[photoId]
 export const isPathPhoto = (pathname = "") =>

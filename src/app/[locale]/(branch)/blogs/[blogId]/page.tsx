@@ -5,7 +5,7 @@ import { getBlogCached } from "@/cache"
 import { redirect, Link } from "@/site/navigation"
 import { Metadata } from "next"
 import { getSerializeTextFromSlate } from "@/blog"
-import { absolutePathForBlog } from "@/site/paths"
+import { absolutePathForBlogImage } from "@/site/paths"
 import { formatBlogDate } from "@/utility/date"
 import { readingTime } from "@/lib/utils"
 import { getTranslations, getLocale } from "next-intl/server"
@@ -28,13 +28,13 @@ export async function generateMetadata({
     description: text.join(" "),
     openGraph: {
       title: blog.title,
-      images: absolutePathForBlog(blog.id),
+      images: absolutePathForBlogImage(blog.id),
       description: text.join(" "),
     },
     twitter: {
       title: blog.title,
       description: text.join(" "),
-      images: absolutePathForBlog(blog.id),
+      images: absolutePathForBlogImage(blog.id),
       card: "summary_large_image",
     },
   }

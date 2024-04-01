@@ -64,7 +64,7 @@ module.exports = {
         "fadeIn": "fadeIn 1.5s ease-out infinite",
         "text-clip": "text-clip 1s 1s cubic-bezier(0.5, 0, 0.1, 1) both",
         "car-move": "car-move 4s ease-in infinite",
-        "frameMove": "frameMove 10s linear infinite"
+        "frameMove": "frameMove 10s linear infinite",
       },
       keyframes: {
         "rotate-pulse": {
@@ -96,12 +96,12 @@ module.exports = {
           "0%": {
             top: 0,
             left: 0,
-            transform: "rotate(0deg)"
+            transform: "rotate(0deg)",
           },
           "24%": {
             top: 0,
             left: "100%",
-            transform: "rotate(0deg)"
+            transform: "rotate(0deg)",
           },
           "25%": {
             transform: "rotate(90deg)",
@@ -128,9 +128,9 @@ module.exports = {
             transform: "rotate(270deg)",
           },
           "100%": {
-            transform: "rotate(360deg)"
-          }
-        }
+            transform: "rotate(360deg)",
+          },
+        },
       },
     },
   },
