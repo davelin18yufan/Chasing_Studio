@@ -1,14 +1,14 @@
 import BlogForm from "../../BlogForm"
 import { getBlogCached } from "@/cache"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
-export default async  function AdminEditBlogPage({
+export default async function AdminEditBlogPage({
   params: { blogId },
 }: {
   params: { blogId: string }
 }) {
   const blog = await getBlogCached(blogId)
-  const t = useTranslations("Admin.blog")
+  const t = await getTranslations("Admin.blog")
 
   return (
     <>

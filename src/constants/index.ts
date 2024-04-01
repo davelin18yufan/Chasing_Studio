@@ -13,6 +13,9 @@ export const navbarLinks = [
   },
 ]
 
+export const loadingTexts = "❤ CHASE YOUR DREAM WITH US ❤ CHASE YOUR LIFE WITH US ❤"
+
+
 export const genders = ["Select", "Male", "Female", "Non-binary", "Other"]
 
 export const heroSectionImgs = [
