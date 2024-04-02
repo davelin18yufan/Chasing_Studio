@@ -171,7 +171,7 @@
   }
 
   .loading {
-    @apply motion-safe:animate-spin border-2 border-x-white border-y-gray-800 rounded-full;
+    @apply animate-spin border-2 border-x-white border-y-gray-800 rounded-full;
   }
 
   .form-container {

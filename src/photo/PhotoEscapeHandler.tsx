@@ -15,7 +15,7 @@ export default function PhotoEscapeHandler() {
 
   useEffect(() => {
     const onKeyUp = (e: KeyboardEvent) => {
-      if (e.key.toUpperCase() === "ESCAPE" && escapePath) {
+      if (e.key === "ESCAPE" && escapePath) {
         router.push(escapePath, { scroll: false })
       }
     }
