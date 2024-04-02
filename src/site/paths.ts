@@ -6,6 +6,7 @@ import { FilmSimulation } from "@/simulation"
 // Core paths
 export const PATH_ROOT = "/"
 export const PATH_GALLERY = "/gallery"
+export const PATH_BLOG = "/blog"
 export const PATH_BLOGS = "/blogs"
 export const PATH_GRID = "/grid"
 export const PATH_SETS = "/sets"
@@ -109,6 +110,7 @@ export const pathForAdminTagEdit = (tag: string) =>
 export const pathForOg = (next?: number) => pathWithNext(PATH_OG, next)
 
 export const pathForBlog = (id: string) => `${PATH_BLOGS}/${id}`
+export const pathForBlogShare = (id: string) => `${pathForBlog(id)}/${SHARE}`
 
 type PhotoOrPhotoId = Photo | string
 
@@ -124,10 +126,10 @@ export const pathForPhoto = (
   tag
     ? `${pathForTag(tag)}/${getPhotoId(photo)}`
     : camera
-      ? `${pathForCamera(camera)}/${getPhotoId(photo)}`
-      : simulation
-        ? `${pathForFilmSimulation(simulation)}/${getPhotoId(photo)}`
-        : `${PREFIX_PHOTO}/${getPhotoId(photo)}`
+    ? `${pathForCamera(camera)}/${getPhotoId(photo)}`
+    : simulation
+    ? `${pathForFilmSimulation(simulation)}/${getPhotoId(photo)}`
+    : `${PREFIX_PHOTO}/${getPhotoId(photo)}`
 
 export const pathForPhotoShare = (
   photo: PhotoOrPhotoId,
@@ -155,6 +157,9 @@ export const pathForFilmSimulation = (
 export const pathForFilmSimulationShare = (simulation: FilmSimulation) =>
   `${pathForFilmSimulation(simulation)}/${SHARE}`
 
+export const absolutePathForBlog = (id: string) =>
+  `${BASE_URL}${pathForBlog(id)}`
+
 export const absolutePathForPhoto = (
   photo: PhotoOrPhotoId,
   tag?: string,
@@ -167,7 +172,7 @@ export const absolutePathForTag = (tag: string) =>
 
 export const absolutePathForBlogsImage = () => `${baseOGPath}/${PATH_BLOGS}`
 
-export const absolutePathForBlogImage = (id: string) => `${baseOGPath}?id=${id}`
+export const absolutePathForBlogImage = (id: string) => `${baseOGPath}${PATH_BLOG}?id=${id}`
 
 export const absolutePathForCamera = (camera: Camera) =>
   `${BASE_URL}${pathForCamera(camera)}`

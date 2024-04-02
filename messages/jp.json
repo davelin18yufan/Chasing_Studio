@@ -136,7 +136,8 @@
     "latest": "最新のブログ",
     "all": "全部のブログ",
     "createdBy": "著者",
-    "readingTime": "分間読む"
+    "readingTime": "分間読む",
+    "share": "ブログを共有"
  },
  "Photo": {
     "next": "次へ",

@@ -136,7 +136,8 @@
     "latest": "Latest Articles",
     "all": "All Articles",
     "createdBy": "Author",
-    "readingTime": "min. read"
+    "readingTime": "min. read",
+    "share": "Share Blog"
  },
  "Photo": {
     "next": "Next",

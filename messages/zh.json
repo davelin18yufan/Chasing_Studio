@@ -136,7 +136,8 @@
     "latest": "最新文章",
     "all": "全部文章",
     "createdBy": "作者",
-    "readingTime": "分鐘閱讀"
+    "readingTime": "分鐘閱讀",
+    "share": "分享文章"
   },
   "Photo": {
     "next": "下一個",

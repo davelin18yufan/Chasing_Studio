@@ -88,7 +88,7 @@ export default async function BlogPage({
           </div>
 
           {/* share toolbar */}
-          <ShareToolbar />
+          <ShareToolbar blogId={blogId}/>
         </div>
         <p className="text-sm text-dim mb-6">
           {`${readingTime(text.join(""), locale)} ${t("readingTime")}`} ·{" "}

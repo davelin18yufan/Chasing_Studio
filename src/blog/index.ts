@@ -1,3 +1,5 @@
+import { formatBlogDate } from "@/utility/date"
+
 export const MAX_BLOGS_TO_SHOW_OG = 6
 export const MAX_BLOGS_TO_SHOW_PER_TAG = 6
 
@@ -43,6 +45,11 @@ export interface Blog extends BlogBase {
   createdAt: Date
   updatedAt: Date
 }
+
+export const titleForBlog = (blog: Blog) => blog.title || "Untitled"
+
+export const descriptionForBlog = (blog: Blog) =>
+  formatBlogDate(blog.createdAt).toUpperCase()
 
 export const parseBlogFromDB = (blog: BlogDB): Blog => ({
   id: blog.id,
