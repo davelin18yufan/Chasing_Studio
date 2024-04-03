@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   ...(BASE_URL && { metadataBase: new URL(BASE_URL) }),
-  keywords: ["Chasing Studio", "photography", "Car photo", "moments"],
+  keywords: ["Chasing Studio", "汽車攝影", "動態攝影", "人像攝影", "人像攝影"],
   openGraph: {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
