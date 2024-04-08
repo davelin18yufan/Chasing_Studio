@@ -149,6 +149,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
             message: issue.message,
           }
         })
+        console.log(errors)
         setErrMsg(errors)
       } else {
         console.error(error)
@@ -405,6 +406,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
               value={titleAndAuthor.tags}
               placeholder="tag1,tag2,tag3"
               required={false}
+              errMsg={errMsg}
               otherClasses="!min-w-fit"
               disabled={isSubmitting}
             />

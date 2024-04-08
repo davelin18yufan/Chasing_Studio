@@ -26,7 +26,7 @@ export const articleSchema = z.object({
   }),
   tags: z
     .string()
-    .regex(/^[a-zA-Z0-9]+(,[a-zA-Z0-9]+)*$/, "please using comma to split tag")
+    .regex(/^[a-zA-Z0-9]+(,[a-zA-Z0-9]+)*$/, "please using comma to split tag and no space between them")
     .optional(),
   hidden: z.boolean().default(false),
 })
