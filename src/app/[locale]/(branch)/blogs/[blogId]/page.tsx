@@ -62,7 +62,8 @@ export default async function BlogPage({
       <div
         className={`${
           blog.coverPhoto?.src ?? "hidden"
-        } w-full relative aspect-video`}
+        } relative max-h-[100vh] mx-auto`}
+        style={{aspectRatio: `${blog.coverPhoto.aspectRatio}`}}
       >
         <Image
           alt="Cover photo"

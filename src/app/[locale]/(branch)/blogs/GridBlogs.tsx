@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { dataUrl } from "@/lib/utils"
 import Image from "next/image"
 import { Link } from "@/site/navigation"
