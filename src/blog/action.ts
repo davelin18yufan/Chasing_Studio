@@ -61,11 +61,13 @@ export async function updateBlogAction(formData: UpdateBlogAction) {
 
   if (!coverPhoto.src) throw new Error("Could not found uploaded cover photo")
 
+  const updatedUrl = await convertUploadToPhoto(coverPhoto.src, id)
+
   await sqlUpdateBlog({
     id,
     coverPhoto: {
       id: coverPhoto.id || generateNanoid(),
-      src: coverPhoto.src,
+      src: updatedUrl,
       aspectRatio: coverPhoto.aspectRatio,
     },
     author,
