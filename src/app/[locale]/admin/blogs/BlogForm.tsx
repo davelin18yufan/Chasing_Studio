@@ -149,7 +149,6 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
             message: issue.message,
           }
         })
-        console.log(errors)
         setErrMsg(errors)
       } else {
         console.error(error)
