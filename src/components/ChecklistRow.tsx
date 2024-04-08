@@ -16,7 +16,7 @@ export default function ChecklistRow({
   optional?: boolean
   children: ReactNode
 }) {
-  const t = useTranslations("photo.form")
+  const t = useTranslations("Admin.photo.form")
   return (
     <div className={clsx("flex gap-2.5", "px-4 pt-2 pb-2.5")}>
       <StatusIcon
