@@ -27,8 +27,8 @@ export default function FooterClient({
   const showFooter = !isPathSignIn(pathname) && !isPathRoot(pathname)
 
   const shouldAnimate = !isPathAdmin(pathname)
-  const t= useTranslations("Admin")
-  
+  const t = useTranslations("Admin")
+
   return (
     <SiteGrid
       contentMain={
@@ -39,37 +39,39 @@ export default function FooterClient({
           items={
             showFooter
               ? [
-                <div
-                  key="footer"
-                  className={clsx(
-                    "flex items-center",
-                    "text-dim min-h-[4rem] px-3"
-                  )}
-                >
-                  <div className="flex gap-x-4 gap-y-1 flex-grow flex-wrap h-4">
-                    {isPathAdmin(pathname) ? (
-                      <>
-                        {userEmail === undefined && <Spinner />}
-                        {userEmail && (
-                          <>
-                            <div>{userEmail}</div>
-                            <form action={signOutAction}>
-                              <SubmitButtonWithStatus styleAsLink>
-                                {t("actions.loginForm.signOut")}
-                              </SubmitButtonWithStatus>
-                            </form>
-                          </>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <Link href={pathForAdminPhotos()}>{t("nav.admin")}</Link>
-                        {SHOW_REPO_LINK && <RepoLink />}
-                      </>
+                  <div
+                    key="footer"
+                    className={clsx(
+                      "flex items-center",
+                      "text-dim min-h-[4rem] px-3"
                     )}
-                  </div>
-                </div>,
-              ]
+                  >
+                    <div className="flex gap-x-4 gap-y-1 flex-grow flex-wrap h-4">
+                      {isPathAdmin(pathname) ? (
+                        <>
+                          {userEmail === undefined && <Spinner />}
+                          {userEmail && (
+                            <>
+                              <div>{userEmail}</div>
+                              <form action={signOutAction}>
+                                <SubmitButtonWithStatus styleAsLink>
+                                  {t("actions.loginForm.signOut")}
+                                </SubmitButtonWithStatus>
+                              </form>
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <Link href={pathForAdminPhotos()}>
+                            {t("nav.admin")}
+                          </Link>
+                          {SHOW_REPO_LINK && <RepoLink />}
+                        </>
+                      )}
+                    </div>
+                  </div>,
+                ]
               : []
           }
         />

@@ -34,6 +34,7 @@ Installation
 - `NEXT_PUBLIC_SITE_TITLE` (e.g., My Photos)
 - `NEXT_PUBLIC_SITE_DOMAIN` (e.g., photos.domain.com)
 - `NEXT_PUBLIC_SITE_DESCRIPTION` (optional—mainly used for OG meta)
+3. Go to `/admin` and upload your first photo and blog
 
 ### 3. Setup Auth
 

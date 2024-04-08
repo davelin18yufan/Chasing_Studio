@@ -78,8 +78,8 @@ export default function GridBlogs({ blogs }: { blogs: Blog[] }) {
             "gap-4 max-md:max-h-[50vh]"
           )}
         >
-          <BlogCard blog={blogs[1]} height="md:basis-3/5" />
-          <BlogCard blog={blogs[2]} height="md:basis-2/5" />
+          <BlogCard blog={blogs[4]} height="md:basis-3/5" />
+          <BlogCard blog={blogs[5]} height="md:basis-2/5" />
         </div>
       </div>
     </section>
