@@ -45,7 +45,11 @@ export default function NavMobile({
       <SheetContent className="bg-content" side="right">
         <SheetHeader>
           <Link
-            className="hidden xs:block cursor-pointer relative w-auto h-[120px] p-2"
+            className={clsx(
+              "hidden xs:block",
+              "cursor-pointer relative",
+              "aspect-video max-h-[200px] p-2 mt-6"
+            )}
             href="/"
             as="image"
           >
@@ -53,15 +57,15 @@ export default function NavMobile({
               src="/logo_horizontal.png"
               alt="logo"
               fill
-              sizes="250px"
-              className="invert-colors aspect-square"
+              sizes="200px"
+              className="invert-colors"
               priority
             />
           </Link>
         </SheetHeader>
 
         <SheetClose asChild>
-          <section className="flex h-full flex-col gap-6 pt-16">
+          <section className="flex h-full flex-col gap-6 pt-10">
             <div>
               <ThemeSwitcher />
               <LocaleSwitcher />

@@ -59,7 +59,7 @@ export default function BlogCard({ blog }: Props) {
             <Image
               alt={blog.title}
               className="overflow-hidden object-cover invert-colors"
-              src="/favicons/logo_vertical.png"
+              src="/logo_vertical.png"
               sizes="120px 150px"
               fill
             />

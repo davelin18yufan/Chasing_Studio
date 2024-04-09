@@ -60,7 +60,7 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
   return (
     <header
       className={clsx(
-        "flex items-center justify-end bg-content sm:justify-between py-2 pr-8",
+        "flex items-center justify-end bg-content sm:justify-between py-2 px-8",
         "fixed top-0 w-full opacity-80 z-50",
         "origin-top transition-all",
         pathname === PATH_ROOT && "scale-y-0",
