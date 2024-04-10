@@ -13,6 +13,6 @@ export default async function Share({
   if (!blog) {
     return redirect(PATH_BLOGS)
   }
-
+  console.log(blog)
   return <BlogShareModal blog={blog} />
 }
