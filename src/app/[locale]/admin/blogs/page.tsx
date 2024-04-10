@@ -45,9 +45,9 @@ function PhotoTiny({
     >
       <ImageTiny
         src={blog.coverPhoto?.src || ""}
-        aspectRatio={blog.coverPhoto?.aspectRatio || 16.0 / 9.0}
-        blurData={blurData}
+        aspectRatio={blog.coverPhoto?.aspectRatio || 1.5}
         alt={blog.title}
+        blurData={blurData}
       />
     </Link>
   )
@@ -58,7 +58,7 @@ export default async function AdminArticlePage({
 }: PaginationParams) {
   const { offset, limit } = getPaginationForSearchParams(searchParams)
   const [blogs, count] = await Promise.all([
-    getBlogsCached({ includeHidden: true, limit }),
+    getBlogsCached({ includeHidden: true, limit, sortBy: "newest" }),
     getBlogsCountIncludingHiddenCached(),
   ])
 

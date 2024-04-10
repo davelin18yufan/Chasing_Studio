@@ -15,14 +15,15 @@ export const formatDateFromPostgresString = (date: string, short?: boolean) =>
 
 // new Date(2024-02-27T09:38:30.435Z) -> 2024-02-26 22:38:30
 export const formatDBDate = (date: Date): string =>{
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, "0")
-  const day = String(date.getDate()).padStart(2, "0")
-  const hours = String(date.getHours()).padStart(2, "0")
-  const minutes = String(date.getMinutes()).padStart(2, "0")
-  const seconds = String(date.getSeconds()).padStart(2, "0")
+  const localDate = new Date(date.toLocaleString()) // to locale
 
-  // 构建格式化后的日期字符串
+  const year = localDate.getFullYear()
+  const month = String(localDate.getMonth() + 1).padStart(2, "0")
+  const day = String(localDate.getDate()).padStart(2, "0")
+  const hours = String(localDate.getHours()).padStart(2, "0")
+  const minutes = String(localDate.getMinutes()).padStart(2, "0")
+  const seconds = String(localDate.getSeconds()).padStart(2, "0")
+
   const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 
   return formattedDate

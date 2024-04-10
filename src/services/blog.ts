@@ -114,7 +114,7 @@ export const getBlogs = async (options: GetBlogsOptions = {}) => {
   // sort
   switch (sortBy) {
   case "newest":
-    sqlQuery.push("ORDER BY created_at DESC")
+    sqlQuery.push("ORDER BY updated_at DESC")
     break
   case "oldest":
     sqlQuery.push("ORDER BY created_at ASC")
@@ -256,6 +256,7 @@ export const sqlInsertBlog = async (
 export const sqlUpdateBlog = async (blog: Omit<Blog, "createdAt">) =>
   sql`
     UPDATE blogs SET
+    cover_photo_id=${blog.coverPhoto.id}
     cover_photo_src=${blog.coverPhoto?.src},
     cover_photo_aspect_ratio=${blog.coverPhoto?.aspectRatio},
     hidden=${blog.hidden},
