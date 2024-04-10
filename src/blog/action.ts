@@ -33,9 +33,9 @@ export async function createBlogAction(formData: CreateBlogAction) {
 
   // copy to new url and delete stale blob
   //* convert url will ignore add-to-photo stage
-  // const updatedUrl = await convertUploadToPhoto(coverPhoto.src, coverPhotoId)
+  const updatedUrl = await convertUploadToPhoto(coverPhoto.src, coverPhotoId)
 
-  // if (updatedUrl) coverPhoto.src = updatedUrl // replace
+  if (updatedUrl) coverPhoto.src = updatedUrl // replace
 
   // put formData into sqlInsertBlog
   await sqlInsertBlog({
@@ -63,8 +63,9 @@ export async function updateBlogAction(formData: UpdateBlogAction) {
   if (!coverPhoto.src) throw new Error("Could not found uploaded cover photo")
 
   // convert url will ignore add to photo stage
-  // const updatedUrl = await convertUploadToPhoto(coverPhoto.src, id)
-  // if (updatedUrl) coverPhoto.src = updatedUrl // replace
+  const updatedUrl = await convertUploadToPhoto(coverPhoto.src, id)
+  
+  if (updatedUrl) coverPhoto.src = updatedUrl // replace
 
   await sqlUpdateBlog({
     id,
