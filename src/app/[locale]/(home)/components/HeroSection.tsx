@@ -209,17 +209,23 @@ export default function HeroSection({
             >
               {title}
             </h2>
-            <Image
-              src="/assets/sports-car-icon.svg"
-              alt="car"
-              // width={100}
-              // height={100}
+            <div
               className={clsx(
-                "w-20 md:w-24 aspect-square",
-                "bg-transparent translate-x-[100vw] mt-4",
-                "opacity-90 mix-blend-exclusion animate-car-move"
+                "relative w-20 md:w-24 aspect-square",
+                "translate-x-[100vw] mt-4 animate-car-move"
               )}
-            />
+            >
+              <Image
+                src="/assets/sports-car-icon.svg"
+                alt="car"
+                fill
+                sizes="80px"
+                className={clsx(
+                  "bg-transparent opacity-90",
+                  "mix-blend-exclusion"
+                )}
+              />
+            </div>
           </div>
         </div>
       </div>
