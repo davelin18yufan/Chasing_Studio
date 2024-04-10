@@ -1,5 +1,5 @@
 import ShareModal from "@/components/ShareModal"
-import { absolutePathForBlogImage, pathForBlog } from "@/site/paths"
+import { absolutePathForBlog, pathForBlog } from "@/site/paths"
 import { useTranslations } from "next-intl"
 import BlogOGTile from "./BlogOGTile"
 import { Blog } from "."
@@ -9,7 +9,7 @@ export default function BlogShareModal({ blog }: { blog: Blog }) {
   return (
     <ShareModal
       title={t("share")}
-      pathShare={absolutePathForBlogImage(blog.id)}
+      pathShare={absolutePathForBlog(blog.id)}
       pathClose={pathForBlog(blog.id)}
     >
       <BlogOGTile blog={blog}/>

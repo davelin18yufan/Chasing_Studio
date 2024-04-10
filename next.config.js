@@ -35,13 +35,7 @@ const nextConfig = {
     // imageSizes: [200],
     loader: "custom",
     loaderFile: "./src/lib/loader.ts",
-    remotePatterns: [{
-      protocol: "https",
-      hostname: "source.unsplash.com",
-      port: "",
-      pathname: "/**",
-    }]
-      .concat(createRemotePattern("qr-official.line.me"))
+    remotePatterns: []
       .concat(createRemotePattern(VERCEL_BLOB_HOSTNAME)),
     // .concat(createRemotePattern(CLOUDFLARE_R2_HOSTNAME))
     // .concat(createRemotePattern(AWS_S3_HOSTNAME)),

@@ -115,7 +115,7 @@ export default function BlogForm({ type, blog }: BlogFormProps) {
     author: { name: blog?.author.name || "", url: blog?.author.url || "" },
     coverPhoto: {
       src: blog?.coverPhoto?.src || "",
-      aspectRatio: blog?.coverPhoto?.aspectRatio || 16 / 9,
+      aspectRatio: blog?.coverPhoto?.aspectRatio || 1.5,
     },
     tags: blog?.tags?.join(",") || "",
     hidden: blog?.hidden || false,

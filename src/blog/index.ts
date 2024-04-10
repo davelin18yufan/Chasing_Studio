@@ -60,7 +60,7 @@ export const parseBlogFromDB = (blog: BlogDB): Blog => ({
   coverPhoto: {
     id: blog.cover_photo_id || "",
     src: blog.cover_photo_src || "",
-    aspectRatio: Number(blog.cover_photo_aspect_ratio) || 16 / 9,
+    aspectRatio: Number(blog.cover_photo_aspect_ratio) || 1.5,
   },
   title: blog.title,
   tags: blog.tags || [],
