@@ -111,6 +111,8 @@ export const revalidatePhotosKey = () => revalidateTag(KEY_PHOTOS)
 
 export const revalidateBlogsKey = () => revalidateTag(KEY_BLOGS)
 
+export const revalidateBlogKey = () => revalidateTag(KEY_BLOG)
+
 export const revalidateTagsKey = () => revalidateTag(KEY_TAGS)
 
 export const revalidateCamerasKey = () => revalidateTag(KEY_CAMERAS)
@@ -121,6 +123,7 @@ export const revalidateFilmSimulationsKey = () =>
 export const revalidateAllKeys = () => {
   revalidatePhotosKey()
   revalidateBlogsKey()
+  revalidateBlogKey()
   revalidateTagsKey()
   revalidateCamerasKey()
   revalidateFilmSimulationsKey()
@@ -270,6 +273,11 @@ export const authCached = cache(auth)
 export const getPhotoNoStore = (...args: Parameters<typeof getPhoto>) => {
   unstable_noStore()
   return getPhoto(...args)
+}
+
+export const getBlogNoStore = (...args: Parameters<typeof getBlog>) => {
+  unstable_noStore()
+  return getBlog(...args)
 }
 
 export const getStorageUploadUrlsNoStore: typeof getStorageUploadUrls = (

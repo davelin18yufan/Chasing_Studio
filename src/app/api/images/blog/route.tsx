@@ -113,6 +113,10 @@ export async function GET(request: Request) {
     getIBMPlexMonoMedium(),
   ])
 
+  if (!blog) {
+    return new Response("Blog not found", { status: 404 })
+  }
+
   // get w/h based on aspectRatio default 16/ 9
   const { width, height } = IMAGE_OG_DIMENSION_SMALL
   return new ImageResponse(
