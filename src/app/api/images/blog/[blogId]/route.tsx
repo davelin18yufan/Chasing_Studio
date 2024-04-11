@@ -96,9 +96,8 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
   )
 }
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const id = searchParams.get("id")
+export async function GET(_: Request, context: { params: { blogId: string } }) {
+  const id = context.params.blogId
 
   if (!id) {
     return new ImageResponse(<>Visit ${pathForBlogs}</>, {

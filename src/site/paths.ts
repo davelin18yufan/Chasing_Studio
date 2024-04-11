@@ -172,7 +172,7 @@ export const absolutePathForTag = (tag: string) =>
 
 export const absolutePathForBlogsImage = () => `${baseOGPath}/${PATH_BLOGS}`
 
-export const absolutePathForBlogImage = (id: string) => `${baseOGPath}${PATH_BLOG}?id=${id}`
+export const absolutePathForBlogImage = (id: string) => `${baseOGPath}${PATH_BLOG}/${id}`
 
 export const absolutePathForCamera = (camera: Camera) =>
   `${BASE_URL}${pathForCamera(camera)}`
