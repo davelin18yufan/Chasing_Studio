@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { revalidateAdminPaths, revalidatePhotosKey } from "@/cache";
+import { revalidateAdminPaths, revalidateBlogsKey, revalidatePhotosKey } from "@/cache";
 import {
   ACCEPTED_PHOTO_FILE_TYPES,
   MAX_PHOTO_UPLOAD_SIZE_IN_BYTES,
@@ -38,6 +38,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
     });
     revalidatePhotosKey();
+    revalidateBlogsKey()
     revalidateAdminPaths();
     return NextResponse.json(jsonResponse);
   } catch (error) {

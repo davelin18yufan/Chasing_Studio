@@ -66,7 +66,7 @@ export async function updateBlogAction(formData: UpdateBlogAction) {
   const updatedUrl = await convertUploadToPhoto(coverPhoto.src, id)
   
   if (updatedUrl) coverPhoto.src = updatedUrl // replace
-
+  
   await sqlUpdateBlog({
     id,
     coverPhoto: {
