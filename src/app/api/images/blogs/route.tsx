@@ -43,7 +43,7 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
           justifyContent: "flex-end",
           top: 0,
           left: 0,
-          padding: "1rem",
+          padding: '1rem',
           background:
             "linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)",
           color: "white",
@@ -54,7 +54,6 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
           style={{
             fontSize: "1.125rem",
             fontWeight: "bold",
-            marginBottom: "0.5rem",
           }}
         >
           {blog.title}
@@ -66,7 +65,6 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
             justifyContent: "space-between",
             fontSize: "0.875rem",
             color: "rgba(255,255,255,0.7)",
-            marginBottom: "0.5rem",
             background: "transparent",
           }}
         >
@@ -75,25 +73,11 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
-              lineHeight: "1.25rem",
-              marginRight: "1rem",
             }}
           >
             {blog.author.name}
           </p>
         </div>
-        <p
-          style={{
-            color: "rgba(255,255,255,0.75)",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-          }}
-        >
-          {text.join(" ")}
-        </p>
       </div>
     </div>
   )
@@ -137,8 +121,8 @@ function GridBlogs({ blogs }: { blogs: Blog[] }) {
           flexBasis: "33.333333%",
         }}
       >
-        <BlogCard blog={blogs[1]} height="60%" />
-        <BlogCard blog={blogs[2]} height="40%" />
+        <BlogCard blog={blogs[3]} height="60%" />
+        <BlogCard blog={blogs[4]} height="40%" />
       </div>
     </div>
   )

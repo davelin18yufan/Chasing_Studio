@@ -121,7 +121,7 @@ export async function GET(_: Request, context: { params: { blogId: string } }) {
   return new ImageResponse(
     (
       <ImageContainer {...{ width, height }}>
-        {blog && <BlogCard blog={blog} height="100%" />}
+        <BlogCard blog={blog} height="100%" />
         <ImageCaption {...{ width, height, fontFamily }}>
           {SITE_DOMAIN_OR_TITLE}
         </ImageCaption>
