@@ -97,3 +97,16 @@ export const readingTime = (text: string, locale?: string) => {
   const time = Math.ceil(words / wpm)
   return time
 }
+
+export const debouncedFn = (fn: Function, delay: number) => {
+  let timer: ReturnType<typeof setTimeout> | null = null
+
+  return (...args: any[]) => {
+    clearTimeout(timer ?? undefined)
+
+    timer = setTimeout(() => {
+      timer = null
+      fn(...args)
+    }, delay)
+  }
+}
