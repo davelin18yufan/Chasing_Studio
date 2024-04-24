@@ -52,10 +52,12 @@ export default function NavClient({ showAdmin }: { showAdmin?: boolean }) {
    // Calculate the difference between the latest scroll position and the previous one
    const scrollDiff = latest - previousScrollY.current
 
+   if(latest === 0) setVisible(false)
+
    // Check if the scroll difference exceeds the threshold
    if (Math.abs(scrollDiff) >= SCROLL_THRESHOLD) {
-     if (latest > previousScrollY.current || latest === 0) {
-       // If scrolling down or at the top, hide the nav
+     if (latest > previousScrollY.current) {
+       // If scrolling down, hide the nav
        setVisible(false)
      } else {
        // Otherwise, show the nav
