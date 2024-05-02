@@ -9,6 +9,7 @@ import ImageContainer from "@/photo/image-response/components/ImageContainer"
 import ImageCaption from "@/photo/image-response/components/ImageCaption"
 import { SITE_DOMAIN_OR_TITLE } from "@/site/config"
 import { pathForBlogs } from "@/site/paths"
+import { getNextImageUrlForRequest } from "@/services/next-image"
 
 export const runtime = "edge"
 
@@ -21,12 +22,12 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
         width: "100%",
         overflow: "hidden",
         position: "relative",
-        ...(height && { height }),
+        height,
         display: "flex",
       }}
     >
       <img
-        src={blog.coverPhoto.src}
+        src={getNextImageUrlForRequest(blog.coverPhoto.src, 1080)}
         alt={blog.title}
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
       />
