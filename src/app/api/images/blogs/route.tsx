@@ -5,7 +5,6 @@ import { IMAGE_OG_DIMENSION_SMALL } from "@/photo/image-response"
 import { getIBMPlexMonoMedium } from "@/site/font"
 import { ImageResponse } from "next/og"
 import { Blog } from "@/blog"
-import { getSerializeTextFromSlate } from "@/blog"
 import ImageContainer from "@/photo/image-response/components/ImageContainer"
 import ImageCaption from "@/photo/image-response/components/ImageCaption"
 import { SITE_DOMAIN_OR_TITLE } from "@/site/config"
@@ -13,8 +12,6 @@ import { SITE_DOMAIN_OR_TITLE } from "@/site/config"
 export const runtime = "edge"
 
 function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
-  const textObj = getSerializeTextFromSlate(JSON.parse(blog.content))
-  const text = textObj.map((t) => t.text)
   return (
     <div
       style={{
@@ -43,8 +40,8 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
           justifyContent: "flex-end",
           top: 0,
           left: 0,
-          padding: '1rem',
-          background:
+          padding: "1rem",
+          backgroundImage:
             "linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)",
           color: "white",
           position: "absolute",
@@ -65,7 +62,7 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
             justifyContent: "space-between",
             fontSize: "0.875rem",
             color: "rgba(255,255,255,0.7)",
-            background: "transparent",
+            backgroundColor: "transparent",
           }}
         >
           <p
@@ -129,7 +126,7 @@ function GridBlogs({ blogs }: { blogs: Blog[] }) {
 }
 
 export async function GET() {
-  const [blogs, headers, { fontFamily,fonts }] = await Promise.all([
+  const [blogs, headers, { fontFamily, fonts }] = await Promise.all([
     getBlogsCached({ limit: MAX_BLOGS_TO_SHOW_OG }),
     getImageCacheHeadersForAuth(await auth()),
     getIBMPlexMonoMedium(),

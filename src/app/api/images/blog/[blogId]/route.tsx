@@ -43,7 +43,7 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
           top: 0,
           left: 0,
           padding: "1rem",
-          background:
+          backgroundImage:
             "linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%)",
           color: "white",
           position: "absolute",
@@ -66,7 +66,7 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
             justifyContent: "space-between",
             fontSize: "0.875rem",
             color: "rgba(255,255,255,0.7)",
-            background: "transparent",
+            backgroundColor: "transparent",
           }}
         >
           <p
@@ -85,9 +85,7 @@ function BlogCard({ blog, height }: { blog: Blog; height?: string }) {
             color: "rgba(255,255,255,0.75)",
             overflow: "hidden",
             textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
+            display: "flex",
           }}
         >
           {text.join(" ")}
